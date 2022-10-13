@@ -15,7 +15,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(color: Colors.amber),
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text('Images'),
+              SizedBox(height: 20),
+              OutlinedButton(
+                onPressed: null,
+                child: Text(
+                  'Hello World',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
