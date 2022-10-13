@@ -1,0 +1,23 @@
+# generate flutter files
+build:
+	flutter pub run build_runner build --delete-conflicting-outputs
+
+# Generate flutter files and watch for changes
+watch:
+	flutter pub run build_runner watch --delete-conflicting-outputs
+
+# Run tests
+test:
+	flutter test
+
+# remove installed dependencies
+clean:
+	flutter clean
+
+# Get packages 
+get:
+	flutter pub get
+
+# Run tests and generate coverage report
+coverage:
+	flutter test --coverage && lcov --remove coverage/lcov.info "**/*.chopper.dart" "**/*.freezed.dart" "**/*.g.dart" -o coverage/lcov.info && genhtml ./coverage/lcov.info -o ./coverage/html
