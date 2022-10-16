@@ -14,7 +14,7 @@ test:
 clean:
 	flutter clean
 
-# Get packages 
+# Get packages
 get:
 	flutter pub get
 
