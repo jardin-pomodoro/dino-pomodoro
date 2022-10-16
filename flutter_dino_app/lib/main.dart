@@ -1,38 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/pomodoro_screen/pomodoro_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dino application',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Images'),
-              SizedBox(height: 20),
-              OutlinedButton(
-                onPressed: null,
-                child: Text(
-                  'Hello World',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: const PomodoroScreen(),
     );
   }
 }

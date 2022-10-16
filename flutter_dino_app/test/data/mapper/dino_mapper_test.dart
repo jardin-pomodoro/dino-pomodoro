@@ -16,7 +16,7 @@ void main() {
       openningTime: DateTime(2021, 1, 1),
     );
     final expected = DinoModel(
-      id: DinoId(1),
+      id: const DinoId(1),
       color: Colors.amber,
       step: DinoEvolutionStep.egg,
       name: 'flappy',
