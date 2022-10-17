@@ -1,23 +1,43 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-final timerProvider = StateNotifierProvider((ref) => TimerNotifier());
-final test = StateProvider((ref) {});
-
-class TimerNotifier extends StateNotifier<String> {
-  final Stopwatch _stopwatch = Stopwatch();
-  TimerNotifier() : super("00:00:00") {
-    _stopwatch.start();
-  }
+abstract class Timer {
+  Stream<int> start();
+  void stop();
+  void reset();
 }
+
+class DefaultTimer extends Timer {
+  @override
+  Stream<int> start() async* {
+    int i = 0;
+    while (true) {
+      yield i++;
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+  @override
+  void reset() {}
+
+  @override
+  void stop() {}
+}
+
+final timerProvider = Provider<Timer>((ref) => DefaultTimer());
+
+final tickerProvider = StreamProvider<int>((ref) {
+  final timer = ref.watch(timerProvider);
+  return timer.start();
+});
 
 class PomodoroScreen extends ConsumerWidget {
   const PomodoroScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<int> timer = ref.watch(tickerProvider);
     final slider = SleekCircularSlider(
       appearance: CircularSliderAppearance(
         startAngle: 270,
@@ -46,11 +66,15 @@ class PomodoroScreen extends ConsumerWidget {
         // ucallback providing an ending value (when a pan gesture ends)
       },
       innerWidget: (double value) {
-        return Center(child: Text(value.toString()));
+        final res = timer.when(
+          data: (int value) => value,
+          error: (Object e, _) => e,
+          loading: () => 0,
+        );
+        return Center(child: Text(res.toString()));
         // use your custom widget inside the slider (gets a slider value from the callback)
       },
     );
-    final timer = ref.watch(timerProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pomodoro'),
