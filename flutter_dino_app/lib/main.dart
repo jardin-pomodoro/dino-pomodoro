@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/pomodoro_screen/pomodoro_screen.dart';
+import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dino application',
+      title: appTitle,
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
