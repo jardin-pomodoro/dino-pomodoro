@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/timer/timer.dart';
 
-const Duration defaultPeriod = Duration(minutes: 5);
+const Duration defaultPeriod = Duration(hours: 1);
 
 double computeCurrentValue(Duration remainingTime) {
   final gap = defaultPeriod.inSeconds - remainingTime.inSeconds;
@@ -35,7 +35,7 @@ class PomodoroScreen extends ConsumerWidget {
           remainingTime: remainingTime,
           children: Center(
             child: Text(
-              remainingTime.inSecondWithMinutes(),
+              remainingTime.inSecondsWithMinutes(),
               style: const TextStyle(
                 fontSize: 40,
                 color: Colors.black,
