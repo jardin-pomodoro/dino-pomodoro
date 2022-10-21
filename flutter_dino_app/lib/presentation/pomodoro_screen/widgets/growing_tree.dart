@@ -14,23 +14,23 @@ class GrowingTree extends StatefulWidget {
 }
 
 class _GrowingTreeState extends State<GrowingTree> {
-  late SMINumber _input;
+  SMIInput<double>? _progress;
 
   void onInitRive(Artboard artboard) {
     final controller = StateMachineController.fromArtboard(artboard, 'Grow');
-    print(controller);
     if (controller == null) {
       return;
     }
     artboard.addController(controller);
-    _input = controller.findInput<int>('input') as SMINumber;
+    _progress = controller.findInput('input');
     final Duration timer = widget.timer
         .maybeWhen(orElse: () => Duration.zero, data: (value) => value);
     final double diff = (defaultPeriod.inSeconds - timer.inSeconds) /
         defaultPeriod.inSeconds *
         100;
 
-    _input.change(diff);
+    // change progress to value retrieve from timer
+    _progress?.value = 100 - diff;
   }
 
   @override
