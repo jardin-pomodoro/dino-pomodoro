@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/data/datasource/entities/dino_entity.dart';
 import 'package:flutter_dino_app/data/mapper/dino_mapper.dart';

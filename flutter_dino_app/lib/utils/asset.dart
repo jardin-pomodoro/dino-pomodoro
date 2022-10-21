@@ -1,3 +1,3 @@
 class Assets {
-  static const tree = 'assets/rive/tree.riv';
+  static const tree = 'assets/rive/tree_demo.riv';
 }

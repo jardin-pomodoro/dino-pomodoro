@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/pomodoro_screen/widgets/growing_tree.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/presentation/widgets/circular_progress_indicator.dart';
 import 'package:flutter_dino_app/utils/duration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rive/rive.dart';
 
-import '../../utils/asset.dart';
 import '../state/timer/timer.dart';
 
-const Duration defaultPeriod = Duration(hours: 1);
+const Duration defaultPeriod = Duration(minutes: 10);
 
 double computeCurrentValue(Duration remainingTime) {
   final gap = defaultPeriod.inSeconds - remainingTime.inSeconds;
@@ -51,13 +50,7 @@ class PomodoroScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: const RiveAnimation.asset(
-                Assets.tree,
-                fit: BoxFit.contain,
-              ),
-            ),
+            GrowingTree(timer: timer)
           ],
         ),
       ),
