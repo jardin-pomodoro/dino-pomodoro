@@ -16,16 +16,9 @@ class GrowingTree extends ConsumerStatefulWidget {
 class _GrowingTreeState extends ConsumerState<GrowingTree> {
   SMIInput<double>? _progress;
 
-  @override
-  void initState() {
-    super.initState();
-
-    AsyncValue<Duration> elapsedTime = ref.read(tickerProvider);
-    print(elapsedTime);
-  }
-
   void onInitRive(Artboard artboard) {
     final controller = StateMachineController.fromArtboard(artboard, 'Grow');
+    print(controller);
     if (controller == null) {
       return;
     }
@@ -33,13 +26,6 @@ class _GrowingTreeState extends ConsumerState<GrowingTree> {
     _progress = controller.findInput('input');
 
     _progress?.value = 0;
-    // res.whenData((value) {
-    //   print(value);
-    //   final double diff = (defaultPeriod.inSeconds - value.inSeconds) /
-    //       defaultPeriod.inSeconds *
-    //       100;
-    //   _progress?.value = 100 - diff;
-    // });
   }
 
   @override
@@ -47,10 +33,9 @@ class _GrowingTreeState extends ConsumerState<GrowingTree> {
     AsyncValue<Duration> elaspedTime = ref.watch(tickerProvider);
     _progress?.value = elaspedTime.when(
       data: (value) {
-        final double diff = (defaultPeriod.inSeconds - value.inSeconds) /
-            defaultPeriod.inSeconds *
-            100;
-        return 100 - diff;
+        final diff = defaultPeriod.inSeconds - value.inSeconds;
+        final percentageDifference = diff / defaultPeriod.inSeconds * 100;
+        return percentageDifference;
       },
       loading: () => 0,
       error: (error, stack) => 0,
