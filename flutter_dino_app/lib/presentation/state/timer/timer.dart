@@ -16,6 +16,9 @@ class DefaultTimer extends Timer {
       await Future.delayed(const Duration(seconds: 1));
       timer = timer - const Duration(seconds: 1);
       yield timer;
+      if (timer == Duration.zero) {
+        return;
+      }
     }
   }
 

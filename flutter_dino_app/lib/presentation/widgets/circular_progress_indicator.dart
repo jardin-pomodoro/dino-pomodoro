@@ -33,9 +33,6 @@ class CircularProgressTimer extends StatelessWidget {
       min: 0,
       max: defaultPeriod.inSeconds.toDouble(),
       initialValue: computeCurrentValue(remainingTime),
-      onChange: (value) {
-        print(value);
-      },
       innerWidget: (double value) {
         return children;
       },
