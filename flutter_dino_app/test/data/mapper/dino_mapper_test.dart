@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/data/datasource/entities/dino_entity.dart';
-import 'package:flutter_dino_app/data/mapper/dino_mapper.dart';
-import 'package:flutter_dino_app/domain/models/dino_model.dart';
+import 'package:flutter_dino_app/data/datasource/local/entities/tree_entity.dart';
+import 'package:flutter_dino_app/data/mapper/tree_mapper.dart';
+import 'package:flutter_dino_app/domain/models/tree_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('test map entity to domain model', () {
-    final dinoEntity = DinoEnitity(
-      id: 1,
-      color: Colors.amber,
-      step: 'egg',
-      name: 'flappy',
-      openningTime: DateTime(2021, 1, 1),
+    const treeEntity = TreeEnitity(treeId: "1", color: Colors.amber, form: 12);
+    const expected = TreeModel(
+      "1",
+      12,
+      Colors.amber
     );
-    final expected = DinoModel(
-      id: const DinoId(1),
-      color: Colors.amber,
-      step: DinoEvolutionStep.egg,
-      name: 'flappy',
-      openningTime: DateTime(2021, 1, 1),
-    );
-    expect(expected, DinoMapper.mapEntityToDomain(dinoEntity));
+    expect(expected, TreeMapper.mapEntityToDomain(treeEntity));
   });
 }

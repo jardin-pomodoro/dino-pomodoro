@@ -1,6 +1,6 @@
 import 'package:flutter_dino_app/domain/models/tree_model.dart';
 
-import '../../../domain/repositories/tree_repository.dart';
+import '../../../../domain/repositories/tree_repository.dart';
 
 class TreeRepositorySqlite implements TreeRepository {
   @override

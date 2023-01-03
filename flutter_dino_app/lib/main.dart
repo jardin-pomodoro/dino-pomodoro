@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/pomodoro_screen/pomodoro_screen.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import 'data/datasource/api/api.dart';
+import 'data/datasource/api/supabase_connection.dart';
+import 'presentation/pomodoro_screen/pomodoro_screen.dart';
+import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final Api api = Supabse();
+  await api.connect();
   runApp(const ProviderScope(child: MyApp()));
 }
 

@@ -18,7 +18,6 @@ class _GrowingTreeState extends ConsumerState<GrowingTree> {
 
   void onInitRive(Artboard artboard) {
     final controller = StateMachineController.fromArtboard(artboard, 'Grow');
-    print(controller);
     if (controller == null) {
       return;
     }
