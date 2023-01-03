@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/pomodoro_screen/widgets/growing_tree.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/circular_progress_indicator.dart';
-import 'package:flutter_dino_app/utils/duration.dart';
+import '../../utils/duration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/timer/timer.dart';
+import '../theme/theme.dart';
+import '../widgets/circular_progress_indicator.dart';
+import 'widgets/growing_tree.dart';
 
 const Duration defaultPeriod = Duration(minutes: 1);
 

@@ -9,10 +9,8 @@ class DatabaseSource {
         db.execute('''
           CREATE TABLE DINO(
             dino_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            name varchar(255) NOT NULL,
-            step varchar(50) NOT NULL,
             color varchar(255) NOT NULL,
-            openning_time datetime NOT NULL
+            form INTEGER NOT NULL,
           )
         ''');
       },
