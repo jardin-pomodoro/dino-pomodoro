@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/riverpod_training/counter.dart';
 import 'package:flutter_dino_app/presentation/riverpod_training/date_consumer.dart';
+import 'package:flutter_dino_app/presentation/riverpod_training/weather.dart';
 
 class RiverPodMainScreen extends StatelessWidget {
   const RiverPodMainScreen({
@@ -22,6 +23,8 @@ class RiverPodMainScreen extends StatelessWidget {
               DateWidget(),
               SizedBox(height: 20),
               CounterWidget(),
+              SizedBox(height: 20),
+              WeatherWidget()
             ],
           ),
         ),
