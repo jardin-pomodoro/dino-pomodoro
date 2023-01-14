@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'presentation/riverpod_training/riverpod_main_screen.dart';
 import 'presentation/theme/theme.dart';
@@ -8,7 +8,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // final Api api = Supabse();
   // await api.connect();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
+      debugShowCheckedModeBanner: false,
       theme: themeData.copyWith(
         colorScheme: themeData.colorScheme.copyWith(
           secondary: Colors.greenAccent,
