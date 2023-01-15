@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/weather.dart';
-import 'package:flutter_dino_app/presentation/state/weather/Weather.dart';
+import 'package:flutter_dino_app/presentation/state/weather/weather.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class WeatherWidget extends ConsumerWidget {
