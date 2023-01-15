@@ -41,7 +41,7 @@ class WeatherWidget extends ConsumerWidget {
                 final isSelected = ref.watch(currentCityProvider) == city;
                 return ListTile(
                     title: Text(
-                      city.toString(),
+                      city.toString().split('.').last,
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     trailing: isSelected ? const Icon(Icons.check) : null,

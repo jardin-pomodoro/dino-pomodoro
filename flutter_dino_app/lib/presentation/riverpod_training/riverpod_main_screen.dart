@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/riverpod_training/counter.dart';
-import 'package:flutter_dino_app/presentation/riverpod_training/date_consumer.dart';
-import 'package:flutter_dino_app/presentation/riverpod_training/weather.dart';
+import 'package:flutter_dino_app/presentation/riverpod_training/example_4.dart';
 
 class RiverPodMainScreen extends StatelessWidget {
   const RiverPodMainScreen({
@@ -20,11 +18,13 @@ class RiverPodMainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
-              DateWidget(),
-              SizedBox(height: 20),
-              CounterWidget(),
-              SizedBox(height: 20),
-              WeatherWidget()
+              // DateWidget(),
+              // SizedBox(height: 20),
+              // CounterWidget(),
+              // SizedBox(height: 20),
+              // WeatherWidget(),
+              // SizedBox(height: 20),
+              Example4()
             ],
           ),
         ),
