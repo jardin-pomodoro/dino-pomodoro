@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../pomodoro_screen/pomodoro_screen.dart';
+import '../../screen/pomodoro_screen/pomodoro_screen.dart';
 
 abstract class Timer {
   Stream<Duration> start(Duration period);

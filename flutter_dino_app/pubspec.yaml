@@ -22,6 +22,8 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   rive: ^0.9.0
   supabase_flutter: ^1.2.2
+  pocketbase: ^0.7.0
+  oauth2: ^2.0.1
 
 dev_dependencies:
   flutter_test:

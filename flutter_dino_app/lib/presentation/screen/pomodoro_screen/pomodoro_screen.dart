@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../utils/duration.dart';
+import '../../../utils/duration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../state/timer/timer.dart';
-import '../theme/theme.dart';
-import '../widgets/circular_progress_indicator.dart';
+import '../../state/timer/timer.dart';
+import '../../theme/theme.dart';
+import '../../widgets/circular_progress_timer.dart';
 import 'widgets/growing_tree.dart';
 
 const Duration defaultPeriod = Duration(minutes: 1);
