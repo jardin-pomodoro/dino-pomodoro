@@ -24,6 +24,7 @@ dependencies:
   supabase_flutter: ^1.2.2
   pocketbase: ^0.7.0
   oauth2: ^2.0.1
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:

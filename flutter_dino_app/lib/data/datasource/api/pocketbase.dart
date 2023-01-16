@@ -4,8 +4,10 @@ import 'package:pocketbase/pocketbase.dart';
 import 'api_consumer.dart';
 
 class ApiPocketBase implements Api {
+  static const String baseUrl = 'https://pocketbase.nospy.fr/';
+
   @override
   ApiConsumer connect() {
-    return ApiConsumer(PocketBase('https://pocketbase.nospy.fr/'));
+    return ApiConsumer(PocketBase(baseUrl));
   }
 }

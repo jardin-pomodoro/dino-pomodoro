@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
-import 'package:flutter_dino_app/presentation/screen/pomodoro_screen/pomodoro_screen.dart';
-import 'data/datasource/api/api_consumer.dart';
-import 'data/datasource/api/pocketbase.dart';
 import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -29,13 +29,14 @@ class OAuth2Provider {
   });
 
   factory OAuth2Provider.fromJson(Map<String, dynamic> map) {
+    print(map);
     return OAuth2Provider(
       name: map['name'],
       state: map['state'],
-      codeVerifier: map['code_verifier'],
-      codeChallenge: map['code_challenge'],
-      codeChallengeMethod: map['code_challenge_method'],
-      authUrl: map['auth_url'],
+      codeVerifier: map['codeVerifier'],
+      codeChallenge: map['codeChallenge'],
+      codeChallengeMethod: map['codeChallengeMethod'],
+      authUrl: map['authUrl'],
     );
   }
 }
