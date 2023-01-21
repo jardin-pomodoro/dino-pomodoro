@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/riverpod_training/example_4.dart';
+import 'package:flutter_dino_app/presentation/riverpod_training/user_list.dart';
 
 class RiverPodMainScreen extends StatelessWidget {
   const RiverPodMainScreen({
@@ -24,7 +24,8 @@ class RiverPodMainScreen extends StatelessWidget {
               // SizedBox(height: 20),
               // WeatherWidget(),
               // SizedBox(height: 20),
-              Example4()
+              // Example4()
+              UserListWidget()
             ],
           ),
         ),
