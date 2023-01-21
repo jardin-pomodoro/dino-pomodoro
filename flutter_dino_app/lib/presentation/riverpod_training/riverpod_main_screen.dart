@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/riverpod_training/user_list.dart';
+import 'package:flutter_dino_app/presentation/riverpod_training/movie_list.dart';
+import 'package:flutter_dino_app/presentation/state/movie_list/movie_list.dart';
 
 class RiverPodMainScreen extends StatelessWidget {
   const RiverPodMainScreen({
@@ -16,6 +17,7 @@ class RiverPodMainScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               // DateWidget(),
@@ -25,7 +27,8 @@ class RiverPodMainScreen extends StatelessWidget {
               // WeatherWidget(),
               // SizedBox(height: 20),
               // Example4()
-              UserListWidget()
+              // UserListWidget()
+              FavoriteMovieWidget(),
             ],
           ),
         ),
