@@ -1,0 +1,93 @@
+Flutter App: {
+  shape: image
+  icon: https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png
+}
+
+Flutter App -> DB PocketBase
+
+DB PocketBase: {
+  User: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    username: Text
+    email: Email
+    name: Text
+    avatar: Image
+    created: DateTime
+    updated: DateTime
+  }
+
+  Wallet: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    user: Relation {constraint: foreign_key}
+    balance: Number
+    created: DateTime
+    updated: DateTime
+  }
+
+  Tree: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    user: Relation {constraint: foreign_key}
+    seed: Relation {constraint: foreign_key}
+    name: Text
+    created: DateTime
+    updated: DateTime
+  }
+
+  Seed: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    seed_type: Relation {constraint: foreign_key}
+    created: DateTime
+    updated: DateTime
+  }
+
+  SeedType: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    name: Text
+    image: Image
+    time_to_grow: Number
+    reward: Number
+    created: DateTime
+    updated: DateTime
+  }
+
+  Friendship: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    user: Relation {constraint: foreign_key}
+    friend: Relation {constraint: foreign_key}
+    created: DateTime
+    updated: DateTime
+  }
+
+  Growing: {
+    shape: sql_table
+
+    id: Text {constraint: primary_key}
+    tree: Relation {constraint: foreign_key}
+    user: Relation {constraint: foreign_key}
+    started: DateTime
+    created: DateTime
+    updated: DateTime
+  }
+
+  # Relations
+
+  Wallet.user -> User.id : user
+  Tree.user -> User.id : user
+  Tree.seed -> Seed.id : seed
+  Seed.seed_type -> SeedType.id : seed_type
+  Friendship -> User : user, friend
+  Growing.tree -> Tree.id : tree
+  Growing.user -> User.id : user
+}
