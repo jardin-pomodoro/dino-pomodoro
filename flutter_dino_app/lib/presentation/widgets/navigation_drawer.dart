@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/forest_screen/forest_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/friends_screen/friends_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/seeds_screen/seeds_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/settings_screen/settings_widget.dart';
+import 'package:flutter_dino_app/presentation/shop_screen/shop_screen_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -54,33 +60,33 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.stopwatch),
             title: const Text('Pomodoro'),
-            onTap: () => {},
+            onTap: () => GrowingScreenWidget.navigateTo(context),
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.tree),
             title: const Text('Forêt'),
-            onTap: () => {},
+            onTap: () => ForestScreenWidget.navigateTo(context),
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.seedling),
             title: const Text('Graines'),
-            onTap: () => {},
+            onTap: () => SeedsScreenWidget.navigateTo(context),
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.userGroup),
             title: const Text('Amis'),
-            onTap: () => {},
+            onTap: () => FriendsScreenWidget.navigateTo(context),
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.shop),
             title: const Text('Boutique'),
-            onTap: () => {},
+            onTap: () => ShopScreenWidget.navigateTo(context),
           ),
           Divider(color: Theme.of(context).dividerColor),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.gear),
             title: const Text('Paramètres'),
-            onTap: () => {},
+            onTap: () => SettingsScreenWidget.navigateTo(context),
           ),
         ],
       ),

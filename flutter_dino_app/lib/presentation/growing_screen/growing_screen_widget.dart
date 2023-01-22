@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
+import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../utils/duration.dart';
 import '../state/timer/timer.dart';
-import '../theme/theme.dart';
 import '../widgets/circular_progress_indicator.dart';
 import 'widgets/growing_tree.dart';
 
@@ -16,6 +16,10 @@ double computeCurrentValue(Duration remainingTime) {
 }
 
 class GrowingScreenWidget extends ConsumerWidget {
+  static void navigateTo(BuildContext context) {
+    context.go(RouteNames.growing);
+  }
+
   const GrowingScreenWidget({super.key});
 
   @override

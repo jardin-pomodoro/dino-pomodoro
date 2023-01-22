@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
-import 'package:flutter_dino_app/presentation/pomodoro_screen.dart';
+import 'package:flutter_dino_app/presentation/router.dart';
+import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'data/datasource/api/api.dart';
 import 'data/datasource/api/supabase_connection.dart';
-import 'presentation/theme/theme.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: appTitle,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const PomodoroScreenWidget(),
+      routerConfig: router,
     );
   }
 }
