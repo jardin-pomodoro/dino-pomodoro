@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
-import 'presentation/theme/theme.dart';
+import 'package:flutter_dino_app/presentation/router.dart';
+import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: appTitle,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const AuthScreen(),
+      routerConfig: router,
     );
   }
 }
