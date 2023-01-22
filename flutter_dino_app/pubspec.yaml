@@ -22,6 +22,13 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   rive: ^0.9.0
   supabase_flutter: ^1.2.2
+  pocketbase: ^0.7.0
+  oauth2: ^2.0.1
+  uuid: ^3.0.7
+  webview_flutter: ^4.0.2
+  pkce: ^1.1.0+1
+  font_awesome_flutter: ^10.3.0
+  go_router: ^6.0.1
 
 dev_dependencies:
   flutter_test:

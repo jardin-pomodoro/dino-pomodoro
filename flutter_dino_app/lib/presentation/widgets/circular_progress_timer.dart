@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-
-import '../pomodoro_screen/pomodoro_screen.dart';
 
 class CircularProgressTimer extends StatelessWidget {
   final Duration remainingTime;

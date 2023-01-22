@@ -1,6 +1,5 @@
+import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../pomodoro_screen/pomodoro_screen.dart';
 
 abstract class Timer {
   Stream<Duration> start(Duration period);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/pomodoro_screen/pomodoro_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
 
-import '../../../utils/asset.dart';
+import '../../../../utils/asset.dart';
 import '../../state/timer/timer.dart';
+import '../growing_screen_widget.dart';
 
 class GrowingTree extends ConsumerStatefulWidget {
   const GrowingTree({Key? key}) : super(key: key);
