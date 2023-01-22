@@ -12,7 +12,6 @@ flutter_app: Flutter App {
 flutter_app -> pocketbase
 
 pocketbase: PocketBase {
-
   User: {
     shape: sql_table
     tooltip: "Un utilisateur de l'application."
@@ -29,10 +28,10 @@ pocketbase: PocketBase {
 
   Friendship: {
     shape: sql_table
-    tooltip: |
-    Une relation d'amitié est un objet qui définit une relation d'amitié entre deux utilisateurs.
-    Il faut veiller à ce que l'utilisateur et son ami ne soient pas les mêmes.
-    Faire attention également que la relation n'existe pas déjà, mais dans l'autre sens.
+    tooltip: |md
+      Une relation d'amitié est un objet qui définit une relation d'amitié entre deux utilisateurs.
+      Il faut veiller à ce que l'utilisateur et son ami ne soient pas les mêmes.
+      Faire attention également que la relation n'existe pas déjà, mais dans l'autre sens.
     |
 
     id: Text {constraint: primary_key}
@@ -44,9 +43,9 @@ pocketbase: PocketBase {
 
   Tree: {
     shape: sql_table
-    tooltip: |
-    Un arbre est un objet qui appartient à un utilisateur.
-    Un utilisateur peut posséder plusieurs arbres.
+    tooltip: |md
+      Un arbre est un objet qui appartient à un utilisateur.
+      Un utilisateur peut posséder plusieurs arbres.
     |
 
     id: Text {constraint: primary_key}
@@ -60,10 +59,10 @@ pocketbase: PocketBase {
 
   Growing: {
     shape: sql_table
-    tooltip: |
-    Un objet qui définit une graine en train de pousser.
-    Un utilisateur ne peut avoir qu'une seule graine en train de pousser.
-    On fige dans la table le temps de pousse, la récompense, car si l'utilisateur améliore sa graine, on ne veut pas que cela impacte les graines en cours de pousse.
+    tooltip: |md
+      Un objet qui définit une graine en train de pousser.
+      Un utilisateur ne peut avoir qu'une seule graine en train de pousser.
+      On fige dans la table le temps de pousse, la récompense, car si l'utilisateur améliore sa graine, on ne veut pas que cela impacte les graines en cours de pousse.
     |
 
     id: Text {constraint: primary_key}
@@ -79,11 +78,11 @@ pocketbase: PocketBase {
 
   Seed: {
     shape: sql_table
-    tooltip: |
-    Une graine est un objet qui appartient à un utilisateur.
-    Un utilisateur peut posséder plusieurs graines.
-    On peut améliorer une graine, au niveau de la feuille ou du tronc.
-    Les graines ont un niveau max d'amélioration, défini par le type de graine.
+    tooltip: |md
+      Une graine est un objet qui appartient à un utilisateur.
+      Un utilisateur peut posséder plusieurs graines.
+      On peut améliorer une graine, au niveau de la feuille ou du tronc.
+      Les graines ont un niveau max d'amélioration, défini par le type de graine.
     |
 
     id: Text {constraint: primary_key}
@@ -97,10 +96,10 @@ pocketbase: PocketBase {
 
   SeedType: {
     shape: sql_table
-    tooltip: |
-    Un type de graine est un objet qui définit les caractéristiques d'une graine.
-    Elle possède également l'image de l'arbre qui sera créé avec cette graine.
-    Elle définit le niveau max d'amélioration de la graine, son prix, son temps de croissance, et la récompense qu'elle apporte.
+    tooltip: |md
+      Un type de graine est un objet qui définit les caractéristiques d'une graine.
+      Elle possède également l'image de l'arbre qui sera créé avec cette graine.
+      Elle définit le niveau max d'amélioration de la graine, son prix, son temps de croissance, et la récompense qu'elle apporte.
     |
 
     id: Text {constraint: primary_key}
@@ -116,11 +115,11 @@ pocketbase: PocketBase {
   }
 
   # Relations
-  Friendship.user -> User.id <- Friendship.friend : user - n,1
-  Growing.seed -> Seed.id : seed - n,1
-  Growing.user -> User.id : user - n,1
-  Seed.seed_type -> SeedType.id : seed_type - n,1
-  Seed.user -> User.id : user - n,1
-  Tree.seed_type -> SeedType.id : seed_type - n,1
-  Tree.user -> User.id : user - n,1
+  Friendship.user -> User.id <- Friendship.friend: user - n,1
+  Growing.seed -> Seed.id: seed - n,1
+  Growing.user -> User.id: user - n,1
+  Seed.seed_type -> SeedType.id: seed_type - n,1
+  Seed.user -> User.id: user - n,1
+  Tree.seed_type -> SeedType.id: seed_type - n,1
+  Tree.user -> User.id: user - n,1
 }

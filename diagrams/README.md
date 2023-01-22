@@ -15,3 +15,7 @@ d2 --layout=tala -t 104 -w data.d2 data.png
 ```bash
 d2 --layout=elk -t 104 -w data.d2 -s data.png
 ```
+
+```bash
+d2 fmt data.d2
+```
