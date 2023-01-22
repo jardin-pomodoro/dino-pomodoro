@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../utils/duration.dart';
+import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../utils/duration.dart';
 import '../state/timer/timer.dart';
 import '../theme/theme.dart';
 import '../widgets/circular_progress_indicator.dart';
@@ -14,8 +15,8 @@ double computeCurrentValue(Duration remainingTime) {
   return gap.toDouble();
 }
 
-class PomodoroScreen extends ConsumerWidget {
-  const PomodoroScreen({super.key});
+class GrowingScreenWidget extends ConsumerWidget {
+  const GrowingScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,32 +29,25 @@ class PomodoroScreen extends ConsumerWidget {
       },
       loading: () => defaultPeriod,
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircularProgressTimer(
-              remainingTime: remainingTime,
-              children: Center(
-                child: Text(
-                  remainingTime.inSecondsWithMinutes(),
-                  style: const TextStyle(
-                    fontSize: 40,
-                    color: Colors.black,
-                  ),
-                ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CircularProgressTimer(
+          remainingTime: remainingTime,
+          children: Center(
+            child: Text(
+              remainingTime.inSecondsWithMinutes(),
+              style: const TextStyle(
+                fontSize: 40,
+                color: Colors.black,
               ),
             ),
-            const SizedBox(height: 20),
-            const GrowingTree()
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 20),
+        const GrowingTree()
+      ],
     );
   }
 }

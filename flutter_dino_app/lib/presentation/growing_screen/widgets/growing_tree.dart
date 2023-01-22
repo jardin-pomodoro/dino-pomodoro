@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/pomodoro_screen/pomodoro_screen.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
 

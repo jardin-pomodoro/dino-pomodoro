@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/pomodoro_screen.dart';
 import 'data/datasource/api/api.dart';
 import 'data/datasource/api/supabase_connection.dart';
-import 'presentation/pomodoro_screen/pomodoro_screen.dart';
 import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const PomodoroScreen(),
+      home: const PomodoroScreenWidget(),
     );
   }
 }
