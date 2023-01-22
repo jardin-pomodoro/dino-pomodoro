@@ -1,3 +1,9 @@
+title: |md
+  # Garden pomodoro
+| {near: top-center}
+
+direction: right
+
 flutter_app: Flutter App {
   shape: image
   icon: https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png
@@ -5,63 +11,29 @@ flutter_app: Flutter App {
 
 flutter_app -> pocketbase
 
-pocketbase: DB PocketBase {
+pocketbase: PocketBase {
+
   User: {
     shape: sql_table
+    tooltip: "Un utilisateur de l'application."
 
     id: Text {constraint: primary_key}
     username: Text
     email: Email
     name: Text
     avatar: Image
-    created: DateTime
-    updated: DateTime
-  }
-
-  Wallet: {
-    shape: sql_table
-
-    id: Text {constraint: primary_key}
-    user: Relation {constraint: foreign_key}
     balance: Number
-    created: DateTime
-    updated: DateTime
-  }
-
-  Tree: {
-    shape: sql_table
-
-    id: Text {constraint: primary_key}
-    user: Relation {constraint: foreign_key}
-    seed: Relation {constraint: foreign_key}
-    name: Text
-    created: DateTime
-    updated: DateTime
-  }
-
-  Seed: {
-    shape: sql_table
-
-    id: Text {constraint: primary_key}
-    seed_type: Relation {constraint: foreign_key}
-    created: DateTime
-    updated: DateTime
-  }
-
-  SeedType: {
-    shape: sql_table
-
-    id: Text {constraint: primary_key}
-    name: Text
-    image: Image
-    time_to_grow: Number
-    reward: Number
     created: DateTime
     updated: DateTime
   }
 
   Friendship: {
     shape: sql_table
+    tooltip: |
+    Une relation d'amitié est un objet qui définit une relation d'amitié entre deux utilisateurs.
+    Il faut veiller à ce que l'utilisateur et son ami ne soient pas les mêmes.
+    Faire attention également que la relation n'existe pas déjà, mais dans l'autre sens.
+    |
 
     id: Text {constraint: primary_key}
     user: Relation {constraint: foreign_key}
@@ -70,24 +42,85 @@ pocketbase: DB PocketBase {
     updated: DateTime
   }
 
-  Growing: {
+  Tree: {
     shape: sql_table
+    tooltip: |
+    Un arbre est un objet qui appartient à un utilisateur.
+    Un utilisateur peut posséder plusieurs arbres.
+    |
 
     id: Text {constraint: primary_key}
-    tree: Relation {constraint: foreign_key}
+    user: Relation {constraint: foreign_key}
+    seed_type: Relation {constraint: foreign_key}
+    leaf_level: Number
+    trunk_level: Number
+    created: DateTime
+    updated: DateTime
+  }
+
+  Growing: {
+    shape: sql_table
+    tooltip: |
+    Un objet qui définit une graine en train de pousser.
+    Un utilisateur ne peut avoir qu'une seule graine en train de pousser.
+    On fige dans la table le temps de pousse, la récompense, car si l'utilisateur améliore sa graine, on ne veut pas que cela impacte les graines en cours de pousse.
+    |
+
+    id: Text {constraint: primary_key}
+    seed: Relation {constraint: foreign_key}
     user: Relation {constraint: foreign_key}
     started: DateTime
+    ended: DateTime
+    reward: Number
+    time_to_grow: Number
+    created: DateTime
+    updated: DateTime
+  }
+
+  Seed: {
+    shape: sql_table
+    tooltip: |
+    Une graine est un objet qui appartient à un utilisateur.
+    Un utilisateur peut posséder plusieurs graines.
+    On peut améliorer une graine, au niveau de la feuille ou du tronc.
+    Les graines ont un niveau max d'amélioration, défini par le type de graine.
+    |
+
+    id: Text {constraint: primary_key}
+    seed_type: Relation {constraint: foreign_key}
+    user: Relation {constraint: foreign_key}
+    leaf_level: Number
+    trunk_level: Number
+    created: DateTime
+    updated: DateTime
+  }
+
+  SeedType: {
+    shape: sql_table
+    tooltip: |
+    Un type de graine est un objet qui définit les caractéristiques d'une graine.
+    Elle possède également l'image de l'arbre qui sera créé avec cette graine.
+    Elle définit le niveau max d'amélioration de la graine, son prix, son temps de croissance, et la récompense qu'elle apporte.
+    |
+
+    id: Text {constraint: primary_key}
+    name: Text {constraint: unique}
+    image: Image
+    time_to_grow: Number
+    price: Number
+    reward: Number
+    leaf_max_upgrades: Number
+    trunk_max_upgrades: Number
     created: DateTime
     updated: DateTime
   }
 
   # Relations
-
-  Wallet.user -> User.id : user
-  Tree.user -> User.id : user
-  Tree.seed -> Seed.id : seed
-  Seed.seed_type -> SeedType.id : seed_type
-  Friendship -> User : user, friend
-  Growing.tree -> Tree.id : tree
-  Growing.user -> User.id : user
+  Friendship.user -> User.id <- Friendship.friend : user - n,1
+  Growing.seed -> Seed.id : seed - n,1
+  Growing.user -> User.id : user - n,1
+  Seed.seed_type -> SeedType.id : seed_type - n,1
+  Seed.user -> User.id : user - n,1
+  Tree.seed_type -> SeedType.id : seed_type - n,1
+  Tree.user -> User.id : user - n,1
 }
