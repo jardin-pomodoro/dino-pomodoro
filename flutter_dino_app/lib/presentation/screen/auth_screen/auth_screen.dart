@@ -76,14 +76,14 @@ class _LoginModalState extends ConsumerState<LoginModal> {
 
     final WebViewController controller =
         WebViewController.fromPlatformCreationParams(params);
-    const redirectUri =
-        "https://SOME-VALID-LOOKING-HOSTNAME-MATCHING-REDIRECT-URI-IN-GOOGLE-CLOUD-CONSOLE/redirect.html";
+    // I believe this need to be a deep link
+    const redirectUri = "https://pocketbase.nospy.fr/redirect.html";
     final redirectUriEncoded = Uri.encodeQueryComponent(redirectUri);
     final clientIdEncoded = Uri.encodeQueryComponent(
-      "1019735973132-q0fil144g9v0lf41t0o88nh8ruvf34jb.apps.googleusercontent.com",
+      "1064464779634298911",
     );
     final initalUrl =
-        'https://accounts.google.com/o/oauth2/auth?access_type=offline&response_type=code&scope=openid&redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded';
+        'https://discord.com/oauth2/authorize?access_type=offline&response_type=code&scope=openid&redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded';
     _controller = controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(
