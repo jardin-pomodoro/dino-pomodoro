@@ -3,7 +3,7 @@ import 'package:flutter_dino_app/presentation/forest_screen/forest_screen_widget
 import 'package:flutter_dino_app/presentation/friends_screen/friends_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/seeds_screen/seeds_screen_widget.dart';
-import 'package:flutter_dino_app/presentation/settings_screen/settings_widget.dart';
+import 'package:flutter_dino_app/presentation/settings_screen/settings_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/shop_screen/shop_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
