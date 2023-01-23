@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../utils/duration.dart';
 import '../state/timer/timer.dart';
-import '../widgets/circular_progress_indicator.dart';
+import '../widgets/circular_progress_timer.dart';
 import 'widgets/growing_tree.dart';
 
 const Duration defaultPeriod = Duration(minutes: 1);

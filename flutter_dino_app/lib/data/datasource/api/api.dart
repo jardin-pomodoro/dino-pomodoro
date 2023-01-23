@@ -1,3 +1,5 @@
+import 'api_consumer.dart';
+
 abstract class Api {
-  Future<void> connect();
+  ApiConsumer connect();
 }
