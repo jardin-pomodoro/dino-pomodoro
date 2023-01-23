@@ -5,6 +5,7 @@ import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widg
 import 'package:flutter_dino_app/presentation/seeds_screen/seeds_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/settings_screen/settings_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/shop_screen/shop_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,30 +15,32 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.forest,
       builder: (context, state) =>
-          _scaffoldedWidget(const ForestScreenWidget()),
+          _scaffoldedWidget("Forêt", const ForestScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.friends,
       builder: (context, state) =>
-          _scaffoldedWidget(const FriendsScreenWidget()),
+          _scaffoldedWidget("Amis", const FriendsScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.growing,
       builder: (context, state) =>
-          _scaffoldedWidget(const GrowingScreenWidget()),
+          _scaffoldedWidget("Garden Pomodoro", const GrowingScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.seeds,
-      builder: (context, state) => _scaffoldedWidget(const SeedsScreenWidget()),
+      builder: (context, state) =>
+          _scaffoldedWidget("Graines", const SeedsScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.settings,
       builder: (context, state) =>
-          _scaffoldedWidget(const SettingsScreenWidget()),
+          _scaffoldedWidget("Paramètres", const SettingsScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.shop,
-      builder: (context, state) => _scaffoldedWidget(const ShopScreenWidget()),
+      builder: (context, state) =>
+          _scaffoldedWidget("Boutique", const ShopScreenWidget()),
     ),
   ],
   redirect: (context, state) {
@@ -46,14 +49,18 @@ final GoRouter router = GoRouter(
   },
 );
 
-Widget _scaffoldedWidget(Widget widget) {
+Widget _scaffoldedWidget(String title, Widget widget) {
   return Scaffold(
     appBar: AppBar(
       centerTitle: true,
-      title: const Text('Garden Pomodoro'),
+      title: Text(title),
     ),
+    backgroundColor: PomodoroTheme.background,
     drawer: const NavigationDrawerWidget(),
-    body: Center(child: widget),
+    body: Container(
+      padding: const EdgeInsets.all(10),
+      child: widget,
+    ),
   );
 }
 

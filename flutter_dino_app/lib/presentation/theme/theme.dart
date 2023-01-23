@@ -10,6 +10,8 @@ class PomodoroTheme {
   static const Color accent = Color(0xff12b886);
   static const Color yellow = Color(0xfffab005);
 
+  static const Color background = primary;
+
   static const TextStyle title3 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
