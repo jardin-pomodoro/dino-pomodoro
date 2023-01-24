@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/seed_type.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:path/path.dart';
+import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 
-class SeedTypeWidget extends StatelessWidget {
+class SeedTypeCardWidget extends StatelessWidget {
   final SeedType seedType;
 
-  const SeedTypeWidget({Key? key, required this.seedType}) : super(key: key);
+  const SeedTypeCardWidget({Key? key, required this.seedType})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +38,7 @@ class SeedTypeWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "${seedType.price}",
-              style: PomodoroTheme.textLarge,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            const Icon(
-              Icons.circle,
-              color: PomodoroTheme.yellow,
-            ),
-          ],
-        ),
+        PriceWidget(price: seedType.price),
       ],
     );
   }
