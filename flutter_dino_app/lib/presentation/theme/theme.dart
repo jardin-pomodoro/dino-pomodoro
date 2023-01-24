@@ -12,6 +12,12 @@ class PomodoroTheme {
 
   static const Color background = primary;
 
+  static const TextStyle title2 = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: white,
+  );
+
   static const TextStyle title3 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
