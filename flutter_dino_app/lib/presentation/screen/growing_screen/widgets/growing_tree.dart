@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
 
-import '../../../../utils/asset.dart';
-import '../../state/timer/timer.dart';
+import '../../../../../utils/asset.dart';
+import '../../../state/timer/timer.dart';
 import '../growing_screen_widget.dart';
 
 class GrowingTree extends ConsumerStatefulWidget {
