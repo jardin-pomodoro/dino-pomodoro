@@ -9,8 +9,17 @@ class PomodoroTheme {
   static const Color secondary = Color(0xff087f5b);
   static const Color accent = Color(0xff12b886);
   static const Color yellow = Color(0xfffab005);
+  static const Color green = Color(0xff2b8a3e);
+  static const Color darkGreen = Color(0xff095111);
+
 
   static const Color background = primary;
+
+  static const TextStyle title1 = TextStyle(
+    fontSize: 36,
+    fontWeight: FontWeight.bold,
+    color: white,
+  );
 
   static const TextStyle title2 = TextStyle(
     fontSize: 28,

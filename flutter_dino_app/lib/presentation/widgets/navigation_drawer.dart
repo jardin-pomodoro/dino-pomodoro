@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/forest_screen/forest_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/friends_screen/friends_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/growing_grow_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/seeds_screen/seeds_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/settings_screen/settings_screen_widget.dart';
@@ -63,7 +64,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               'Pomodoro',
               style: PomodoroTheme.text,
             ),
-            onTap: () => GrowingScreenWidget.navigateTo(context),
+            onTap: () =>  GrowingScreenWidget.navigateTo(context),
           ),
           ListTile(
             leading: const FaIcon(

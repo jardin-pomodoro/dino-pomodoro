@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 @immutable
 class SeedType {
+  final String collectionId;
+  final String collectionName;
   final String id;
   final String name;
   final String image;
@@ -14,6 +16,8 @@ class SeedType {
   final DateTime updated;
 
   const SeedType({
+    required this.collectionId,
+    required this.collectionName,
     required this.id,
     required this.name,
     required this.image,

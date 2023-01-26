@@ -5,9 +5,11 @@ class PriceWidget extends StatelessWidget {
   const PriceWidget({
     Key? key,
     required this.price,
+    this.spacing,
   }) : super(key: key);
 
   final int price;
+  final double? spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class PriceWidget extends StatelessWidget {
           "$price",
           style: PomodoroTheme.textLarge,
         ),
-        const SizedBox(
-          width: 10,
+        SizedBox(
+          width: spacing ?? 10,
         ),
         const Icon(
           Icons.circle,

@@ -9,6 +9,8 @@ import 'package:go_router/go_router.dart';
 
 final seedsType = [
   SeedType(
+    collectionId: '1',
+    collectionName: 'Collection 1',
     id: '1',
     name: 'Saul',
     image:
@@ -22,6 +24,8 @@ final seedsType = [
     updated: DateTime.now(),
   ),
   SeedType(
+    collectionId: '1',
+    collectionName: 'Collection 1',
     id: '2',
     name: 'Cerisier',
     image:
@@ -35,6 +39,8 @@ final seedsType = [
     updated: DateTime.now(),
   ),
   SeedType(
+    collectionId: '1',
+    collectionName: 'Collection 1',
     id: '3',
     name: 'Peuplier',
     image:
