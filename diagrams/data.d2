@@ -51,8 +51,10 @@ pocketbase: PocketBase {
     id: Text {constraint: primary_key}
     user: Relation {constraint: foreign_key}
     seed_type: Relation {constraint: foreign_key}
-    leaf_level: Number
-    trunk_level: Number
+    reward: Number
+    time_to_grow: Number
+    started: DateTime
+    ended: DateTime
     created: DateTime
     updated: DateTime
   }
@@ -66,10 +68,8 @@ pocketbase: PocketBase {
     |
 
     id: Text {constraint: primary_key}
-    seed: Relation {constraint: foreign_key}
+    seed_type: Relation {constraint: foreign_key}
     user: Relation {constraint: foreign_key}
-    started: DateTime
-    ended: DateTime
     reward: Number
     time_to_grow: Number
     created: DateTime
@@ -116,7 +116,7 @@ pocketbase: PocketBase {
 
   # Relations
   Friendship.user -> User.id <- Friendship.friend: user - n,1
-  Growing.seed -> Seed.id: seed - n,1
+  Growing.seed_type -> SeedType.id: seed_type - n,1
   Growing.user -> User.id: user - n,1
   Seed.seed_type -> SeedType.id: seed_type - n,1
   Seed.user -> User.id: user - n,1

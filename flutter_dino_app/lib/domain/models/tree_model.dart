@@ -7,7 +7,7 @@ class TreeModel extends Equatable {
   final Color color;
 
   const TreeModel(this.treeId, this.form, this.color);
-  
+
   @override
   List<Object?> get props => [treeId, form, color];
 }

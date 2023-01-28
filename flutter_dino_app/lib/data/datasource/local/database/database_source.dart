@@ -1,5 +1,5 @@
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as p;
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseSource {
   Future<Database> openDb() async {

@@ -195,6 +195,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_hooks:
+    dependency: "direct main"
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.5+1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -289,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  hooks_riverpod:
+    dependency: "direct main"
+    description:
+      name: hooks_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   html:
     dependency: transitive
     description:
@@ -330,7 +344,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.0"
   io:
     dependency: transitive
     description:
@@ -352,6 +366,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
+  json_class:
+    dependency: transitive
+    description:
+      name: json_class
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.4+1"
+  json_schema2:
+    dependency: transitive
+    description:
+      name: json_schema2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2+20"
+  json_theme:
+    dependency: "direct main"
+    description:
+      name: json_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.3+4"
   jwt_decode:
     dependency: transitive
     description:
@@ -555,6 +590,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   realtime_client:
     dependency: transitive
     description:
@@ -562,6 +604,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  rest_client:
+    dependency: transitive
+    description:
+      name: rest_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0+7"
   retry:
     dependency: transitive
     description:
@@ -770,6 +819,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.4"
+  uri:
+    dependency: transitive
+    description:
+      name: uri
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   url_launcher:
     dependency: transitive
     description:
@@ -924,6 +980,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  yaon:
+    dependency: transitive
+    description:
+      name: yaon
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1+9"
   yet_another_json_isolate:
     dependency: transitive
     description:

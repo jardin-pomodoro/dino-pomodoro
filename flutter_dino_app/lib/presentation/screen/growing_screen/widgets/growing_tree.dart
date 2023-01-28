@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
 
 import '../../../../utils/asset.dart';
-import '../../state/timer/timer.dart';
-import '../growing_screen_widget.dart';
 
 class GrowingTree extends ConsumerStatefulWidget {
   const GrowingTree({Key? key}) : super(key: key);
@@ -29,16 +28,12 @@ class _GrowingTreeState extends ConsumerState<GrowingTree> {
 
   @override
   Widget build(BuildContext context) {
-    AsyncValue<Duration> elaspedTime = ref.watch(tickerProvider);
-    _progress?.value = elaspedTime.when(
-      data: (value) {
-        final diff = defaultPeriod.inSeconds - value.inSeconds;
-        final percentageDifference = diff / defaultPeriod.inSeconds * 100;
-        return percentageDifference;
-      },
-      loading: () => 0,
-      error: (error, stack) => 0,
-    );
+    final timerStream = ref.watch(timerNotifierProvider.notifier);
+    timerStream.addListener((state) {
+      final diff = state.initialDuration - state.durationLeft;
+      final percentageDifference = diff / state.initialDuration * 100;
+      _progress?.value = percentageDifference;
+    });
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       child: RiveAnimation.asset(
