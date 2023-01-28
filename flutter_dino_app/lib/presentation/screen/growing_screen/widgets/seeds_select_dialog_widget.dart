@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/seeds_screen/seed_card_widget.dart';
-import 'package:flutter_dino_app/presentation/seeds_screen/seed_details_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SeedsScreenWidget extends ConsumerWidget {
+import '../../seeds_screen/seed_card_widget.dart';
+
+class SeedsSelectDialogWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
     context.go(RouteNames.seeds);
   }
 
-  const SeedsScreenWidget({Key? key}) : super(key: key);
+  const SeedsSelectDialogWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,10 +29,11 @@ class SeedsScreenWidget extends ConsumerWidget {
               .map(
                 (seed) => Listener(
                   onPointerUp: (_) {
+                    // select seed
                     ref
-                        .read(selectedSeedStateNotifierProvider.notifier)
+                        .read(seedSelectorStateNotifierProvider.notifier)
                         .selectSeed(seed);
-                    SeedDetailsScreenWidget.navigateTo(context);
+                    context.pop();
                   },
                   child: SizedBox(
                     width: 190,

@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/seed.dart';
 import 'package:flutter_dino_app/domain/models/seed_type.dart';
 import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/shop_screen/seed_type_card_widget.dart';
-import 'package:flutter_dino_app/presentation/shop_screen/seed_type_details_card_widget.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_type_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
@@ -14,7 +10,9 @@ import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
+
+import 'seed_type_card_widget.dart';
+import 'seed_type_details_card_widget.dart';
 
 class ShopScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {

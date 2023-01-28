@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/presentation/growing_screen/growing_grow_screen_widget.dart';
-import 'package:flutter_dino_app/presentation/growing_screen/widgets/seeds_select_dialog_widget.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/growing_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
@@ -13,6 +11,9 @@ import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'growing_grow_screen_widget.dart';
+import 'widgets/seeds_select_dialog_widget.dart';
 
 // final selectedSeed = Seed(
 //   collectionId: '1',

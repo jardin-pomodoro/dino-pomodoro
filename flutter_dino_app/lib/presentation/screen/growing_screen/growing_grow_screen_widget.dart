@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/growing.dart';
-import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
@@ -8,7 +6,8 @@ import 'package:flutter_dino_app/utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/circular_progress_timer.dart';
+import '../../widgets/circular_progress_timer.dart';
+import 'growing_screen_widget.dart';
 import 'widgets/growing_tree.dart';
 
 const Duration defaultPeriod = Duration(minutes: 1);
@@ -19,7 +18,6 @@ double computeCurrentValue(Duration remainingTime) {
 }
 
 class GrowingGrowScreenWidget extends ConsumerWidget {
-
   static void navigateTo(BuildContext context) {
     context.push(RouteNames.growingGrow);
   }

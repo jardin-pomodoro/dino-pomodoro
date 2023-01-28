@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/seeds_screen/seed_card_widget.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SeedsSelectDialogWidget extends ConsumerWidget {
+import 'seed_card_widget.dart';
+import 'seed_details_screen_widget.dart';
+
+class SeedsScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
     context.go(RouteNames.seeds);
   }
 
-  const SeedsSelectDialogWidget({Key? key}) : super(key: key);
+  const SeedsScreenWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,11 +29,10 @@ class SeedsSelectDialogWidget extends ConsumerWidget {
               .map(
                 (seed) => Listener(
                   onPointerUp: (_) {
-                    // select seed
                     ref
-                        .read(seedSelectorStateNotifierProvider.notifier)
+                        .read(selectedSeedStateNotifierProvider.notifier)
                         .selectSeed(seed);
-                    context.pop();
+                    SeedDetailsScreenWidget.navigateTo(context);
                   },
                   child: SizedBox(
                     width: 190,
