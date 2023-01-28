@@ -79,11 +79,13 @@ class _LoginModalState extends ConsumerState<LoginModal> {
     // I believe this need to be a deep link
     const redirectUri = "https://pocketbase.nospy.fr/redirect.html";
     final redirectUriEncoded = Uri.encodeQueryComponent(redirectUri);
+    const scope = 'identify%20email';
     final clientIdEncoded = Uri.encodeQueryComponent(
       "1064464779634298911",
     );
     final initalUrl =
-        'https://discord.com/oauth2/authorize?access_type=offline&response_type=code&scope=openid&redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded';
+        'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope';
+    print(initalUrl);
     _controller = controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(
@@ -111,7 +113,7 @@ class _LoginModalState extends ConsumerState<LoginModal> {
           Container(
             decoration: decoration(),
             child: SizedBox(
-              height: 500,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: WebViewWidget(controller: _controller),
             ),
           )

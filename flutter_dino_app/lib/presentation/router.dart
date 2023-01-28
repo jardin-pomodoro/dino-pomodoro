@@ -13,8 +13,12 @@ import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.growing,
+  initialLocation: RouteNames.login,
   routes: [
+    GoRoute(
+      path: RouteNames.login,
+      builder: (context, state) => _scaffoldedWidget(const AuthScreen()),
+    ),
     GoRoute(
       path: RouteNames.forest,
       builder: (context, state) =>
@@ -77,6 +81,7 @@ Widget _scaffoldedWidget(String title, Widget widget) {
 
 abstract class RouteNames {
   static const String root = '/';
+  static const String login = '/login';
   static const String forest = '/forest';
   static const String friends = '/friends';
   static const String growing = '/growing';
