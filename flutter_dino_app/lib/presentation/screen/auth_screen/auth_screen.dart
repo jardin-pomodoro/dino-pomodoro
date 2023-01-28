@@ -83,6 +83,20 @@ class _LoginModalState extends ConsumerState<LoginModal> {
       ..setUserAgent(
         "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.124 Mobile Safari/537.36",
       )
+      ..setNavigationDelegate(NavigationDelegate(
+        onNavigationRequest: (NavigationRequest request) async {
+          if (request.url.startsWith(redirectUri)) {
+            final uri = Uri.parse(request.url);
+            final code = uri.queryParameters['code'];
+            if (code != null) {
+              print(uri);
+              print(code);
+              return NavigationDecision.prevent;
+            }
+          }
+          return NavigationDecision.navigate;
+        },
+      ))
       ..loadRequest(Uri.parse(initalUrl));
   }
 

@@ -60,6 +60,7 @@ final GoRouter router = GoRouter(
           _scaffoldedWidget("Boutique", const ShopScreenWidget()),
     ),
   ],
+  // Add error builder
   redirect: (context, state) {
     debugPrint("Going to ${state.location}");
     return null;
