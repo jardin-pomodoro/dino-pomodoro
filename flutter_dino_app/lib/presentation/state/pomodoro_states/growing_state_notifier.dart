@@ -94,3 +94,7 @@ final growingStateNotifierProvider =
     StateNotifierProvider<GrowingStateNotifier, GrowingState>((ref) {
   return GrowingStateNotifier();
 });
+
+final isGrowingProvider = Provider<bool>((ref) {
+  return ref.watch(growingStateNotifierProvider).isGrowing;
+});
