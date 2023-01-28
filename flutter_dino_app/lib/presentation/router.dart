@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,8 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: RouteNames.login,
-      builder: (context, state) => _scaffoldedWidget(const AuthScreen()),
+      builder: (context, state) =>
+          _scaffoldedWidget("Connexion", const AuthScreen()),
     ),
     GoRoute(
       path: RouteNames.forest,
@@ -72,9 +74,11 @@ Widget _scaffoldedWidget(String title, Widget widget) {
     ),
     backgroundColor: PomodoroTheme.background,
     drawer: const NavigationDrawerWidget(),
-    body: Container(
-      padding: const EdgeInsets.all(10),
-      child: widget,
+    body: SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        child: widget,
+      ),
     ),
   );
 }

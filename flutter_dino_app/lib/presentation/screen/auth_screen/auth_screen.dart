@@ -1,16 +1,12 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
 import 'package:flutter_dino_app/presentation/state/api_consumer/api_consumer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pkce/pkce.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-// Import for Android features.
-import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+
 import '../../state/auth/auth.dart';
 
 class AuthScreen extends ConsumerWidget {
@@ -22,23 +18,19 @@ class AuthScreen extends ConsumerWidget {
         ref.watch(authMethodProvider);
     return providers.when(
       data: ((authMethod) {
-        return Scaffold(
-          body: SafeArea(
-            child: Column(
-              children: authMethod
-                  .map((e) => ElevatedButton(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext bc) => const LoginModal(),
-                          );
-                        },
-                        child: Text(e.name),
-                      ))
-                  .toList(),
-            ),
-          ),
+        return Column(
+          children: authMethod
+              .map((e) => ElevatedButton(
+                    onPressed: () async {
+                      await showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext bc) => const LoginModal(),
+                      );
+                    },
+                    child: Text(e.name),
+                  ))
+              .toList(),
         );
       }),
       error: (error, stackTrace) => Text('error ref $error'),
