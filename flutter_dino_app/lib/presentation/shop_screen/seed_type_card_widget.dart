@@ -5,9 +5,13 @@ import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 
 class SeedTypeCardWidget extends StatelessWidget {
   final SeedType seedType;
+  final bool bought;
 
-  const SeedTypeCardWidget({Key? key, required this.seedType})
-      : super(key: key);
+  const SeedTypeCardWidget({
+    Key? key,
+    required this.seedType,
+    required this.bought,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,9 @@ class SeedTypeCardWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        PriceWidget(price: seedType.price),
+        bought
+            ? const Text("Acheté", style: PomodoroTheme.textLarge)
+            : PriceWidget(price: seedType.price),
       ],
     );
   }

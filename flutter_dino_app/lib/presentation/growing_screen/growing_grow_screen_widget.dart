@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
+import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:flutter_dino_app/presentation/growing_screen/growing_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/shop_screen/seed_type_details_card_widget.dart';
 import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 import 'package:flutter_dino_app/utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,13 +19,13 @@ double computeCurrentValue(Duration remainingTime) {
 }
 
 class GrowingGrowScreenWidget extends ConsumerWidget {
-  static void navigateTo(BuildContext context, Seed seed) {
-    context.push(RouteNames.growingGrow, extra: seed);
+  static void navigateTo(BuildContext context, Growing growingTree) {
+    context.push(RouteNames.growingGrow, extra: growingTree);
   }
 
-  final Seed seed;
+  final Growing growingTree;
 
-  const GrowingGrowScreenWidget({super.key, required this.seed});
+  const GrowingGrowScreenWidget({super.key, required this.growingTree});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

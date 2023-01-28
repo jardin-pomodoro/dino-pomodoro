@@ -1,5 +1,9 @@
 int getGrowTime(int initialGrowTime, int level) {
-  return (initialGrowTime - (initialGrowTime * level * 0.1)).round();
+  double growTime = initialGrowTime.toDouble();
+  for (var i = 0; i < level; i++) {
+    growTime = growTime * 0.9;
+  }
+  return growTime.round();
 }
 
 int getIncome(int initialIncome, int level) {

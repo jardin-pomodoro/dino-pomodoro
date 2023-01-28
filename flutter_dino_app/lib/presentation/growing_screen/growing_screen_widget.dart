@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:flutter_dino_app/domain/models/seed.dart';
 import 'package:flutter_dino_app/domain/models/seed_type.dart';
 import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/shop_screen/seed_type_details_card_widget.dart';
 import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 import 'package:flutter_dino_app/utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -71,6 +71,11 @@ class GrowingScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (false) {
+        _showTreeRewardDialog(context);
+      }
+    });
 
     final sentence = sentenses[Random().nextInt(sentenses.length)];
     return Container(
@@ -130,7 +135,26 @@ class GrowingScreenWidget extends ConsumerWidget {
                           ) *
                           60,
                     );
-                GrowingGrowScreenWidget.navigateTo(context, selectedSeed);
+                GrowingGrowScreenWidget.navigateTo(
+                    context,
+                    Growing(
+                      collectionId: "1",
+                      collectionName: "Collection 1",
+                      created: DateTime.now(),
+                      id: "1",
+                      seedType: "1",
+                      expand: selectedSeed.expand,
+                      reward: getIncome(
+                        selectedSeed.expand.seedType.reward,
+                        selectedSeed.leafLevel,
+                      ),
+                      timeToGrow: getGrowTime(
+                        selectedSeed.expand.seedType.timeToGrow,
+                        selectedSeed.trunkLevel,
+                      ),
+                      updated: DateTime.now(),
+                      user: "1",
+                    ));
               },
               child: const Text(
                 'Planter',
@@ -141,33 +165,16 @@ class GrowingScreenWidget extends ConsumerWidget {
     );
   }
 
-  _showBuySeedDialog(BuildContext context) {
+  _showTreeRewardDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         backgroundColor: Colors.transparent,
         contentPadding: const EdgeInsets.all(0),
-        content: SeedTypeDetailsCardWidget(seedType: selectedSeed.seedTypeExpand),
+        content:
+            SeedTypeDetailsCardWidget(seedType: selectedSeed.seedTypeExpand),
         actionsAlignment: MainAxisAlignment.center,
         actionsPadding: const EdgeInsets.only(top: 20),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: PomodoroTheme.secondary,
-                  content:
-                  Text('Graine achetée !', style: PomodoroTheme.textLarge),
-                ),
-              ); // TODO: Buy
-              context.pop();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: PriceWidget(price: selectedSeed.seedTypeExpand.price),
-            ),
-          ),
-        ],
       ),
     );
   }

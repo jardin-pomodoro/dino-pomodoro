@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
+import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:flutter_dino_app/presentation/forest_screen/forest_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/friends_screen/friends_screen_widget.dart';
 import 'package:flutter_dino_app/presentation/growing_screen/growing_grow_screen_widget.dart';
@@ -33,7 +33,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.growingGrow,
       builder: (context, state) => GrowingGrowScreenWidget(
-        seed: state.extra as Seed,
+        growingTree: state.extra as Growing,
       ),
     ),
     GoRoute(
@@ -43,11 +43,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouteNames.seedDetails,
-      builder: (context, state) => _scaffoldedWidget(
-          "Graines",
-          SeedDetailsScreenWidget(
-            seed: state.extra as Seed,
-          )),
+      builder: (context, state) => const SeedDetailsScreenWidget(),
     ),
     GoRoute(
       path: RouteNames.settings,
@@ -87,7 +83,7 @@ abstract class RouteNames {
   static const String friends = '/friends';
   static const String growing = '/growing';
   static const String growingGrow = '/growing/grow';
-  static const String seeds = '/seeds';
+  static const String seeds = '/seeds/list';
   static const String seedDetails = '/seeds/view';
   static const String settings = '/settings';
   static const String shop = '/shop';

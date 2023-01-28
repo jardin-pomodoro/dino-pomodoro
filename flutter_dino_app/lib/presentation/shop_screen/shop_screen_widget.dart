@@ -1,61 +1,22 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/domain/models/seed.dart';
 import 'package:flutter_dino_app/domain/models/seed_type.dart';
+import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/shop_screen/seed_type_card_widget.dart';
 import 'package:flutter_dino_app/presentation/shop_screen/seed_type_details_card_widget.dart';
+import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
+import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_type_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
 
-final seedsType = [
-  SeedType(
-    collectionId: '1',
-    collectionName: 'Collection 1',
-    id: '1',
-    name: 'Saul',
-    image:
-        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
-    timeToGrow: 10,
-    price: 100,
-    reward: 10,
-    leafMaxUpgrades: 3,
-    trunkMaxUpgrades: 3,
-    created: DateTime.now(),
-    updated: DateTime.now(),
-  ),
-  SeedType(
-    collectionId: '1',
-    collectionName: 'Collection 1',
-    id: '2',
-    name: 'Cerisier',
-    image:
-        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
-    timeToGrow: 60,
-    price: 200,
-    reward: 20,
-    leafMaxUpgrades: 5,
-    trunkMaxUpgrades: 5,
-    created: DateTime.now(),
-    updated: DateTime.now(),
-  ),
-  SeedType(
-    collectionId: '1',
-    collectionName: 'Collection 1',
-    id: '3',
-    name: 'Peuplier',
-    image:
-        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/fcli3v7obfhrwbt/canvas2_removebg_preview_MJsLsimfMy.png',
-    timeToGrow: 120,
-    price: 500,
-    reward: 50,
-    leafMaxUpgrades: 0,
-    trunkMaxUpgrades: 50,
-    created: DateTime.now(),
-    updated: DateTime.now(),
-  ),
-];
-
-class ShopScreenWidget extends StatelessWidget {
+class ShopScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
     context.go(RouteNames.shop);
   }
@@ -63,7 +24,11 @@ class ShopScreenWidget extends StatelessWidget {
   const ShopScreenWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notBoughtSeedsType =
+        ref.watch(notBoughtSeedTypeStateNotifierProvider);
+    final boughtSeedsType = ref.watch(boughtSeedTypeStateNotifierProvider);
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Center(
@@ -71,23 +36,38 @@ class ShopScreenWidget extends StatelessWidget {
           direction: Axis.horizontal,
           spacing: 20,
           runSpacing: 20,
-          children: seedsType
+          children: notBoughtSeedsType
               .map(
                 (seedType) => Listener(
-                  onPointerUp: (_) => _showBuySeedDialog(context, seedType),
+                  onPointerUp: (_) =>
+                      _showBuySeedDialog(context, seedType, ref),
                   child: SizedBox(
                     width: 180,
-                    child: SeedTypeCardWidget(seedType: seedType),
+                    child:
+                        SeedTypeCardWidget(seedType: seedType, bought: false),
                   ),
                 ),
               )
-              .toList(),
+              .toList()
+            ..addAll(
+              boughtSeedsType
+                  .map(
+                    (seedType) => Listener(
+                      child: SizedBox(
+                        width: 180,
+                        child: SeedTypeCardWidget(
+                            seedType: seedType, bought: true),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
         ),
       ),
     );
   }
 
-  _showBuySeedDialog(BuildContext context, SeedType seedType) {
+  _showBuySeedDialog(BuildContext context, SeedType seedType, WidgetRef ref) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -99,12 +79,14 @@ class ShopScreenWidget extends StatelessWidget {
         actions: [
           ElevatedButton(
             onPressed: () {
+              _buySeed(seedType, ref);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  backgroundColor: PomodoroTheme.secondary ,
-                  content: Text('Graine achetée !', style: PomodoroTheme.textLarge),
+                  backgroundColor: PomodoroTheme.secondary,
+                  content:
+                      Text('Graine achetée !', style: PomodoroTheme.textLarge),
                 ),
-              ); // TODO: Buy
+              );
               context.pop();
             },
             child: Padding(
@@ -115,5 +97,22 @@ class ShopScreenWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _buySeed(SeedType seedType, WidgetRef ref) {
+    // TODO Buy seed
+    Seed seed = Seed(
+      id: const Uuid().v4(),
+      seedType: seedType.id,
+      expand: SeedTypeExpand(seedType: seedType),
+      user: "1",
+      leafLevel: 0,
+      trunkLevel: 0,
+      collectionId: "1",
+      collectionName: "1",
+      created: DateTime.now(),
+      updated: DateTime.now(),
+    );
+    ref.read(seedStateNotifierProvider.notifier).addSeed(seed);
   }
 }

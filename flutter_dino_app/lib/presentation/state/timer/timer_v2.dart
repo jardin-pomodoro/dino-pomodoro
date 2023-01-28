@@ -80,11 +80,3 @@ class TimerNotifier extends StateNotifier<TimerModel> {
 final timerNotifierProvider = StateNotifierProvider<TimerNotifier, TimerModel>(
   (ref) => TimerNotifier(),
 );
-
-final timerStreamProvider = StreamProvider<TimerModel>((ref) {
-  final timer = ref.watch(timerNotifierProvider);
-  return Stream.periodic(
-    const Duration(seconds: 1),
-    (x) => timer,
-  );
-});

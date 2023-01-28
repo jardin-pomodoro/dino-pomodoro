@@ -59,4 +59,9 @@ class Seed {
   }
 
   SeedType get seedTypeExpand => expand.seedType;
+
+  @override
+  String toString() {
+    return 'Seed{collectionId: $collectionId, collectionName: $collectionName, id: $id, seedType: $seedType, expand: $expand, user: $user, leafLevel: $leafLevel, trunkLevel: $trunkLevel, created: $created, updated: $updated}';
+  }
 }
