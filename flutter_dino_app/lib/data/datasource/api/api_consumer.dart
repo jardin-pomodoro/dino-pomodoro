@@ -1,4 +1,5 @@
 import 'package:flutter_dino_app/data/datasource/api/pocketbase.dart';
+import 'package:pkce/pkce.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:uuid/uuid.dart';
 
@@ -29,36 +30,13 @@ class ApiConsumer {
     return pb.collection(Collection.users.name).listAuthMethods();
   }
 
-  static const _uuid = Uuid();
-
-  Future<AuthStore> authWithOAuth2() async {
-    final authMethods = await getAuthMethods();
-    final discord = authMethods.authProviders
-        .firstWhere((element) => element.name == 'discord');
+  authWithOAuth2(String provider, String code, String codeVerifier) async {
     final authData = await pb.collection(Collection.users.name).authWithOAuth2(
-        'discord',
-        discord.codeChallenge,
-        discord.codeVerifier,
-        '${ApiPocketBase.baseUrl}redirect.html',
-        createData: {
-          'name': 'Discord + ${_uuid.v4()}',
-        });
-    print(authData.toString());
-    return pb.authStore;
-  }
-
-  Future<AuthStore> authWithDiscord() async {
-    final authMethods = await getAuthMethods();
-    final discord = authMethods.authProviders
-        .firstWhere((element) => element.name == 'discord');
-    final authData = await pb.collection(Collection.users.name).authWithOAuth2(
-        'discord',
-        discord.codeChallenge,
-        discord.codeVerifier,
-        '${ApiPocketBase.baseUrl}redirect.html',
-        createData: {
-          'name': 'Discord + ${_uuid.v4()}',
-        });
+          provider,
+          code,
+          codeVerifier,
+          '${ApiPocketBase.baseUrl}redirect.html',
+        );
     print(authData.toString());
     return pb.authStore;
   }

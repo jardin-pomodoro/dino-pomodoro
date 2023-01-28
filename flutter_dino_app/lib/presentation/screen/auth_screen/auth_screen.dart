@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
 import 'package:flutter_dino_app/presentation/state/api_consumer/api_consumer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pkce/pkce.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -17,15 +16,17 @@ class AuthScreen extends ConsumerWidget {
     final AsyncValue<List<OAuth2Provider>> providers =
         ref.watch(authMethodProvider);
     return providers.when(
-      data: ((authMethod) {
+      data: ((authMethods) {
         return Column(
-          children: authMethod
+          children: authMethods
               .map((e) => ElevatedButton(
                     onPressed: () async {
                       await showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
-                        builder: (BuildContext bc) => const LoginModal(),
+                        builder: (BuildContext bc) => LoginModal(
+                          providers: authMethods,
+                        ),
                       );
                     },
                     child: Text(e.name),
@@ -40,22 +41,23 @@ class AuthScreen extends ConsumerWidget {
 }
 
 class LoginModal extends ConsumerStatefulWidget {
-  const LoginModal({super.key});
+  final List<OAuth2Provider> providers;
+  const LoginModal({super.key, required this.providers});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginModalState();
 }
 
+const porviderSelectionned = 'discord';
+
 class _LoginModalState extends ConsumerState<LoginModal> {
   late final WebViewController _controller;
-  late PkcePair pkcePair;
   late final ApiConsumer client;
 
   @override
   void initState() {
     super.initState();
     client = ref.read(apiProvider);
-    pkcePair = PkcePair.generate();
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
       params = WebKitWebViewControllerCreationParams(
@@ -89,7 +91,19 @@ class _LoginModalState extends ConsumerState<LoginModal> {
             final uri = Uri.parse(request.url);
             final code = uri.queryParameters['code'];
             if (code != null) {
+              final codeVerifier = widget.providers
+                  .firstWhere(
+                    (provider) => provider.name == porviderSelectionned,
+                  )
+                  .codeVerifier;
+              final auth = await client.authWithOAuth2(
+                porviderSelectionned,
+                code,
+                codeVerifier,
+              );
+              print('TAAAAAAAAAAAA');
               print(uri);
+              print(auth.toString());
               print(code);
               return NavigationDecision.prevent;
             }

@@ -14,7 +14,7 @@ import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.growing,
+  initialLocation: RouteNames.login,
   routes: [
     GoRoute(
       path: RouteNames.login,
