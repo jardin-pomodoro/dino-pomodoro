@@ -18,45 +18,43 @@ class FriendsBanner extends StatelessWidget {
             color: PomodoroTheme.white,
           ),
           title: Row(
-            children: const [
-              Text(
-                "Amis",
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Rémy",
                 style: PomodoroTheme.title3,
               ),
-              Image(
-                image: AssetImage(PomodoroAssets.treeImage),
-                color: PomodoroTheme.white,
-                height: 25,
-              ),
-            ]
-          ),
-          trailing: Column(
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      "56",
-                      style: PomodoroTheme.title3,
-                    ),
-                    Image(
-                      image: AssetImage(PomodoroAssets.treeImage),
-                      color: PomodoroTheme.white,
-                      height: 25,
-                    ),
-                  ]
-                ),
-                Row(
-                  children: const [
-                    Text(
-                      "56",
-                      style: PomodoroTheme.title3,
-                    ),
-                    Image(
-                      image: AssetImage(PomodoroAssets.treeImage),
-                      color: PomodoroTheme.white,
-                      height: 25,
-                    ),
-                ]
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                      children: const [
+                        Text(
+                          "56",
+                          style: PomodoroTheme.title3,
+                        ),
+                        Image(
+                          image: AssetImage(PomodoroAssets.treeImage),
+                          color: PomodoroTheme.white,
+                          height: 25,
+                        ),
+                      ]
+                  ),
+                  Row(
+                      children: const [
+                        Text(
+                          "56",
+                          style: PomodoroTheme.title3,
+                        ),
+                        Image(
+                          image: AssetImage(PomodoroAssets.treeImage),
+                          color: PomodoroTheme.white,
+                          height: 25,
+                        ),
+                      ]
+                  ),
+                ],
               ),
             ],
           ),
