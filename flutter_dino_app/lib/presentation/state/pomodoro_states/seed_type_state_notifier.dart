@@ -9,7 +9,7 @@ final seedsType = [
     id: '1',
     name: 'Saul',
     image:
-    'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
+        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
     timeToGrow: 10,
     price: 100,
     reward: 10,
@@ -24,7 +24,7 @@ final seedsType = [
     id: '2',
     name: 'Cerisier',
     image:
-    'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
+        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
     timeToGrow: 65,
     price: 200,
     reward: 20,
@@ -39,7 +39,7 @@ final seedsType = [
     id: '3',
     name: 'Peuplier',
     image:
-    'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/fcli3v7obfhrwbt/canvas2_removebg_preview_MJsLsimfMy.png',
+        'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/fcli3v7obfhrwbt/canvas2_removebg_preview_MJsLsimfMy.png',
     timeToGrow: 120,
     price: 500,
     reward: 50,

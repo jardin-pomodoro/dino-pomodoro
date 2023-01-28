@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 const appTitle = 'Dino pomodoro';
@@ -11,7 +10,6 @@ class PomodoroTheme {
   static const Color yellow = Color(0xfffab005);
   static const Color green = Color(0xff2b8a3e);
   static const Color darkGreen = Color(0xff095111);
-
 
   static const Color background = primary;
 

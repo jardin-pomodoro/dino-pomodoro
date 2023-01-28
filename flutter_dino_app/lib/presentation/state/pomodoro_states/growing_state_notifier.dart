@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,16 +40,15 @@ class GrowingState {
 }
 
 class GrowingStateNotifier extends StateNotifier<GrowingState> {
-  GrowingStateNotifier() : super(
-    const GrowingState(
-      isGrowing: false,
-      isFailed: false,
-      isEnded: false,
-      started: null,
-      ended: null,
-      growing: null,
-    )
-  );
+  GrowingStateNotifier()
+      : super(const GrowingState(
+          isGrowing: false,
+          isFailed: false,
+          isEnded: false,
+          started: null,
+          ended: null,
+          growing: null,
+        ));
 
   void startGrowing(Growing growing) {
     state = state.copyWith(

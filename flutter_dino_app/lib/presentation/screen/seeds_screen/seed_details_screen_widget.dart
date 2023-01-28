@@ -70,8 +70,8 @@ class SeedDetailsScreenWidget extends ConsumerWidget {
                         style: PomodoroTheme.textLarge,
                       ),
                       PriceWidget(
-                        price:
-                            getIncome(seed.seedTypeExpand.price, seed.leafLevel),
+                        price: getIncome(
+                            seed.seedTypeExpand.price, seed.leafLevel),
                       ),
                       const Text(
                         ")",

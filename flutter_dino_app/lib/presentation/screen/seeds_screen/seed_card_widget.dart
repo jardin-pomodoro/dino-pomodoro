@@ -92,11 +92,13 @@ class SeedCardWidget extends StatelessWidget {
                           width: 5,
                         ),
                         PriceWidget(
-                          price: getIncome(seed.seedTypeExpand.reward, seed.leafLevel),
+                          price: getIncome(
+                              seed.seedTypeExpand.reward, seed.leafLevel),
                           spacing: 5,
                         ),
                       ],
-                    ), Row(
+                    ),
+                    Row(
                       children: [
                         const FaIcon(
                           FontAwesomeIcons.hourglassHalf,

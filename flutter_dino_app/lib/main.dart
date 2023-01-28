@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
     required this.theme,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
