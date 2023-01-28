@@ -10,55 +10,63 @@ class FriendsBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: ListTile(
-          tileColor: PomodoroTheme.secondary,
-          leading: const Icon(
-            Icons.people_alt_outlined,
-            color: PomodoroTheme.white,
+    return ListTile(
+      tileColor: PomodoroTheme.secondary,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+      ),
+      leading: const Icon(
+        Icons.people_alt_outlined,
+        color: PomodoroTheme.white,
+      ),
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "Rémy",
+            style: PomodoroTheme.title4,
           ),
-          title: Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Rémy",
-                style: PomodoroTheme.title3,
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                    children: const [
+                      Text(
+                        "56",
+                        style: PomodoroTheme.text,
+                      ),
+                      Image(
+                        image: AssetImage(PomodoroAssets.treeImage),
+                        color: PomodoroTheme.white,
+                        height: 20,
+                      ),
+                    ]
+                ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                      children: const [
-                        Text(
-                          "56",
-                          style: PomodoroTheme.title3,
-                        ),
-                        Image(
-                          image: AssetImage(PomodoroAssets.treeImage),
-                          color: PomodoroTheme.white,
-                          height: 25,
-                        ),
-                      ]
-                  ),
-                  Row(
-                      children: const [
-                        Text(
-                          "56",
-                          style: PomodoroTheme.title3,
-                        ),
-                        Image(
-                          image: AssetImage(PomodoroAssets.treeImage),
-                          color: PomodoroTheme.white,
-                          height: 25,
-                        ),
-                      ]
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
+                    children: const [
+                      Text(
+                        "124 min",
+                        style: PomodoroTheme.text,
+                      ),
+                      Image(
+                        image: AssetImage(PomodoroAssets.chronoImage),
+                        color: PomodoroTheme.white,
+                        height: 20,
+                      ),
+                    ],
+                ),
               ),
             ],
           ),
-        ),
+        ],
+      ),
     );
   }
 }

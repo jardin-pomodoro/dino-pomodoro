@@ -15,10 +15,22 @@ class FriendsScreenWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: const [
-          FriendsBanner(),
-          FriendsBanner(),
-          FriendsBanner(),
-          FriendsBanner(),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+            child: FriendsBanner(),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+            child: FriendsBanner(),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+            child: FriendsBanner(),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0),
+            child: FriendsBanner(),
+          ),
         ]
       ),
     );
