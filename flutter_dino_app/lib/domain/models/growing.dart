@@ -3,16 +3,16 @@ import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 
 @immutable
 class Growing {
+  final DateTime created;
+  final DateTime updated;
+  final int reward;
+  final int timeToGrow;
+  final SeedTypeExpand expand;
   final String collectionId;
   final String collectionName;
   final String id;
   final String seedType;
   final String user;
-  final int reward;
-  final int timeToGrow;
-  final DateTime created;
-  final DateTime updated;
-  final SeedTypeExpand expand;
 
   const Growing({
     required this.collectionId,

@@ -3,45 +3,45 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/domain/models/growing.dart';
 import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 import 'package:flutter_dino_app/presentation/growing_screen/growing_grow_screen_widget.dart';
+import 'package:flutter_dino_app/presentation/growing_screen/widgets/seeds_select_dialog_widget.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/shop_screen/seed_type_details_card_widget.dart';
+import 'package:flutter_dino_app/presentation/state/pomodoro_states/growing_state_notifier.dart';
+import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final selectedSeed = Seed(
-  collectionId: '1',
-  collectionName: 'Collection 1',
-  created: DateTime.now(),
-  id: '1',
-  seedType: '1',
-  expand: SeedTypeExpand(
-    seedType: SeedType(
-      collectionId: '1',
-      collectionName: 'Collection 1',
-      id: '1',
-      name: 'Saul',
-      image:
-          'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
-      timeToGrow: 1,
-      price: 100,
-      reward: 10,
-      leafMaxUpgrades: 3,
-      trunkMaxUpgrades: 3,
-      created: DateTime.now(),
-      updated: DateTime.now(),
-    ),
-  ),
-  updated: DateTime.now(),
-  user: '1',
-  leafLevel: 0,
-  trunkLevel: 2,
-);
+// final selectedSeed = Seed(
+//   collectionId: '1',
+//   collectionName: 'Collection 1',
+//   created: DateTime.now(),
+//   id: '1',
+//   seedType: '1',
+//   expand: SeedTypeExpand(
+//     seedType: SeedType(
+//       collectionId: '1',
+//       collectionName: 'Collection 1',
+//       id: '1',
+//       name: 'Saul',
+//       image:
+//           'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
+//       timeToGrow: 1,
+//       price: 100,
+//       reward: 10,
+//       leafMaxUpgrades: 3,
+//       trunkMaxUpgrades: 3,
+//       created: DateTime.now(),
+//       updated: DateTime.now(),
+//     ),
+//   ),
+//   updated: DateTime.now(),
+//   user: '1',
+//   leafLevel: 0,
+//   trunkLevel: 2,
+// );
 
 final sentenses = [
   "La vie est trop courte pour boire du mauvais café.",
@@ -71,13 +71,15 @@ class GrowingScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final sentence = sentenses[Random().nextInt(sentenses.length)];
+    final selectedSeed = ref.watch(seedSelectorStateNotifierProvider);
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (false) {
         _showTreeRewardDialog(context);
       }
     });
 
-    final sentence = sentenses[Random().nextInt(sentenses.length)];
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -90,7 +92,25 @@ class GrowingScreenWidget extends ConsumerWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          Container(
+          selectedSeed == null
+              ? _renderSeedNotSelected(context, ref)
+              : _renderSeedSelected(selectedSeed, context, ref),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderSeedSelected(
+      Seed selectedSeed, BuildContext context, WidgetRef ref) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Listener(
+          onPointerUp: (_) {
+            _showSeedSelectDialog(context);
+          },
+          child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
@@ -103,64 +123,107 @@ class GrowingScreenWidget extends ConsumerWidget {
               selectedSeed.expand.seedType.image,
             ),
           ),
-          const SizedBox(height: 20),
-          Text(
-            durationString(
-              getGrowTime(
-                    selectedSeed.expand.seedType.timeToGrow,
-                    selectedSeed.trunkLevel,
-                  ) *
-                  60,
-            ),
-            style: PomodoroTheme.title1,
+        ),
+        const SizedBox(height: 20),
+        Text(
+          durationString(
+            getGrowTime(
+                  selectedSeed.expand.seedType.timeToGrow,
+                  selectedSeed.trunkLevel,
+                ) *
+                60,
           ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(15),
-                backgroundColor: PomodoroTheme.accent,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  side: BorderSide(
-                    color: PomodoroTheme.secondary,
-                    width: 3,
-                  ),
+          style: PomodoroTheme.title1,
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(15),
+              backgroundColor: PomodoroTheme.accent,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                side: BorderSide(
+                  color: PomodoroTheme.secondary,
+                  width: 3,
                 ),
               ),
-              onPressed: () {
-                ref.read(timerNotifierProvider.notifier).start(
-                      getGrowTime(
-                            selectedSeed.expand.seedType.timeToGrow,
-                            selectedSeed.trunkLevel,
-                          ) *
-                          60,
-                    );
-                GrowingGrowScreenWidget.navigateTo(
-                    context,
-                    Growing(
-                      collectionId: "1",
-                      collectionName: "Collection 1",
-                      created: DateTime.now(),
-                      id: "1",
-                      seedType: "1",
-                      expand: selectedSeed.expand,
-                      reward: getIncome(
-                        selectedSeed.expand.seedType.reward,
-                        selectedSeed.leafLevel,
-                      ),
-                      timeToGrow: getGrowTime(
-                        selectedSeed.expand.seedType.timeToGrow,
-                        selectedSeed.trunkLevel,
-                      ),
-                      updated: DateTime.now(),
-                      user: "1",
-                    ));
-              },
-              child: const Text(
-                'Planter',
-                style: PomodoroTheme.title1,
-              ))
-        ],
+            ),
+            onPressed: () {
+              _startGrowTree(context, ref, selectedSeed);
+            },
+            child: const Text(
+              'Planter',
+              style: PomodoroTheme.title1,
+            ))
+      ],
+    );
+  }
+
+  Widget _renderSeedNotSelected(BuildContext context, WidgetRef ref) {
+    return Listener(
+      onPointerUp: (_) {
+        _showSeedSelectDialog(context);
+      },
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 20),
+        width: 350,
+        height: 350,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: PomodoroTheme.green,
+            width: 7,
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            "Sélectionnez \nune graine",
+            style: PomodoroTheme.title1,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _startGrowTree(BuildContext context, WidgetRef ref, Seed selectedSeed) {
+    final grow = Growing(
+      collectionId: "1",
+      collectionName: "Collection 1",
+      created: DateTime.now(),
+      id: "1",
+      seedType: selectedSeed.expand.seedType.id,
+      expand: selectedSeed.expand,
+      reward: getIncome(
+        selectedSeed.expand.seedType.reward,
+        selectedSeed.leafLevel,
+      ),
+      timeToGrow: getGrowTime(
+        selectedSeed.expand.seedType.timeToGrow,
+        selectedSeed.trunkLevel,
+      ),
+      updated: DateTime.now(),
+      user: "1",
+    );
+    ref.read(growingStateNotifierProvider.notifier).startGrowing(grow);
+
+    ref.read(timerNotifierProvider.notifier).start(
+          getGrowTime(
+                selectedSeed.expand.seedType.timeToGrow,
+                selectedSeed.trunkLevel,
+              ) *
+              60,
+        );
+    GrowingGrowScreenWidget.navigateTo(context);
+  }
+
+  _showSeedSelectDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => const Dialog(
+        backgroundColor: Colors.blue,
+        insetPadding: EdgeInsets.all(0),
+        child: SeedsSelectDialogWidget(),
       ),
     );
   }
@@ -168,13 +231,15 @@ class GrowingScreenWidget extends ConsumerWidget {
   _showTreeRewardDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (BuildContext context) => const AlertDialog(
         backgroundColor: Colors.transparent,
-        contentPadding: const EdgeInsets.all(0),
-        content:
-            SeedTypeDetailsCardWidget(seedType: selectedSeed.seedTypeExpand),
+        contentPadding: EdgeInsets.all(0),
+        content: Text(
+          'Vous avez gagné 10 pommes',
+          style: PomodoroTheme.title1,
+        ),
         actionsAlignment: MainAxisAlignment.center,
-        actionsPadding: const EdgeInsets.only(top: 20),
+        actionsPadding: EdgeInsets.only(top: 20),
       ),
     );
   }

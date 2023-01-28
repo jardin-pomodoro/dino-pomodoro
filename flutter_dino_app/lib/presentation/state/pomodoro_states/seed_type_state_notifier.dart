@@ -25,7 +25,7 @@ final seedsType = [
     name: 'Cerisier',
     image:
     'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
-    timeToGrow: 60,
+    timeToGrow: 65,
     price: 200,
     reward: 20,
     leafMaxUpgrades: 5,

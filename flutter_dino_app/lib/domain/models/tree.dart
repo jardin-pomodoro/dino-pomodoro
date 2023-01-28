@@ -3,18 +3,18 @@ import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 
 @immutable
 class Tree {
-  final String id;
-  final String collectionId;
-  final String collectionName;
   final DateTime created;
+  final DateTime ended;
+  final DateTime started;
   final DateTime updated;
-  final String user;
-  final String seedType;
-  final SeedTypeExpand expand;
   final int reward;
   final int timeToGrow;
-  final DateTime started;
-  final DateTime ended;
+  final SeedTypeExpand expand;
+  final String collectionId;
+  final String collectionName;
+  final String id;
+  final String seedType;
+  final String user;
 
   const Tree({
     required this.id,

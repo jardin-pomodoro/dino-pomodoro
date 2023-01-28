@@ -70,6 +70,16 @@ class TimerNotifier extends StateNotifier<TimerModel> {
     );
   }
 
+  void stop() {
+    _tickerSubscription?.cancel();
+    state = TimerModel(
+      timeLeft: state.timeLeft,
+      initialDuration: state.initialDuration,
+      durationLeft: state.durationLeft,
+      isRunning: false,
+    );
+  }
+
   @override
   void dispose() {
     _tickerSubscription?.cancel();

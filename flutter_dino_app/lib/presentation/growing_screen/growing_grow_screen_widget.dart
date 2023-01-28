@@ -19,13 +19,12 @@ double computeCurrentValue(Duration remainingTime) {
 }
 
 class GrowingGrowScreenWidget extends ConsumerWidget {
-  static void navigateTo(BuildContext context, Growing growingTree) {
-    context.push(RouteNames.growingGrow, extra: growingTree);
+
+  static void navigateTo(BuildContext context) {
+    context.push(RouteNames.growingGrow);
   }
 
-  final Growing growingTree;
-
-  const GrowingGrowScreenWidget({super.key, required this.growingTree});
+  const GrowingGrowScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

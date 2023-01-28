@@ -32,9 +32,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: RouteNames.growingGrow,
-      builder: (context, state) => GrowingGrowScreenWidget(
-        growingTree: state.extra as Growing,
-      ),
+      builder: (context, state) => const GrowingGrowScreenWidget(),
     ),
     GoRoute(
       path: RouteNames.seeds,
