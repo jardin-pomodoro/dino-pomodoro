@@ -35,6 +35,7 @@ class ApiConsumer {
           codeVerifier,
           '${ApiPocketBase.baseUrl}redirect.html',
         );
+    print(authData);
     return pb.authStore;
   }
 }

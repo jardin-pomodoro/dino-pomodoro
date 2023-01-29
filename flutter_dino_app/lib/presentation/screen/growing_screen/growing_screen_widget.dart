@@ -75,12 +75,6 @@ class GrowingScreenWidget extends ConsumerWidget {
     final sentence = sentenses[Random().nextInt(sentenses.length)];
     final selectedSeed = ref.watch(seedSelectorStateNotifierProvider);
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (false) {
-        _showTreeRewardDialog(context);
-      }
-    });
-
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
