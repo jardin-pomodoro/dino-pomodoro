@@ -28,13 +28,16 @@ class _FriendsScreenWidgetState extends State<FriendsScreenWidget> {
     return Center(
       child: Column(
         children: [
-         SliderChoice(items: const [
-           "Amis",
-           "Demandes",
-           "Ajouter un ami",
-         ],
-           changeSlidingChoice: _changeSlidingChoice,
-         ),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+              child: SliderChoice(items: const [
+                "Amis",
+                "Demandes",
+                "Ajouter un ami",
+              ],
+                changeSlidingChoice: _changeSlidingChoice,
+              ),
+          ),
           if (slidingChoice == "Amis") const FriendsTab(),
           if (slidingChoice == "Demandes") const PendingInvitations(),
           if (slidingChoice == "Ajouter un ami") AddFriend(controller: TextEditingController(), addFriend: _addFriend),

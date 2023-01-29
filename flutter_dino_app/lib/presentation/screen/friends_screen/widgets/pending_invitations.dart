@@ -13,7 +13,7 @@ class PendingInvitations extends StatelessWidget {
     return Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 4.0),
             child: ActionBanner(
               body: "Jean@pomme.fr",
               clickOnAction: _deletePendingInvitations,
