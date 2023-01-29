@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'action_banner.dart';
 
-class AddFriend  extends StatefulWidget {
+class AddFriend extends StatefulWidget {
   final TextEditingController controller;
   final Function(String) addFriend;
 
@@ -20,8 +20,6 @@ class AddFriend  extends StatefulWidget {
 }
 
 class _AddFriendState extends State<AddFriend> {
-
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -32,57 +30,54 @@ class _AddFriendState extends State<AddFriend> {
           children: [
             TextField(
               decoration: InputDecoration(
-                hintText: "email",
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: PomodoroTheme.secondary,
-                      style: BorderStyle.none,
-                      width: 10.0
+                  hintText: "email",
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: PomodoroTheme.secondary, width: 2),
                   ),
-                ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: PomodoroTheme.secondary,
-                      style: BorderStyle.none,
-                      width: 10.0
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: PomodoroTheme.secondary, width: 2),
                   ),
-                ),
-                suffixIcon: IconButton(
-                  onPressed: () => {
-                    widget.controller.clear()
-                  },
-                  icon: const Icon(
-                    Icons.clear,
-                    color: PomodoroTheme.secondary
-                  ),
-                )
-              ),
+                  prefixIcon: Icon(Icons.email),
+                  prefixIconColor: PomodoroTheme.secondary,
+                  suffixIcon: IconButton(
+                    onPressed: () => {widget.controller.clear()},
+                    icon:
+                        const Icon(Icons.clear, color: PomodoroTheme.secondary),
+                  )),
+              keyboardType: TextInputType.emailAddress,
               controller: widget.controller,
               onSubmitted: widget.addFriend,
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: MaterialButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    side: const BorderSide(
-                      color: PomodoroTheme.secondary,
-                      width: 0,
-                    ),
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  side: const BorderSide(
+                    color: PomodoroTheme.secondary,
+                    width: 2,
                   ),
-                  color: PomodoroTheme.secondary,
-                  child: const Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                        'envoyer la demande',
-                        style: PomodoroTheme.text,
-                    ),
+                ),
+                color: PomodoroTheme.secondary,
+                child: const Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'Envoyer la demande',
+                    style: PomodoroTheme.text,
                   ),
+                ),
               ),
             ),
+            const Divider(
+              color: PomodoroTheme.white,
+              height: 10,
+              thickness: 0,
+            ),
             Padding(
-              padding:  EdgeInsets.symmetric(vertical: 10.0),
+              padding: EdgeInsets.symmetric(vertical: 10.0),
               child: Text(
                 "Demandes envoyées",
                 style: PomodoroTheme.title4,
