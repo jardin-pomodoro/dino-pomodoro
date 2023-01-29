@@ -20,8 +20,8 @@ class SwipeArrow extends StatelessWidget {
             // Action lorsque la flèche gauche est appuyée
           },
         ),
-        const Center(
-          child: Expanded(
+        Center(
+          child: Container(
             child: Text("23 Juillet 2012", style: PomodoroTheme.title4),
           ),
         ),

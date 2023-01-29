@@ -22,10 +22,10 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
   String slidingChoice = "Jour";
   String granularity = "day";
   List<int> dataByGranularity = [
-    10, 14, 8, 2, 19, 39, 09, 19, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27
+    10, 14, 8, 2, 19, 39, 09, 19, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27
   ];
   late List<int> dataPast = [
-    10, 14, 8, 2, 19, 39, 09, 19, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27
+    10, 14, 8, 2, 19, 39, 09, 19, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27, 29, 63, 05, 72, 27, 28, 28, 27
   ];
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
                     changeSlidingChoice: _changeSlidingChoice,
                   ),
                 ),
-                //const SwipeArrow(),
+                const SwipeArrow(),
                 ListHorizontalSlide(
                   treesStatsUi: [
                     TreeStatsUi(
@@ -97,7 +97,7 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
 
       } else if (slidingChoice == "Mois") {
         granularity = "month";
-        dataPast = dataByGranularity.sublist(0, 12);
+        dataPast = dataByGranularity.sublist(0, 30);
       } else if (slidingChoice == "Année") {
         granularity = "year";
         dataPast = dataByGranularity.sublist(0, 12);

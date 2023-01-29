@@ -40,7 +40,7 @@ class _CalendarChartState extends State<CalendarChart> {
     );
   }
 
-  SideTitles get _monthTitles => SideTitles(
+  SideTitles get _yearTitles => SideTitles(
     showTitles: true,
     getTitlesWidget: (value, meta) {
       String text = '';
@@ -166,12 +166,71 @@ class _CalendarChartState extends State<CalendarChart> {
     },
   );
 
+  SideTitles get _monthTitles => SideTitles(
+    showTitles: true,
+    getTitlesWidget: (value, meta) {
+      String text = '';
+      switch (value.toInt()) {
+        case 0:
+          text = '1';
+          break;
+        case 2:
+          text = '2';
+          break;
+        case 4:
+          text = '4';
+          break;
+        case 6:
+          text = '6';
+          break;
+        case 8:
+          text = '8';
+          break;
+        case 10:
+          text = '10';
+          break;
+        case 12:
+          text = '12';
+          break;
+        case 14:
+          text = '14';
+          break;
+        case 16:
+          text = '16';
+          break;
+        case 18:
+          text = '18';
+          break;
+        case 20:
+          text = '20';
+          break;
+        case 22:
+          text = '22';
+          break;
+        case 24:
+          text = '24';
+          break;
+        case 26:
+          text = '26';
+          break;
+        case 28:
+          text = '28';
+          break;
+        case 30:
+          text = '30';
+          break;
+      }
+
+      return Text(text);
+    },
+  );
+
   List<BarChartGroupData> _chartGroups(String granularity, List<int> dataByGranularity) {
     final List fixedList = Iterable<int>.generate(dataByGranularity.length).toList();
     final double barChartWidth;
     if (granularity == "day" || granularity == "month") {
       barChartWidth = 10;
-    } else if(granularity == "week" || granularity == "year") {
+    } else if(granularity == "week" || granularity == "year" ) {
       barChartWidth = 20;
     } else {
       barChartWidth = 10;
@@ -201,6 +260,6 @@ class _CalendarChartState extends State<CalendarChart> {
     } else if (granularity == 'month'){
       return _monthTitles;
     }
-    return _monthTitles;
+    return _yearTitles;
   }
 }
