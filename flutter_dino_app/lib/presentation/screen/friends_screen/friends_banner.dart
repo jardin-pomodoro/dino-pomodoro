@@ -5,7 +5,16 @@ import 'package:flutter_dino_app/presentation/theme/assets.dart';
 import '../../theme/theme.dart';
 
 class FriendsBanner extends StatelessWidget {
-  const FriendsBanner({Key? key}) : super(key: key);
+  final String body;
+  final String treeGrown;
+  final String timeWhereTreeGrown;
+
+  const FriendsBanner({
+    Key? key,
+    required this.body,
+    required this.treeGrown,
+    required this.timeWhereTreeGrown,
+  }) : super(key: key);
 
 
   @override
@@ -23,8 +32,8 @@ class FriendsBanner extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "Rémy",
+          Text(
+            body,
             style: PomodoroTheme.title4,
           ),
           Column(
@@ -34,12 +43,12 @@ class FriendsBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
-                    children: const [
+                    children: [
                       Text(
-                        "56",
+                        treeGrown,
                         style: PomodoroTheme.text,
                       ),
-                      Image(
+                      const Image(
                         image: AssetImage(PomodoroAssets.treeImage),
                         color: PomodoroTheme.white,
                         height: 20,
@@ -50,12 +59,12 @@ class FriendsBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
-                    children: const [
+                    children: [
                       Text(
-                        "124 min",
+                        "$timeWhereTreeGrown min",
                         style: PomodoroTheme.text,
                       ),
-                      Image(
+                      const Image(
                         image: AssetImage(PomodoroAssets.chronoImage),
                         color: PomodoroTheme.white,
                         height: 20,
