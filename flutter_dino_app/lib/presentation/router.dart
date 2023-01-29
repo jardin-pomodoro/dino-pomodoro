@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.friends,
       builder: (context, state) =>
-          _scaffoldedWidget("Amis", const FriendsScreenWidget()),
+          _scaffoldedWidget("Amis", FriendsScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.growing,
