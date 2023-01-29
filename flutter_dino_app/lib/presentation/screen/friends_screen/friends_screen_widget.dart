@@ -20,7 +20,6 @@ class FriendsScreenWidget extends StatefulWidget {
 }
 
 class _FriendsScreenWidgetState extends State<FriendsScreenWidget> {
-  int? _sliding = 0;
   String slidingChoice = "Amis";
 
   @override
