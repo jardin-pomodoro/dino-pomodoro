@@ -4,10 +4,12 @@ import '../../../theme/theme.dart';
 
 class SliderChoice extends StatefulWidget {
   final List<String> items;
+  final Function changeSlidingChoice;
 
   const SliderChoice({
     Key? key,
     required this.items,
+    required this.changeSlidingChoice,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class _SliderChoiceState extends State<SliderChoice> {
       onValueChanged: (int? newValue) {
         setState(() {
           _sliding = newValue!;
+          widget.changeSlidingChoice(widget.items[_sliding]);
         });
       },
       backgroundColor: PomodoroTheme.primary,
