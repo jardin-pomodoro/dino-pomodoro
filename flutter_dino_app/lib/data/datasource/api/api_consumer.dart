@@ -1,7 +1,5 @@
 import 'package:flutter_dino_app/data/datasource/api/pocketbase.dart';
-import 'package:pkce/pkce.dart';
 import 'package:pocketbase/pocketbase.dart';
-import 'package:uuid/uuid.dart';
 
 enum Collection {
   users,
@@ -37,7 +35,6 @@ class ApiConsumer {
           codeVerifier,
           '${ApiPocketBase.baseUrl}redirect.html',
         );
-    print(authData.toString());
     return pb.authStore;
   }
 }

@@ -77,9 +77,15 @@ class _LoginModalState extends ConsumerState<LoginModal> {
     final clientIdEncoded = Uri.encodeQueryComponent(
       "1064464779634298911",
     );
+    final provider = widget.providers.firstWhere(
+      (provider) => provider.name == porviderSelectionned,
+    );
+
+    final state = Uri.encodeQueryComponent(provider.state);
+    final codeChallenge = Uri.encodeQueryComponent(provider.codeChallenge);
+    final codeMethode = Uri.encodeQueryComponent(provider.codeChallengeMethod);
     final initalUrl =
-        'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope';
-    print(initalUrl);
+        'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope&state=$state&code_challenge=$codeChallenge&code_challenge_method=$codeMethode';
     _controller = controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(
@@ -103,7 +109,7 @@ class _LoginModalState extends ConsumerState<LoginModal> {
               );
               print('TAAAAAAAAAAAA');
               print(uri);
-              print(auth.toString());
+              print(auth);
               print(code);
               return NavigationDecision.prevent;
             }
