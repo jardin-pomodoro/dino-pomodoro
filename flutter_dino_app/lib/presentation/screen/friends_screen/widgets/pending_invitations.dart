@@ -13,14 +13,7 @@ class PendingInvitations extends StatelessWidget {
     return Column(
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              "Demandes à accepter",
-              style: PomodoroTheme.title4,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.0),
+            padding: EdgeInsets.symmetric(vertical: 10.0),
             child: ActionBanner(
               body: "Jean@pomme.fr",
               clickOnAction: _deletePendingInvitations,
@@ -45,43 +38,6 @@ class PendingInvitations extends StatelessWidget {
               ),
               actionIcon: FaIcon(
                 FontAwesomeIcons.circlePlus,
-                color: PomodoroTheme.white,
-              ),
-            ),
-          ),
-          Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              "Demandes en attente",
-              style: PomodoroTheme.title4,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.0),
-            child: ActionBanner(
-              body: "Jean@pomme.fr",
-              clickOnAction: _deletePendingInvitations,
-              startIcon: FaIcon(
-                FontAwesomeIcons.user,
-                color: PomodoroTheme.white,
-              ),
-              actionIcon: FaIcon(
-                FontAwesomeIcons.circleMinus,
-                color: PomodoroTheme.white,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.0),
-            child: ActionBanner(
-              body: "Jean@pomme.fr",
-              clickOnAction: _deletePendingInvitations,
-              startIcon: FaIcon(
-                FontAwesomeIcons.user,
-                color: PomodoroTheme.white,
-              ),
-              actionIcon: FaIcon(
-                FontAwesomeIcons.circleMinus,
                 color: PomodoroTheme.white,
               ),
             ),
