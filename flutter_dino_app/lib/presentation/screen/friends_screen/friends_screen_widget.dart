@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/friends_banner.dart';
+import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/add_friend.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/friends_tab.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/pending_invitations.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/slider_choice.dart';
@@ -36,7 +37,7 @@ class _FriendsScreenWidgetState extends State<FriendsScreenWidget> {
          ),
           if (slidingChoice == "Amis") const FriendsTab(),
           if (slidingChoice == "Demandes") const PendingInvitations(),
-          if (slidingChoice == "Ajouter un ami") const Text("Ajouter un ami"),
+          if (slidingChoice == "Ajouter un ami") AddFriend(controller: TextEditingController(), addFriend: _addFriend),
         ],
       ),
     );
@@ -45,6 +46,12 @@ class _FriendsScreenWidgetState extends State<FriendsScreenWidget> {
   void _changeSlidingChoice(String choice) {
     setState(() {
       slidingChoice = choice;
+    });
+  }
+
+  void _addFriend(String emailFriendAdd) {
+    setState(() {
+      print(emailFriendAdd);
     });
   }
 }

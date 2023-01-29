@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../theme/theme.dart';
 
 class ActionBanner extends StatefulWidget {
   final String body;
   final Function clickOnAction;
-  final Icon actionIcon;
-  final Icon startIcon;
+  final FaIcon actionIcon;
+  final FaIcon startIcon;
 
   const ActionBanner({
     super.key,
@@ -39,7 +40,12 @@ class _ActionBannerState extends State<ActionBanner> {
             widget.body,
             style: PomodoroTheme.title4,
           ),
-          widget.actionIcon
+          GestureDetector(
+            onTap: () {
+              widget.clickOnAction(widget.body);
+            },
+            child: widget.actionIcon,
+          ),
         ],
       ),
     );
