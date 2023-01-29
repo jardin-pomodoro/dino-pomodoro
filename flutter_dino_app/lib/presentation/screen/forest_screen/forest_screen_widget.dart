@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/calendar_chart.dart';
 import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/list-horizontal-slide.dart';
 import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/swipe_arrow.dart';
 import 'package:go_router/go_router.dart';
@@ -45,6 +46,7 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
               TreeStatsUi(image: 'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png', number: 9),
             ],
           ),
+          CalendarChart(),
         ],
       ),
     );
