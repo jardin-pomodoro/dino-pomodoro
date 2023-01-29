@@ -30,12 +30,28 @@ class _AddFriendState extends State<AddFriend> {
             TextField(
               decoration: InputDecoration(
                 hintText: "email",
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: PomodoroTheme.secondary,
+                      style: BorderStyle.none,
+                      width: 10.0
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: PomodoroTheme.secondary,
+                      style: BorderStyle.none,
+                      width: 10.0
+                  ),
+                ),
                 suffixIcon: IconButton(
                   onPressed: () => {
                     widget.controller.clear()
                   },
-                  icon: const Icon(Icons.clear),
+                  icon: const Icon(
+                    Icons.clear,
+                    color: PomodoroTheme.secondary
+                  ),
                 )
               ),
               controller: widget.controller,
@@ -45,10 +61,20 @@ class _AddFriendState extends State<AddFriend> {
               padding: const EdgeInsets.all(20.0),
               child: MaterialButton(
                   onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: const BorderSide(
+                      color: PomodoroTheme.secondary,
+                      width: 0,
+                    ),
+                  ),
                   color: PomodoroTheme.secondary,
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text('envoyer la demande'),
+                  child: const Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                        'envoyer la demande',
+                        style: PomodoroTheme.text,
+                    ),
                   ),
               ),
             ),
