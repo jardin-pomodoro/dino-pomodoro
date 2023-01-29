@@ -34,11 +34,11 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                   child: SliderChoice(
                     items: const [
                       "Jour",
@@ -49,7 +49,9 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
                     changeSlidingChoice: _changeSlidingChoice,
                   ),
                 ),
-                const SwipeArrow(),
+                Padding(padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                  child: SwipeArrow()
+                ),
                 ListHorizontalSlide(
                   treesStatsUi: [
                     TreeStatsUi(
@@ -74,7 +76,7 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: CalendarChart(
               granularity: granularity,
               dataByGranularity: dataPast,
