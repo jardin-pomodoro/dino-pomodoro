@@ -23,58 +23,135 @@ class AddFriend extends StatefulWidget {
 class _AddFriendState extends State<AddFriend> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 8.0),
-        child: Column(
-          children: [
-            AddFriendForm(
-              controller: widget.controller,
-              addFriend: widget.addFriend,
-            ),
-            const Divider(
-              color: PomodoroTheme.white,
-              height: 10,
-              thickness: 0,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(
-                "Demandes envoyées",
-                style: PomodoroTheme.title4,
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 8.0),
+          child: Column(
+            children: [
+              AddFriendForm(
+                controller: widget.controller,
+                addFriend: widget.addFriend,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 2.0),
-              child: ActionBanner(
-                body: "Jean@pomme.fr",
-                clickOnAction: _deletePendingInvitations,
-                startIcon: FaIcon(
-                  FontAwesomeIcons.user,
-                  color: PomodoroTheme.white,
-                ),
-                actionIcon: FaIcon(
-                  FontAwesomeIcons.circleMinus,
-                  color: PomodoroTheme.white,
+              const Divider(
+                color: PomodoroTheme.white,
+                height: 10,
+                thickness: 0,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  "Demandes envoyées",
+                  style: PomodoroTheme.title4,
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 2.0),
-              child: ActionBanner(
-                body: "Jean@pomme.fr",
-                clickOnAction: _deletePendingInvitations,
-                startIcon: const FaIcon(
-                  FontAwesomeIcons.user,
-                  color: PomodoroTheme.white,
-                ),
-                actionIcon: const FaIcon(
-                  FontAwesomeIcons.circleMinus,
-                  color: PomodoroTheme.white,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: "Jean@pomme.fr",
+                  clickOnAction: _deletePendingInvitations,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circleMinus,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -7,41 +7,93 @@ class FriendsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0),
-          child: FriendsBanner(
-            body: "Rémy",
-            treeGrown: "52",
-            timeWhereTreeGrown: "120",
-          ),
+    return Expanded(
+        child: SingleChildScrollView(
+        child: Column(
+          children: const [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: FriendsBanner(
+                body: "Rémy",
+                treeGrown: "52",
+                timeWhereTreeGrown: "120",
+              ),
+            ),
+          ],
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0),
-          child: FriendsBanner(
-            body: "Rémy",
-            treeGrown: "52",
-            timeWhereTreeGrown: "120",
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0),
-          child: FriendsBanner(
-            body: "Rémy",
-            treeGrown: "52",
-            timeWhereTreeGrown: "120",
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.0),
-          child: FriendsBanner(
-            body: "Rémy",
-            treeGrown: "52",
-            timeWhereTreeGrown: "120",
-          ),
-        ),
-      ]
-    );
+    ),
+      );
   }
 }

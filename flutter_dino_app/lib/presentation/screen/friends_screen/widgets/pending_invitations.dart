@@ -10,39 +10,41 @@ class PendingInvitations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: ActionBanner(
-              body: "Jean@pomme.fr",
-              clickOnAction: _deletePendingInvitations,
-              startIcon: FaIcon(
-                FontAwesomeIcons.user,
-                color: PomodoroTheme.white,
-              ),
-              actionIcon: FaIcon(
-                FontAwesomeIcons.circlePlus,
-                color: PomodoroTheme.white,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.0),
-            child: ActionBanner(
-              body: "Jean@pomme.fr",
-              clickOnAction: _deletePendingInvitations,
-              startIcon: FaIcon(
-                FontAwesomeIcons.user,
-                color: PomodoroTheme.white,
-              ),
-              actionIcon: FaIcon(
-                FontAwesomeIcons.circlePlus,
-                color: PomodoroTheme.white,
+    return SingleChildScrollView(
+      child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child: ActionBanner(
+                body: "Jean@pomme.fr",
+                clickOnAction: _deletePendingInvitations,
+                startIcon: FaIcon(
+                  FontAwesomeIcons.user,
+                  color: PomodoroTheme.white,
+                ),
+                actionIcon: FaIcon(
+                  FontAwesomeIcons.circlePlus,
+                  color: PomodoroTheme.white,
+                ),
               ),
             ),
-          ),
-        ]
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.0),
+              child: ActionBanner(
+                body: "Jean@pomme.fr",
+                clickOnAction: _deletePendingInvitations,
+                startIcon: FaIcon(
+                  FontAwesomeIcons.user,
+                  color: PomodoroTheme.white,
+                ),
+                actionIcon: FaIcon(
+                  FontAwesomeIcons.circlePlus,
+                  color: PomodoroTheme.white,
+                ),
+              ),
+            ),
+          ]
+      ),
     );
   }
 
