@@ -40,3 +40,18 @@ class OAuth2Provider {
     );
   }
 }
+
+const String redirectUri = 'https://pocketbase.nospy.fr/redirect.html';
+
+class DiscordOauthVariable {
+  static const String scope = 'identify%20email';
+  static const clientId = '1064464779634298911';
+  static String buildUrl(OAuth2Provider provider) {
+    final state = provider.state;
+    final codeChallenge = provider.codeChallenge;
+    final codeMethode = provider.codeChallengeMethod;
+    final clientIdEncoded = Uri.encodeQueryComponent(clientId);
+    final redirectUriEncoded = Uri.encodeQueryComponent(redirectUri);
+    return 'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope&state=$state&code_challenge=$codeChallenge&code_challenge_method=$codeMethode';
+  }
+}

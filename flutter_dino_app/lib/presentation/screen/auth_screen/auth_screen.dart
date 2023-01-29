@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
 import 'package:flutter_dino_app/presentation/state/api_consumer/api_consumer.dart';
@@ -48,75 +50,69 @@ class LoginModal extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginModalState();
 }
 
+// todo create a state or pass params to see which provider is selected
 const porviderSelectionned = 'discord';
 
 class _LoginModalState extends ConsumerState<LoginModal> {
   late final WebViewController _controller;
   late final ApiConsumer client;
 
+  PlatformWebViewControllerCreationParams _optimisedParams() {
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      return WebKitWebViewControllerCreationParams(
+        allowsInlineMediaPlayback: true,
+        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+      );
+    }
+    return const PlatformWebViewControllerCreationParams();
+  }
+
+  FutureOr<NavigationDecision> _onNavigationRequest(
+      NavigationRequest request) async {
+    if (!request.url.startsWith(redirectUri)) {
+      return NavigationDecision.navigate;
+    }
+    final uri = Uri.parse(request.url);
+    final code = uri.queryParameters['code'];
+    if (code != null) {
+      final codeVerifier = widget.providers
+          .firstWhere(
+            (provider) => provider.name == porviderSelectionned,
+          )
+          .codeVerifier;
+      final auth = await client.authWithOAuth2(
+        porviderSelectionned,
+        code,
+        codeVerifier,
+      );
+      print('TAAAAAAAAAAAA');
+      print(uri);
+      print(auth);
+      print(code);
+      return NavigationDecision.prevent;
+    }
+    return NavigationDecision.navigate;
+  }
+
   @override
   void initState() {
     super.initState();
     client = ref.read(apiProvider);
-    late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-    }
-
+    final PlatformWebViewControllerCreationParams params = _optimisedParams();
     final WebViewController controller =
         WebViewController.fromPlatformCreationParams(params);
-    // I believe this need to be a deep link
-    const redirectUri = "https://pocketbase.nospy.fr/redirect.html";
-    final redirectUriEncoded = Uri.encodeQueryComponent(redirectUri);
-    const scope = 'identify%20email';
-    final clientIdEncoded = Uri.encodeQueryComponent(
-      "1064464779634298911",
-    );
     final provider = widget.providers.firstWhere(
       (provider) => provider.name == porviderSelectionned,
     );
-
-    final state = Uri.encodeQueryComponent(provider.state);
-    final codeChallenge = Uri.encodeQueryComponent(provider.codeChallenge);
-    final codeMethode = Uri.encodeQueryComponent(provider.codeChallengeMethod);
-    final initalUrl =
-        'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope&state=$state&code_challenge=$codeChallenge&code_challenge_method=$codeMethode';
+    final initalUrl = DiscordOauthVariable.buildUrl(provider);
     _controller = controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(
         "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.124 Mobile Safari/537.36",
       )
-      ..setNavigationDelegate(NavigationDelegate(
-        onNavigationRequest: (NavigationRequest request) async {
-          if (request.url.startsWith(redirectUri)) {
-            final uri = Uri.parse(request.url);
-            final code = uri.queryParameters['code'];
-            if (code != null) {
-              final codeVerifier = widget.providers
-                  .firstWhere(
-                    (provider) => provider.name == porviderSelectionned,
-                  )
-                  .codeVerifier;
-              final auth = await client.authWithOAuth2(
-                porviderSelectionned,
-                code,
-                codeVerifier,
-              );
-              print('TAAAAAAAAAAAA');
-              print(uri);
-              print(auth);
-              print(code);
-              return NavigationDecision.prevent;
-            }
-          }
-          return NavigationDecision.navigate;
-        },
-      ))
+      ..setNavigationDelegate(
+        NavigationDelegate(onNavigationRequest: _onNavigationRequest),
+      )
       ..loadRequest(Uri.parse(initalUrl));
   }
 
