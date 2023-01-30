@@ -17,6 +17,7 @@ extension CollectionName on Collection {
 abstract class AuthProvider {
   static const discord = 'discord';
   static const google = 'google';
+  static const github = 'github';
 }
 
 class ApiConsumer {

@@ -13,22 +13,32 @@ class AuthScreen extends ConsumerWidget {
         ref.watch(authMethodProvider);
     return providers.when(
       data: ((authMethods) {
-        return Column(
-          children: authMethods
-              .map((e) => ElevatedButton(
-                    onPressed: () async {
-                      await showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext bc) => LoginModal(
-                          providers: authMethods,
-                          context: context,
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: authMethods
+                  .map((provider) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (BuildContext bc) => LoginModal(
+                                provider: provider,
+                                context: context,
+                              ),
+                            );
+                          },
+                          child: Text(provider.name),
                         ),
-                      );
-                    },
-                    child: Text(e.name),
-                  ))
-              .toList(),
+                      ))
+                  .toList(),
+            ),
+          ],
         );
       }),
       error: (error, stackTrace) => Text('error ref $error'),

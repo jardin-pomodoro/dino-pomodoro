@@ -11,16 +11,15 @@ import '../../../state/api_consumer/api_consumer.dart';
 import '../../../state/auth/auth.dart';
 
 class LoginModal extends ConsumerStatefulWidget {
-  final List<OAuth2Provider> providers;
+  final OAuth2Provider provider;
   final BuildContext context;
-  const LoginModal({super.key, required this.providers, required this.context});
+  const LoginModal({super.key, required this.provider, required this.context});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginModalState();
 }
 
 // todo create a state or pass params to see which provider is selected
-const porviderSelectionned = 'discord';
 
 class _LoginModalState extends ConsumerState<LoginModal> {
   late final WebViewController _controller;
@@ -44,20 +43,12 @@ class _LoginModalState extends ConsumerState<LoginModal> {
     final uri = Uri.parse(request.url);
     final code = uri.queryParameters['code'];
     if (code != null) {
-      final codeVerifier = widget.providers
-          .firstWhere(
-            (provider) => provider.name == porviderSelectionned,
-          )
-          .codeVerifier;
+      final codeVerifier = widget.provider.codeVerifier;
       final auth = await client.authWithOAuth2(
-        porviderSelectionned,
+        widget.provider.codeVerifier,
         code,
         codeVerifier,
       );
-      print('TAAAAAAAAAAAA');
-      print(uri);
-      print(auth);
-      print(code);
       // TODO change to use go router and adapte for web
       Navigator.of(widget.context).pop();
       return NavigationDecision.prevent;
@@ -72,10 +63,8 @@ class _LoginModalState extends ConsumerState<LoginModal> {
     final PlatformWebViewControllerCreationParams params = _optimisedParams();
     final WebViewController controller =
         WebViewController.fromPlatformCreationParams(params);
-    final provider = widget.providers.firstWhere(
-      (provider) => provider.name == porviderSelectionned,
-    );
-    final initalUrl = DiscordOauthVariable.buildUrl(provider);
+    final provider = widget.provider;
+    final initalUrl = buildUrlFromProvider(provider);
     _controller = controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(
