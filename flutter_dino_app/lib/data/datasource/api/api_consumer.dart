@@ -4,6 +4,7 @@ import 'package:uuid/uuid.dart';
 
 enum Collection {
   users,
+  seedTypes,
 }
 
 extension CollectionName on Collection {
@@ -11,6 +12,8 @@ extension CollectionName on Collection {
     switch (this) {
       case Collection.users:
         return 'users';
+      case Collection.seedTypes:
+        return 'seed_type';
     }
   }
 }
@@ -61,5 +64,13 @@ class ApiConsumer {
         });
     print(authData.toString());
     return pb.authStore;
+  }
+
+  Future<List<RecordModel>> fetchSeeds() async {
+    final seedTypes = await pb.collection(Collection.seedTypes.name)
+        .getFullList();
+    
+    print(seedTypes.toString());
+    return seedTypes;
   }
 }
