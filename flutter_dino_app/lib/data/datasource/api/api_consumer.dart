@@ -2,14 +2,7 @@ import 'package:flutter_dino_app/data/datasource/api/pocketbase.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:uuid/uuid.dart';
 
-enum Collection {
-  users,
-  seedTypes,
-  seed,
-  growing,
-  friendship,
-  tree
-}
+enum Collection { users, seedTypes, seed, growing, friendship, tree }
 
 extension CollectionName on Collection {
   String get name {
@@ -88,10 +81,13 @@ class ApiConsumer {
 
   Future<List<RecordModel>> fetchOwnedSeeds(String userId) async {
     final ownedSeeds = await pb.collection(Collection.seed.name).getFullList(
-      filter: ""
-    );
+          filter: 'user == "$userId"',
+          expand: 'seed_type',
+        );
 
     // print(ownedSeeds.toString());
     return ownedSeeds;
   }
+
+  // Future<RecordModel> addNewSeed
 }
