@@ -10,18 +10,39 @@ import '../../../../data/datasource/api/api_consumer.dart';
 import '../../../state/api_consumer/api_consumer.dart';
 import '../../../state/auth/auth.dart';
 
-class LoginModal extends ConsumerStatefulWidget {
+Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: ElevatedButton(
+      onPressed: () async {
+        await showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext bc) => LoginOAuthModal(
+            provider: provider,
+            context: context,
+          ),
+        );
+      },
+      child: Text(provider.name),
+    ),
+  );
+}
+
+class LoginOAuthModal extends ConsumerStatefulWidget {
   final OAuth2Provider provider;
   final BuildContext context;
-  const LoginModal({super.key, required this.provider, required this.context});
+  const LoginOAuthModal(
+      {super.key, required this.provider, required this.context});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginModalState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _LoginOAuthModalState();
 }
 
 // todo create a state or pass params to see which provider is selected
 
-class _LoginModalState extends ConsumerState<LoginModal> {
+class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
   late final WebViewController _controller;
   late final ApiConsumer client;
 

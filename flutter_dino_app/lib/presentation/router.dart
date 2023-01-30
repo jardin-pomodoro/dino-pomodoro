@@ -19,7 +19,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.login,
       builder: (context, state) =>
-          _scaffoldedWidget("Connexion", const AuthScreen()),
+          _scaffoldedWidgetWithoutMenu("Connexion", const AuthScreen()),
     ),
     GoRoute(
       path: RouteNames.forest,
@@ -75,6 +75,22 @@ Widget _scaffoldedWidget(String title, Widget widget) {
     ),
     backgroundColor: PomodoroTheme.background,
     drawer: const NavigationDrawerWidget(),
+    body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: widget,
+      ),
+    ),
+  );
+}
+
+Widget _scaffoldedWidgetWithoutMenu(String title, Widget widget) {
+  return Scaffold(
+    appBar: AppBar(
+      centerTitle: true,
+      title: Text(title),
+    ),
+    backgroundColor: PomodoroTheme.background,
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
