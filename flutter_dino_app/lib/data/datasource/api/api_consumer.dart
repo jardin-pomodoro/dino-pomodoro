@@ -70,7 +70,7 @@ class ApiConsumer {
     final seedTypes = await pb.collection(Collection.seedTypes.name)
         .getFullList();
     
-    print(seedTypes.toString());
+    // print(seedTypes.toString());
     return seedTypes;
   }
 }
