@@ -5,6 +5,10 @@ import 'package:uuid/uuid.dart';
 enum Collection {
   users,
   seedTypes,
+  seed,
+  growing,
+  friendship,
+  tree
 }
 
 extension CollectionName on Collection {
@@ -14,6 +18,14 @@ extension CollectionName on Collection {
         return 'users';
       case Collection.seedTypes:
         return 'seed_type';
+      case Collection.seed:
+        return 'seed';
+      case Collection.growing:
+        return 'growing';
+      case Collection.friendship:
+        return 'friendship';
+      case Collection.tree:
+        return 'tree';
     }
   }
 }
@@ -67,10 +79,19 @@ class ApiConsumer {
   }
 
   Future<List<RecordModel>> fetchSeeds() async {
-    final seedTypes = await pb.collection(Collection.seedTypes.name)
-        .getFullList();
-    
+    final seedTypes =
+        await pb.collection(Collection.seedTypes.name).getFullList();
+
     // print(seedTypes.toString());
     return seedTypes;
+  }
+
+  Future<List<RecordModel>> fetchOwnedSeeds(String userId) async {
+    final ownedSeeds = await pb.collection(Collection.seed.name).getFullList(
+      filter: ""
+    );
+
+    // print(ownedSeeds.toString());
+    return ownedSeeds;
   }
 }
