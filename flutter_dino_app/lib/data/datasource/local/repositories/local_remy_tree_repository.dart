@@ -43,5 +43,4 @@ class LocalRemyTreeRepository implements RemyTreeRepository {
     );
     return Future.delayed(const Duration(seconds: 2)).then((value) => right(forest));
   }
-
 }
