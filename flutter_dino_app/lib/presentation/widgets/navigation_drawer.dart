@@ -44,9 +44,13 @@ class NavigationDrawerWidget extends StatelessWidget {
           return Column(
             children: [
               CircleAvatar(
-                radius: 60,
-                backgroundColor: PomodoroTheme.primary,
-                backgroundImage: NetworkImage(connectedUser.avatar),
+                radius: 62,
+                backgroundColor: PomodoroTheme.white,
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundColor: PomodoroTheme.primary,
+                  backgroundImage: NetworkImage(connectedUser.avatar),
+                ),
               ),
               const SizedBox(height: 16),
               Text(connectedUser.username, style: PomodoroTheme.title3),

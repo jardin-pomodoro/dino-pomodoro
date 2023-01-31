@@ -3,12 +3,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AuthStateNotifier extends StateNotifier<User> {
   static final _initialUser = User(
-    collectionId: '',
-    collectionName: '',
+    collectionId: '1',
+    collectionName: 'Users',
     created: DateTime.now(),
-    id: '',
+    id: '123',
     username: 'Unknown',
-    email: '',
+    email: 'email@example.com',
     avatar:
         'https://cdn3.iconfinder.com/data/icons/customer-service-glyphs-vol-1/55/customer__unknown__user__client-512.png',
     updated: DateTime.now(),
