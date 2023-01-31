@@ -30,4 +30,6 @@ class Tree {
     required this.started,
     required this.ended,
   });
+
+  get seedTypeExpand => expand.seedType;
 }
