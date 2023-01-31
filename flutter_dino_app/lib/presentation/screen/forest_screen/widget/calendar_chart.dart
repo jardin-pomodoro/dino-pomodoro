@@ -20,38 +20,54 @@ class CalendarChart extends StatefulWidget {
 class _CalendarChartState extends State<CalendarChart> {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2,
-      child: BarChart(
-        BarChartData(
-          barGroups: _chartGroups(widget.granularity, widget.dataByGranularity),
-          borderData: FlBorderData(
-              border: const Border(
-                  bottom: BorderSide(color: PomodoroTheme.white),
-                  left: BorderSide(color: PomodoroTheme.white))),
-          gridData: FlGridData(show: false),
-          titlesData: FlTitlesData(
-            bottomTitles:
-                AxisTitles(sideTitles: _sideTitles(widget.granularity)),
-            leftTitles: AxisTitles(
-                sideTitles: SideTitles(
-              showTitles: true,
-              getTitlesWidget: (value, meta) {
-                String text = '';
-                int len = widget.dataByGranularity.length - 1;
-                switch (value.toInt()) {
-                  case 0:
-                    text = '0M';
-                    break;
-                }
-                if (value.toInt() == widget.dataByGranularity.reduce(max)) {
-                  text = value.toInt().toString();
-                }
-                return Text(text);
-              },
-            )),
-            rightTitles: AxisTitles(),
-            topTitles: AxisTitles(),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Card(
+        elevation: 0,
+        color: PomodoroTheme.white,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 5,
+            left: 10,
+          ),
+          child: AspectRatio(
+            aspectRatio: 2,
+            child: BarChart(
+              BarChartData(
+                barGroups:
+                    _chartGroups(widget.granularity, widget.dataByGranularity),
+                borderData: FlBorderData(
+                    border: const Border(
+                        bottom: BorderSide(color: PomodoroTheme.white),
+                        left: BorderSide(color: PomodoroTheme.white))),
+                gridData: FlGridData(show: false),
+                titlesData: FlTitlesData(
+                  bottomTitles:
+                      AxisTitles(sideTitles: _sideTitles(widget.granularity)),
+                  leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: (value, meta) {
+                      String text = '';
+                      int len = widget.dataByGranularity.length - 1;
+                      switch (value.toInt()) {
+                        case 0:
+                          text = '0M';
+                          break;
+                      }
+                      if (value.toInt() ==
+                          widget.dataByGranularity.reduce(max)) {
+                        text = value.toInt().toString();
+                      }
+                      return Text(text);
+                    },
+                  )),
+                  rightTitles: AxisTitles(),
+                  topTitles: AxisTitles(),
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -101,7 +117,13 @@ class _CalendarChartState extends State<CalendarChart> {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: const TextStyle(
+              color: PomodoroTheme.secondary,
+              fontSize: 10,
+            ),
+          );
         },
       );
 
@@ -148,7 +170,13 @@ class _CalendarChartState extends State<CalendarChart> {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: const TextStyle(
+              color: PomodoroTheme.secondary,
+              fontSize: 15,
+            ),
+          );
         },
       );
 
@@ -180,7 +208,13 @@ class _CalendarChartState extends State<CalendarChart> {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: const TextStyle(
+              color: PomodoroTheme.secondary,
+              fontSize: 15,
+            ),
+          );
         },
       );
 
@@ -239,7 +273,13 @@ class _CalendarChartState extends State<CalendarChart> {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: const TextStyle(
+              color: PomodoroTheme.secondary,
+              fontSize: 12,
+            ),
+          );
         },
       );
 
@@ -249,11 +289,11 @@ class _CalendarChartState extends State<CalendarChart> {
         Iterable<int>.generate(dataByGranularity.length).toList();
     final double barChartWidth;
     if (granularity == "day" || granularity == "month") {
-      barChartWidth = 10;
+      barChartWidth = 6;
     } else if (granularity == "week" || granularity == "year") {
-      barChartWidth = 20;
+      barChartWidth = 15;
     } else {
-      barChartWidth = 10;
+      barChartWidth = 8;
     }
     return fixedList
         .map(
@@ -262,7 +302,7 @@ class _CalendarChartState extends State<CalendarChart> {
             barRods: [
               BarChartRodData(
                 toY: dataByGranularity[index].toDouble(),
-                color: PomodoroTheme.white,
+                color: PomodoroTheme.secondary,
                 width: barChartWidth,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(5), topLeft: Radius.circular(5)),
