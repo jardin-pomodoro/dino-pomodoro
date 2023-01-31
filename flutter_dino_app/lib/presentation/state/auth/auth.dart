@@ -29,7 +29,6 @@ class OAuth2Provider {
   });
 
   factory OAuth2Provider.fromJson(Map<String, dynamic> map) {
-    print(map);
     return OAuth2Provider(
       name: map['name'],
       state: map['state'],
