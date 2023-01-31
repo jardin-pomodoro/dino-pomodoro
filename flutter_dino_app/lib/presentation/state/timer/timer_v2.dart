@@ -27,15 +27,14 @@ class TimerModel {
 }
 
 class TimerNotifier extends StateNotifier<TimerModel> {
-  TimerNotifier()
-      : super(
-          TimerModel(
-            timeLeft: durationString(0),
-            initialDuration: 0,
-            durationLeft: 0,
-            isRunning: false,
-          ),
-        );
+  static final _initialState = TimerModel(
+    timeLeft: durationString(0),
+    initialDuration: 0,
+    durationLeft: 0,
+    isRunning: false,
+  );
+
+  TimerNotifier() : super(_initialState);
 
   final Ticker _ticker = Ticker();
   StreamSubscription<int>? _tickerSubscription;
@@ -78,6 +77,11 @@ class TimerNotifier extends StateNotifier<TimerModel> {
       durationLeft: state.durationLeft,
       isRunning: false,
     );
+  }
+
+  void reset() {
+    _tickerSubscription?.cancel();
+    state = _initialState;
   }
 
   @override

@@ -5,12 +5,12 @@ import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_type_state_notifier.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../widgets/snackbar.dart';
 import 'seed_type_card_widget.dart';
 import 'seed_type_details_card_widget.dart';
 
@@ -78,13 +78,7 @@ class ShopScreenWidget extends ConsumerWidget {
           ElevatedButton(
             onPressed: () {
               _buySeed(seedType, ref);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: PomodoroTheme.secondary,
-                  content:
-                      Text('Graine achetée !', style: PomodoroTheme.textLarge),
-                ),
-              );
+              showSnackBar(context, "Graine achetée !");
               context.pop();
             },
             child: Padding(

@@ -8,9 +8,6 @@ import 'package:go_router/go_router.dart';
 import '../../seeds_screen/seed_card_widget.dart';
 
 class SeedsSelectDialogWidget extends ConsumerWidget {
-  static void navigateTo(BuildContext context) {
-    context.go(RouteNames.seeds);
-  }
 
   const SeedsSelectDialogWidget({Key? key}) : super(key: key);
 
