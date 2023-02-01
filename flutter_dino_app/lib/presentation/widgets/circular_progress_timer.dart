@@ -24,7 +24,7 @@ class CircularProgressTimer extends StatelessWidget {
         customColors: CustomSliderColors(
           shadowStep: 5,
           progressBarColor: Colors.green,
-          trackColor: PomodoroTheme.darkGreen,
+          trackColor: PomodoroTheme.accent,
         ),
         customWidths: CustomSliderWidths(
           progressBarWidth: 9,

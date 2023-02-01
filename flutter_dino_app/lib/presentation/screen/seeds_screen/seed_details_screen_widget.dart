@@ -23,7 +23,7 @@ class SeedDetailsScreenWidget extends ConsumerWidget {
     final seed = ref.watch(selectedSeedStateNotifierProvider)!;
 
     return Scaffold(
-      backgroundColor: PomodoroTheme.background,
+      backgroundColor: PomodoroTheme.primary,
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Center(

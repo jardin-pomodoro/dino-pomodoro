@@ -100,20 +100,3 @@ class GrowingGrowScreenWidget extends ConsumerWidget {
     );
   }
 }
-
-class GrowingGrowScreenWidget2 extends ConsumerStatefulWidget {
-  const GrowingGrowScreenWidget2({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  ConsumerState createState() => _GrowingGrowScreenWidget2State();
-}
-
-class _GrowingGrowScreenWidget2State
-    extends ConsumerState<GrowingGrowScreenWidget2> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

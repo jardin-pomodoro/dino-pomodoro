@@ -26,7 +26,7 @@ class PriceWidget extends StatelessWidget {
         ),
         const Icon(
           Icons.circle,
-          color: PomodoroTheme.yellow,
+          color: PomodoroTheme.primary,
         ),
       ],
     );

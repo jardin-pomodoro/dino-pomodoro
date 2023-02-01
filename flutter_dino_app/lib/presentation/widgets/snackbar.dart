@@ -10,8 +10,11 @@ void showSnackBar(
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       duration: duration,
-      backgroundColor: PomodoroTheme.secondary,
-      content: Text(message, style: PomodoroTheme.textLarge),
+      backgroundColor: PomodoroTheme.primary,
+      content: Text(
+        message,
+        style: PomodoroTheme.textLarge.copyWith(color: PomodoroTheme.white),
+      ),
     ),
   );
 }

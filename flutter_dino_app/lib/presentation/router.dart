@@ -72,6 +72,8 @@ Widget _scaffoldedWidget(String title, Widget widget) {
     appBar: AppBar(
       centerTitle: true,
       title: Text(title),
+      backgroundColor: PomodoroTheme.secondary,
+      foregroundColor: PomodoroTheme.yellow,
     ),
     backgroundColor: PomodoroTheme.background,
     drawer: const NavigationDrawerWidget(),

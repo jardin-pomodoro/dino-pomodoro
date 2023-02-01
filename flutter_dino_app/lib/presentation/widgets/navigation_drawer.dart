@@ -70,7 +70,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.stopwatch,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Pomodoro',
@@ -81,7 +81,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.tree,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Forêt',
@@ -92,7 +92,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.seedling,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Graines',
@@ -103,7 +103,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.userGroup,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Amis',
@@ -114,7 +114,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.shop,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Boutique',
@@ -128,7 +128,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ListTile(
             leading: const FaIcon(
               FontAwesomeIcons.gear,
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
             ),
             title: const Text(
               'Paramètres',
