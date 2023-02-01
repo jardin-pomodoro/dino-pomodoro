@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/calendar_chart.dart';
@@ -7,13 +8,35 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../state/tree/tree_provider.dart';
-import '../friends_screen/widgets/slider_choice.dart';
+import '../../theme/theme.dart';
+
+enum CalendarGranularity {
+  day,
+  week,
+  month,
+  year,
+}
+
+final calendarGranularityProvider = StateProvider<CalendarGranularity>(
+      (ref) => CalendarGranularity.day,
+);
+
+/*final productsProvider = Provider<List<Tree>>((ref) async {
+  final sortType = ref.watch(calendarGranularityProvider);
+  switch (sortType) {
+    case CalendarGranularity.day:
+    case CalendarGranularity.week:
+    case CalendarGranularity.month:
+    case CalendarGranularity.year:
+  }
+});*/
 
 class ForestScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
     context.go(RouteNames.forest);
   }
 
+  Map<List<CalendarGranularity>, Text> _childrens = { for (var item in CalendarGranularity.values) CalendarGranularity.values : Text(item.toString()) };
   String slidingChoice = "Jour";
   String granularity = "day";
   List<int> dataByGranularity = [
@@ -89,7 +112,7 @@ class ForestScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final treesByTypeUi = ref.watch(fetchTreeByTypeUI);
+    final treesByTypeUi = ref.watch(fetchTreeByTypeUI(CalendarGranularity.day));
 
     return SizedBox(
       child: Column(
@@ -102,16 +125,26 @@ class ForestScreenWidget extends ConsumerWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-                            child: SliderChoice(
+                            child: CupertinoSlidingSegmentedControl<CalendarGranularity>(
+                              backgroundColor: PomodoroTheme.primary,
+                              thumbColor: PomodoroTheme.white,
+                              onValueChanged: (value) {  },
+                              children: const <CalendarGranularity, Widget>{
+                                CalendarGranularity.day: Text('jour'),
+                                CalendarGranularity.week: Text('semaine'),
+                                CalendarGranularity.month: Text('mois'),
+                                CalendarGranularity.year: Text('année'),
+                              },
+                            ),
+                            /*child: SliderChoice(
                               items: const [
                                 "Jour",
                                 "Semaine",
                                 "Mois",
                                 "Année",
                               ],
-                              changeSlidingChoice: _changeSlidingChoice,
+                              changeSlidingChoice: _changeSlidingChoice,*/
                             ),
-                          ),
                           Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
                               child: SwipeArrow(),
@@ -124,22 +157,6 @@ class ForestScreenWidget extends ConsumerWidget {
                                   number: tree.seedsUsed,
                                 )
                               ).toList(),
-                              /*TreeStatsUi(
-                                  image:
-                                      'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
-                                  number: 10),
-                              TreeStatsUi(
-                                  image:
-                                      'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
-                                  number: 5),
-                              TreeStatsUi(
-                                  image:
-                                      'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/klfch9yk075cmpq/canvas_removebg_preview_zRg2OoMJsv.png',
-                                  number: 8),
-                              TreeStatsUi(
-                                  image:
-                                      'https://pocketbase.nospy.fr/api/files/lajospkke93eknf/q93aghxz9h1pl7u/canvas3_removebg_preview_AsHORCGEJN.png',
-                                  number: 9),*/
                           ),
                         ],
                       ),
@@ -160,23 +177,8 @@ class ForestScreenWidget extends ConsumerWidget {
   }
 
   void _changeSlidingChoice(String choice) {
-    /*setState(() {
-      slidingChoice = choice;
-      if (slidingChoice == "Jour") {
-        granularity = "day";
-        dataPast = dataByGranularity.sublist(0, 24);
-      } else if (slidingChoice == "Semaine") {
-        granularity = "week";
-        dataPast = dataByGranularity.sublist(0, 7);
-      } else if (slidingChoice == "Mois") {
-        granularity = "month";
-        dataPast = dataByGranularity.sublist(0, 30);
-      } else if (slidingChoice == "Année") {
-        granularity = "year";
-        dataPast = dataByGranularity.sublist(0, 12);
-      }
-    });
-  }*/
+
+  }
 }
 
 /*class ForestScreenWidget extends StatefulWidget {
@@ -277,5 +279,5 @@ class _ForestScreenWidgetState extends State<ForestScreenWidget> {
         dataPast = dataByGranularity.sublist(0, 12);
       }
     });
-  }*/
-}
+  }
+}*/

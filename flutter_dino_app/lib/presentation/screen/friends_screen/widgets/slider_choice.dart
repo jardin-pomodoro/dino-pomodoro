@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../theme/theme.dart';
 
-class SliderChoice extends StatefulWidget {
+class SliderChoice<T> extends StatefulWidget {
   final List<String> items;
   final Function changeSlidingChoice;
 
