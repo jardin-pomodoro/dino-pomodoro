@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/widgets/bottom_sheet_decoration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.
@@ -17,7 +18,6 @@ Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
       onPressed: () async {
         await showModalBottomSheet(
           context: context,
-          isScrollControlled: true,
           builder: (BuildContext bc) => LoginOAuthModal(
             provider: provider,
             context: context,
@@ -32,8 +32,11 @@ Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
 class LoginOAuthModal extends ConsumerStatefulWidget {
   final OAuth2Provider provider;
   final BuildContext context;
-  const LoginOAuthModal(
-      {super.key, required this.provider, required this.context});
+  const LoginOAuthModal({
+    super.key,
+    required this.provider,
+    required this.context,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -99,16 +102,6 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
       ..loadRequest(Uri.parse(initalUrl));
   }
 
-  Decoration decoration() {
-    return const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(25.0),
-        topRight: Radius.circular(25.0),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -116,7 +109,7 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
       child: Wrap(
         children: <Widget>[
           Container(
-            decoration: decoration(),
+            decoration: bottom_sheet_decoration(),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.8,
               child: WebViewWidget(controller: _controller),

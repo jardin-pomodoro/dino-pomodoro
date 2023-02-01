@@ -18,7 +18,6 @@ class SeedTypeStateNotifier extends StateNotifier<List<SeedType>> {
   }
 
   void addSeedTypes(List<SeedType> seedTypes) {
-    print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     state = [...state, ...seedTypes];
   }
 }

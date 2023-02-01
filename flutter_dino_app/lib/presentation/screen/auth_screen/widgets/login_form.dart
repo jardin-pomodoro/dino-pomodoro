@@ -1,0 +1,36 @@
+
+import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
+class LoginForm extends StatelessWidget {
+  const LoginForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Form(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                ),
+                validator: EmailValidator(errorText: 'Email non valide'),
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Mot de passe',
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(onPressed: () {}, child: const Text('Se connecter')),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/auth_screen/widgets/manual_authentification_modal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/auth/auth.dart';
@@ -34,18 +35,4 @@ class AuthScreen extends ConsumerWidget {
   }
 }
 
-class ManualAuthentification extends StatelessWidget {
-  const ManualAuthentification({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        await showModalBottomSheet(
-            context: context,
-            builder: (context) => const Text('Manual Authentification'));
-      },
-      child: const Text('Manual Authentification'),
-    );
-  }
-}
