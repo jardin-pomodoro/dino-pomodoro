@@ -52,6 +52,10 @@ class ApiConsumer {
     print(authData);
     return pb.authStore;
   }
+  
+  authWithPassword(String email, String password) async {
+      return pb.collection(Collection.users.name).authWithPassword(email, password);
+  }
 
   Future<List<RecordModel>> fetchSeeds() async {
     final seedTypes =
