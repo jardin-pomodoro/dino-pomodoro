@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/utils/lifecycle_event_handler.dart';
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../router.dart';
+import '../../state/timer/timer_v2.dart';
+import '../../theme/theme.dart';
+import '../../widgets/snackbar.dart';
+import '../../../utils/lifecycle_event_handler.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -54,16 +55,10 @@ class GrowingGrowScreenWidget extends ConsumerWidget {
     return WillPopScope(
       onWillPop: () async {
         // snackbar
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            duration: Duration(seconds: 1),
-            backgroundColor: PomodoroTheme.secondary,
-            content: Text(
-              'Vous devez rester con-cen-tré !',
-              style: PomodoroTheme.textLarge,
-              textAlign: TextAlign.center,
-            ),
-          ),
+        showSnackBar(
+          context,
+          'Vous devez rester con-cen-tré !',
+          duration: const Duration(seconds: 1),
         );
         return false;
       },
@@ -103,22 +98,5 @@ class GrowingGrowScreenWidget extends ConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class GrowingGrowScreenWidget2 extends ConsumerStatefulWidget {
-  const GrowingGrowScreenWidget2({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  ConsumerState createState() => _GrowingGrowScreenWidget2State();
-}
-
-class _GrowingGrowScreenWidget2State
-    extends ConsumerState<GrowingGrowScreenWidget2> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

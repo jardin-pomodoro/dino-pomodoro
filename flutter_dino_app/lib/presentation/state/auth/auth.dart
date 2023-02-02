@@ -39,3 +39,49 @@ class OAuth2Provider {
     );
   }
 }
+
+const String redirectUri = 'https://pocketbase.nospy.fr/redirect.html';
+
+String buildUrlFromProvider(OAuth2Provider provider) {
+  switch (provider.name) {
+    case AuthProvider.discord:
+      return DiscordOauthVariable.buildUrl(provider);
+    case AuthProvider.github:
+      return GithubOAuthVariable.buildUrl(provider);
+    case AuthProvider.google:
+      return GoogleOAuthVariable.buildUrl(provider);
+    default:
+      throw Exception('Unknown provider');
+  }
+}
+
+class DiscordOauthVariable {
+  static const String scope = 'identify%20email';
+  static const clientId = '1064464779634298911';
+  static String buildUrl(OAuth2Provider provider) {
+    final state = provider.state;
+    final codeChallenge = provider.codeChallenge;
+    final codeMethode = provider.codeChallengeMethod;
+    final clientIdEncoded = Uri.encodeQueryComponent(clientId);
+    final redirectUriEncoded = Uri.encodeQueryComponent(redirectUri);
+    return 'https://discord.com/api/oauth2/authorize?redirect_uri=$redirectUriEncoded&client_id=$clientIdEncoded&response_type=code&scope=$scope&state=$state&code_challenge=$codeChallenge&code_challenge_method=$codeMethode';
+  }
+}
+
+class GoogleOAuthVariable {
+  static const String scope =
+      'https://www.googleapis.com/auth/userinfo.profile';
+  static const clientId =
+      '1019735973132-q0fil144g9v0lf41t0o88nh8ruvf34jb.apps.googleusercontent.com';
+  static String buildUrl(OAuth2Provider provider) {
+    return provider.authUrl + redirectUri;
+  }
+}
+
+class GithubOAuthVariable {
+  static const String scope = 'user';
+  static const clientId = 'f2650253832d073eade0';
+  static String buildUrl(OAuth2Provider provider) {
+    return provider.authUrl + redirectUri;
+  }
+}

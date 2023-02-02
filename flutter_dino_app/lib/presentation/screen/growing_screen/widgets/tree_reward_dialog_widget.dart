@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
+import '../../../widgets/price_widget.dart';
 
 import '../../../../domain/models/tree.dart';
 import '../../../theme/theme.dart';

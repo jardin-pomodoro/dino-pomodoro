@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/seed.dart';
+import '../../../domain/models/seed.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SeedStateNotifier extends StateNotifier<List<Seed>> {

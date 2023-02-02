@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
+import 'screen/auth_screen/auth_screen.dart';
+import 'theme/theme.dart';
+import 'widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
 
 import 'screen/forest_screen/forest_screen_widget.dart';
@@ -14,12 +14,12 @@ import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.growing,
+  initialLocation: RouteNames.login,
   routes: [
     GoRoute(
       path: RouteNames.login,
       builder: (context, state) =>
-          _scaffoldedWidget("Connexion", const AuthScreen()),
+          _scaffoldedWidgetWithoutMenu("Connexion", const AuthScreen()),
     ),
     GoRoute(
       path: RouteNames.forest,
@@ -67,18 +67,38 @@ final GoRouter router = GoRouter(
   },
 );
 
-Widget _scaffoldedWidget(String title, Widget widget) {
+Widget _scaffoldedWidgetWithoutMenu(String title, Widget child) {
   return Scaffold(
     appBar: AppBar(
       centerTitle: true,
       title: Text(title),
+      backgroundColor: PomodoroTheme.secondary,
+      foregroundColor: PomodoroTheme.yellow,
     ),
-    backgroundColor: PomodoroTheme.background,
+    backgroundColor: PomodoroTheme.white,
+    body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: child,
+      ),
+    ),
+  );
+}
+
+Widget _scaffoldedWidget(String title, Widget child) {
+  return Scaffold(
+    appBar: AppBar(
+      centerTitle: true,
+      title: Text(title),
+      backgroundColor: PomodoroTheme.secondary,
+      foregroundColor: PomodoroTheme.yellow,
+    ),
+    backgroundColor: PomodoroTheme.white,
     drawer: const NavigationDrawerWidget(),
     body: SafeArea(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(10),
-        child: widget,
+        child: child,
       ),
     ),
   );

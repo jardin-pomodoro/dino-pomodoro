@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
+import '../../../../domain/models/seed_type.dart';
+import '../../../theme/theme.dart';
+import '../../../widgets/price_widget.dart';
 
 class SeedTypeCardWidget extends StatelessWidget {
   final SeedType seedType;
@@ -22,7 +22,7 @@ class SeedTypeCardWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
               width: 2,
             ),
           ),
@@ -30,21 +30,24 @@ class SeedTypeCardWidget extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                Image.network(seedType.image),
+                Image.network(
+                  seedType.image,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
                 Text(
                   seedType.name,
                   style: PomodoroTheme.title3,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                bought
+                    ? const Text("Acheté", style: PomodoroTheme.textLarge)
+                    : PriceWidget(price: seedType.price),
               ],
             ),
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        bought
-            ? const Text("Acheté", style: PomodoroTheme.textLarge)
-            : PriceWidget(price: seedType.price),
       ],
     );
   }

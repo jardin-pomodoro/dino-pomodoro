@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Ticker {

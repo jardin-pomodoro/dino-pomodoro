@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../../domain/models/seed.dart';
+import '../../theme/theme.dart';
+import '../../widgets/price_widget.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SeedCardWidget extends StatelessWidget {
@@ -16,11 +16,11 @@ class SeedCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: PomodoroTheme.accent,
+      color: PomodoroTheme.secondary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
         side: const BorderSide(
-          color: PomodoroTheme.white,
+          color: PomodoroTheme.primary,
           width: 2,
         ),
       ),
@@ -48,7 +48,7 @@ class SeedCardWidget extends StatelessWidget {
                       children: [
                         const FaIcon(
                           FontAwesomeIcons.leaf,
-                          color: PomodoroTheme.white,
+                          color: PomodoroTheme.accent,
                         ),
                         const SizedBox(
                           width: 5,
@@ -63,7 +63,7 @@ class SeedCardWidget extends StatelessWidget {
                       children: [
                         const Image(
                           image: AssetImage('assets/icons/lumber.png'),
-                          color: PomodoroTheme.white,
+                          color: PomodoroTheme.accent,
                           height: 25,
                         ),
                         const SizedBox(
@@ -93,7 +93,9 @@ class SeedCardWidget extends StatelessWidget {
                         ),
                         PriceWidget(
                           price: getIncome(
-                              seed.seedTypeExpand.reward, seed.leafLevel),
+                            seed.seedTypeExpand.reward,
+                            seed.leafLevel,
+                          ),
                           spacing: 5,
                         ),
                       ],
