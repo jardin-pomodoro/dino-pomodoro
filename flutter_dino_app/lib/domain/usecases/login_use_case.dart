@@ -1,8 +1,9 @@
+import 'package:dartz/dartz.dart';
+
 import '../../../core/failure.dart';
 import '../../../core/usecase.dart';
-import '../repositories/user_repository.dart';
 import '../models/user.dart';
-import 'package:dartz/dartz.dart';
+import '../repositories/user_repository.dart';
 
 class LoginUseCase extends UseCase<LoginResponse, LoginParam> {
   final UserRepository _repository;

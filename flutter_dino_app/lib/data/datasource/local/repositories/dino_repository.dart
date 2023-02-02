@@ -1,5 +1,4 @@
 import '../../../../domain/models/tree_model.dart';
-
 import '../../../../domain/repositories/tree_repository.dart';
 
 class TreeRepositorySqlite implements TreeRepository {

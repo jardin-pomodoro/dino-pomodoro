@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/add_friend.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/friends_tab.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/pending_invitations.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/slider_choice.dart';
+import '../../router.dart';
+import 'widgets/add_friend.dart';
+import 'widgets/friends_tab.dart';
+import 'widgets/pending_invitations.dart';
+import 'widgets/slider_choice.dart';
 import 'package:go_router/go_router.dart';
 
 class FriendsScreenWidget extends StatefulWidget {

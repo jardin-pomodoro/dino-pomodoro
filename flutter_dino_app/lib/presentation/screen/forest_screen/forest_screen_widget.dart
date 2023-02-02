@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/calendar_chart.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/list-horizontal-slide.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/swipe_arrow.dart';
+import '../../router.dart';
+import 'widget/calendar_chart.dart';
+import 'widget/list-horizontal-slide.dart';
+import 'widget/swipe_arrow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

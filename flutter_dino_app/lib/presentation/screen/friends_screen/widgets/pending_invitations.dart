@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/action_banner.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import 'action_banner.dart';
+import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PendingInvitations extends StatelessWidget {

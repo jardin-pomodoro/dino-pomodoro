@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 
-import 'package:flutter_dino_app/domain/models/tree.dart';
+import '../../../../domain/models/tree.dart';
 
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/repositories/remy_tree_repository.dart';

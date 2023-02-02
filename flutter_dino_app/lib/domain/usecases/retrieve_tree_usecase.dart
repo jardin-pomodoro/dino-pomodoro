@@ -1,6 +1,6 @@
-import 'package:flutter_dino_app/core/either.dart';
-import 'package:flutter_dino_app/domain/models/tree.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../../core/either.dart';
+import '../models/tree.dart';
+import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
 import '../../core/network.dart';
 import '../../core/usecase.dart';
 import '../repositories/remy_tree_repository.dart';

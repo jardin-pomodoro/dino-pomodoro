@@ -1,6 +1,7 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../../domain/models/seed_type.dart';
 import '../pomodoro_states/seed_state_notifier.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SeedTypeStateNotifier extends StateNotifier<List<SeedType>> {
   SeedTypeStateNotifier() : super([]);

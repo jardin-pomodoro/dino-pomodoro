@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/theme/assets.dart';
+import '../../theme/assets.dart';
 
 import '../../theme/theme.dart';
 

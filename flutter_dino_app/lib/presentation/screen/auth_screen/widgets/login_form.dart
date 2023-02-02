@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/data/datasource/api/repository/api_user_repository.dart';
-import 'package:flutter_dino_app/domain/usecases/login_use_case.dart';
-import 'package:flutter_dino_app/presentation/state/api_consumer/api_consumer.dart';
-import 'package:flutter_dino_app/presentation/widgets/snackbar.dart';
+import '../../../../data/datasource/api/repository/api_user_repository.dart';
+import '../../../../domain/usecases/login_use_case.dart';
+import '../../../state/api_consumer/api_consumer.dart';
+import '../../../widgets/snackbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 

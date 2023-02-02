@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import '../../../theme/theme.dart';
 import 'dart:math';
 
 class CalendarChart extends StatefulWidget {

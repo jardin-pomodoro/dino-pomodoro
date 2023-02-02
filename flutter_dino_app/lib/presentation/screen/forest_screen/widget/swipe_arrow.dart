@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SwipeArrow extends StatelessWidget {

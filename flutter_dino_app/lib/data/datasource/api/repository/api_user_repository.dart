@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_dino_app/domain/models/user.dart';
-import 'package:flutter_dino_app/domain/repositories/user_repository.dart';
-import 'package:flutter_dino_app/domain/usecases/login_use_case.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+import '../../../../domain/models/user.dart';
+import '../../../../domain/repositories/user_repository.dart';
+import '../../../../domain/usecases/login_use_case.dart';
 import '../api_consumer.dart';
 
 class ApiUserRepository implements UserRepository {

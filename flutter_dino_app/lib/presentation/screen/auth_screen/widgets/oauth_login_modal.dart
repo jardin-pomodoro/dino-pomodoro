@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/widgets/bottom_sheet_decoration.dart';
+import '../../../widgets/bottom_sheet_decoration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.

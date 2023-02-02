@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import '../api_consumer.dart';
-import '../entity/seed_type_entity.dart';
-import '../mapper/seed_type_mapper.dart';
 
 import '../../../../domain/models/seed_type.dart';
 import '../../../../domain/repositories/seed_type_repository.dart';
 import '../../../../domain/usecases/retrieve_seed_type_usecase.dart';
+import '../api_consumer.dart';
+import '../entity/seed_type_entity.dart';
+import '../mapper/seed_type_mapper.dart';
 
 class ApiSeedTypeRepository implements SeedTypeRepository {
   final ApiConsumer apiConsumer;
