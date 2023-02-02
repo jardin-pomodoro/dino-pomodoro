@@ -36,7 +36,6 @@ class ForestScreenWidget extends ConsumerWidget {
     context.go(RouteNames.forest);
   }
 
-  Map<List<CalendarGranularity>, Text> _childrens = { for (var item in CalendarGranularity.values) CalendarGranularity.values : Text(item.toString()) };
   String slidingChoice = "Jour";
   String granularity = "day";
   List<int> dataByGranularity = [
@@ -112,7 +111,7 @@ class ForestScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final treesByTypeUi = ref.watch(fetchTreeByTypeUI(CalendarGranularity.day));
+    final treesByTypeUi = ref.watch(fetchTreeByTypeUI);
 
     return SizedBox(
       child: Column(
@@ -128,7 +127,8 @@ class ForestScreenWidget extends ConsumerWidget {
                             child: CupertinoSlidingSegmentedControl<CalendarGranularity>(
                               backgroundColor: PomodoroTheme.primary,
                               thumbColor: PomodoroTheme.white,
-                              onValueChanged: (value) {  },
+                              groupValue: ref.watch(calendarGranularityProvider),
+                              onValueChanged: (value) => ref.read(calendarGranularityProvider.notifier).state = value!,
                               children: const <CalendarGranularity, Widget>{
                                 CalendarGranularity.day: Text('jour'),
                                 CalendarGranularity.week: Text('semaine'),

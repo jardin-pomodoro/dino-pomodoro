@@ -16,15 +16,46 @@ class TreeByTypeUI {
   });
 }
 
-final calendarProvider = FutureProvider((ref) async {
-  // We use `ref.watch` to listen to another provider, and we pass it the provider
-  // that we want to consume. Here: cityProvider
+
+final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   final slider = ref.watch(calendarGranularityProvider);
-  // We can then use the result to do something based on the value of `cityProvider`.
-  return fetchTreeByTypeUI(slider);
+  print("yoyoyo");
+  final retrieveTreeUseCase = RetrieveTreeUseCase(
+      localRepository: LocalRemyTreeRepository(), granularity: slider);
+  final trees = await retrieveTreeUseCase();
+  final seedTypeToSeedsUsed = trees.fold({}, (previousValue, tree) {
+    if (previousValue.containsKey(tree.expand.seedType.id)) {
+      previousValue[tree.expand.seedType.id] += 1;
+    } else {
+      previousValue[tree.expand.seedType.id] = 1;
+    }
+    return previousValue;
+  });
+
+  final seedTypeToImage =
+  seedTypeToSeedsUsed.keys.fold({}, (previousValue, key) {
+    previousValue[key] = trees
+        .firstWhere((tree) => tree.expand.seedType.id == key)
+        .expand
+        .seedType
+        .image;
+    return previousValue;
+  });
+
+  final result = seedTypeToSeedsUsed.keys
+      .toList()
+      .map(
+        (seedTypeToSeedUsed) => TreeByTypeUI(
+      imagePath: seedTypeToImage[seedTypeToSeedUsed],
+      seedsUsed: seedTypeToSeedsUsed[seedTypeToSeedUsed],
+    ),
+  )
+      .toList();
+  return Future.value(result);
 });
 
-final fetchTreeByTypeUI = FutureProvider.family<List<TreeByTypeUI>, CalendarGranularity>((ref, calendarGranularity) async {
+
+/*final fetchTreeByTypeUI2 = FutureProvider.family<List<TreeByTypeUI>, CalendarGranularity>((ref, calendarGranularity) async {
   print("un appel");
   final retrieveTreeUseCase = RetrieveTreeUseCase(
       localRepository: LocalRemyTreeRepository(), granularity: calendarGranularity);
@@ -58,7 +89,7 @@ final fetchTreeByTypeUI = FutureProvider.family<List<TreeByTypeUI>, CalendarGran
       )
       .toList();
   return Future.value(result);
-});
+});*/
 
 final fetchTreeProvider = FutureProvider<List<Tree>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);
