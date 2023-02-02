@@ -18,7 +18,7 @@ enum CalendarGranularity {
 }
 
 final calendarGranularityProvider = StateProvider<CalendarGranularity>(
-      (ref) => CalendarGranularity.day,
+  (ref) => CalendarGranularity.day,
 );
 
 /*final productsProvider = Provider<List<Tree>>((ref) async {
@@ -38,137 +38,69 @@ class ForestScreenWidget extends ConsumerWidget {
 
   String slidingChoice = "Jour";
   String granularity = "day";
-  List<int> dataByGranularity = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
-  late List<int> dataPast = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
 
   ForestScreenWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final treesByTypeUi = ref.watch(fetchTreeByTypeUI);
+    final calendarStats = ref.watch(fetchTreeCalendar);
 
     return SizedBox(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: treesByTypeUi.when(
-                  data: (trees) => Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-                            child: CupertinoSlidingSegmentedControl<CalendarGranularity>(
-                              backgroundColor: PomodoroTheme.secondary,
-                              thumbColor: PomodoroTheme.yellow,
-                              groupValue: ref.watch(calendarGranularityProvider),
-                              onValueChanged: (value) => ref.read(calendarGranularityProvider.notifier).state = value!,
-                              children: const <CalendarGranularity, Widget>{
-                                CalendarGranularity.day: Text('jour'),
-                                CalendarGranularity.week: Text('semaine'),
-                                CalendarGranularity.month: Text('mois'),
-                                CalendarGranularity.year: Text('année'),
-                              },
-                            ),
-                            /*child: SliderChoice(
-                              items: const [
-                                "Jour",
-                                "Semaine",
-                                "Mois",
-                                "Année",
-                              ],
-                              changeSlidingChoice: _changeSlidingChoice,*/
-                            ),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                              child: SwipeArrow(),
-                          ),
-                          ListHorizontalSlide(
-                            treesStatsUi:
-                              trees.map((tree) =>
-                                TreeStatsUi(
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                    child:
+                        CupertinoSlidingSegmentedControl<CalendarGranularity>(
+                      backgroundColor: PomodoroTheme.secondary,
+                      thumbColor: PomodoroTheme.yellow,
+                      groupValue: ref.watch(calendarGranularityProvider),
+                      onValueChanged: (value) => ref
+                          .read(calendarGranularityProvider.notifier)
+                          .state = value!,
+                      children: const <CalendarGranularity, Widget>{
+                        CalendarGranularity.day: Text('jour'),
+                        CalendarGranularity.week: Text('semaine'),
+                        CalendarGranularity.month: Text('mois'),
+                        CalendarGranularity.year: Text('année'),
+                      },
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                    child: SwipeArrow(),
+                  ),
+                  treesByTypeUi.when(
+                    data: (trees) =>
+                      ListHorizontalSlide(
+                        treesStatsUi: trees
+                            .map((tree) => TreeStatsUi(
                                   image: tree.imagePath,
                                   number: tree.seedsUsed,
-                                )
-                              ).toList(),
-                          ),
-                        ],
+                                ))
+                            .toList(),
                       ),
-                error: (error, stackTrace) => Text('error ref $error'),
-                loading: () => const Center(child: CircularProgressIndicator()),
+                      error: (error, stackTrace) => Text('error ref $error'),
+                      loading: () => const Center(child: CircularProgressIndicator()),
+                  ),
+                ],
               ),
-          ),
+            ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
-            child: CalendarChart(
+            child: calendarStats.when(
+            data: (stats) => CalendarChart(
               granularity: granularity,
-              dataByGranularity: dataPast,
+              dataByGranularity: stats,
+            ),
+            error: (error, stackTrace) => Text('error ref $error'),
+            loading: () => const Center(child: CircularProgressIndicator()),
             ),
           ),
         ],
@@ -176,9 +108,7 @@ class ForestScreenWidget extends ConsumerWidget {
     );
   }
 
-  void _changeSlidingChoice(String choice) {
-
-  }
+  void _changeSlidingChoice(String choice) {}
 }
 
 /*class ForestScreenWidget extends StatefulWidget {

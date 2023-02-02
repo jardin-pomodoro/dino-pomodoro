@@ -14,7 +14,7 @@ class SwipeArrow extends StatelessWidget {
         IconButton(
           icon: FaIcon(
             FontAwesomeIcons.arrowLeft,
-            color: Colors.white,
+            color: PomodoroTheme.secondary,
           ),
           onPressed: () {
             // Action lorsque la flèche gauche est appuyée
@@ -28,7 +28,7 @@ class SwipeArrow extends StatelessWidget {
         IconButton(
           icon: FaIcon(
             FontAwesomeIcons.arrowRight,
-            color: Colors.white,
+            color: PomodoroTheme.secondary,
           ),
           onPressed: () {
             // Action lorsque la flèche droite est appuyée
