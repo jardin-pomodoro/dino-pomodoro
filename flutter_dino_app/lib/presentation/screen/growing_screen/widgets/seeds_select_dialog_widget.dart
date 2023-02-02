@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
 import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../seeds_screen/seed_card_widget.dart';
 
 class SeedsSelectDialogWidget extends ConsumerWidget {
-
   const SeedsSelectDialogWidget({Key? key}) : super(key: key);
 
   @override

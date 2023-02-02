@@ -6,10 +6,10 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../domain/models/seed.dart';
-import '../../../domain/models/seed_type_expand.dart';
-import '../../state/pomodoro_states/seed_state_notifier.dart';
-import '../../widgets/snackbar.dart';
+import '../../../../domain/models/seed.dart';
+import '../../../../domain/models/seed_type_expand.dart';
+import '../../../state/pomodoro_states/seed_state_notifier.dart';
+import '../../../widgets/snackbar.dart';
 
 class SeedTypeDetailsCardWidget extends ConsumerWidget {
   final SeedType seedType;
@@ -27,7 +27,7 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
-              color: PomodoroTheme.white,
+              color: PomodoroTheme.secondary,
               width: 2,
             ),
           ),
@@ -133,20 +133,6 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
           ),
         ),
       ],
-    );
-  }
-
-  _showBuySeedDialog(BuildContext context, SeedType seedType, WidgetRef ref) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Colors.transparent,
-        contentPadding: const EdgeInsets.all(0),
-        content: SeedTypeDetailsCardWidget(seedType: seedType),
-        actionsAlignment: MainAxisAlignment.center,
-        actionsPadding: const EdgeInsets.only(top: 20),
-        actions: [],
-      ),
     );
   }
 

@@ -78,7 +78,7 @@ Widget _scaffoldedWidget(String title, Widget widget) {
     backgroundColor: PomodoroTheme.background,
     drawer: const NavigationDrawerWidget(),
     body: SafeArea(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(10),
         child: widget,
       ),
