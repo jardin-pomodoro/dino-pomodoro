@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/tree_model.dart';
+import '../../../../domain/models/tree_model.dart';
 
 import '../../../../domain/repositories/tree_repository.dart';
 

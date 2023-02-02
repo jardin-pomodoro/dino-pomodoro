@@ -3,17 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'domain/models/seed_type.dart';
 import 'presentation/router.dart';
-import 'presentation/state/pomodoro_states/seed_type_state_notifier.dart';
 import 'presentation/state/seed_type/seed_type_provider.dart';
+import 'presentation/state/seed_type/seed_type_state_notifier.dart';
 import 'presentation/theme/theme.dart';
 
 class MyApp extends ConsumerStatefulWidget {
-  final ThemeData theme;
-
-  const MyApp({
-    Key? key,
-    required this.theme,
-  }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   ConsumerState<MyApp> createState() => _MyAppState();
@@ -61,7 +56,6 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget _displayRoutedPages() {
     return MaterialApp.router(
       title: appTitle,
-      theme: widget.theme,
       routerConfig: router,
     );
   }

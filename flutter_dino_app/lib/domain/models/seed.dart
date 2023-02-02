@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
+import 'seed_type.dart';
+import 'seed_type_expand.dart';
 
 @immutable
 class Seed {

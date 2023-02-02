@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/seed_type_expand_Entity.dart';
+import 'seed_type_expand_entity.dart';
 
 class SeedEntity {
   final String id;

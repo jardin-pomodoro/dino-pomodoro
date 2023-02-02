@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import '../theme/theme.dart';
 
 class PriceWidget extends StatelessWidget {
   const PriceWidget({
@@ -26,7 +26,7 @@ class PriceWidget extends StatelessWidget {
         ),
         const Icon(
           Icons.circle,
-          color: PomodoroTheme.yellow,
+          color: PomodoroTheme.primary,
         ),
       ],
     );
