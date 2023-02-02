@@ -125,8 +125,8 @@ class ForestScreenWidget extends ConsumerWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                             child: CupertinoSlidingSegmentedControl<CalendarGranularity>(
-                              backgroundColor: PomodoroTheme.primary,
-                              thumbColor: PomodoroTheme.white,
+                              backgroundColor: PomodoroTheme.secondary,
+                              thumbColor: PomodoroTheme.yellow,
                               groupValue: ref.watch(calendarGranularityProvider),
                               onValueChanged: (value) => ref.read(calendarGranularityProvider.notifier).state = value!,
                               children: const <CalendarGranularity, Widget>{
@@ -145,7 +145,7 @@ class ForestScreenWidget extends ConsumerWidget {
                               ],
                               changeSlidingChoice: _changeSlidingChoice,*/
                             ),
-                          Padding(
+                          const Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
                               child: SwipeArrow(),
                           ),

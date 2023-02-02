@@ -14,7 +14,7 @@ import 'theme/theme.dart';
 import 'widgets/navigation_drawer.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.login,
+  initialLocation: RouteNames.forest,
   routes: [
     GoRoute(
       path: RouteNames.login,
@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.friends,
       builder: (context, state) =>
-          _scaffoldedWidget("Amis", FriendsScreenWidget()),
+          _scaffoldedWidget("Amis", const FriendsScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.growing,

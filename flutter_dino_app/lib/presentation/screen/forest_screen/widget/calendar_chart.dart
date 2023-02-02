@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../../theme/theme.dart';
@@ -24,7 +23,7 @@ class _CalendarChartState extends State<CalendarChart> {
       padding: const EdgeInsets.all(4.0),
       child: Card(
         elevation: 0,
-        color: PomodoroTheme.white,
+        color: PomodoroTheme.accent,
         child: Padding(
           padding: const EdgeInsets.only(
             top: 20,
@@ -38,9 +37,11 @@ class _CalendarChartState extends State<CalendarChart> {
                 barGroups:
                     _chartGroups(widget.granularity, widget.dataByGranularity),
                 borderData: FlBorderData(
-                    border: const Border(
-                        bottom: BorderSide(color: PomodoroTheme.white),
-                        left: BorderSide(color: PomodoroTheme.white))),
+                  border: const Border(
+                    bottom: BorderSide(color: PomodoroTheme.accent),
+                    left: BorderSide(color: PomodoroTheme.accent),
+                  ),
+                ),
                 gridData: FlGridData(show: false),
                 titlesData: FlTitlesData(
                   bottomTitles:
@@ -304,8 +305,10 @@ class _CalendarChartState extends State<CalendarChart> {
                 toY: dataByGranularity[index].toDouble(),
                 color: PomodoroTheme.secondary,
                 width: barChartWidth,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(5), topLeft: Radius.circular(5)),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(5),
+                  topLeft: Radius.circular(5),
+                ),
               ),
             ],
           ),
