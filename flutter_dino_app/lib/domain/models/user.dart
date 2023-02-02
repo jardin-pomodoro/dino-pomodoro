@@ -39,3 +39,9 @@ class User {
     );
   }
 }
+
+class UserTest {
+  final String email;
+
+  UserTest(this.email);
+}

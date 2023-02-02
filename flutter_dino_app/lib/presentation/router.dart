@@ -14,12 +14,12 @@ import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.growing,
+  initialLocation: RouteNames.login,
   routes: [
     GoRoute(
       path: RouteNames.login,
       builder: (context, state) =>
-          _scaffoldedWidget("Connexion", const AuthScreen()),
+          _scaffoldedWidgetWithoutMenu("Connexion", const AuthScreen()),
     ),
     GoRoute(
       path: RouteNames.forest,
@@ -67,7 +67,7 @@ final GoRouter router = GoRouter(
   },
 );
 
-Widget _scaffoldedWidget(String title, Widget widget) {
+Widget _scaffoldedWidgetWithoutMenu(String title, Widget child) {
   return Scaffold(
     appBar: AppBar(
       centerTitle: true,
@@ -75,12 +75,30 @@ Widget _scaffoldedWidget(String title, Widget widget) {
       backgroundColor: PomodoroTheme.secondary,
       foregroundColor: PomodoroTheme.yellow,
     ),
-    backgroundColor: PomodoroTheme.background,
+    backgroundColor: PomodoroTheme.white,
+    body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: child,
+      ),
+    ),
+  );
+}
+
+Widget _scaffoldedWidget(String title, Widget child) {
+  return Scaffold(
+    appBar: AppBar(
+      centerTitle: true,
+      title: Text(title),
+      backgroundColor: PomodoroTheme.secondary,
+      foregroundColor: PomodoroTheme.yellow,
+    ),
+    backgroundColor: PomodoroTheme.white,
     drawer: const NavigationDrawerWidget(),
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: widget,
+        child: child,
       ),
     ),
   );
