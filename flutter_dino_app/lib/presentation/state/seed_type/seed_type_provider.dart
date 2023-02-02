@@ -1,6 +1,6 @@
-import 'package:flutter_dino_app/data/datasource/api/repository/api_seed_type_repository.dart';
-import 'package:flutter_dino_app/data/datasource/local/repositories/local_seed_type_repository.dart';
-import 'package:flutter_dino_app/domain/usecases/retrieve_seed_type_usecase.dart';
+import '../../../data/datasource/api/repository/api_seed_type_repository.dart';
+import '../../../data/datasource/local/repositories/local_seed_type_repository.dart';
+import '../../../domain/usecases/retrieve_seed_type_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasource/api/api_consumer.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
+import '../../../state/pomodoro_states/seed_selector_state_notifier.dart';
+import '../../../state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
+import '../../../domain/models/seed_type.dart';
+import '../../router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
+import '../../../../domain/models/seed_type.dart';
+import '../../../theme/theme.dart';
+import '../../../widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/navigation_drawer.dart';
+import 'screen/auth_screen/auth_screen.dart';
+import 'theme/theme.dart';
+import 'widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
 
 import 'screen/forest_screen/forest_screen_widget.dart';

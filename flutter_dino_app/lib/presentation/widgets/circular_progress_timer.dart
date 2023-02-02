@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import '../theme/theme.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class CircularProgressTimer extends StatelessWidget {

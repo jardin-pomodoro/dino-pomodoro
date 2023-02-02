@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
-import 'package:flutter_dino_app/data/datasource/api/entity/seed_type_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/seed_type_mapper.dart';
+import '../api_consumer.dart';
+import '../entity/seed_type_entity.dart';
+import '../mapper/seed_type_mapper.dart';
 
 import '../../../../domain/models/seed_type.dart';
 import '../../../../domain/repositories/seed_type_repository.dart';

@@ -1,7 +1,7 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/friendship_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/entity/growing_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/entity/seed_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/pocketbase.dart';
+import 'entity/friendship_entity.dart';
+import 'entity/growing_entity.dart';
+import 'entity/seed_entity.dart';
+import 'pocketbase.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:uuid/uuid.dart';
 

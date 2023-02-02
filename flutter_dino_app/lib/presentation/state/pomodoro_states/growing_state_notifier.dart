@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/growing.dart';
+import '../../../domain/models/growing.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @immutable

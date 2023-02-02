@@ -1,5 +1,5 @@
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
+import '../../../domain/models/seed_type.dart';
+import '../pomodoro_states/seed_state_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SeedTypeStateNotifier extends StateNotifier<List<SeedType>> {

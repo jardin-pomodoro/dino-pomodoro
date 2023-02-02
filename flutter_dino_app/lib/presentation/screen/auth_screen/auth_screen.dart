@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
-import 'package:flutter_dino_app/presentation/state/api_consumer/api_consumer.dart';
+import '../../../data/datasource/api/api_consumer.dart';
+import '../../state/api_consumer/api_consumer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pkce/pkce.dart';
 import 'package:webview_flutter/webview_flutter.dart';

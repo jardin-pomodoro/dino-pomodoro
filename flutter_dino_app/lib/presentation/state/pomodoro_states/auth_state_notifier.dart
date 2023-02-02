@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/user.dart';
+import '../../../domain/models/user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AuthStateNotifier extends StateNotifier<User> {

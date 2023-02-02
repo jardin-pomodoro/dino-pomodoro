@@ -1,15 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/growing.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/domain/models/tree.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/growing_state_notifier.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_selector_state_notifier.dart';
-import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../../domain/models/growing.dart';
+import '../../../domain/models/seed.dart';
+import '../../../domain/models/tree.dart';
+import '../../router.dart';
+import '../../state/pomodoro_states/growing_state_notifier.dart';
+import '../../state/pomodoro_states/seed_selector_state_notifier.dart';
+import '../../state/timer/timer_v2.dart';
+import '../../theme/theme.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

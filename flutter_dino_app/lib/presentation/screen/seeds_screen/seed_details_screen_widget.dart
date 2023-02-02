@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/state/pomodoro_states/seed_state_notifier.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../../domain/models/seed.dart';
+import '../../router.dart';
+import '../../state/pomodoro_states/seed_state_notifier.dart';
+import '../../theme/theme.dart';
+import '../../widgets/price_widget.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

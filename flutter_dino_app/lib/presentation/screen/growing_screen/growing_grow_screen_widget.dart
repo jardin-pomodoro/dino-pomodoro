@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/state/timer/timer_v2.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
-import 'package:flutter_dino_app/presentation/widgets/snackbar.dart';
-import 'package:flutter_dino_app/utils/lifecycle_event_handler.dart';
-import 'package:flutter_dino_app/utils/upgrade_functions.dart';
+import '../../router.dart';
+import '../../state/timer/timer_v2.dart';
+import '../../theme/theme.dart';
+import '../../widgets/snackbar.dart';
+import '../../../utils/lifecycle_event_handler.dart';
+import '../../../utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
