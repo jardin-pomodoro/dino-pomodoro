@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/router.dart';
-import 'package:flutter_dino_app/presentation/screen/friends_screen/friends_banner.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/add_friend.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/friends_tab.dart';
 import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/pending_invitations.dart';
@@ -13,7 +12,7 @@ class FriendsScreenWidget extends StatefulWidget {
     context.go(RouteNames.friends);
   }
 
-  FriendsScreenWidget({Key? key}) : super(key: key);
+  const FriendsScreenWidget({Key? key}) : super(key: key);
 
   @override
   State<FriendsScreenWidget> createState() => _FriendsScreenWidgetState();
@@ -54,6 +53,7 @@ class _FriendsScreenWidgetState extends State<FriendsScreenWidget> {
   void _addFriend(String emailFriendAdd) {
     setState(() {
       print(emailFriendAdd);
+      // TODO un truc
     });
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,7 +37,7 @@ class _AddFriendState extends State<AddFriend> {
                 height: 10,
                 thickness: 0,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(
                   "Demandes envoyées",
@@ -46,7 +45,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -61,7 +60,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -76,7 +75,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -91,7 +90,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -106,7 +105,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -121,7 +120,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,
@@ -136,7 +135,7 @@ class _AddFriendState extends State<AddFriend> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
                   body: "Jean@pomme.fr",
                   clickOnAction: _deletePendingInvitations,

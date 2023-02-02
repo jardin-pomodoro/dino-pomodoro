@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
@@ -25,21 +24,20 @@ class _AddFriendFormState extends State<AddFriendForm> {
       children: [
         TextField(
           decoration: InputDecoration(
-              hintText: "email",
-              enabledBorder: const OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: PomodoroTheme.secondary, width: 2),
-              ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: PomodoroTheme.secondary, width: 2),
-              ),
-              prefixIcon: Icon(Icons.email),
-              prefixIconColor: PomodoroTheme.secondary,
-              suffixIcon: IconButton(
-                onPressed: () => {widget.controller.clear()},
-                icon: const Icon(Icons.clear, color: PomodoroTheme.secondary),
-              )),
+            hintText: "email",
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: PomodoroTheme.secondary, width: 2),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: PomodoroTheme.secondary, width: 2),
+            ),
+            prefixIcon: const Icon(Icons.email),
+            prefixIconColor: PomodoroTheme.secondary,
+            suffixIcon: IconButton(
+              onPressed: () => {widget.controller.clear()},
+              icon: const Icon(Icons.clear, color: PomodoroTheme.secondary),
+            ),
+          ),
           keyboardType: TextInputType.emailAddress,
           controller: widget.controller,
           onSubmitted: widget.addFriend,
@@ -57,7 +55,7 @@ class _AddFriendFormState extends State<AddFriendForm> {
             ),
             color: PomodoroTheme.secondary,
             child: const Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: Text(
                 'Envoyer la demande',
                 style: PomodoroTheme.text,
