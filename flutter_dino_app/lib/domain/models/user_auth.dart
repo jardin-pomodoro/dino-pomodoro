@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'user.dart';
@@ -24,6 +26,20 @@ class UserAuth {
         avatar: avatar,
         email: email,
       ),
+    );
+  }
+
+  String toJson() {
+    return '{'
+        '"token": "$token",'
+        '"user": ${user.toJson()}'
+        '}';
+  }
+
+  factory UserAuth.fromJson(Map<String, dynamic> json) {
+    return UserAuth(
+      token: json['token'] as String,
+      user: User.fromJson(json['user']),
     );
   }
 }

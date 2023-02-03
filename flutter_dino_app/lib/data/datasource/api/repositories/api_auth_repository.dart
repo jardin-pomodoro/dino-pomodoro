@@ -27,4 +27,14 @@ class ApiAuthRepository implements AuthRepository {
 
     return Success(data: AuthMapper.fromEntity(authEntity));
   }
+
+  @override
+  Future<Success<UserAuth>> retrieveUserAuth() {
+    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+  }
+
+  @override
+  Future<Success<void>> saveUserAuth(UserAuth userAuth) {
+    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+  }
 }

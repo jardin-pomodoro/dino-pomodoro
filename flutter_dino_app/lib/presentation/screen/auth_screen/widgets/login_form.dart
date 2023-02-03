@@ -22,7 +22,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final authService = ref.watch(authServiceProvider);
+    final authService = ref.read(authServiceProvider);
     return Form(
       key: _formKey,
       child: Padding(
@@ -52,12 +52,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                   final result =
                       await authService.login(LoginParam(email, password));
                   if (mounted) {
-                    if (result.isFailure) {
+                    if (!result.isSuccess) {
                       showErrorSnackBar(context, result.failureMessage);
                     } else {
                       ref
                           .read(authStateNotifierProvider.notifier)
                           .setUser(result.data!);
+                      authService.userAuthSuccess(result.data!);
                       Navigator.of(context).pop();
                       showSnackBar(context, 'Connexion reussie');
                       GrowingScreenWidget.navigateTo(context);

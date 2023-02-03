@@ -4,16 +4,30 @@ import '../../core/success.dart';
 import '../repositories/auth_repository.dart';
 
 class AuthService {
-  final AuthRepository _repository;
+  final AuthRepository _remoteRepository;
+  final AuthRepository _localRepository;
 
-  AuthService(this._repository);
+  AuthService(this._remoteRepository, this._localRepository);
 
   Future<Success<UserAuth>> login(LoginParam params) async {
-    return _repository.login(params.email, params.password);
+    return _remoteRepository.login(params.email, params.password);
   }
 
   Future<Success<UserAuth>> register(RegisterParam params) async {
     throw UnimplementedError();
+  }
+
+  Future<Success<UserAuth>> logout() async {
+    throw UnimplementedError();
+  }
+
+  Future<Success<void>> userAuthSuccess(UserAuth userAuth) async {
+    await _localRepository.saveUserAuth(userAuth);
+    return Success(data: null);
+  }
+
+  Future<Success<UserAuth>> getUserAuth() async {
+    return await _localRepository.retrieveUserAuth();
   }
 }
 

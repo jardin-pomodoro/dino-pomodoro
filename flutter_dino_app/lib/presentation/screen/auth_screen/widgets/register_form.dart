@@ -80,7 +80,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     // final result = await register(RegisterParam());
                     final result = await authService.register(RegisterParam());
                     if (mounted) {
-                      if (result.isFailure) {
+                      if (!result.isSuccess) {
                         showErrorSnackBar(context, result.failureMessage);
                       } else {
                         ref
