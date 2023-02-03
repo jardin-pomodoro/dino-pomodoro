@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../router.dart';
-import '../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../theme/theme.dart';
 import '../../widgets/snackbar.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +17,7 @@ class SettingsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final connectedUser = ref.watch(authStateNotifierProvider);
+    final connectedUser = ref.watch(authStateNotifierProvider).user;
 
     return Center(
       child: Padding(

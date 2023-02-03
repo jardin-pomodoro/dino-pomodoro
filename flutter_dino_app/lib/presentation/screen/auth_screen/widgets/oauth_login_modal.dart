@@ -8,8 +8,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 import '../../../../data/datasource/api/api_consumer.dart';
-import '../../../state/api_consumer/api_consumer.dart';
-import '../../../state/auth/auth.dart';
+import '../../../../state/api_consumer/api_consumer.dart';
+import '../../../../state/auth/auth.dart';
 
 Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
   return Padding(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/core/success.dart';
+import 'package:flutter_dino_app/presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'domain/models/seed_type.dart';
 import 'presentation/router.dart';
-import 'presentation/state/seed_type/seed_type_provider.dart';
-import 'presentation/state/seed_type/seed_type_state_notifier.dart';
-import 'presentation/theme/theme.dart';
+import 'state/seed_type/seed_type_provider.dart';
+import 'state/seed_type/seed_type_state_notifier.dart';
 
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     if (dataLoaded) {
       return _displayRoutedPages();
     }
-    final AsyncValue<List<SeedType>> providers =
+    final AsyncValue<Success<List<SeedType>>> providers =
         ref.watch(fetchSeedTypesProvider);
     return providers.when(
       data: _onDataArrive,
@@ -41,13 +42,13 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp(home: Scaffold(body: Text('error ref $error')));
   }
 
-  Widget _onDataArrive(List<SeedType> seedTypes) {
+  Widget _onDataArrive(Success<List<SeedType>> seedTypes) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         dataLoaded = true;
         ref
             .read(seedTypeStateNotifierProvider.notifier)
-            .addSeedTypes(seedTypes);
+            .addSeedTypes(seedTypes.isSuccess ? seedTypes.data! : []);
       });
     });
     return _displayRoutedPages();

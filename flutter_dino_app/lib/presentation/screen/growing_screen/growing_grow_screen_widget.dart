@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:is_lock_screen/is_lock_screen.dart';
 
+import '../../../state/pomodoro_states/growing_state_notifier.dart';
+import '../../../state/sentences_stream_provider.dart';
+import '../../../state/timer/timer_v2.dart';
 import '../../../utils/upgrade_functions.dart';
 import '../../router.dart';
-import '../../state/pomodoro_states/growing_state_notifier.dart';
-import '../../state/sentences_stream_provider.dart';
-import '../../state/timer/timer_v2.dart';
 import '../../theme/theme.dart';
 import '../../widgets/circular_progress_timer.dart';
 import '../../widgets/snackbar.dart';

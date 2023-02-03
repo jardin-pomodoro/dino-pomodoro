@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 @immutable
@@ -38,10 +40,30 @@ class User {
       updated: updated,
     );
   }
-}
+  
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      collectionId: json['collectionId'] as String,
+      collectionName: json['collectionName'] as String,
+      created: DateTime.parse(json['created'] as String),
+      id: json['id'] as String,
+      username: json['username'] as String,
+      email: json['email'] as String,
+      avatar: json['avatar'] as String,
+      updated: DateTime.parse(json['updated'] as String),
+    );
+  }
 
-class UserTest {
-  final String email;
-
-  UserTest(this.email);
+  String toJson() {
+    return '{'
+        '"collectionId": "$collectionId",'
+        '"collectionName": "$collectionName",'
+        '"created": "$created",'
+        '"id": "$id",'
+        '"username": "$username",'
+        '"email": "$email",'
+        '"avatar": "$avatar",'
+        '"updated": "$updated"'
+        '}';
+  }
 }

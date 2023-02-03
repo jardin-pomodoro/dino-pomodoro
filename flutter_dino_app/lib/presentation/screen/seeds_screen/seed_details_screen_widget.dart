@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../domain/models/seed.dart';
+import '../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../router.dart';
-import '../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../theme/theme.dart';
 import '../../widgets/price_widget.dart';
 import '../../../utils/upgrade_functions.dart';
