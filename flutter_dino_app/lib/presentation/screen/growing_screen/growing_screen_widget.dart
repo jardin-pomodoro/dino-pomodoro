@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/grow_failed_dialog_widget.dart';
 import '../../../domain/models/growing.dart';
 import '../../../domain/models/seed.dart';
 import '../../../domain/models/tree.dart';
@@ -54,6 +55,10 @@ class GrowingScreenWidget extends ConsumerWidget {
         );
 
         _showTreeRewardDialog(context, ref, tree);
+      } else if (growingState.isFailed == true) {
+        _showGrowFailedDialog(context, ref);
+
+        // todo remove growing from PB
       }
     });
     return Container(
@@ -210,6 +215,19 @@ class GrowingScreenWidget extends ConsumerWidget {
       builder: (BuildContext context) => Dialog(
         backgroundColor: Colors.transparent,
         child: TreeRewardDialogWidget(tree: tree),
+      ),
+    ).whenComplete(() {
+      ref.read(timerNotifierProvider.notifier).reset();
+      ref.read(growingStateNotifierProvider.notifier).reset();
+    });
+  }
+
+  _showGrowFailedDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => const Dialog(
+        backgroundColor: Colors.transparent,
+        child: GrowFailedDialogWidget(),
       ),
     ).whenComplete(() {
       ref.read(timerNotifierProvider.notifier).reset();

@@ -28,8 +28,8 @@ class TimerModel {
 
 class TimerNotifier extends StateNotifier<TimerModel> {
   static final _initialState = TimerModel(
-    timeLeft: durationString(0),
-    initialDuration: 0,
+    timeLeft: durationString(1),
+    initialDuration: 1,
     durationLeft: 0,
     isRunning: false,
   );
