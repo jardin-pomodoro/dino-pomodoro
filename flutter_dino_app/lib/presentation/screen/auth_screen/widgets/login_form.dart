@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import '../../../../data/datasource/api/repository/api_user_repository.dart';
-import '../../../../domain/usecases/login_use_case.dart';
-import '../../../state/api_consumer/api_consumer.dart';
+import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../widgets/snackbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+import '../../../../domain/services/auth_service.dart';
+import '../../../../state/auth/auth_service_provider.dart';
+import '../../growing_screen/growing_screen_widget.dart';
+
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key});
-  
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginFormState();
-
 }
 
 class _LoginFormState extends ConsumerState<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   String email = '';
-  String password = ''; 
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
-    final client = ref.read(apiProvider);
+    final authService = ref.read(authServiceProvider);
     return Form(
       key: _formKey,
       child: Padding(
@@ -48,14 +49,21 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 final form = _formKey.currentState;
                 if (form != null && form.validate()) {
                   form.save();
-                  final login = LoginUseCase(ApiUserRepository(client));
-                  final result = await login(LoginParam(email, password));
-                  result.fold((l) {
-                    showErrorSnackBar(context, l.message);
-                  }, (r) {
-                    Navigator.of(context).pop();
-                    showSnackBar(context, 'Connexion reussie');
-                  });
+                  final result =
+                      await authService.login(LoginParam(email, password));
+                  if (mounted) {
+                    if (!result.isSuccess) {
+                      showErrorSnackBar(context, result.failureMessage);
+                    } else {
+                      ref
+                          .read(authStateNotifierProvider.notifier)
+                          .setUser(result.data!);
+                      authService.userAuthSuccess(result.data!);
+                      Navigator.of(context).pop();
+                      showSnackBar(context, 'Connexion reussie');
+                      GrowingScreenWidget.navigateTo(context);
+                    }
+                  }
                 }
               },
               child: const Text('Se connecter'),

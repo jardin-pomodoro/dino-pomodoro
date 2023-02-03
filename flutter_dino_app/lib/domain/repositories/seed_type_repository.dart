@@ -1,8 +1,7 @@
-import 'package:dartz/dartz.dart';
+import '../../core/success.dart';
 
 import '../models/seed_type.dart';
-import '../usecases/retrieve_seed_type_usecase.dart';
 
 abstract class SeedTypeRepository {
-  Future<Either<RetrieveSeedTypeFailure, List<SeedType>>> retrieveSeedType();
+  Future<Success<List<SeedType>>> retrieveSeedType();
 }

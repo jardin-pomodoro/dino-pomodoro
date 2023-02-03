@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../domain/models/seed_type.dart';
+import '../../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +9,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../domain/models/seed.dart';
 import '../../../../domain/models/seed_type_expand.dart';
-import '../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../../widgets/snackbar.dart';
 
 class SeedTypeDetailsCardWidget extends ConsumerWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
 import '../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,7 +10,6 @@ import '../screen/growing_screen/growing_screen_widget.dart';
 import '../screen/seeds_screen/seeds_screen_widget.dart';
 import '../screen/settings_screen/settings_screen_widget.dart';
 import '../screen/shop_screen/shop_screen_widget.dart';
-import '../state/pomodoro_states/auth_state_notifier.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -49,11 +49,11 @@ class NavigationDrawerWidget extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 60,
                   backgroundColor: PomodoroTheme.primary,
-                  backgroundImage: NetworkImage(connectedUser.avatar),
+                  backgroundImage: NetworkImage(connectedUser.user.avatar),
                 ),
               ),
               const SizedBox(height: 16),
-              Text(connectedUser.username, style: PomodoroTheme.title3),
+              Text(connectedUser.user.username, style: PomodoroTheme.title3),
             ],
           );
         },

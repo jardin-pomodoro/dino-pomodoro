@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter_dino_app/core/success.dart';
+import 'package:flutter_dino_app/domain/services/tree_service.dart';
+
 import '../../../data/datasource/local/repositories/local_remy_tree_repository.dart';
-import '../../../domain/usecases/retrieve_tree_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/tree.dart';
 import '../../screen/forest_screen/forest_screen_widget.dart';
@@ -19,10 +21,15 @@ class TreeByTypeUI {
 
 final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   final slider = ref.watch(calendarGranularityProvider);
-  final retrieveTreeUseCase = RetrieveTreeUseCase(
+  final treeService = TreeService(
       localRepository: LocalRemyTreeRepository(), granularity: slider);
-  final trees = await retrieveTreeUseCase();
-  final seedTypeToSeedsUsed = trees.fold({}, (previousValue, tree) {
+  final retrieveTree = await treeService.retrieveTree();
+  if (!retrieveTree.isSuccess) {
+    return Future.value([]);
+  }
+
+  final trees = retrieveTree.data;
+  final seedTypeToSeedsUsed = trees!.fold({}, (previousValue, tree) {
     if (previousValue.containsKey(tree.expand.seedType.id)) {
       previousValue[tree.expand.seedType.id] += 1;
     } else {
@@ -136,10 +143,10 @@ final fetchTreeCalendar = FutureProvider((ref) async {
   return Future.value(dataPast);
 });
 
-final fetchTreeProvider = FutureProvider<List<Tree>>((ref) async {
+final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);
   final slider = ref.watch(calendarGranularityProvider);
-  final retrieveSeedTypeUseCase = RetrieveTreeUseCase(
+  final treeService = TreeService(
       localRepository: LocalRemyTreeRepository(), granularity: slider);
-  return retrieveSeedTypeUseCase();
+  return treeService.retrieveTree();
 });

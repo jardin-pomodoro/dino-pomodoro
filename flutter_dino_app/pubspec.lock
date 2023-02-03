@@ -340,10 +340,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: b789ead597d3e9cd5d114cdb7af12440712da5599743f9a2358c43aa3f5e9d3e
+      sha256: "9e8cee9969a9f33821a5594e5822d9a7ef3ae8528e5258f5178436e3deb0e095"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.3"
   gotrue:
     dependency: transitive
     description:
@@ -440,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  is_lock_screen:
+    dependency: "direct main"
+    description:
+      name: is_lock_screen
+      sha256: "7f45c22b1bb4bd9849aa699bc45b5b9473ada262a4266e1d7d51babdf50c0c83"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   js:
     dependency: transitive
     description:
