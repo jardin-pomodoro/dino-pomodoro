@@ -7,7 +7,7 @@ import Foundation
 
 import app_links
 import connectivity_plus
-import path_provider_macos
+import path_provider_foundation
 import sqflite
 import url_launcher_macos
 

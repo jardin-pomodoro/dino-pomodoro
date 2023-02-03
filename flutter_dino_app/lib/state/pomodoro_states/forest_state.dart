@@ -55,33 +55,3 @@ final seedsType = [
   ),
 ];
 
-final forest = List<Tree>.generate(
-  50,
-  (index) {
-    final started = DateTime.now().subtract(Duration(
-      days: Random().nextInt(20),
-      hours: Random().nextInt(24),
-      minutes: Random().nextInt(60),
-    ));
-    final ended = started.add(Duration(
-      days: Random().nextInt(20),
-      hours: Random().nextInt(24),
-      minutes: Random().nextInt(60),
-    ));
-    final seedType = seedsType[Random().nextInt(seedsType.length)];
-    return Tree(
-      created: DateTime.now(),
-      updated: DateTime.now(),
-      started: started,
-      ended: ended,
-      reward: Random().nextInt(100),
-      timeToGrow: started.difference(ended).inMinutes,
-      expand: SeedTypeExpand(seedType: seedType),
-      seedType: seedType.id,
-      user: Random().nextBool() ? userId1 : userId2,
-      id: index.toString(),
-      collectionId: "1",
-      collectionName: "Tree collection",
-    );
-  },
-);

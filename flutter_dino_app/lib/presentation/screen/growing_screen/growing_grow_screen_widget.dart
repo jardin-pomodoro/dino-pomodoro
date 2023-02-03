@@ -1,18 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:is_lock_screen/is_lock_screen.dart';
 
-import '../../../state/pomodoro_states/growing_state_notifier.dart';
-import '../../../state/sentences_stream_provider.dart';
-import '../../../state/timer/timer_v2.dart';
-import '../../../utils/upgrade_functions.dart';
-import '../../router.dart';
-import '../../theme/theme.dart';
-import '../../widgets/circular_progress_timer.dart';
-import '../../widgets/snackbar.dart';
-import 'growing_screen_widget.dart';
-import 'widgets/growing_tree.dart';
 
 /*
 class GrowingGrowScreenWidget extends ConsumerWidget {
@@ -96,6 +82,23 @@ class GrowingGrowScreenWidget extends ConsumerWidget {
   }
 }
 */
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/growing_tree.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:is_lock_screen/is_lock_screen.dart';
+
+import '../../../state/pomodoro_states/growing_state_notifier.dart';
+import '../../../state/sentences_stream_provider.dart';
+import '../../../state/timer/timer_v2.dart';
+import '../../../utils/upgrade_functions.dart';
+import '../../router.dart';
+import '../../theme/theme.dart';
+import '../../widgets/circular_progress_timer.dart';
+import '../../widgets/snackbar.dart';
+import 'growing_screen_widget.dart';
 
 class GrowingGrowScreenWidget extends ConsumerStatefulWidget {
   static void navigateTo(BuildContext context) {

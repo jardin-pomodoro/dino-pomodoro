@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screen/auth_screen/auth_screen.dart';
-import 'theme/theme.dart';
-import 'widgets/navigation_drawer.dart';
 import 'package:go_router/go_router.dart';
 
+import 'screen/auth_screen/auth_screen.dart';
 import 'screen/forest_screen/forest_screen_widget.dart';
 import 'screen/friends_screen/friends_screen_widget.dart';
 import 'screen/growing_screen/growing_grow_screen_widget.dart';
@@ -12,9 +10,11 @@ import 'screen/seeds_screen/seed_details_screen_widget.dart';
 import 'screen/seeds_screen/seeds_screen_widget.dart';
 import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
+import 'theme/theme.dart';
+import 'widgets/navigation_drawer.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.login,
+  initialLocation: RouteNames.forest,
   routes: [
     GoRoute(
       path: RouteNames.login,
@@ -24,7 +24,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.forest,
       builder: (context, state) =>
-          _scaffoldedWidget("Forêt", const ForestScreenWidget()),
+          _scaffoldedWidget("Forêt", ForestScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.friends,
