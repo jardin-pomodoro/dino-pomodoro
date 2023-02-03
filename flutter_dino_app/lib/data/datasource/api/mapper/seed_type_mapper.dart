@@ -1,7 +1,6 @@
+import '../../../../domain/models/seed_type.dart';
 import '../entity/seed_type_entity.dart';
 import '../pocketbase.dart';
-
-import '../../../../domain/models/seed_type.dart';
 
 class SeedTypeMapper {
   static SeedType fromEntity(SeedTypeEntity entity) {

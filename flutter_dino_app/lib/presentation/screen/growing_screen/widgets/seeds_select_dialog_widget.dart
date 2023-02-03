@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../state/pomodoro_states/seed_selector_state_notifier.dart';
-import '../../../state/pomodoro_states/seed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../state/pomodoro_states/seed_selector_state_notifier.dart';
+import '../../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../seeds_screen/seed_card_widget.dart';
 
 class SeedsSelectDialogWidget extends ConsumerWidget {

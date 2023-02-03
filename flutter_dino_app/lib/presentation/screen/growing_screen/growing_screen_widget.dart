@@ -5,16 +5,16 @@ import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/grow
 import '../../../domain/models/growing.dart';
 import '../../../domain/models/seed.dart';
 import '../../../domain/models/tree.dart';
+import '../../../state/pomodoro_states/growing_state_notifier.dart';
+import '../../../state/pomodoro_states/seed_selector_state_notifier.dart';
+import '../../../state/sentences_stream_provider.dart';
+import '../../../state/timer/timer_v2.dart';
 import '../../router.dart';
-import '../../state/pomodoro_states/growing_state_notifier.dart';
-import '../../state/pomodoro_states/seed_selector_state_notifier.dart';
-import '../../state/timer/timer_v2.dart';
 import '../../theme/theme.dart';
 import '../../../utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../state/sentences_stream_provider.dart';
 import 'growing_grow_screen_widget.dart';
 import 'widgets/seeds_select_dialog_widget.dart';
 import 'widgets/tree_reward_dialog_widget.dart';

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-@immutable
-class User {
+class UserEntity {
   final String collectionId;
   final String collectionName;
   final String id;
@@ -11,7 +8,7 @@ class User {
   final DateTime created;
   final DateTime updated;
 
-  const User({
+  const UserEntity({
     required this.collectionId,
     required this.collectionName,
     required this.created,
@@ -22,12 +19,12 @@ class User {
     required this.updated,
   });
 
-  User copyWith({
+  UserEntity copyWith({
     String? username,
     String? avatar,
     String? email,
   }) {
-    return User(
+    return UserEntity(
       collectionId: collectionId,
       collectionName: collectionName,
       created: created,
@@ -36,6 +33,19 @@ class User {
       email: email ?? this.email,
       avatar: avatar ?? this.avatar,
       updated: updated,
+    );
+  }
+
+  factory UserEntity.fromJson(Map<String, dynamic> map) {
+    return UserEntity(
+      collectionId: map['collectionId'],
+      collectionName: map['collectionName'],
+      created: DateTime.parse(map['created']),
+      id: map['id'],
+      username: map['username'],
+      email: map['email'],
+      avatar: map['avatar'],
+      updated: DateTime.parse(map['updated']),
     );
   }
 }

@@ -1,10 +1,10 @@
+import 'package:pocketbase/pocketbase.dart';
+
 import 'entity/friendship_entity.dart';
 import 'entity/growing_entity.dart';
 import 'entity/seed_entity.dart';
-import 'pocketbase.dart';
-import 'package:pocketbase/pocketbase.dart';
-
 import 'entity/tree_entity.dart';
+import 'pocketbase.dart';
 
 enum Collection { users, seedTypes, seed, growing, friendship, tree }
 
@@ -52,9 +52,11 @@ class ApiConsumer {
     print(authData);
     return pb.authStore;
   }
-  
+
   authWithPassword(String email, String password) async {
-      return pb.collection(Collection.users.name).authWithPassword(email, password);
+    return pb
+        .collection(Collection.users.name)
+        .authWithPassword(email, password);
   }
 
   Future<List<RecordModel>> fetchSeeds() async {
@@ -115,6 +117,15 @@ class ApiConsumer {
         await pb.collection(Collection.friendship.name).getFullList(
               filter: 'user == "$userId" || relation == "$userId"',
             );
+
+    return friendship;
+  }
+
+  Future<List<RecordModel>> fetchFriendshipRequests(String userId) async {
+    final friendship =
+    await pb.collection(Collection.friendship.name).getFullList(
+      filter: '(user == "$userId" || relation == "$userId") && status == pending',
+    );
 
     return friendship;
   }

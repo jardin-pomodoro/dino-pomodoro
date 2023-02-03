@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../state/auth/auth.dart';
+import '../../../state/auth/auth.dart';
 import 'widgets/manual_authentification_modal.dart';
 import 'widgets/oauth_login_modal.dart';
 
