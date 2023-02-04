@@ -7,11 +7,13 @@ import 'user.dart';
 @immutable
 class UserAuth {
   final String token;
+  final Map<String, dynamic> authModel;
   final User user;
 
   const UserAuth({
     required this.token,
     required this.user,
+    required this.authModel,
   });
 
   UserAuth copyWith({
@@ -20,6 +22,7 @@ class UserAuth {
     String? email,
   }) {
     return UserAuth(
+      authModel: authModel,
       token: token,
       user: user.copyWith(
         username: username,
@@ -30,16 +33,18 @@ class UserAuth {
   }
 
   String toJson() {
-    return '{'
-        '"token": "$token",'
-        '"user": ${user.toJson()}'
-        '}';
+    return json.encode({
+      'authModel': authModel,
+      'token': token,
+      'user': user.toJson(),
+    });
   }
 
   factory UserAuth.fromJson(Map<String, dynamic> json) {
     return UserAuth(
+      authModel: json['authModel'],
       token: json['token'] as String,
-      user: User.fromJson(json['user']),
+      user: User.fromJson(jsonDecode(json['user'])),
     );
   }
 }
