@@ -59,6 +59,10 @@ class ApiConsumer {
         .authWithPassword(email, password);
   }
 
+  Future<RecordAuth> authRefresh() async {
+    return pb.collection(Collection.users.name).authRefresh();
+  }
+
   Future<List<RecordModel>> fetchSeeds() async {
     final seedTypes =
         await pb.collection(Collection.seedTypes.name).getFullList();

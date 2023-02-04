@@ -5,6 +5,7 @@ import '../../../domain/models/user.dart';
 
 class AuthStateNotifier extends StateNotifier<UserAuth> {
   static final _initialUser = UserAuth(
+    authModel: const {},
     token: '',
     user: User(
       collectionId: '1',
