@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_dino_app/core/success.dart';
 import 'package:flutter_dino_app/domain/services/tree_service.dart';
 
-import '../../../data/datasource/local/repositories/local_remy_tree_repository.dart';
+import '../../../data/datasource/local/repositories/local_tree_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/tree.dart';
 import '../../screen/forest_screen/forest_screen_widget.dart';
@@ -22,7 +22,7 @@ class TreeByTypeUI {
 final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   final slider = ref.watch(calendarGranularityProvider);
   final treeService = TreeService(
-      localRepository: LocalRemyTreeRepository(), granularity: slider);
+      localRepository: LocalTreeRepository(), granularity: slider);
   final retrieveTree = await treeService.retrieveTree();
   if (!retrieveTree.isSuccess) {
     return Future.value([]);
@@ -147,6 +147,6 @@ final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);
   final slider = ref.watch(calendarGranularityProvider);
   final treeService = TreeService(
-      localRepository: LocalRemyTreeRepository(), granularity: slider);
+      localRepository: LocalTreeRepository(), granularity: slider);
   return treeService.retrieveTree();
 });

@@ -7,10 +7,10 @@ import 'package:flutter_dino_app/core/success.dart';
 
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/models/tree.dart';
-import '../../../../domain/repositories/remy_tree_repository.dart';
+import '../../../../domain/repositories/tree_repository.dart';
 import '../../../../state/pomodoro_states/forest_state.dart';
 
-class LocalRemyTreeRepository implements RemyTreeRepository {
+class LocalTreeRepository implements  TreeRepository {
   @override
   Future<Success<List<Tree>>> retrieveRemyTreeRepository() {
     final forest = List<Tree>.generate(
