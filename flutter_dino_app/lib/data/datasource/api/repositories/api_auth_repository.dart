@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_dino_app/core/success.dart';
 import 'package:flutter_dino_app/data/datasource/api/entity/auth_entity.dart';
 import 'package:flutter_dino_app/data/datasource/api/mapper/auth_mapper.dart';
@@ -10,15 +8,15 @@ import 'package:pocketbase/pocketbase.dart';
 import '../api_consumer.dart';
 
 class ApiAuthRepository implements AuthRepository {
-  final ApiConsumer pb;
+  final ApiConsumer client;
 
-  ApiAuthRepository(this.pb);
+  ApiAuthRepository(this.client);
 
   @override
   Future<Success<UserAuth>> login(String email, String password) async {
     late final RecordAuth authData;
     try {
-      authData = await pb.authWithPassword(email, password);
+      authData = await client.authWithPassword(email, password);
     } on ClientException {
       return Success.fromFailure(failureMessage: 'Identifiant incorrect');
     } catch (_) {
@@ -32,14 +30,36 @@ class ApiAuthRepository implements AuthRepository {
 
   @override
   Future<Success<UserAuth>> retrieveUserAuth() async {
-    final refreshAuth = await pb.authRefresh();
+    final refreshAuth = await client.authRefresh();
     final authEntity = AuthEntity.fromJson(refreshAuth.toJson());
     return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
   }
 
   @override
   Future<Success<void>> saveUserAuth(UserAuth userAuth) {
-    pb.pb.authStore.save(userAuth.token, userAuth.authModel);
+    client.pb.authStore.save(userAuth.token, userAuth.authModel);
     return Future.value(Success(data: null));
+  }
+
+  @override
+  Future<Success<bool>> register(
+    String email,
+    String password,
+    String username,
+  ) async {
+    try {
+      final user = {
+        'email': email,
+        'password': password,
+        'username': username,
+      };
+      final create =
+          await client.pb.collection(Collection.users.name).create(body: user);
+      return Future.value(Success(data: true));
+    } catch (_) {
+      return Future.value(
+        Success.fromFailure(failureMessage: "erreur d'enregistrement"),
+      );
+    }
   }
 }

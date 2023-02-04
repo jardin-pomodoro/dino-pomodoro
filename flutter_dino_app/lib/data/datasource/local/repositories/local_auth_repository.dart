@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dino_app/core/failure.dart';
 import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
@@ -6,7 +7,6 @@ import '../../../../domain/repositories/auth_repository.dart';
 
 class LocalAuthRepository implements AuthRepository {
   final DatabaseSource dbSource;
-
 
   LocalAuthRepository(this.dbSource);
 
@@ -24,7 +24,8 @@ class LocalAuthRepository implements AuthRepository {
       return Success.fromFailure(failureMessage: "No user auth found");
     }
 
-    final userAuth = UserAuth.fromJson(jsonDecode(result.first['json'] as String));
+    final userAuth =
+        UserAuth.fromJson(jsonDecode(result.first['json'] as String));
     return Success(data: userAuth);
   }
 
@@ -39,5 +40,19 @@ class LocalAuthRepository implements AuthRepository {
     return Future.value(Success(data: null));
   }
 
+  @override
+  Future<Success<bool>> register(
+    String email,
+    String password,
+    String username,
+  ) {
+    throw UnableToRegisterWithoutConnection();
+  }
+}
 
+class UnableToRegisterWithoutConnection implements Failure {
+  final String message;
+  UnableToRegisterWithoutConnection({
+    this.message = "Unable to register without connection",
+  });
 }

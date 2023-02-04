@@ -61,12 +61,9 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                 obscureText: true,
                 validator: (val) {
                   if (val != null) {
-                    print(val);
-                    print(password);
                     return MatchValidator(
-                            errorText:
-                                'Les mots de passes ne correspondent pas')
-                        .validateMatch(val, password);
+                      errorText: 'Les mots de passes ne correspondent pas',
+                    ).validateMatch(val, password);
                   }
                 },
               ),
@@ -76,18 +73,14 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   final form = _formKey.currentState;
                   if (form != null && form.validate()) {
                     form.save();
-                    // final register = RegisterUseCase(ApiUserRepository(client));
-                    // final result = await register(RegisterParam());
-                    final result = await authService.register(RegisterParam());
+                    final result = await authService
+                        .register(RegisterParam(email, password, username));
                     if (mounted) {
                       if (!result.isSuccess) {
                         showErrorSnackBar(context, result.failureMessage);
                       } else {
-                        ref
-                            .read(authStateNotifierProvider.notifier)
-                            .setUser(result.data!);
-                        Navigator.of(context).pop();
                         showSnackBar(context, 'inscription reussie');
+                        Navigator.of(context).pop();
                       }
                     }
                   }

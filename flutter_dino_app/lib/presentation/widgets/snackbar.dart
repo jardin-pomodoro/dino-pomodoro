@@ -28,7 +28,10 @@ void showErrorSnackBar(
     SnackBar(
       duration: duration,
       backgroundColor: PomodoroTheme.errorColor,
-      content: Text(message, style: PomodoroTheme.textLarge),
+      content: Text(
+        message,
+        style: PomodoroTheme.textLarge.copyWith(color: PomodoroTheme.white),
+      ),
       behavior: SnackBarBehavior.floating,
     ),
   );

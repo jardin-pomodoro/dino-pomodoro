@@ -109,7 +109,7 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
       child: Wrap(
         children: <Widget>[
           Container(
-            decoration: bottom_sheet_decoration(),
+            decoration: bottomSheetDecoration(),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.8,
               child: WebViewWidget(controller: _controller),

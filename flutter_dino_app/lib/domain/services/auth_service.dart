@@ -13,8 +13,12 @@ class AuthService {
     return _remoteRepository.login(params.email, params.password);
   }
 
-  Future<Success<UserAuth>> register(RegisterParam params) async {
-    throw UnimplementedError();
+  Future<Success<bool>> register(RegisterParam params) async {
+    return _remoteRepository.register(
+      params.email,
+      params.password,
+      params.username,
+    );
   }
 
   Future<Success<UserAuth>> logout() async {
@@ -45,4 +49,10 @@ class LoginParam {
   LoginParam(this.email, this.password);
 }
 
-class RegisterParam {}
+class RegisterParam {
+  final String email;
+  final String password;
+  final String username;
+
+  RegisterParam(this.email, this.password, this.username);
+}

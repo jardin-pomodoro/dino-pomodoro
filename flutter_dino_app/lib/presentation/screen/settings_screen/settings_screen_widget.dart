@@ -39,7 +39,11 @@ class SettingsScreenWidget extends ConsumerWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                ref.read(authStateNotifierProvider.notifier).clearUser();
+                showErrorSnackBar(context, "Déconnexion réussie");
+                context.go(RouteNames.login);
+              },
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 @immutable
@@ -40,7 +38,7 @@ class User {
       updated: updated,
     );
   }
-  
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       collectionId: json['collectionId'] as String,

@@ -16,7 +16,7 @@ class ManualAuthentification extends StatelessWidget {
           isScrollControlled: true,
           builder: (context) => SingleChildScrollView(
             child: Container(
-              decoration: bottom_sheet_decoration(),
+              decoration: bottomSheetDecoration(),
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: DefaultTabController(
