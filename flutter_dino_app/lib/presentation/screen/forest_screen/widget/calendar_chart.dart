@@ -1,10 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/forest_screen_widget.dart';
 import '../../../theme/theme.dart';
 import 'dart:math';
 
 class CalendarChart extends StatefulWidget {
-  final String granularity;
+  final CalendarGranularity granularity;
   final List<int> dataByGranularity;
   const CalendarChart({
     Key? key,
@@ -285,13 +286,13 @@ class _CalendarChartState extends State<CalendarChart> {
       );
 
   List<BarChartGroupData> _chartGroups(
-      String granularity, List<int> dataByGranularity) {
+      CalendarGranularity granularity, List<int> dataByGranularity) {
     final List fixedList =
         Iterable<int>.generate(dataByGranularity.length).toList();
     final double barChartWidth;
-    if (granularity == "day" || granularity == "month") {
+    if (granularity == CalendarGranularity.day || granularity == CalendarGranularity.month) {
       barChartWidth = 6;
-    } else if (granularity == "week" || granularity == "year") {
+    } else if (granularity == CalendarGranularity.week || granularity == CalendarGranularity.year) {
       barChartWidth = 15;
     } else {
       barChartWidth = 8;
@@ -316,14 +317,33 @@ class _CalendarChartState extends State<CalendarChart> {
         .toList();
   }
 
-  SideTitles _sideTitles(String granularity) {
-    if (granularity == 'day') {
-      return _dayTitles;
-    } else if (granularity == 'week') {
-      return _weekTitles;
-    } else if (granularity == 'month') {
-      return _monthTitles;
+  SideTitles _sideTitles(CalendarGranularity granularity) {
+    switch (granularity) {
+      case CalendarGranularity.day:
+        return _dayTitles;
+      case CalendarGranularity.week:
+        return _weekTitles;
+      case CalendarGranularity.month:
+        return _monthTitles;
+      case CalendarGranularity.year:
+        return _yearTitles;
+      default:
+        return _dayTitles;
     }
-    return _yearTitles;
+  }
+}
+
+String granularityToString(CalendarGranularity granularity) {
+  switch (granularity) {
+    case CalendarGranularity.day:
+      return 'jour';
+    case CalendarGranularity.week:
+      return 'semaine';
+    case CalendarGranularity.month:
+      return 'mois';
+    case CalendarGranularity.year:
+      return 'année';
+    default:
+      return 'jour';
   }
 }

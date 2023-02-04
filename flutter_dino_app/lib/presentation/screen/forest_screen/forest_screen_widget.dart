@@ -21,15 +21,6 @@ final calendarGranularityProvider = StateProvider<CalendarGranularity>(
   (ref) => CalendarGranularity.day,
 );
 
-/*final productsProvider = Provider<List<Tree>>((ref) async {
-  final sortType = ref.watch(calendarGranularityProvider);
-  switch (sortType) {
-    case CalendarGranularity.day:
-    case CalendarGranularity.week:
-    case CalendarGranularity.month:
-    case CalendarGranularity.year:
-  }
-});*/
 
 class ForestScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
@@ -96,7 +87,7 @@ class ForestScreenWidget extends ConsumerWidget {
             height: MediaQuery.of(context).size.height * 0.4,
             child: calendarStats.when(
             data: (stats) => CalendarChart(
-              granularity: granularity,
+              granularity: ref.watch(calendarGranularityProvider),
               dataByGranularity: stats,
             ),
             error: (error, stackTrace) => Text('error ref $error'),
@@ -108,4 +99,5 @@ class ForestScreenWidget extends ConsumerWidget {
     );
   }
 }
+
 

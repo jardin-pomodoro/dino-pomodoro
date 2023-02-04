@@ -195,9 +195,9 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
 
         dateMapForAWeek.update(
             DateTime.utc(element.started.year, element.started.month,
-                element.started.day, 0
-            ),
-            (value) => value + element.ended.difference(element.started).inMinutes);
+                element.started.day, 0),
+            (value) =>
+                value + element.ended.difference(element.started).inMinutes);
       }
     });
     print('dateMap');
@@ -205,38 +205,44 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.month) {
     dataPast = dataByGranularity.sublist(0, 31);
-    print('ici par mois');
-    final firstDayOfMonth = DateTime.utc(selectedDate.year, selectedDate.month, 1, 0);
-    final lastDayOfMonth = DateTime.utc(selectedDate.year, selectedDate.month + 1, 0, 0);
+    final firstDayOfMonth =
+        DateTime.utc(selectedDate.year, selectedDate.month, 1, 0);
+    final lastDayOfMonth =
+        DateTime.utc(selectedDate.year, selectedDate.month + 1, 0, 0);
     final Map<DateTime, int> dateMapForAWeek = dataPast.asMap().map(
-            (key, value) => MapEntry(
+        (key, value) => MapEntry(
             DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
                 firstDayOfMonth.day + key, 0),
-            0)
-    );
-    // si heure différente alors écart de minute entre l'heure d'après et l'heure d'avant
+            0));
     trees.forEach((element) {
       if (element.started.day == element.ended.day) {
-        print('element.started == element.ended');
-        print(element.started);
-        print(element.ended);
-        print(DateTime.utc(element.started.year, element.started.month,
-            element.started.day, 0
-        ));
         dateMapForAWeek.update(
             DateTime.utc(element.started.year, element.started.month,
-                element.started.day, 0
-            ),
-                (value) => value + element.ended.difference(element.started).inMinutes);
+                element.started.day, 0),
+            (value) =>
+                value + element.ended.difference(element.started).inMinutes);
       }
     });
-    print('dateMap');
-    print(dateMapForAWeek);
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.year) {
     dataPast = dataByGranularity.sublist(0, 12);
+    final firstDayOfYear = DateTime.utc(selectedDate.year, 1, 1, 0);
+    final Map<DateTime, int> dateMapForAYear = dataPast.asMap().map(
+        (key, value) => MapEntry(
+            DateTime.utc(firstDayOfYear.year, firstDayOfYear.month + key, 1, 0),
+            0));
+    trees.forEach((element) {
+      if (element.started.month == element.ended.month) {
+        dateMapForAYear.update(
+            DateTime.utc(element.ended.year, element.ended.month, 1, 0, 0),
+            (value) =>
+                value + element.ended.difference(element.started).inMinutes
+        );
+      }
+    });
+    return Future.value(dateMapForAYear.values.toList());
   }
-  return Future.value(dataPast);
+  return Future.value([]);
 }
 
 DateTime getFirstDayOfWeek(DateTime date) {
@@ -263,98 +269,11 @@ final fetchTreeCalendar = FutureProvider((ref) async {
   final calendarValues =
       await getDataForCalendar(retrieveTree.data!, granularity, selectedDate);
   return Future.value(calendarValues);
-
-  // faire une map avec toutes les date possible en clé et le nombre d'arbre en valeur, pour savoir quel arbre est planté quand on se base sur endDate
-
-  /*List<int> dataByGranularity = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
-  late List<int> dataPast = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
-  print('youhouuu');
-  print(granularity);
-  if (granularity == CalendarGranularity.day) {
-    print('c\'est un jour');
-    dataPast = dataByGranularity.sublist(0, 24);
-    final Map<DateTime, int> dateMap = dataPast.asMap().map((key, value) =>
-        MapEntry(
-            DateTime.utc(
-                selectedDate.year, selectedDate.month, selectedDate.day, key),
-            value));
-    print('dateMap');
-    print(dateMap);
-  } else if (granularity == CalendarGranularity.week) {
-    dataPast = dataByGranularity.sublist(0, 7);
-  } else if (granularity == CalendarGranularity.month) {
-    dataPast = dataByGranularity.sublist(0, 30);
-  } else if (granularity == CalendarGranularity.year) {
-    dataPast = dataByGranularity.sublist(0, 12);
-  }
-  print('avant le return');*/
 });
+
+
+
+
 
 final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);
