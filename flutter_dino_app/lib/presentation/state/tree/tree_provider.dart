@@ -1,11 +1,13 @@
 import 'dart:async';
-
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/domain/services/tree_service.dart';
-
+import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
+import 'package:flutter_dino_app/data/datasource/api/repositories/api_tree_repository.dart';
+import '../../../core/success.dart';
 import '../../../data/datasource/local/repositories/local_tree_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/tree.dart';
+import '../../../domain/services/tree_service.dart';
+import '../../../state/api_consumer/api_consumer.dart';
+import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../screen/forest_screen/forest_screen_widget.dart';
 
 class TreeByTypeUI {
@@ -20,15 +22,22 @@ class TreeByTypeUI {
 
 
 final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
-  final slider = ref.watch(calendarGranularityProvider);
+  final granularity = ref.watch(calendarGranularityProvider);
+  final ApiConsumer consumer = ref.read(apiProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
   final treeService = TreeService(
-      localRepository: LocalTreeRepository(), granularity: slider);
-  final retrieveTree = await treeService.retrieveTree();
+      remoteRepository: RemoteTreeRepository(consumer),
+      localRepository: LocalTreeRepository(),
+  );
+  final retrieveTree = await treeService.retrieveTree(userAuth.user.id, DateTime.utc(2022, 12, 5), granularity);
+  print('retrieveTree: $retrieveTree');
+  print(retrieveTree.data);
   if (!retrieveTree.isSuccess) {
     return Future.value([]);
   }
 
   final trees = retrieveTree.data;
+  print('trees: $trees');
   final seedTypeToSeedsUsed = trees!.fold({}, (previousValue, tree) {
     if (previousValue.containsKey(tree.expand.seedType.id)) {
       previousValue[tree.expand.seedType.id] += 1;
@@ -61,6 +70,16 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
 });
 
 final fetchTreeCalendar = FutureProvider((ref) async {
+
+  final granularity = ref.watch(calendarGranularityProvider);
+  final ApiConsumer consumer = ref.read(apiProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
+  final treeService = TreeService(
+      remoteRepository: RemoteTreeRepository(consumer),
+      localRepository: LocalTreeRepository()
+  );
+  final retrieveTree = await treeService.retrieveTree(userAuth.user.id, DateTime.utc(2022, 12, 10), granularity);
+  print('retrieveTreeFrom calendar: $retrieveTree');
 
   final calendarGranularity = ref.watch(calendarGranularityProvider);
   List<int> dataByGranularity = [
@@ -145,8 +164,12 @@ final fetchTreeCalendar = FutureProvider((ref) async {
 
 final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);
-  final slider = ref.watch(calendarGranularityProvider);
+  final granularity = ref.watch(calendarGranularityProvider);
+  final ApiConsumer consumer = ref.read(apiProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
   final treeService = TreeService(
-      localRepository: LocalTreeRepository(), granularity: slider);
-  return treeService.retrieveTree();
+      remoteRepository: RemoteTreeRepository(consumer),
+      localRepository: LocalTreeRepository(),
+  );
+  return treeService.retrieveTree(userAuth.user.id, DateTime.utc(2022, 12, 10), granularity);
 });

@@ -12,7 +12,8 @@ import '../../../../state/pomodoro_states/forest_state.dart';
 
 class LocalTreeRepository implements  TreeRepository {
   @override
-  Future<Success<List<Tree>>> retrieveRemyTreeRepository() {
+  Future<Success<List<Tree>>> retrieveTreeRepository(String userId, DateTime startDate, DateTime endDate) {
+    print("appel du repo local");
     final forest = List<Tree>.generate(
       50,
           (index) {
