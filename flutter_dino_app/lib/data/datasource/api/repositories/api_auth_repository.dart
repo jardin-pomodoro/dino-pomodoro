@@ -45,7 +45,7 @@ class ApiAuthRepository implements AuthRepository {
 
   @override
   Future<Success<void>> logout() async {
-    await pb.logout();
+    await client.logout();
     return Future.value(Success(data: null));
   }
 
@@ -53,17 +53,17 @@ class ApiAuthRepository implements AuthRepository {
   Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth) async {
     final updateUser = userAuth.user.toUpdateUser();
     final record =
-        await pb.updateUserInfo(userAuth.user.id, updateUser.toMap());
+        await client.updateUserInfo(userAuth.user.id, updateUser.toMap());
     final authEntity = AuthEntity.fromJson(record.toJson());
     return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
   }
 
   @override
-  Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar) async {
-    final record = await pb.updateUserAvatar(userAuth.user.id, avatar);
+  Future<Success<UserAuth>> updateUserAvatar(
+      UserAuth userAuth, File avatar) async {
+    final record = await client.updateUserAvatar(userAuth.user.id, avatar);
     final authEntity = AuthEntity.fromJson(record.toJson());
     return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
-
   }
 
   @override
