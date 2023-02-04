@@ -8,7 +8,7 @@ import '../../../domain/models/tree.dart';
 import '../../../domain/services/tree_service.dart';
 import '../../../state/api_consumer/api_consumer.dart';
 import '../../../state/pomodoro_states/auth_state_notifier.dart';
-import '../../screen/forest_screen/forest_screen_widget.dart';
+import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
 
 class TreeByTypeUI {
   final String imagePath;

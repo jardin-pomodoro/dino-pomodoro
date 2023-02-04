@@ -29,7 +29,7 @@ class _CalendarChartState extends State<CalendarChart> {
           padding: const EdgeInsets.only(
             top: 20,
             bottom: 5,
-            left: 10,
+            left: 20,
           ),
           child: AspectRatio(
             aspectRatio: 2,
@@ -49,10 +49,10 @@ class _CalendarChartState extends State<CalendarChart> {
                       AxisTitles(sideTitles: _sideTitles(widget.granularity)),
                   leftTitles: AxisTitles(
                       sideTitles: SideTitles(
+                    reservedSize: 30,
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
                       String text = '';
-                      int len = widget.dataByGranularity.length - 1;
                       switch (value.toInt()) {
                         case 0:
                           text = '0M';
@@ -62,7 +62,7 @@ class _CalendarChartState extends State<CalendarChart> {
                           widget.dataByGranularity.reduce(max)) {
                         text = value.toInt().toString();
                       }
-                      return Text(text);
+                      return Text(text, textScaleFactor: 0.8);
                     },
                   )),
                   rightTitles: AxisTitles(),
@@ -290,9 +290,11 @@ class _CalendarChartState extends State<CalendarChart> {
     final List fixedList =
         Iterable<int>.generate(dataByGranularity.length).toList();
     final double barChartWidth;
-    if (granularity == CalendarGranularity.day || granularity == CalendarGranularity.month) {
+    if (granularity == CalendarGranularity.day ||
+        granularity == CalendarGranularity.month) {
       barChartWidth = 6;
-    } else if (granularity == CalendarGranularity.week || granularity == CalendarGranularity.year) {
+    } else if (granularity == CalendarGranularity.week ||
+        granularity == CalendarGranularity.year) {
       barChartWidth = 15;
     } else {
       barChartWidth = 8;
