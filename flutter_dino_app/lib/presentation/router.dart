@@ -14,7 +14,7 @@ import 'theme/theme.dart';
 import 'widgets/navigation_drawer.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RouteNames.forest,
+  initialLocation: RouteNames.login,
   routes: [
     GoRoute(
       path: RouteNames.login,
