@@ -20,46 +20,50 @@ class PendingInvitations extends ConsumerWidget {
     return Consumer(builder: (context, ref, child) {
       final providers = ref.watch(friendshipServiceProvider);
       final friendships =
-          ref.watch(receivedPendingFriendshipsStateNotifierProvider);
+      ref.watch(receivedPendingFriendshipsStateNotifierProvider);
       return Expanded(
         child: ListView(
             children: friendships
-                .map((friendship) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0),
-                      child: ActionBanner(
-                        body: friendship.user,
-                        startIcon: const FaIcon(
-                          FontAwesomeIcons.user,
-                          color: PomodoroTheme.white,
-                        ),
-                        clickOnAction: (_) {
-                          providers.acceptFriendship(friendship).then((success) {
-                            if (success.isSuccess) {
-                              showSnackBar(context, "Amitié accepté !");
-                              _refreshFriendships(ref, context);
-                            }
-                          });
-                        },
-                        actionIcon: const FaIcon(
-                          FontAwesomeIcons.circlePlus,
-                          color: PomodoroTheme.white,
-                        ),
-                        clickOnActionSecond: (_) {
-                          providers
-                              .rejectFriendship(friendship)
-                              .then((success) {
-                            if (success.isSuccess) {
-                              showSnackBar(context, "Amitié rejeté !");
-                              _refreshFriendships(ref, context);
-                            }
-                          });
-                        },
-                        actionSecondIcon: const FaIcon(
-                          FontAwesomeIcons.circleXmark,
-                          color: PomodoroTheme.white,
-                        ),
-                      ),
-                    ))
+                .map((friendship) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                child: ActionBanner(
+                  body: friendship.user,
+                  startIcon: const FaIcon(
+                    FontAwesomeIcons.user,
+                    color: PomodoroTheme.white,
+                  ),
+                  clickOnAction: (_) {
+                    providers
+                        .acceptFriendship(friendship)
+                        .then((success) {
+                      if (success.isSuccess) {
+                        showSnackBar(context, "Amitié accepté !");
+                        _refreshFriendships(ref, context);
+                      }
+                    });
+                  },
+                  actionIcon: const FaIcon(
+                    FontAwesomeIcons.circlePlus,
+                    color: PomodoroTheme.white,
+                  ),
+                  clickOnActionSecond: (_) {
+                    providers
+                        .rejectFriendship(friendship)
+                        .then((success) {
+                      if (success.isSuccess) {
+                        showSnackBar(context, "Amitié rejeté !");
+                        _refreshFriendships(ref, context);
+                      }
+                    });
+                  },
+                  actionSecondIcon: const FaIcon(
+                    FontAwesomeIcons.circleXmark,
+                    color: PomodoroTheme.white,
+                  ),
+                ),
+              );
+            })
                 .toList()),
       );
     });

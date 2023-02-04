@@ -39,6 +39,16 @@ final receivedPendingFriendshipsStateNotifierProvider =
       .toList();
 });
 
+final sentPendingFriendshipsStateNotifierProvider =
+Provider<List<Friendship>>((ref) {
+  final friendships = ref.watch(friendshipStateNotifierProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
+
+  return friendships
+      .where((friendship) => friendship.user == userAuth.user.id && friendship.status == FriendshipStatus.pending)
+      .toList();
+});
+
 final acceptedFriendshipsStateNotifierProvider =
     Provider<List<Friendship>>((ref) {
   final friendships = ref.watch(friendshipStateNotifierProvider);

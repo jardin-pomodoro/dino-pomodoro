@@ -36,10 +36,10 @@ class FriendshipService {
     return Success.fromFailure(failureMessage: "Network connectivity required");
   }
 
-  Future<Success<void>> removeFriendship(String userId) async {
+  Future<Success<void>> removeFriendship(String friendshipId) async {
     if (await NetworkChecker.hasConnection()) {
       final seeds =
-          await remoteRepository.removeFriendship(userId);
+          await remoteRepository.removeFriendship(friendshipId);
       if (seeds.isSuccess) {
         return seeds;
       }

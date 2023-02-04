@@ -50,6 +50,13 @@ class PomodoroTheme {
     color: secondary,
   );
 
+
+  static const TextStyle textWhite = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: white,
+  );
+
   static const TextStyle textBold = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,

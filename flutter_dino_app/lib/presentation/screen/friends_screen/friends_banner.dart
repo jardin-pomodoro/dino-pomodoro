@@ -4,15 +4,11 @@ import '../../theme/assets.dart';
 import '../../theme/theme.dart';
 
 class FriendsBanner extends StatelessWidget {
-  final String body;
-  final String treeGrown;
-  final String timeWhereTreeGrown;
+  final String userId;
 
   const FriendsBanner({
     Key? key,
-    required this.body,
-    required this.treeGrown,
-    required this.timeWhereTreeGrown,
+    required this.userId,
   }) : super(key: key);
 
 
@@ -31,9 +27,10 @@ class FriendsBanner extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          //TODO
           Text(
-            body,
-            style: PomodoroTheme.title4,
+            userId,
+            style: PomodoroTheme.title4White,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -44,8 +41,8 @@ class FriendsBanner extends StatelessWidget {
                 child: Row(
                     children: [
                       Text(
-                        treeGrown,
-                        style: PomodoroTheme.text,
+                        "15",
+                        style: PomodoroTheme.textWhite,
                       ),
                       const Image(
                         image: AssetImage(PomodoroAssets.treeImage),
@@ -58,12 +55,12 @@ class FriendsBanner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
-                    children: [
+                    children: const [
                       Text(
-                        "$timeWhereTreeGrown min",
-                        style: PomodoroTheme.text,
+                        "214 min",
+                        style: PomodoroTheme.textWhite,
                       ),
-                      const Image(
+                      Image(
                         image: AssetImage(PomodoroAssets.chronoImage),
                         color: PomodoroTheme.white,
                         height: 20,
