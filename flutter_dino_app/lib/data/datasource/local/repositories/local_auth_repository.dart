@@ -31,7 +31,8 @@ class LocalAuthRepository implements AuthRepository {
   @override
   Future<Success<void>> saveUserAuth(UserAuth userAuth) async {
     final db = await dbSource.db();
-    final result = await db.insert('user_auth', {
+    await db.delete('user_auth');
+    await db.insert('user_auth', {
       'id': userAuth.user.id,
       'json': userAuth.toJson(),
     });
