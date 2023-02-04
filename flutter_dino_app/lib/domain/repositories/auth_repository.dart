@@ -8,4 +8,6 @@ abstract class AuthRepository {
   Future<Success<UserAuth>> retrieveUserAuth();
 
   Future<Success<void>> saveUserAuth(UserAuth userAuth);
+  Future<Success<void>> logout();
+  Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth);
 }

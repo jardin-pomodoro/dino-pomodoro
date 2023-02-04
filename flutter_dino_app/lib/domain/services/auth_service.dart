@@ -17,8 +17,10 @@ class AuthService {
     throw UnimplementedError();
   }
 
-  Future<Success<UserAuth>> logout() async {
-    throw UnimplementedError();
+  Future<Success<void>> logout() async {
+    await _localRepository.logout();
+    await _remoteRepository.logout();
+    return Success(data: null);
   }
 
   Future<Success<void>> userAuthSuccess(UserAuth userAuth) async {
@@ -35,6 +37,15 @@ class AuthService {
     }
 
     return userAuthSuccess;
+  }
+  Future<Success<void>> updateUserInfo(UserAuth userAuth) async {
+    final remoteResult = await _remoteRepository.updateUserInfo(userAuth);
+    final localResult =
+        await _localRepository.updateUserInfo(remoteResult.data!);
+    if (localResult.isSuccess && remoteResult.isSuccess) {
+      return Success(data: null);
+    }
+    return Success.fromFailure(failureMessage: "Failed to update user auth");
   }
 }
 

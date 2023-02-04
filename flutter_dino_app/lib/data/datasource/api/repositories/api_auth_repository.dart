@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_dino_app/core/success.dart';
 import 'package:flutter_dino_app/data/datasource/api/entity/auth_entity.dart';
@@ -41,5 +41,20 @@ class ApiAuthRepository implements AuthRepository {
   Future<Success<void>> saveUserAuth(UserAuth userAuth) {
     pb.pb.authStore.save(userAuth.token, userAuth.authModel);
     return Future.value(Success(data: null));
+  }
+
+  @override
+  Future<Success<void>> logout() async {
+    await pb.logout();
+    return Future.value(Success(data: null));
+  }
+
+  @override
+  Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth) async {
+    final updateUser = userAuth.user.toUpdateUser();
+    final record =
+        await pb.updateUserInfo(userAuth.user.id, updateUser.toMap());
+    final authEntity = AuthEntity.fromJson(record.toJson());
+    return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
   }
 }
