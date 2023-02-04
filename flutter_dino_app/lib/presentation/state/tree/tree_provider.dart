@@ -188,7 +188,11 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
             0));
     // si heure différente alors écart de minute entre l'heure d'après et l'heure d'avant
     trees.forEach((element) {
-      if (element.started == element.ended) {
+      if (element.started.day == element.ended.day) {
+        print('element.started == element.ended');
+        print(element.started);
+        print(element.ended);
+
         dateMapForAWeek.update(
             DateTime.utc(element.started.year, element.started.month,
                 element.started.day, 0
@@ -200,7 +204,35 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
     print(dateMapForAWeek);
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.month) {
-    dataPast = dataByGranularity.sublist(0, 30);
+    dataPast = dataByGranularity.sublist(0, 31);
+    print('ici par mois');
+    final firstDayOfMonth = DateTime.utc(selectedDate.year, selectedDate.month, 1, 0);
+    final lastDayOfMonth = DateTime.utc(selectedDate.year, selectedDate.month + 1, 0, 0);
+    final Map<DateTime, int> dateMapForAWeek = dataPast.asMap().map(
+            (key, value) => MapEntry(
+            DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
+                firstDayOfMonth.day + key, 0),
+            0)
+    );
+    // si heure différente alors écart de minute entre l'heure d'après et l'heure d'avant
+    trees.forEach((element) {
+      if (element.started.day == element.ended.day) {
+        print('element.started == element.ended');
+        print(element.started);
+        print(element.ended);
+        print(DateTime.utc(element.started.year, element.started.month,
+            element.started.day, 0
+        ));
+        dateMapForAWeek.update(
+            DateTime.utc(element.started.year, element.started.month,
+                element.started.day, 0
+            ),
+                (value) => value + element.ended.difference(element.started).inMinutes);
+      }
+    });
+    print('dateMap');
+    print(dateMapForAWeek);
+    return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.year) {
     dataPast = dataByGranularity.sublist(0, 12);
   }
