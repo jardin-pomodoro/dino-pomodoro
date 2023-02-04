@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:pocketbase/pocketbase.dart';
 
 import 'entity/friendship_entity.dart';
@@ -61,6 +63,30 @@ class ApiConsumer {
 
   Future<RecordAuth> authRefresh() async {
     return pb.collection(Collection.users.name).authRefresh();
+  }
+
+  Future<RecordAuth> updateUserInfo(
+      String userId, Map<String, dynamic> body) async {
+    await pb.collection(Collection.users.name).update(userId, body: body);
+    return pb.collection(Collection.users.name).authRefresh();
+  }
+
+  Future<RecordAuth> updateUserAvatar(String userId, File avatar) async {
+    await pb.collection(Collection.users.name).update(
+      userId,
+      files: [
+        http.MultipartFile.fromBytes(
+          'avatar',
+          avatar.readAsBytesSync(),
+          filename: avatar.path.split('/').last,
+        ),
+      ],
+    );
+    return pb.collection(Collection.users.name).authRefresh();
+  }
+
+  Future<void> logout() async {
+    pb.authStore.clear();
   }
 
   Future<List<RecordModel>> fetchSeeds() async {
@@ -127,9 +153,10 @@ class ApiConsumer {
 
   Future<List<RecordModel>> fetchFriendshipRequests(String userId) async {
     final friendship =
-    await pb.collection(Collection.friendship.name).getFullList(
-      filter: '(user == "$userId" || relation == "$userId") && status == pending',
-    );
+        await pb.collection(Collection.friendship.name).getFullList(
+              filter:
+                  '(user == "$userId" || relation == "$userId") && status == pending',
+            );
 
     return friendship;
   }
