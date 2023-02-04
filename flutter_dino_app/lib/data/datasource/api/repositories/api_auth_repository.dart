@@ -57,4 +57,12 @@ class ApiAuthRepository implements AuthRepository {
     final authEntity = AuthEntity.fromJson(record.toJson());
     return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
   }
+
+  @override
+  Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar) async {
+    final record = await pb.updateUserAvatar(userAuth.user.id, avatar);
+    final authEntity = AuthEntity.fromJson(record.toJson());
+    return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
+
+  }
 }

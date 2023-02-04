@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:mime/mime.dart';
 import 'package:flutter_dino_app/domain/models/user_auth.dart';
 
 import '../../core/success.dart';
@@ -38,6 +40,7 @@ class AuthService {
 
     return userAuthSuccess;
   }
+
   Future<Success<void>> updateUserInfo(UserAuth userAuth) async {
     final remoteResult = await _remoteRepository.updateUserInfo(userAuth);
     final localResult =
@@ -46,6 +49,20 @@ class AuthService {
       return Success(data: null);
     }
     return Success.fromFailure(failureMessage: "Failed to update user auth");
+  }
+
+  Future<Success<UserAuth>> updateUserAvatar(
+      UserAuth userAuth, File avatar) async {
+    final mimeType = lookupMimeType(avatar.path);
+    if (mimeType == null || !mimeType.startsWith("image")) {
+      return Success.fromFailure(failureMessage: "Invalid image type");
+    }
+    final updatedUserAuth = await _remoteRepository.updateUserAvatar(
+        userAuth, avatar);
+    if (updatedUserAuth.isSuccess) {
+      await _localRepository.updateUserInfo(updatedUserAuth.data!);
+    }
+    return updatedUserAuth;
   }
 }
 
