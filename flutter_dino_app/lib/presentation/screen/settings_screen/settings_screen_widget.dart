@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/auth_screen/auth_screen.dart';
+import 'package:flutter_dino_app/state/auth/auth_service_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
 import '../../widgets/snackbar.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'widgets/avatar.dart';
 
 class SettingsScreenWidget extends ConsumerWidget {
@@ -17,7 +19,9 @@ class SettingsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final connectedUser = ref.watch(authStateNotifierProvider).user;
+    final userAuth = ref.watch(authStateNotifierProvider);
+    final connectedUser = userAuth.user;
+    final authService = ref.read(authServiceProvider);
 
     return Center(
       child: Padding(
@@ -66,8 +70,16 @@ class SettingsScreenWidget extends ConsumerWidget {
                 ),
               ),
               onPressed: () {
-                // todo : update user on remote
-                showSnackBar(context, 'Utilisateur modifié');
+                authService.updateUserInfo(userAuth).then(
+                  (value) {
+                    if (value.isSuccess) {
+                      showSnackBar(context, 'Utilisateur modifié');
+                    } else {
+                      showSnackBar(context,
+                          'Erreur lors de la modification de l\'utilisateur');
+                    }
+                  },
+                );
               },
               child: const Padding(
                 padding: EdgeInsets.all(10),
@@ -89,7 +101,15 @@ class SettingsScreenWidget extends ConsumerWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                authService.logout().then(
+                      (_) {
+                        ref.read(authStateNotifierProvider.notifier).clearUser();
+                        showSnackBar(context, 'Déconnexion réussie');
+                        AuthScreen.navigateTo(context);
+                      },
+                    );
+              },
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
@@ -39,5 +40,24 @@ class LocalAuthRepository implements AuthRepository {
     return Future.value(Success(data: null));
   }
 
+  @override
+  Future<Success<void>> logout() async {
+    final db = await dbSource.db();
+    await db.delete('user_auth');
+    return Future.value(Success(data: null));
+  }
 
+  @override
+  Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth) async {
+    final result = await saveUserAuth(userAuth);
+    if (result.isSuccess) {
+      return Success(data: userAuth);
+    }
+    return Success.fromFailure(failureMessage: "Failed to update user auth");
+  }
+
+  @override
+  Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar) {
+    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+  }
 }
