@@ -25,8 +25,9 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     final authService = ref.read(authServiceProvider);
     return Form(
       key: _formKey,
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(20),
+        height: MediaQuery.of(context).size.height * 0.75,
         child: Column(
           children: [
             TextFormField(

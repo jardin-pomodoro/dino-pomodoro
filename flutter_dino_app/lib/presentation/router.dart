@@ -69,6 +69,7 @@ final GoRouter router = GoRouter(
 
 Widget _scaffoldedWidgetWithoutMenu(String title, Widget child) {
   return Scaffold(
+    resizeToAvoidBottomInset: false,
     appBar: AppBar(
       centerTitle: true,
       title: Text(title),

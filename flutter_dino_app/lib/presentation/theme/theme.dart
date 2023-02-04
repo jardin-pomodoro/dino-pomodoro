@@ -2,6 +2,34 @@ import 'package:flutter/material.dart';
 
 const appTitle = 'Dino pomodoro';
 
+final pomodoroThemeData = ThemeData(
+  primarySwatch: Colors.green,
+  colorScheme: const ColorScheme(
+    brightness: Brightness.light,
+    primary: PomodoroTheme.primary,
+    onPrimary: Colors.white,
+    secondary: PomodoroTheme.accent,
+    onSecondary: Colors.black87,
+    error: PomodoroTheme.errorColor,
+    onError: Colors.white,
+    background: Colors.white,
+    onBackground: Colors.black87,
+    surface: PomodoroTheme.accent,
+    onSurface: PomodoroTheme.secondary,
+  ),
+  tabBarTheme: const TabBarTheme(
+    labelColor: PomodoroTheme.secondary,
+    indicator: UnderlineTabIndicator(
+      borderSide: BorderSide(
+        color: Colors.green,
+        width: 2,
+      ),
+    ),
+    labelStyle: PomodoroTheme.title4,
+    unselectedLabelColor: PomodoroTheme.secondary,
+  ),
+);
+
 class PomodoroTheme {
   static const Color white = Color(0xFFFCF6F5);
   static const Color primary = Color(0xFF0B6623);
