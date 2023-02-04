@@ -58,7 +58,7 @@ class PendingInvitations extends ConsumerWidget {
                     });
                   },
                   actionSecondIcon: const FaIcon(
-                    FontAwesomeIcons.circleXmark,
+                    FontAwesomeIcons.solidCircleXmark,
                     color: PomodoroTheme.white,
                   ),
                 ),

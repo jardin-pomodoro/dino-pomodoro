@@ -47,14 +47,16 @@ class _ActionBannerState extends State<ActionBanner> {
               },
               child: widget.actionIcon,
             ),
-                () {
+            () {
               if (widget.clickOnActionSecond != null) {
-                return GestureDetector(
-                  onTap: () {
-                    widget.clickOnActionSecond!(widget.body);
-                  },
-                  child: widget.actionSecondIcon,
-                );
+                return Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: GestureDetector(
+                      onTap: () {
+                        widget.clickOnActionSecond!(widget.body);
+                      },
+                      child: widget.actionSecondIcon,
+                    ));
               }
               return Container();
             }(),

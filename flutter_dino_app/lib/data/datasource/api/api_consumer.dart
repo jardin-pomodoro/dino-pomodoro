@@ -162,9 +162,15 @@ class ApiConsumer {
     return record;
   }
 
-  Future<RecordModel> fetchUser(CreateTree createTree) async {
-    final record = await pb.collection(Collection.tree.name).create(
-      body: createTree.toJson(),
+  Future<RecordModel> fetchUser(String userId) async {
+    final record = await pb.collection(Collection.users.name).getFirstListItem(
+      'userId="$userId"',
+    );
+    return record;
+  }
+  Future<RecordModel> fetchUserByEmail(String email) async {
+    final record = await pb.collection(Collection.users.name).getFirstListItem(
+      'email="$email"',
     );
     return record;
   }
