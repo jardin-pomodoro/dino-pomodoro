@@ -25,18 +25,13 @@ class TreeService {
     final range = _getRangeFromGranularity(date, granularity);
 
     if (await NetworkChecker.hasConnection()) {
-      print('has connection');
+      print('rangeDate: ${range.startDate} ${range.endDate}');
       final tree = await remoteRepository.retrieveTreeRepository(
           userId, range.startDate, range.endDate);
-      print('tree: $tree');
-      print(tree.isSuccess);
       if (tree.isSuccess) {
-        print(tree.data);
         return tree;
       }
-      print("hello c'est claude");
     }
-    print("ça ne fonctionne pas");
     return await localRepository.retrieveTreeRepository(
         userId, range.startDate, range.endDate);
   }

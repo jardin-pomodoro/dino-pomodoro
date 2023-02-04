@@ -15,15 +15,9 @@ class RemoteTreeRepository implements TreeRepository {
   @override
   Future<Success<List<Tree>>> retrieveTreeRepository(String userId, DateTime startDate, DateTime endDate) async {
     try {
-      print('appel au repository');
-      print(apiConsumer.pb);
-      print('userId: $userId');
-      //final String startDateUtc = DateTime(date.year, date.month, 1).toIso8601String();
-      //final String endDateUtc = DateTime(date.year, date.month + 1, 0).toIso8601String();
-      final String startDateUtc = startDate.toIso8601String();
-      final String endDateUtc = endDate.toIso8601String();
-      print(startDateUtc);
-      print(endDateUtc);
+      final String startDateUtc = startDate.toString();
+      final String endDateUtc = endDate.toString();
+      print('before request: $startDateUtc $endDateUtc');
       final treesFromRequest =
           await apiConsumer.pb.collection(Collection.tree.name).getFullList(
                 batch: 200,
@@ -31,13 +25,10 @@ class RemoteTreeRepository implements TreeRepository {
                 expand: 'seed_type',
               );
       print(treesFromRequest.length);
-      print('treesFromRequest: $treesFromRequest');
-      print('appel au treesFromRequest');
       final trees = treesFromRequest
           .map((e) => TreeEntity.fromJson(e.toJson()))
           .map(TreeMapper.fromEntity)
           .toList();
-      print('trees: $trees');
       return Success(data: trees);
     } catch (e) {
       print('e: $e');
