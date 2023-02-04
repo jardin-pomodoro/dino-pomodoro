@@ -16,13 +16,15 @@ class AuthScreen extends ConsumerWidget {
     final AsyncValue<List<OAuth2Provider>> providers =
         ref.watch(authMethodProvider);
 
-    final authService = ref.watch(authServiceProvider);
+    final authService = ref.read(authServiceProvider);
 
-    authService.getUserAuth().then((value) {
-      if (value.isSuccess){
-        ref.read(authStateNotifierProvider.notifier).setUser(value.data!);
-        GrowingScreenWidget.navigateTo(context);
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      authService.getUserAuth().then((value) {
+        if (value.isSuccess){
+          ref.read(authStateNotifierProvider.notifier).setUser(value.data!);
+          GrowingScreenWidget.navigateTo(context);
+        }
+      });
     });
 
     return providers.when(

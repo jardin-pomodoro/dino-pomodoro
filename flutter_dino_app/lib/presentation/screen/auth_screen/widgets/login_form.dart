@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/growing_screen/growing_screen_widget.dart';
-import 'package:flutter_dino_app/presentation/widgets/snackbar.dart';
-import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
+import '../../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../../../widgets/snackbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../../domain/services/auth_service.dart';
 import '../../../../state/auth/auth_service_provider.dart';
+import '../../growing_screen/growing_screen_widget.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key});

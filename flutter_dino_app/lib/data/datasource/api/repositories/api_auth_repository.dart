@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dino_app/core/success.dart';
 import 'package:flutter_dino_app/data/datasource/api/entity/auth_entity.dart';
 import 'package:flutter_dino_app/data/datasource/api/mapper/auth_mapper.dart';
@@ -29,12 +31,15 @@ class ApiAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Success<UserAuth>> retrieveUserAuth() {
-    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+  Future<Success<UserAuth>> retrieveUserAuth() async {
+    final refreshAuth = await pb.authRefresh();
+    final authEntity = AuthEntity.fromJson(refreshAuth.toJson());
+    return Future.value(Success(data: AuthMapper.fromEntity(authEntity)));
   }
 
   @override
   Future<Success<void>> saveUserAuth(UserAuth userAuth) {
-    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+    pb.pb.authStore.save(userAuth.token, userAuth.authModel);
+    return Future.value(Success(data: null));
   }
 }

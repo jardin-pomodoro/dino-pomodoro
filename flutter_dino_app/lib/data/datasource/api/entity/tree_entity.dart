@@ -34,8 +34,8 @@ class TreeEntity {
   factory TreeEntity.fromJson(Map<String, dynamic> json) {
     return TreeEntity(
       id: json['id'],
-      collectionId: json['collection_id'],
-      collectionName: json['collection_name'],
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
       user: json['user'],
       seedType: json['seed_type'],
       expand: SeedTypeExpandEntity.fromJson(json['expand']),

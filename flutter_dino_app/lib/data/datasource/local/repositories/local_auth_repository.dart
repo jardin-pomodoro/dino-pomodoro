@@ -1,8 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
-import 'package:sqflite/sqflite.dart';
-
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
 import '../../../../domain/repositories/auth_repository.dart';
@@ -34,7 +31,8 @@ class LocalAuthRepository implements AuthRepository {
   @override
   Future<Success<void>> saveUserAuth(UserAuth userAuth) async {
     final db = await dbSource.db();
-    final result = await db.insert('user_auth', {
+    await db.delete('user_auth');
+    await db.insert('user_auth', {
       'id': userAuth.user.id,
       'json': userAuth.toJson(),
     });

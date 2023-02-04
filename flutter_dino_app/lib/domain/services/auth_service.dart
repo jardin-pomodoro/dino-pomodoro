@@ -27,7 +27,14 @@ class AuthService {
   }
 
   Future<Success<UserAuth>> getUserAuth() async {
-    return await _localRepository.retrieveUserAuth();
+    final userAuthSuccess = await _localRepository.retrieveUserAuth();
+    if (userAuthSuccess.isSuccess) {
+      await _remoteRepository.saveUserAuth(userAuthSuccess.data!);
+      final refreshedUserAuth = await _remoteRepository.retrieveUserAuth();
+      return refreshedUserAuth;
+    }
+
+    return userAuthSuccess;
   }
 }
 

@@ -5,6 +5,7 @@ import '../api_consumer.dart';
 import '../entity/seed_type_entity.dart';
 import '../mapper/seed_type_mapper.dart';
 
+
 class ApiSeedTypeRepository implements SeedTypeRepository {
   final ApiConsumer apiConsumer;
 
