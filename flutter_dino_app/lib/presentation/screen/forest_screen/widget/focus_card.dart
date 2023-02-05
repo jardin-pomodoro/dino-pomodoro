@@ -24,7 +24,7 @@ class FocusCard extends StatelessWidget {
             Text(
               "Vous êtes résté concetré ${stats.reduce((value, element) => value += element)} minutes",
               style: const TextStyle(
-                  color: PomodoroTheme.yellow,
+                  color: PomodoroTheme.white,
                   fontSize: 12.0),
             ),
           ],
