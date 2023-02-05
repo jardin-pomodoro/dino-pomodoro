@@ -44,7 +44,7 @@ class ManualAuthentification extends StatelessWidget {
           ),
         );
       },
-      child: const Text('manual Authentification'),
+      child: const Text('Email'),
     );
   }
 }

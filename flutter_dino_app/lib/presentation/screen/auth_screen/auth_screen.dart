@@ -26,7 +26,7 @@ class AuthScreen extends ConsumerWidget {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       authService.getUserAuth().then((value) {
-        if (value.isSuccess){
+        if (value.isSuccess) {
           ref.read(authStateNotifierProvider.notifier).setUser(value.data!);
           GrowingScreenWidget.navigateTo(context);
         }
