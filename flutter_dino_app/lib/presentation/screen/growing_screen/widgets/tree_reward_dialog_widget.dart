@@ -49,8 +49,11 @@ class TreeRewardDialogWidget extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                PriceWidget(
-                  price: tree.seedTypeExpand.price,
+                Chip(
+                  backgroundColor: PomodoroTheme.secondary,
+                  label: PriceWidget(
+                    price: tree.seedTypeExpand.price,
+                  ),
                 ),
               ],
             ),
