@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/forest_screen_widget.dart';
 import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SwipeArrow extends StatelessWidget {
-  const SwipeArrow({Key? key}) : super(key: key);
+  final String text;
+  final Function() clickRight;
+  final Function() clickLeft;
+  const SwipeArrow({
+    Key? key,
+    required this.text,
+    required this.clickRight,
+    required this.clickLeft,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +25,11 @@ class SwipeArrow extends StatelessWidget {
             color: PomodoroTheme.secondary,
           ),
           onPressed: () {
-            // Action lorsque la flèche gauche est appuyée
+            clickLeft();
           },
         ),
-        const Center(
-          child: Text("23 Juillet 2012", style: PomodoroTheme.title4),
+        Center(
+          child: Text(text, style: PomodoroTheme.title4),
         ),
         IconButton(
           icon: const FaIcon(
@@ -28,7 +37,7 @@ class SwipeArrow extends StatelessWidget {
             color: PomodoroTheme.secondary,
           ),
           onPressed: () {
-            // Action lorsque la flèche droite est appuyée
+            clickRight();
           },
         ),
       ],

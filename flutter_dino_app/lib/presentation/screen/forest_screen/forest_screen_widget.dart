@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/swipe_calendar.dart';
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import 'widget/calendar_chart.dart';
@@ -61,9 +62,12 @@ class ForestScreenWidget extends ConsumerWidget {
                     },
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                  child: SwipeArrow(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                  child: SwipeCalendar(
+                    granularityDisplayed:
+                        ref.watch(calendarGranularityProvider),
+                  ),
                 ),
                 treesByTypeUi.when(
                   data: (trees) => ListHorizontalSlide(
