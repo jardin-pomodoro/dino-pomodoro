@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../screen/forest_screen/forest_screen_widget.dart';
 import '../screen/friends_screen/friends_screen_widget.dart';

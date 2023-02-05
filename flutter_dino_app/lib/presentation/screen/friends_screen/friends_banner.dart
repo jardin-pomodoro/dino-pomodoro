@@ -16,13 +16,10 @@ class FriendsBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final providers = ref.watch(userServiceProvider);
-    providers.fetchUserById(userId).then((value)  {
+    providers.fetchUserById(userId).then((value) {
       ref.read(userStateNotifierProvider.notifier).clearUsers();
-      ref
-          .read(userStateNotifierProvider.notifier)
-          .addUser(value.data!);
+      ref.read(userStateNotifierProvider.notifier).addUser(value.data!);
     });
     return ListTile(
       tileColor: PomodoroTheme.secondary,
@@ -48,12 +45,12 @@ class FriendsBanner extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: Row(children: [
+                child: Row(children: const [
                   Text(
                     "15",
                     style: PomodoroTheme.textWhite,
                   ),
-                  const Image(
+                  Image(
                     image: AssetImage(PomodoroAssets.treeImage),
                     color: PomodoroTheme.white,
                     height: 20,

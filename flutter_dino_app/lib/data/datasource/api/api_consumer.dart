@@ -157,6 +157,8 @@ class ApiConsumer {
               filter:
                   '(user == "$userId" || relation == "$userId") && status == pending',
             );
+    return friendship;
+  }
 
   Future<RecordModel> addFriendship(CreateFriendship createFriendship) async {
     final record = await pb.collection(Collection.friendship.name).create(
@@ -196,14 +198,15 @@ class ApiConsumer {
 
   Future<RecordModel> fetchUser(String userId) async {
     final record = await pb.collection(Collection.users.name).getFirstListItem(
-      'userId="$userId"',
-    );
+          'userId="$userId"',
+        );
     return record;
   }
+
   Future<RecordModel> fetchUserByEmail(String email) async {
     final record = await pb.collection(Collection.users.name).getFirstListItem(
-      'email="$email"',
-    );
+          'email="$email"',
+        );
     return record;
   }
 }
