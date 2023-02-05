@@ -1,5 +1,5 @@
-import 'package:flutter_dino_app/data/datasource/api/repositories/api_auth_repository.dart';
-import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
+import '../../data/datasource/api/repositories/api_auth_repository.dart';
+import '../../data/datasource/local/database/database_source.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasource/local/repositories/local_auth_repository.dart';

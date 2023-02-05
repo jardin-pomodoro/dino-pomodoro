@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_dino_app/core/success.dart';
+import '../../core/success.dart';
 
 import '../models/user_auth.dart';
 

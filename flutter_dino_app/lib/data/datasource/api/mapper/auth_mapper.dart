@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/user_auth.dart';
+import '../../../../domain/models/user_auth.dart';
 
 import '../entity/auth_entity.dart';
 import 'user_mapper.dart';

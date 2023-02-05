@@ -1,5 +1,5 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/domain/services/seed_type_service.dart';
+import '../../core/success.dart';
+import '../../domain/services/seed_type_service.dart';
 
 import '../../../data/datasource/api/repositories/api_seed_type_repository.dart';
 import '../../../data/datasource/local/repositories/local_seed_type_repository.dart';
@@ -18,7 +18,8 @@ final seedTypeServiceProvider = Provider<SeedTypeService>((ref) {
       localRepository: localRepository, remoteRepository: remoteRepository);
 });
 
-final fetchSeedTypesProvider = FutureProvider<Success<List<SeedType>>>((ref) async {
+final fetchSeedTypesProvider =
+    FutureProvider<Success<List<SeedType>>>((ref) async {
   final seedTypeService = ref.watch(seedTypeServiceProvider);
 
   return seedTypeService.retrieveSeedTypes();

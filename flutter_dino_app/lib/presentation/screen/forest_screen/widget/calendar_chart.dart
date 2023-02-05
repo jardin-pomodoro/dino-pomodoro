@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../forest_screen_widget.dart';
 import '../../../theme/theme.dart';
 import 'dart:math';
 

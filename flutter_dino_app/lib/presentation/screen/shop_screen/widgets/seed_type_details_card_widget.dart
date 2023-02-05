@@ -28,7 +28,7 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
               color: PomodoroTheme.secondary,
-              width: 2,
+              width: 3,
             ),
           ),
           child: Container(
@@ -113,11 +113,12 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
                   ],
                 ),
                 ElevatedButton(
-                  style: ElevatedButtonTheme.of(context).style?.copyWith(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.green,
-                        ),
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: PomodoroTheme.white,
+                  ),
                   onPressed: () {
                     _buySeed(seedType, ref);
                     showSnackBar(context, "Graine achetée !");

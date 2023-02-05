@@ -1,6 +1,6 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/user_mapper.dart';
-import 'package:flutter_dino_app/domain/models/user.dart';
+import '../../../../core/success.dart';
+import '../mapper/user_mapper.dart';
+import '../../../../domain/models/user.dart';
 
 import '../../../../domain/repositories/user_repository.dart';
 import '../api_consumer.dart';
@@ -16,7 +16,8 @@ class ApiUserRepository implements UserRepository {
     try {
       final user = await apiConsumer.fetchUserByEmail(email);
       return Success(
-          data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())));
+        data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())),
+      );
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
     }
@@ -27,7 +28,8 @@ class ApiUserRepository implements UserRepository {
     try {
       final user = await apiConsumer.fetchUser(userId);
       return Success(
-          data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())));
+        data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())),
+      );
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
     }

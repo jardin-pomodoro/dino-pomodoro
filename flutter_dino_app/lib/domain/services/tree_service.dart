@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/core/success.dart';
+import '../../core/success.dart';
 
 import '../../core/network.dart';
 import '../../presentation/screen/forest_screen/forest_screen_widget.dart';

@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/entity/auth_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/auth_mapper.dart';
-import 'package:flutter_dino_app/domain/models/user_auth.dart';
-import 'package:flutter_dino_app/domain/repositories/auth_repository.dart';
+import '../../../../core/success.dart';
+import '../entity/auth_entity.dart';
+import '../mapper/auth_mapper.dart';
+import '../../../../domain/models/user_auth.dart';
+import '../../../../domain/repositories/auth_repository.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 import '../api_consumer.dart';
