@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'user.dart';
@@ -20,6 +18,7 @@ class UserAuth {
     String? username,
     String? avatar,
     String? email,
+    int? balance,
   }) {
     return UserAuth(
       authModel: authModel,
@@ -28,23 +27,24 @@ class UserAuth {
         username: username,
         avatar: avatar,
         email: email,
+        balance: balance,
       ),
     );
   }
 
-  String toJson() {
-    return json.encode({
+  Map<String, dynamic> toJson() {
+    return {
       'authModel': authModel,
       'token': token,
       'user': user.toJson(),
-    });
+    };
   }
 
   factory UserAuth.fromJson(Map<String, dynamic> json) {
     return UserAuth(
       authModel: json['authModel'],
       token: json['token'] as String,
-      user: User.fromJson(jsonDecode(json['user'])),
+      user: User.fromJson(json['user']),
     );
   }
 }

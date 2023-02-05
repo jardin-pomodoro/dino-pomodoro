@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import '../../../../domain/models/user_auth.dart';
-import '../../../../domain/services/auth_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../domain/models/user.dart';
-import '../../../../state/auth/auth_service_provider.dart';
+import '../../../../domain/models/user_auth.dart';
+import '../../../../domain/services/auth_service.dart';
 import '../../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../../../../state/services/auth_service_provider.dart';
 import '../../../theme/theme.dart';
 
 class Avatar extends ConsumerWidget {

@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
-import '../database/database_source.dart';
+
 import '../../../../core/failure.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
 import '../../../../domain/repositories/auth_repository.dart';
+import '../database/database_source.dart';
 
 class LocalAuthRepository implements AuthRepository {
   final DatabaseSource dbSource;
@@ -36,7 +37,7 @@ class LocalAuthRepository implements AuthRepository {
     await db.delete('user_auth');
     await db.insert('user_auth', {
       'id': userAuth.user.id,
-      'json': userAuth.toJson(),
+      'json': jsonEncode(userAuth.toJson()),
     });
     return Future.value(Success(data: null));
   }
@@ -75,6 +76,7 @@ class LocalAuthRepository implements AuthRepository {
 
 class UnableToRegisterWithoutConnection implements Failure {
   final String message;
+
   UnableToRegisterWithoutConnection({
     this.message = "Unable to register without connection",
   });

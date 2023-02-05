@@ -1,5 +1,4 @@
 import '../../../../domain/models/user.dart';
-
 import '../entity/user_entity.dart';
 import '../pocketbase.dart';
 
@@ -15,6 +14,7 @@ class UserMapper {
           entity.collectionId, entity.id, entity.avatar),
       created: entity.created,
       updated: entity.updated,
+      balance: entity.balance,
     );
   }
 }

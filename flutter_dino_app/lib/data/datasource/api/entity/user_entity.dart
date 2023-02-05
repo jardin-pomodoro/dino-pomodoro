@@ -5,6 +5,7 @@ class UserEntity {
   final String username;
   final String email;
   final String avatar;
+  final int balance;
   final DateTime created;
   final DateTime updated;
 
@@ -15,6 +16,7 @@ class UserEntity {
     required this.id,
     required this.username,
     required this.email,
+    required this.balance,
     required this.avatar,
     required this.updated,
   });
@@ -23,6 +25,7 @@ class UserEntity {
     String? username,
     String? avatar,
     String? email,
+    int? balance,
   }) {
     return UserEntity(
       collectionId: collectionId,
@@ -31,6 +34,7 @@ class UserEntity {
       id: id,
       username: username ?? this.username,
       email: email ?? this.email,
+      balance: balance ?? this.balance,
       avatar: avatar ?? this.avatar,
       updated: updated,
     );
@@ -44,6 +48,7 @@ class UserEntity {
       id: map['id'],
       username: map['username'],
       email: map['email'],
+      balance: map['balance'],
       avatar: map['avatar'],
       updated: DateTime.parse(map['updated']),
     );

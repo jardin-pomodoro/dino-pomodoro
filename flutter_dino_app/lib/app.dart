@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'core/success.dart';
-import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/success.dart';
 import 'domain/models/seed_type.dart';
 import 'presentation/router.dart';
-import 'state/seed_type/seed_type_provider.dart';
+import 'presentation/theme/theme.dart';
 import 'state/seed_type/seed_type_state_notifier.dart';
+import 'state/services/seed_type_service_provider.dart';
 
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../../../router.dart';
-import 'package:go_router/go_router.dart';
-import '../../../widgets/bottom_sheet_decoration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -12,6 +10,8 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import '../../../../data/datasource/api/api_consumer.dart';
 import '../../../../state/api_consumer/api_consumer.dart';
 import '../../../../state/auth/auth.dart';
+import '../../../router.dart';
+import '../../../widgets/bottom_sheet_decoration.dart';
 
 Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
   return Padding(

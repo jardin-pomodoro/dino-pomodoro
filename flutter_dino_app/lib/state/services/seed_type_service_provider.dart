@@ -1,12 +1,11 @@
-import '../../core/success.dart';
-import '../../domain/services/seed_type_service.dart';
-
-import '../../../data/datasource/api/repositories/api_seed_type_repository.dart';
-import '../../../data/datasource/local/repositories/local_seed_type_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasource/api/api_consumer.dart';
+import '../../../data/datasource/api/repositories/api_seed_type_repository.dart';
+import '../../../data/datasource/local/repositories/local_seed_type_repository.dart';
 import '../../../domain/models/seed_type.dart';
+import '../../core/success.dart';
+import '../../domain/services/seed_type_service.dart';
 import '../api_consumer/api_consumer.dart';
 
 final seedTypeServiceProvider = Provider<SeedTypeService>((ref) {

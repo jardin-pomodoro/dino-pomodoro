@@ -1,3 +1,6 @@
+import 'package:flutter_dino_app/data/datasource/api/entity/seed_type_expand_entity.dart';
+import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
+
 import '../../../../domain/models/seed_type.dart';
 import '../entity/seed_type_entity.dart';
 import '../pocketbase.dart';
@@ -18,6 +21,35 @@ class SeedTypeMapper {
       trunkMaxUpgrades: entity.trunkMaxUpgrades,
       created: entity.created,
       updated: entity.updated,
+    );
+  }
+
+  static SeedTypeExpand fromEntityExpand(SeedTypeExpandEntity entity) {
+    return SeedTypeExpand(
+      seedType: fromEntity(entity.seedType),
+    );
+  }
+
+  static SeedTypeExpandEntity toEntityExpand(SeedTypeExpand expand) {
+    return SeedTypeExpandEntity(
+      seedType: toEntity(expand.seedType),
+    );
+  }
+
+  static SeedTypeEntity toEntity(SeedType seedType) {
+    return SeedTypeEntity(
+      collectionId: seedType.collectionId,
+      collectionName: seedType.collectionName,
+      id: seedType.id,
+      name: seedType.name,
+      image: seedType.image,
+      timeToGrow: seedType.timeToGrow,
+      price: seedType.price,
+      reward: seedType.reward,
+      leafMaxUpgrades: seedType.leafMaxUpgrades,
+      trunkMaxUpgrades: seedType.trunkMaxUpgrades,
+      created: seedType.created,
+      updated: seedType.updated,
     );
   }
 }

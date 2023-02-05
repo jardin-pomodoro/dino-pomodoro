@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../domain/models/user.dart';
-import '../../../state/auth/auth_service_provider.dart';
 import '../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../../../state/services/auth_service_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
 import '../../widgets/snackbar.dart';

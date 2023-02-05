@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../domain/models/seed.dart';
+import '../../../utils/upgrade_functions.dart';
 import '../../theme/theme.dart';
 import '../../widgets/price_widget.dart';
-import '../../../utils/upgrade_functions.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SeedCardWidget extends StatelessWidget {
   final Seed seed;
@@ -31,7 +32,7 @@ class SeedCardWidget extends StatelessWidget {
             Image.network(seed.seedTypeExpand.image),
             Text(
               seed.seedTypeExpand.name,
-              style: PomodoroTheme.title3,
+              style: PomodoroTheme.title3Yellow,
             ),
             const SizedBox(
               height: 10,
@@ -48,14 +49,14 @@ class SeedCardWidget extends StatelessWidget {
                       children: [
                         const FaIcon(
                           FontAwesomeIcons.leaf,
-                          color: PomodoroTheme.accent,
+                          color: PomodoroTheme.white,
                         ),
                         const SizedBox(
                           width: 5,
                         ),
                         Text(
                           "${seed.leafLevel}/${seed.seedTypeExpand.leafMaxUpgrades}",
-                          style: PomodoroTheme.textLarge,
+                          style: PomodoroTheme.textLargeYellow,
                         ),
                       ],
                     ),
@@ -63,7 +64,7 @@ class SeedCardWidget extends StatelessWidget {
                       children: [
                         const Image(
                           image: AssetImage('assets/icons/lumber.png'),
-                          color: PomodoroTheme.accent,
+                          color: PomodoroTheme.white,
                           height: 25,
                         ),
                         const SizedBox(
@@ -71,7 +72,7 @@ class SeedCardWidget extends StatelessWidget {
                         ),
                         Text(
                           "${seed.trunkLevel}/${seed.seedTypeExpand.trunkMaxUpgrades}",
-                          style: PomodoroTheme.textLarge,
+                          style: PomodoroTheme.textLargeYellow,
                         ),
                       ],
                     ),
@@ -111,7 +112,7 @@ class SeedCardWidget extends StatelessWidget {
                         ),
                         Text(
                           "${getGrowTime(seed.seedTypeExpand.timeToGrow, seed.trunkLevel)} min",
-                          style: PomodoroTheme.textLarge,
+                          style: PomodoroTheme.textLargeYellow,
                         ),
                       ],
                     ),

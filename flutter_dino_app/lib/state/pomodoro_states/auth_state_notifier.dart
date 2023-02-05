@@ -1,7 +1,7 @@
-import '../../domain/models/user_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/models/user.dart';
+import '../../domain/models/user_auth.dart';
 
 class AuthStateNotifier extends StateNotifier<UserAuth> {
   static final _initialUser = UserAuth(
@@ -16,6 +16,7 @@ class AuthStateNotifier extends StateNotifier<UserAuth> {
       email: 'email@example.com',
       avatar:
           'https://cdn3.iconfinder.com/data/icons/customer-service-glyphs-vol-1/55/customer__unknown__user__client-512.png',
+      balance: 0,
       updated: DateTime.now(),
     ),
   );
@@ -36,6 +37,10 @@ class AuthStateNotifier extends StateNotifier<UserAuth> {
 
   void setEmail(String email) {
     state = state.copyWith(email: email);
+  }
+
+  void updateBalance(int balance) {
+    state = state.copyWith(balance: balance);
   }
 
   void clearUser() {

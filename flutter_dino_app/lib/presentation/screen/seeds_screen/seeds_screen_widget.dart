@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../state/pomodoro_states/seed_state_notifier.dart';
-import '../../router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../state/pomodoro_states/seed_state_notifier.dart';
+import '../../router.dart';
 import 'seed_card_widget.dart';
 import 'seed_details_screen_widget.dart';
 
@@ -16,33 +16,35 @@ class SeedsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final seeds = ref.watch(seedStateNotifierProvider);
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Center(
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 10,
-          runSpacing: 10,
-          children: seeds
-              .map(
-                (seed) => Listener(
-                  onPointerUp: (_) {
-                    ref
-                        .read(selectedSeedStateNotifierProvider.notifier)
-                        .selectSeed(seed);
-                    SeedDetailsScreenWidget.navigateTo(context);
-                  },
-                  child: SizedBox(
-                    width: 190,
-                    child: SeedCardWidget(seed: seed),
-                  ),
+    return Consumer(builder: (context, ref, child) {
+      final seeds = ref.watch(seedStateNotifierProvider);
+      return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            runSpacing: 10,
+            children: seeds
+                .map(
+                  (seed) => Listener(
+                onPointerUp: (_) {
+                  ref
+                      .read(selectedSeedStateNotifierProvider.notifier)
+                      .selectSeed(seed);
+                  SeedDetailsScreenWidget.navigateTo(context);
+                },
+                child: SizedBox(
+                  width: 190,
+                  child: SeedCardWidget(seed: seed),
                 ),
-              )
-              .toList(),
+              ),
+            )
+                .toList(),
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'seed_type.dart';
 import 'seed_type_expand.dart';
 
@@ -59,6 +60,36 @@ class Seed {
   }
 
   SeedType get seedTypeExpand => expand.seedType;
+
+  factory Seed.fromJson(Map<String, dynamic> json) {
+    return Seed(
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
+      created: DateTime.parse(json['created']),
+      id: json['id'],
+      seedType: json['seed_type'],
+      expand: SeedTypeExpand.fromJson(json['expand']),
+      updated: DateTime.parse(json['updated']),
+      user: json['user'],
+      leafLevel: json['leaf_level'],
+      trunkLevel: json['trunk_level'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'collectionId': collectionId,
+      'collectionName': collectionName,
+      'created': created.toIso8601String(),
+      'id': id,
+      'seed_type': seedType,
+      'expand': expand.toJson(),
+      'updated': updated.toIso8601String(),
+      'user': user,
+      'leaf_level': leafLevel,
+      'trunk_level': trunkLevel,
+    };
+  }
 
   @override
   String toString() {

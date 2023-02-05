@@ -1,11 +1,9 @@
 import '../../../../core/success.dart';
-import '../mapper/tree_mapper.dart';
-
 import '../../../../domain/models/tree.dart';
-
 import '../../../../domain/repositories/tree_repository.dart';
 import '../api_consumer.dart';
 import '../entity/tree_entity.dart';
+import '../mapper/tree_mapper.dart';
 
 class RemoteTreeRepository implements TreeRepository {
   final ApiConsumer apiConsumer;

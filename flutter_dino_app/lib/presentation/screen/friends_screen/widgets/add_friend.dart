@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../state/friendship/friendship_provider.dart';
 import '../../../../state/friendship/friendship_state_notifier.dart';
 import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../theme/theme.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../widgets/snackbar.dart';
 import 'action_banner.dart';
 import 'add_friend_form.dart';

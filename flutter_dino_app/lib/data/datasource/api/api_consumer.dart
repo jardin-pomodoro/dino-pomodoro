@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:pocketbase/pocketbase.dart';
 
@@ -71,6 +72,15 @@ class ApiConsumer {
     return pb.collection(Collection.users.name).authRefresh();
   }
 
+  Future updateUserBalance(String userId, int balance) async {
+    await pb.collection(Collection.users.name).update(
+      userId,
+      body: {
+        'balance': balance,
+      },
+    );
+  }
+
   Future<RecordAuth> updateUserAvatar(String userId, File avatar) async {
     await pb.collection(Collection.users.name).update(
       userId,
@@ -99,7 +109,7 @@ class ApiConsumer {
 
   Future<List<RecordModel>> fetchOwnedSeeds(String userId) async {
     final ownedSeeds = await pb.collection(Collection.seed.name).getFullList(
-          filter: 'user == "$userId"',
+          filter: 'user = "$userId"',
           expand: 'seed_type',
         );
 
@@ -110,6 +120,7 @@ class ApiConsumer {
   Future<RecordModel> addNewSeed(CreateSeed createSeed) async {
     final record = await pb.collection(Collection.seed.name).create(
           body: createSeed.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }

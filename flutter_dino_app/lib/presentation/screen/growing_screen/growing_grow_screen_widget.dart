@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'widgets/growing_tree.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:is_lock_screen/is_lock_screen.dart';
@@ -13,6 +12,7 @@ import '../../theme/theme.dart';
 import '../../widgets/circular_progress_timer.dart';
 import '../../widgets/snackbar.dart';
 import 'growing_screen_widget.dart';
+import 'widgets/growing_tree.dart';
 
 class GrowingGrowScreenWidget extends ConsumerStatefulWidget {
   static void navigateTo(BuildContext context) {

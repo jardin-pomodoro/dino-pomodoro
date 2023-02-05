@@ -1,5 +1,4 @@
 import '../../../../domain/models/user_auth.dart';
-
 import '../entity/auth_entity.dart';
 import 'user_mapper.dart';
 

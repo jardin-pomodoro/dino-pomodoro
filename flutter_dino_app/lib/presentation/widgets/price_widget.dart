@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme/theme.dart';
 
 class PriceWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class PriceWidget extends StatelessWidget {
       children: [
         Text(
           "$price",
-          style: PomodoroTheme.textLarge,
+          style: PomodoroTheme.textLargeYellow,
         ),
         SizedBox(
           width: spacing ?? 10,

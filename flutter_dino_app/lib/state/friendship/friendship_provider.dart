@@ -1,10 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../core/success.dart';
+import '../../data/datasource/api/api_consumer.dart';
 import '../../data/datasource/api/repositories/api_friendship_repository.dart';
 import '../../data/datasource/local/repositories/local_friendship_repository.dart';
 import '../../domain/models/friendship.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../data/datasource/api/api_consumer.dart';
 import '../../domain/services/friendship_service.dart';
 import '../api_consumer/api_consumer.dart';
 import '../pomodoro_states/auth_state_notifier.dart';

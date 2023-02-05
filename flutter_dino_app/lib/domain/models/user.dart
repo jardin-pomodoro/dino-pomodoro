@@ -8,6 +8,7 @@ class User {
   final String username;
   final String email;
   final String avatar;
+  final int balance;
   final DateTime created;
   final DateTime updated;
 
@@ -19,6 +20,7 @@ class User {
     required this.username,
     required this.email,
     required this.avatar,
+    required this.balance,
     required this.updated,
   });
 
@@ -26,6 +28,7 @@ class User {
     String? username,
     String? avatar,
     String? email,
+    int? balance,
   }) {
     return User(
       collectionId: collectionId,
@@ -35,6 +38,7 @@ class User {
       username: username ?? this.username,
       email: email ?? this.email,
       avatar: avatar ?? this.avatar,
+      balance: balance ?? this.balance,
       updated: updated,
     );
   }
@@ -48,27 +52,30 @@ class User {
       username: json['username'] as String,
       email: json['email'] as String,
       avatar: json['avatar'] as String,
+      balance: json['balance'] as int,
       updated: DateTime.parse(json['updated'] as String),
     );
   }
 
-  String toJson() {
-    return '{'
-        '"collectionId": "$collectionId",'
-        '"collectionName": "$collectionName",'
-        '"created": "$created",'
-        '"id": "$id",'
-        '"username": "$username",'
-        '"email": "$email",'
-        '"avatar": "$avatar",'
-        '"updated": "$updated"'
-        '}';
+  Map<String, dynamic> toJson() {
+    return {
+      'collectionId': collectionId,
+      'collectionName': collectionName,
+      'created': created.toIso8601String(),
+      'id': id,
+      'username': username,
+      'email': email,
+      'avatar': avatar,
+      'balance': balance,
+      'updated': updated.toIso8601String(),
+    };
   }
 
   UpdateUser toUpdateUser() {
     return UpdateUser(
       username: username,
       email: email,
+      balance: balance,
     );
   }
 }
@@ -77,16 +84,19 @@ class User {
 class UpdateUser {
   final String username;
   final String email;
+  final int balance;
 
   const UpdateUser({
     required this.username,
     required this.email,
+    required this.balance,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'username': username,
       'email': email,
+      'balance': balance,
     };
   }
 }

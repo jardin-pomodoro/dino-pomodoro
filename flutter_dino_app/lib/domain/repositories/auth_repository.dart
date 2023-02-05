@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import '../../core/success.dart';
-
 import '../models/user_auth.dart';
 
 abstract class AuthRepository {
