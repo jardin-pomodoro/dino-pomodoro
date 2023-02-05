@@ -51,8 +51,8 @@ class LocalSeedRepository implements SeedRepository {
 
   @override
   Future<Success<void>> saveSeeds(List<Seed> seeds) async {
-    await clear();
     final db = await dbSource.db();
+    await db.delete('seeds');
     for (var seed in seeds) {
       await db.insert(
         'seeds',
