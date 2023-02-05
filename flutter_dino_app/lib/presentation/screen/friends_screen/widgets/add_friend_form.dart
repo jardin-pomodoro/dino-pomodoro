@@ -24,7 +24,7 @@ class _AddFriendFormState extends State<AddFriendForm> {
       children: [
         TextField(
           decoration: InputDecoration(
-            hintText: "email",
+            hintText: "username",
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: PomodoroTheme.secondary, width: 2),
             ),

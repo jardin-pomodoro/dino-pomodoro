@@ -66,7 +66,12 @@ class _FriendsScreenWidgetState extends ConsumerState<FriendsScreenWidget> {
   void _addFriend(String emailFriendAdd) {
     setState(() {
       print(emailFriendAdd);
-      // TODO un truc
+      ref.watch(addFriendshipProvider(emailFriendAdd)).when(
+            data: (_) => showSnackBar(context, "Demande d'amitié envoyé !"),
+            error: (_, e) =>
+                print(e.toString()),
+            loading: () => null,
+          );
     });
   }
 }

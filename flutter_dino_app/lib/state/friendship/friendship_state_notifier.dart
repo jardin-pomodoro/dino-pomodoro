@@ -1,3 +1,4 @@
+import 'package:flutter_dino_app/domain/services/friendship_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/success.dart';
@@ -7,6 +8,7 @@ import '../../domain/models/user.dart';
 import '../../domain/services/user_service.dart';
 import '../pomodoro_states/auth_state_notifier.dart';
 import '../user/user_provider.dart';
+import 'friendship_provider.dart';
 
 class FriendshipStateNotifier extends StateNotifier<List<Friendship>> {
   FriendshipStateNotifier() : super([]);
@@ -75,8 +77,25 @@ final userFriendProvider = FutureProvider<List<Success<User>>>((ref) {
 
   return Future.wait(
     friends.map((friendship) async {
-      final friend = userAuth.user.id == friendship.relation ? friendship.user : friendship.relation;
+      final friend = userAuth.user.id == friendship.relation
+          ? friendship.user
+          : friendship.relation;
       return service.fetchUserById(friend);
     }).toList(),
   );
+});
+
+final addFriendshipProvider =
+    FutureProvider.family<Success<void>, String>((ref, email) async {
+  final UserService service = ref.read(userServiceProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
+
+  final FriendshipService friendshipService =
+      ref.watch(friendshipServiceProvider);
+  final user = await service.fetchUserByEmail(email);
+  print(user.failureMessage);
+  print(user.data);
+  print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  return friendshipService.sendFriendshipRequest(CreateFriendship(
+      user: userAuth.user.id, relation: user.data!.id, status: FriendshipStatus.pending));
 });
