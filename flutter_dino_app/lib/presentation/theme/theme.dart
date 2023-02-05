@@ -81,6 +81,12 @@ class PomodoroTheme {
     color: white,
   );
 
+  static const TextStyle title5Yellow = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: yellow,
+  );
+
   static const TextStyle text = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,

@@ -50,7 +50,7 @@ class ApiConsumer {
           provider,
           code,
           codeVerifier,
-          '${ApiPocketBase.baseUrl}redirect.html',
+          '${ApiPocketBase.baseUrl}/redirect.html',
         );
     print(authData);
     return pb.authStore;
