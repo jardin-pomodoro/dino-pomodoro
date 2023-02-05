@@ -19,6 +19,7 @@ class AuthService {
     return _remoteRepository.register(
       params.email,
       params.password,
+      params.passwordConfirm,
       params.username,
     );
   }
@@ -61,8 +62,8 @@ class AuthService {
     if (mimeType == null || !mimeType.startsWith("image")) {
       return Success.fromFailure(failureMessage: "Invalid image type");
     }
-    final updatedUserAuth = await _remoteRepository.updateUserAvatar(
-        userAuth, avatar);
+    final updatedUserAuth =
+        await _remoteRepository.updateUserAvatar(userAuth, avatar);
     if (updatedUserAuth.isSuccess) {
       await _localRepository.updateUserInfo(updatedUserAuth.data!);
     }
@@ -80,7 +81,8 @@ class LoginParam {
 class RegisterParam {
   final String email;
   final String password;
+  final String passwordConfirm;
   final String username;
 
-  RegisterParam(this.email, this.password, this.username);
+  RegisterParam(this.email, this.password, this.passwordConfirm, this.username);
 }

@@ -52,6 +52,7 @@ class LocalAuthRepository implements AuthRepository {
   Future<Success<bool>> register(
     String email,
     String password,
+    String passwordConfirm,
     String username,
   ) {
     throw UnableToRegisterWithoutConnection();

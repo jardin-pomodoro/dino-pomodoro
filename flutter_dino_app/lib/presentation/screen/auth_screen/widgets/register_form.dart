@@ -16,6 +16,7 @@ class RegisterForm extends ConsumerStatefulWidget {
 
 class _RegisterFormState extends ConsumerState<RegisterForm> {
   String password = '';
+  String passwordConfirm = '';
   String username = '';
   String email = '';
   final _formKey = GlobalKey<FormState>();
@@ -58,6 +59,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   labelText: 'Confirmation',
                 ),
                 obscureText: true,
+                onChanged: (value) => passwordConfirm = value,
                 validator: (val) {
                   if (val != null) {
                     return MatchValidator(
@@ -72,10 +74,15 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   final form = _formKey.currentState;
                   if (form != null && form.validate()) {
                     form.save();
-                    final result = await authService
-                        .register(RegisterParam(email, password, username));
+                    final result = await authService.register(RegisterParam(
+                      email,
+                      password,
+                      passwordConfirm,
+                      username,
+                    ));
                     if (mounted) {
                       if (!result.isSuccess) {
+                        // faire en sorte que le snackbar s'affiche
                         showErrorSnackBar(context, result.failureMessage);
                       } else {
                         showSnackBar(context, 'inscription reussie');

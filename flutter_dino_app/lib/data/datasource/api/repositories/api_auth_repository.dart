@@ -70,12 +70,14 @@ class ApiAuthRepository implements AuthRepository {
   Future<Success<bool>> register(
     String email,
     String password,
+    String passwordConfirm,
     String username,
   ) async {
     try {
       final user = {
         'email': email,
         'password': password,
+        'passwordConfirm': passwordConfirm,
         'username': username,
       };
       final create =
