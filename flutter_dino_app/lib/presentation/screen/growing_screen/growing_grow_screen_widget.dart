@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/growing_tree.dart';
+import 'widgets/growing_tree.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:is_lock_screen/is_lock_screen.dart';

@@ -1,6 +1,6 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/user_mapper.dart';
-import 'package:flutter_dino_app/domain/models/user.dart';
+import '../../../../core/success.dart';
+import '../mapper/user_mapper.dart';
+import '../../../../domain/models/user.dart';
 
 import '../../../../domain/repositories/user_repository.dart';
 import '../api_consumer.dart';

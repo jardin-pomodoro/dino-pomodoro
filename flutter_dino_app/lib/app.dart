@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/presentation/theme/theme.dart';
+import 'core/success.dart';
+import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'domain/models/seed_type.dart';

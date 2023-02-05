@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/user.dart';
+import '../../../../domain/models/user.dart';
 
 import '../entity/user_entity.dart';
 import '../pocketbase.dart';

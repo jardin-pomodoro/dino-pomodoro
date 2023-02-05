@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/widgets/snackbar.dart';
-import 'package:flutter_dino_app/state/friendship/friendship_provider.dart';
+import '../../../widgets/snackbar.dart';
+import '../../../../state/friendship/friendship_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

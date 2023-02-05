@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
+import '../database/database_source.dart';
 import '../../../../core/failure.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';

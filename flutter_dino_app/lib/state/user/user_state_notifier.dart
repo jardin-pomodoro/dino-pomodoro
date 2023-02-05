@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/domain/models/user.dart';
+import '../../domain/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserStateNotifier extends StateNotifier<List<User>> {

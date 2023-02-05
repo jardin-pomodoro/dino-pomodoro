@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:mime/mime.dart';
-import 'package:flutter_dino_app/domain/models/user_auth.dart';
+import '../models/user_auth.dart';
 
 import '../../core/success.dart';
 import '../repositories/auth_repository.dart';

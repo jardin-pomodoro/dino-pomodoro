@@ -1,4 +1,4 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/friendship_entity.dart';
+import '../../api/entity/friendship_entity.dart';
 
 import '../../../../core/success.dart';
 import '../../../../domain/models/friendship.dart';
@@ -30,9 +30,9 @@ class LocalFriendshipRepository implements FriendshipRepository {
   }
 
   @override
-  Future<Success<Friendship>> sendFriendshipRequest(CreateFriendship createFriendship) async {
+  Future<Success<Friendship>> sendFriendshipRequest(
+      CreateFriendship createFriendship) async {
     // TODO: implement retrieveFriendships
     return Success.fromFailure(failureMessage: "Not implemented yet");
   }
-
 }

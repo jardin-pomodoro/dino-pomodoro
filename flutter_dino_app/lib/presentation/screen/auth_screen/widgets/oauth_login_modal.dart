@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/router.dart';
+import '../../../router.dart';
 import 'package:go_router/go_router.dart';
 import '../../../widgets/bottom_sheet_decoration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

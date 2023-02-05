@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/price_widget.dart';
 
 import '../../../../domain/models/tree.dart';
 import '../../../theme/theme.dart';
+import '../../../widgets/price_widget.dart';
 
 class TreeRewardDialogWidget extends StatelessWidget {
   final Tree tree;

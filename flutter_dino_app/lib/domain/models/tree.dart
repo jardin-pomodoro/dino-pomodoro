@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'seed_type_expand.dart';
 
 @immutable
