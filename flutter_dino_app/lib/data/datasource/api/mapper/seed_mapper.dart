@@ -18,4 +18,19 @@ class SeedMapper {
       updated: entity.updated,
     );
   }
+
+  static SeedEntity toEntity(Seed seed) {
+    return SeedEntity(
+      collectionId: seed.collectionId,
+      collectionName: seed.collectionName,
+      id: seed.id,
+      seedType: seed.seedType,
+      user: seed.user,
+      expand: SeedTypeMapper.toEntityExpand(seed.expand),
+      leafLevel: seed.leafLevel,
+      trunkLevel: seed.trunkLevel,
+      created: seed.created,
+      updated: seed.updated,
+    );
+  }
 }

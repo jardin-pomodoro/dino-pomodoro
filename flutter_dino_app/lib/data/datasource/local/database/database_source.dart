@@ -19,17 +19,15 @@ class DatabaseSource {
       path,
       onCreate: (db, version) async {
         print("Creating database");
-        await db.execute('''
-          CREATE TABLE user_auth(
-            id TEXT PRIMARY KEY,
-            json TEXT
-          );
-          
-          CREATE TABLE friendship(
-            id TEXT PRIMARY KEY,
-            json TEXT
-          );
-        ''');
+        final tables = [
+          'CREATE TABLE user_auth(id TEXT PRIMARY KEY, json TEXT);',
+          'CREATE TABLE friendship(id TEXT PRIMARY KEY, json TEXT);',
+          'CREATE TABLE seeds(id TEXT PRIMARY KEY, userId TEXT, json TEXT);',
+        ];
+
+        for (var table in tables) {
+          await db.execute(table);
+        }
       },
       version: 1,
     );

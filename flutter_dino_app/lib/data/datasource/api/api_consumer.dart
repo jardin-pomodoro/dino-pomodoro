@@ -108,7 +108,7 @@ class ApiConsumer {
 
   Future<List<RecordModel>> fetchOwnedSeeds(String userId) async {
     final ownedSeeds = await pb.collection(Collection.seed.name).getFullList(
-          filter: 'user == "$userId"',
+          filter: 'user = "$userId"',
           expand: 'seed_type',
         );
 
