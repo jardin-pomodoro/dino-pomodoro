@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'user_entity.dart';
 
 class AuthEntity {

@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:mime/mime.dart';
 import 'package:flutter_dino_app/domain/models/user_auth.dart';
 
 import '../../core/success.dart';
@@ -13,12 +15,19 @@ class AuthService {
     return _remoteRepository.login(params.email, params.password);
   }
 
-  Future<Success<UserAuth>> register(RegisterParam params) async {
-    throw UnimplementedError();
+  Future<Success<bool>> register(RegisterParam params) async {
+    return _remoteRepository.register(
+      params.email,
+      params.password,
+      params.passwordConfirm,
+      params.username,
+    );
   }
 
-  Future<Success<UserAuth>> logout() async {
-    throw UnimplementedError();
+  Future<Success<void>> logout() async {
+    await _localRepository.logout();
+    await _remoteRepository.logout();
+    return Success(data: null);
   }
 
   Future<Success<void>> userAuthSuccess(UserAuth userAuth) async {
@@ -36,6 +45,30 @@ class AuthService {
 
     return userAuthSuccess;
   }
+
+  Future<Success<void>> updateUserInfo(UserAuth userAuth) async {
+    final remoteResult = await _remoteRepository.updateUserInfo(userAuth);
+    final localResult =
+        await _localRepository.updateUserInfo(remoteResult.data!);
+    if (localResult.isSuccess && remoteResult.isSuccess) {
+      return Success(data: null);
+    }
+    return Success.fromFailure(failureMessage: "Failed to update user auth");
+  }
+
+  Future<Success<UserAuth>> updateUserAvatar(
+      UserAuth userAuth, File avatar) async {
+    final mimeType = lookupMimeType(avatar.path);
+    if (mimeType == null || !mimeType.startsWith("image")) {
+      return Success.fromFailure(failureMessage: "Invalid image type");
+    }
+    final updatedUserAuth =
+        await _remoteRepository.updateUserAvatar(userAuth, avatar);
+    if (updatedUserAuth.isSuccess) {
+      await _localRepository.updateUserInfo(updatedUserAuth.data!);
+    }
+    return updatedUserAuth;
+  }
 }
 
 class LoginParam {
@@ -45,4 +78,11 @@ class LoginParam {
   LoginParam(this.email, this.password);
 }
 
-class RegisterParam {}
+class RegisterParam {
+  final String email;
+  final String password;
+  final String passwordConfirm;
+  final String username;
+
+  RegisterParam(this.email, this.password, this.passwordConfirm, this.username);
+}
