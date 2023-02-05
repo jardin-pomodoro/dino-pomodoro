@@ -15,6 +15,7 @@ class UserMapper {
           entity.collectionId, entity.id, entity.avatar),
       created: entity.created,
       updated: entity.updated,
+      balance: entity.balance,
     );
   }
 }

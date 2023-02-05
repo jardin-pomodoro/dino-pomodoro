@@ -16,6 +16,7 @@ class AuthStateNotifier extends StateNotifier<UserAuth> {
       email: 'email@example.com',
       avatar:
           'https://cdn3.iconfinder.com/data/icons/customer-service-glyphs-vol-1/55/customer__unknown__user__client-512.png',
+      balance: 0,
       updated: DateTime.now(),
     ),
   );

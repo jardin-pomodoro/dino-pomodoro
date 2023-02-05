@@ -71,6 +71,15 @@ class ApiConsumer {
     return pb.collection(Collection.users.name).authRefresh();
   }
 
+  Future updateUserBalance(String userId, int balance) async {
+    await pb.collection(Collection.users.name).update(
+      userId,
+      body: {
+        'balance': balance,
+      },
+    );
+  }
+
   Future<RecordAuth> updateUserAvatar(String userId, File avatar) async {
     await pb.collection(Collection.users.name).update(
       userId,

@@ -60,6 +60,21 @@ class Seed {
 
   SeedType get seedTypeExpand => expand.seedType;
 
+  factory Seed.fromJson(Map<String, dynamic> json) {
+    return Seed(
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
+      created: DateTime.parse(json['created']),
+      id: json['id'],
+      seedType: json['seed_type'],
+      expand: SeedTypeExpand.fromJson(json['expand']),
+      updated: DateTime.parse(json['updated']),
+      user: json['user'],
+      leafLevel: json['leaf_level'],
+      trunkLevel: json['trunk_level'],
+    );
+  }
+
   @override
   String toString() {
     return 'Seed{collectionId: $collectionId, collectionName: $collectionName, id: $id, seedType: $seedType, expand: $expand, user: $user, leafLevel: $leafLevel, trunkLevel: $trunkLevel, created: $created, updated: $updated}';

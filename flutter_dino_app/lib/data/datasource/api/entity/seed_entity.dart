@@ -30,8 +30,8 @@ class SeedEntity {
   factory SeedEntity.fromJson(Map<String, dynamic> json) {
     return SeedEntity(
       id: json['id'],
-      collectionId: json['collection_id'],
-      collectionName: json['collection_name'],
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
       seedType: json['seed_type'],
       user: json['user'],
       expand: SeedTypeExpandEntity.fromJson(json['expand']),
