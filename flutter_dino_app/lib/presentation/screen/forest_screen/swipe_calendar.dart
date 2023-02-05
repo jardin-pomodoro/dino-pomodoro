@@ -30,11 +30,11 @@ class SwipeCalendar extends ConsumerWidget {
     switch (granularityDisplayed) {
       case CalendarGranularity.day:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.subtract(Duration(days: 1));
+            dateTime.subtract(const Duration(days: 1));
         break;
       case CalendarGranularity.week:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.subtract(Duration(days: 7));
+            dateTime.subtract(const Duration(days: 7));
         break;
       case CalendarGranularity.month:
         ref.read(dateTimeSelectedProvider.notifier).state =
@@ -52,11 +52,11 @@ class SwipeCalendar extends ConsumerWidget {
     switch (granularityDisplayed) {
       case CalendarGranularity.day:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.add(Duration(days: 1));
+            dateTime.add(const Duration(days: 1));
         break;
       case CalendarGranularity.week:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.add(Duration(days: 7));
+            dateTime.add(const Duration(days: 7));
         break;
       case CalendarGranularity.month:
         ref.read(dateTimeSelectedProvider.notifier).state =

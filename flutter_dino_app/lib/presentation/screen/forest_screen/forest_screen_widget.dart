@@ -79,8 +79,8 @@ class ForestScreenWidget extends ConsumerWidget {
                     );
                   },
                   error: (error, stackTrace) => const CupertinoAlertDialog(
-                      title:
-                          Text("une erreur est survenue réessayez plus tard")),
+                    title: Text("une erreur est survenue réessayez plus tard"),
+                  ),
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                 ),

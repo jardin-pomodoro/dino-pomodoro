@@ -7,6 +7,7 @@ import '../../../../state/tree/tree_provider.dart';
 import '../../../theme/theme.dart';
 import '../swipe_calendar.dart';
 import '../widget/canular_granularity.dart';
+import '../widget/focus_card.dart';
 import '../widget/list-horizontal-slide.dart';
 
 class FriendForest extends ConsumerWidget {
@@ -61,6 +62,14 @@ class FriendForest extends ConsumerWidget {
                 .toList(),
           ),
           error: (error, stackTrace) => Text('error ref $error'),
+          loading: () => const Center(child: CircularProgressIndicator()),
+        ),
+        const SizedBox(height: 30),
+        calendarStats.when(
+          data: (stats) => FocusCard(stats: stats),
+          error: (error, stackTrace) => const CupertinoAlertDialog(
+            title: Text("une erreur est survenue réessayez plus tard"),
+          ),
           loading: () => const Center(child: CircularProgressIndicator()),
         ),
       ],
