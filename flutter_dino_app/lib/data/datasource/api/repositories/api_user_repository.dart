@@ -16,7 +16,8 @@ class ApiUserRepository implements UserRepository {
     try {
       final user = await apiConsumer.fetchUserByEmail(email);
       return Success(
-          data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())));
+        data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())),
+      );
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
     }
@@ -27,7 +28,8 @@ class ApiUserRepository implements UserRepository {
     try {
       final user = await apiConsumer.fetchUser(userId);
       return Success(
-          data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())));
+        data: UserMapper.fromEntity(UserEntity.fromJson(user.toJson())),
+      );
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
     }

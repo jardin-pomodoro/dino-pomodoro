@@ -197,10 +197,7 @@ class ApiConsumer {
   }
 
   Future<RecordModel> fetchUser(String userId) async {
-    final record = await pb.collection(Collection.users.name).getFirstListItem(
-          'userId="$userId"',
-        );
-    return record;
+    return pb.collection(Collection.users.name).getOne(userId);
   }
 
   Future<RecordModel> fetchUserByEmail(String email) async {
