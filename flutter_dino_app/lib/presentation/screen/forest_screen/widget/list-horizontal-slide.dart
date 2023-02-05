@@ -14,6 +14,7 @@ class TreeStatsUi {
 
 class ListHorizontalSlide extends StatefulWidget {
   final List<TreeStatsUi> treesStatsUi;
+
   const ListHorizontalSlide({
     super.key,
     required this.treesStatsUi,

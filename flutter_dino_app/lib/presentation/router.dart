@@ -120,7 +120,8 @@ Widget _scaffoldedWidget(String title, Widget child) {
         padding: const EdgeInsets.all(10),
         child: Consumer(
           builder: (context, ref, childd) {
-            final AsyncValue<Success<List<Seed>>> seeds = ref.watch(fetchSeedsProvider);
+            final AsyncValue<Success<List<Seed>>> seeds =
+                ref.watch(fetchSeedsProvider);
 
             WidgetsBinding.instance.addPostFrameCallback((_) {
               seeds.when(
@@ -136,8 +137,6 @@ Widget _scaffoldedWidget(String title, Widget child) {
       ),
     ),
   );
-
-
 }
 
 void _onSeedsLoading() {
@@ -149,8 +148,7 @@ void _onSeedsError(Object error, StackTrace stackTrace) {
   print('stackTrace $stackTrace');
 }
 
-void _onSeedsDataArrive(
-    Success<List<Seed>> seeds, WidgetRef ref) {
+void _onSeedsDataArrive(Success<List<Seed>> seeds, WidgetRef ref) {
   print('seeds loaded');
   ref.read(seedStateNotifierProvider.notifier).clearSeeds();
   ref

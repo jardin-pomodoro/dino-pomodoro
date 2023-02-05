@@ -38,8 +38,7 @@ class FriendshipService {
 
   Future<Success<void>> removeFriendship(String friendshipId) async {
     if (await NetworkChecker.hasConnection()) {
-      final seeds =
-          await remoteRepository.removeFriendship(friendshipId);
+      final seeds = await remoteRepository.removeFriendship(friendshipId);
       if (seeds.isSuccess) {
         return seeds;
       }
@@ -49,8 +48,8 @@ class FriendshipService {
 
   Future<Success<void>> rejectFriendship(Friendship friendship) async {
     if (await NetworkChecker.hasConnection()) {
-      final seeds =
-          await remoteRepository.rejectFriendship(friendship.updateStatus(FriendshipStatus.rejected));
+      final seeds = await remoteRepository
+          .rejectFriendship(friendship.updateStatus(FriendshipStatus.rejected));
       if (seeds.isSuccess) {
         return seeds;
       }
@@ -60,7 +59,8 @@ class FriendshipService {
 
   Future<Success<Friendship>> acceptFriendship(Friendship friendship) async {
     if (await NetworkChecker.hasConnection()) {
-      final seeds = await remoteRepository.acceptFriendship(friendship.updateStatus(FriendshipStatus.accepted));
+      final seeds = await remoteRepository
+          .acceptFriendship(friendship.updateStatus(FriendshipStatus.accepted));
       if (seeds.isSuccess) {
         return seeds;
       }

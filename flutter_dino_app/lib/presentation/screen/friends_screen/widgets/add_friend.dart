@@ -51,30 +51,33 @@ class _AddFriendState extends ConsumerState<AddFriend> {
                   style: PomodoroTheme.title4,
                 ),
               ),
-              ...friendships.map((friendship) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: friendship.relation,
-                  clickOnAction: (_) {
-                    providers
-                        .removeFriendship(friendship.id)
-                        .then((success) {
-                      if (success.isSuccess) {
-                        showSnackBar(context, "Demande d'amitié supprimé !");
-                        _refreshFriendships(ref, context);
-                      }
-                    });
-                  },
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              )).toList(),
+              ...friendships
+                  .map((friendship) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        child: ActionBanner(
+                          body: friendship.relation,
+                          clickOnAction: (_) {
+                            providers
+                                .removeFriendship(friendship.id)
+                                .then((success) {
+                              if (success.isSuccess) {
+                                showSnackBar(
+                                    context, "Demande d'amitié supprimé !");
+                                _refreshFriendships(ref, context);
+                              }
+                            });
+                          },
+                          startIcon: const FaIcon(
+                            FontAwesomeIcons.user,
+                            color: PomodoroTheme.white,
+                          ),
+                          actionIcon: const FaIcon(
+                            FontAwesomeIcons.circleMinus,
+                            color: PomodoroTheme.white,
+                          ),
+                        ),
+                      ))
+                  .toList(),
             ],
           ),
         ),

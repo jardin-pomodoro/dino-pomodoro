@@ -1,4 +1,3 @@
-
 import 'package:flutter_dino_app/domain/repositories/seed_repository.dart';
 
 import '../../core/network.dart';
@@ -13,7 +12,7 @@ class SeedService {
 
   SeedService(this._remoteRepository, this._localRepository);
 
-Future<Success<List<Seed>>> getSeeds(String userId) async {
+  Future<Success<List<Seed>>> getSeeds(String userId) async {
     if (await NetworkChecker.hasConnection()) {
       final seeds = await _remoteRepository.getSeeds(userId);
       if (seeds.isSuccess) {

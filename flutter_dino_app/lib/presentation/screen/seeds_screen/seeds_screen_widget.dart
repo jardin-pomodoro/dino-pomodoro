@@ -16,7 +16,6 @@ class SeedsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return Consumer(builder: (context, ref, child) {
       final seeds = ref.watch(seedStateNotifierProvider);
       return SingleChildScrollView(
@@ -29,18 +28,18 @@ class SeedsScreenWidget extends ConsumerWidget {
             children: seeds
                 .map(
                   (seed) => Listener(
-                onPointerUp: (_) {
-                  ref
-                      .read(selectedSeedStateNotifierProvider.notifier)
-                      .selectSeed(seed);
-                  SeedDetailsScreenWidget.navigateTo(context);
-                },
-                child: SizedBox(
-                  width: 190,
-                  child: SeedCardWidget(seed: seed),
-                ),
-              ),
-            )
+                    onPointerUp: (_) {
+                      ref
+                          .read(selectedSeedStateNotifierProvider.notifier)
+                          .selectSeed(seed);
+                      SeedDetailsScreenWidget.navigateTo(context);
+                    },
+                    child: SizedBox(
+                      width: 190,
+                      child: SeedCardWidget(seed: seed),
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         ),

@@ -3,7 +3,6 @@ class Success<T> {
 
   final bool isSuccess;
 
-
   final String failureMessage;
 
   Success({

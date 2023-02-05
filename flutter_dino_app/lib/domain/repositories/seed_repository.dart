@@ -9,7 +9,7 @@ abstract class SeedRepository {
 
   Future<Success<Seed>> buySeed(User user, SeedType seedType);
 
-  Future<Success<void>> saveSeed(User user, Seed seed,{int? price});
+  Future<Success<void>> saveSeed(User user, Seed seed, {int? price});
 
   Future<Success<void>> clear();
 

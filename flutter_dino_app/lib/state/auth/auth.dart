@@ -58,6 +58,7 @@ String buildUrlFromProvider(OAuth2Provider provider) {
 class DiscordOauthVariable {
   static const String scope = 'identify%20email';
   static const clientId = '1064464779634298911';
+
   static String buildUrl(OAuth2Provider provider) {
     final state = provider.state;
     final codeChallenge = provider.codeChallenge;
@@ -73,6 +74,7 @@ class GoogleOAuthVariable {
       'https://www.googleapis.com/auth/userinfo.profile';
   static const clientId =
       '1019735973132-q0fil144g9v0lf41t0o88nh8ruvf34jb.apps.googleusercontent.com';
+
   static String buildUrl(OAuth2Provider provider) {
     return provider.authUrl + redirectUri;
   }
@@ -81,6 +83,7 @@ class GoogleOAuthVariable {
 class GithubOAuthVariable {
   static const String scope = 'user';
   static const clientId = 'f2650253832d073eade0';
+
   static String buildUrl(OAuth2Provider provider) {
     return provider.authUrl + redirectUri;
   }

@@ -37,6 +37,7 @@ Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
 class LoginOAuthModal extends ConsumerStatefulWidget {
   final OAuth2Provider provider;
   final BuildContext context;
+
   const LoginOAuthModal({
     super.key,
     required this.provider,

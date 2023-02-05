@@ -28,7 +28,8 @@ class LocalSeedRepository implements SeedRepository {
   @override
   Future<Success<List<Seed>>> getSeeds(String userId) async {
     final db = await dbSource.db();
-    final List<Map<String, dynamic>> maps = await db.query('seeds', where: 'userId = ?', whereArgs: [userId]);
+    final List<Map<String, dynamic>> maps =
+        await db.query('seeds', where: 'userId = ?', whereArgs: [userId]);
     final List<Seed> seeds =
         maps.map((e) => Seed.fromJson(jsonDecode(e['json']))).toList();
     return Success(data: seeds);

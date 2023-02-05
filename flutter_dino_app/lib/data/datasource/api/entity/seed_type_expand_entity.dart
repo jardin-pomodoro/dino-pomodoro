@@ -1,4 +1,3 @@
-
 import 'seed_type_entity.dart';
 
 class SeedTypeExpandEntity {

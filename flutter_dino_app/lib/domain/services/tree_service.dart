@@ -6,6 +6,7 @@ import '../repositories/tree_repository.dart';
 
 class Range {
   Range(this.startDate, this.endDate);
+
   final DateTime startDate;
   final DateTime endDate;
 }

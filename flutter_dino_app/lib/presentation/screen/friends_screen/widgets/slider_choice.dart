@@ -23,7 +23,9 @@ class _SliderChoiceState extends State<SliderChoice> {
   @override
   void initState() {
     super.initState();
-    _childrens = { for (var item in widget.items) widget.items.indexOf(item) : Text(item) };
+    _childrens = {
+      for (var item in widget.items) widget.items.indexOf(item): Text(item)
+    };
   }
 
   @override

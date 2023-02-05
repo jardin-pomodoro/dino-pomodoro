@@ -9,6 +9,7 @@ import '../forest_screen_widget.dart';
 class CalendarChart extends StatefulWidget {
   final CalendarGranularity granularity;
   final List<int> dataByGranularity;
+
   const CalendarChart({
     Key? key,
     required this.granularity,

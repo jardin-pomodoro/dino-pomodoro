@@ -25,6 +25,6 @@ final sentencesStreamProvider = StreamProvider<String>((ref) {
   });
 });
 
-final sentenceProvider = Provider<String> ((ref){
+final sentenceProvider = Provider<String>((ref) {
   return ref.watch(sentencesStreamProvider).value ?? "";
 });
