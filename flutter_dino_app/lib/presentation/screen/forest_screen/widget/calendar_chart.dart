@@ -36,9 +36,40 @@ class _CalendarChartState extends State<CalendarChart> {
             left: 20,
           ),
           child: AspectRatio(
-            aspectRatio: 2,
+            aspectRatio: 1.5,
             child: BarChart(
               BarChartData(
+                barTouchData: BarTouchData(
+                  // modify th color of the bar when touched in blue
+                  touchTooltipData: BarTouchTooltipData(
+                    tooltipBgColor: PomodoroTheme.secondary,
+                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                      String text = '';
+                      switch (widget.granularity) {
+                        case CalendarGranularity.day:
+                          // get la valeur de la barchart et pas son index
+                          text = '${rod.toY.toInt()} minutes';
+                          break;
+                        case CalendarGranularity.week:
+                          text = '${rod.toY.toInt()} minutes';
+                          break;
+                        case CalendarGranularity.month:
+                          text = '${rod.toY.toInt()} minutes';
+                          break;
+                        case CalendarGranularity.year:
+                          text = '${rod.toY.toInt()} minutes';
+                          break;
+                      }
+                      return BarTooltipItem(
+                        text,
+                        const TextStyle(
+                          color: PomodoroTheme.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
+                ),
                 barGroups:
                     _chartGroups(widget.granularity, widget.dataByGranularity),
                 borderData: FlBorderData(
