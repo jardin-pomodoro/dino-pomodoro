@@ -24,7 +24,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.forest,
       builder: (context, state) =>
-          _scaffoldedWidget("Forêt", ForestScreenWidget()),
+          _scaffoldedWidget("Forêt", const ForestScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.friends,

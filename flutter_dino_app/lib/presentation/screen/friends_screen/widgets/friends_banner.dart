@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/models/user.dart';
-import '../../theme/theme.dart';
+import '../../../../domain/models/user.dart';
+import '../../../theme/theme.dart';
 
 class FriendsBanner extends ConsumerWidget {
   final User user;

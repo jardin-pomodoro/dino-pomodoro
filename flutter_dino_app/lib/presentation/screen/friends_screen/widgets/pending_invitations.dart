@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../state/friendship/friendship_state_notifier.dart';
-import '../../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../friends_screen_widget.dart';
 import '../../../theme/theme.dart';
 import 'action_banner.dart';
 
@@ -15,7 +15,7 @@ class PendingInvitations extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _refreshFriendships(ref, context);
+    loadFriends(ref, context);
 
     return Consumer(builder: (context, ref, child) {
       final providers = ref.watch(friendshipServiceProvider);
@@ -37,7 +37,7 @@ class PendingInvitations extends ConsumerWidget {
                 providers.acceptFriendship(friendship).then((success) {
                   if (success.isSuccess) {
                     showSnackBar(context, "Amitié accepté !");
-                    _refreshFriendships(ref, context);
+                    loadFriends(ref, context);
                   }
                 });
               },
@@ -49,7 +49,7 @@ class PendingInvitations extends ConsumerWidget {
                 providers.rejectFriendship(friendship).then((success) {
                   if (success.isSuccess) {
                     showSnackBar(context, "Amitié rejeté !");
-                    _refreshFriendships(ref, context);
+                    loadFriends(ref, context);
                   }
                 });
               },
@@ -61,22 +61,6 @@ class PendingInvitations extends ConsumerWidget {
           );
         }).toList()),
       );
-    });
-  }
-
-  void _refreshFriendships(WidgetRef ref, BuildContext context) {
-    final providers = ref.watch(friendshipServiceProvider);
-    final userAuth = ref.watch(authStateNotifierProvider);
-    providers.retrieveFriendships(userAuth.user.id).then((friendships) {
-      if (!friendships.isSuccess) {
-        showSnackBar(
-            context, 'Une erreur à eu lieu lors du chargement des amis');
-        return;
-      }
-      ref.read(friendshipStateNotifierProvider.notifier).clearFriendships();
-      ref
-          .read(friendshipStateNotifierProvider.notifier)
-          .addFriendships(friendships.data!);
     });
   }
 }
