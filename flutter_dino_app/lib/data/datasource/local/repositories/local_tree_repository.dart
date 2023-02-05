@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter_dino_app/domain/models/growing.dart';
+
 import '../../../../core/success.dart';
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/models/tree.dart';
@@ -42,5 +44,10 @@ class LocalTreeRepository implements TreeRepository {
     );
     return Future.delayed(const Duration(seconds: 2))
         .then((value) => Success(data: forest));
+  }
+
+  @override
+  Future<Success<Tree>> addNewTree(String userId, Growing growing) {
+    return Future.value(Success.fromFailure(failureMessage: 'Not implemented'));
   }
 }

@@ -203,6 +203,7 @@ class ApiConsumer {
   Future<RecordModel> addTree(CreateTree createTree) async {
     final record = await pb.collection(Collection.tree.name).create(
           body: createTree.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }

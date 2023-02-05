@@ -1,3 +1,5 @@
+import 'package:flutter_dino_app/domain/models/growing.dart';
+
 import '../../../../core/success.dart';
 import '../../../../domain/models/tree.dart';
 import '../../../../domain/repositories/tree_repository.dart';
@@ -34,5 +36,20 @@ class RemoteTreeRepository implements TreeRepository {
       print('e: $e');
       return Success.fromFailure(failureMessage: e.toString());
     }
+  }
+
+  @override
+  Future<Success<Tree>> addNewTree(String userId, Growing growing) async {
+    final createTree = CreateTree(
+      seedType: growing.seedType,
+      user: userId,
+      started: growing.created,
+      ended: DateTime.now(),
+      reward: growing.reward,
+      timeToGrow: growing.timeToGrow ,
+    );
+    final record = await apiConsumer.addTree(createTree);
+    final treeEntity = TreeEntity.fromJson(record.toJson());
+    return Success(data: TreeMapper.fromEntity(treeEntity));
   }
 }
