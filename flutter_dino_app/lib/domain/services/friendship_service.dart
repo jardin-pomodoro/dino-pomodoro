@@ -15,10 +15,11 @@ class FriendshipService {
 
   Future<Success<List<Friendship>>> retrieveFriendships(String userId) async {
     if (await NetworkChecker.hasConnection()) {
-      final seeds = await remoteRepository.retrieveFriendships(userId);
-      if (seeds.isSuccess) {
-        return seeds;
+      final friendships = await remoteRepository.retrieveFriendships(userId);
+      if (friendships.isSuccess) {
+        return friendships;
       }
+      print(friendships.failureMessage);
     }
     return (await localRepository.retrieveFriendships(userId));
   }
@@ -35,10 +36,10 @@ class FriendshipService {
     return Success.fromFailure(failureMessage: "Network connectivity required");
   }
 
-  Future<Success<void>> removeFriendship(String userId) async {
+  Future<Success<void>> removeFriendship(String friendshipId) async {
     if (await NetworkChecker.hasConnection()) {
       final seeds =
-          await remoteRepository.removeFriendship(userId);
+          await remoteRepository.removeFriendship(friendshipId);
       if (seeds.isSuccess) {
         return seeds;
       }

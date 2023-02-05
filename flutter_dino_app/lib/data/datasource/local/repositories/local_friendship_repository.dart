@@ -6,33 +6,33 @@ import '../../../../domain/repositories/friendship_repository.dart';
 
 class LocalFriendshipRepository implements FriendshipRepository {
   @override
-  Future<Success<Friendship>> acceptFriendship(Friendship friendship) {
-    // TODO: implement acceptFriendship
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Success<void>> rejectFriendship(Friendship friendship) {
-    // TODO: implement rejectFriendship
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Success<void>> removeFriendship(String userId) {
-    // TODO: implement removeFriendship
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Success<List<Friendship>>> retrieveFriendships(String userId) {
+  Future<Success<Friendship>> acceptFriendship(Friendship friendship) async {
     // TODO: implement retrieveFriendships
-    throw UnimplementedError();
+    return Success.fromFailure(failureMessage: "Not implemented yet");
   }
 
   @override
-  Future<Success<Friendship>> sendFriendshipRequest(CreateFriendship createFriendship) {
-    // TODO: implement sendFriendshipRequest
-    throw UnimplementedError();
+  Future<Success<void>> rejectFriendship(Friendship friendship) async {
+    // TODO: implement retrieveFriendships
+    return Success.fromFailure(failureMessage: "Not implemented yet");
+  }
+
+  @override
+  Future<Success<void>> removeFriendship(String userId) async {
+    // TODO: implement retrieveFriendships
+    return Success.fromFailure(failureMessage: "Not implemented yet");
+  }
+
+  @override
+  Future<Success<List<Friendship>>> retrieveFriendships(String userId) async {
+    // TODO: implement retrieveFriendships
+    return Success.fromFailure(failureMessage: "Not implemented yet");
+  }
+
+  @override
+  Future<Success<Friendship>> sendFriendshipRequest(CreateFriendship createFriendship) async {
+    // TODO: implement retrieveFriendships
+    return Success.fromFailure(failureMessage: "Not implemented yet");
   }
 
 }

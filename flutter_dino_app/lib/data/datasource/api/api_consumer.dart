@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:pocketbase/pocketbase.dart';
 
 import 'entity/friendship_entity.dart';
@@ -63,6 +65,30 @@ class ApiConsumer {
     return pb.collection(Collection.users.name).authRefresh();
   }
 
+  Future<RecordAuth> updateUserInfo(
+      String userId, Map<String, dynamic> body) async {
+    await pb.collection(Collection.users.name).update(userId, body: body);
+    return pb.collection(Collection.users.name).authRefresh();
+  }
+
+  Future<RecordAuth> updateUserAvatar(String userId, File avatar) async {
+    await pb.collection(Collection.users.name).update(
+      userId,
+      files: [
+        http.MultipartFile.fromBytes(
+          'avatar',
+          avatar.readAsBytesSync(),
+          filename: avatar.path.split('/').last,
+        ),
+      ],
+    );
+    return pb.collection(Collection.users.name).authRefresh();
+  }
+
+  Future<void> logout() async {
+    pb.authStore.clear();
+  }
+
   Future<List<RecordModel>> fetchSeeds() async {
     final seedTypes =
         await pb.collection(Collection.seedTypes.name).getFullList();
@@ -119,7 +145,7 @@ class ApiConsumer {
   Future<List<RecordModel>> fetchFriendship(String userId) async {
     final friendship =
         await pb.collection(Collection.friendship.name).getFullList(
-              filter: 'user == "$userId" || relation == "$userId"',
+              filter: 'user = "$userId" || relation = "$userId"',
             );
 
     return friendship;
@@ -127,12 +153,10 @@ class ApiConsumer {
 
   Future<List<RecordModel>> fetchFriendshipRequests(String userId) async {
     final friendship =
-    await pb.collection(Collection.friendship.name).getFullList(
-      filter: '(user == "$userId" || relation == "$userId") && status == pending',
-    );
-
-    return friendship;
-  }
+        await pb.collection(Collection.friendship.name).getFullList(
+              filter:
+                  '(user == "$userId" || relation == "$userId") && status == pending',
+            );
 
   Future<RecordModel> addFriendship(CreateFriendship createFriendship) async {
     final record = await pb.collection(Collection.friendship.name).create(
@@ -167,6 +191,19 @@ class ApiConsumer {
     final record = await pb.collection(Collection.tree.name).create(
           body: createTree.toJson(),
         );
+    return record;
+  }
+
+  Future<RecordModel> fetchUser(String userId) async {
+    final record = await pb.collection(Collection.users.name).getFirstListItem(
+      'userId="$userId"',
+    );
+    return record;
+  }
+  Future<RecordModel> fetchUserByEmail(String email) async {
+    final record = await pb.collection(Collection.users.name).getFirstListItem(
+      'email="$email"',
+    );
     return record;
   }
 }

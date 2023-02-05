@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../state/friendship/friendship_provider.dart';
+import '../../../../state/friendship/friendship_state_notifier.dart';
+import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../widgets/snackbar.dart';
 import 'action_banner.dart';
 import 'add_friend_form.dart';
 
-class AddFriend extends StatefulWidget {
+class AddFriend extends ConsumerStatefulWidget {
   final TextEditingController controller;
   final Function(String) addFriend;
 
@@ -16,12 +21,14 @@ class AddFriend extends StatefulWidget {
   });
 
   @override
-  State<AddFriend> createState() => _AddFriendState();
+  ConsumerState<AddFriend> createState() => _AddFriendState();
 }
 
-class _AddFriendState extends State<AddFriend> {
+class _AddFriendState extends ConsumerState<AddFriend> {
   @override
   Widget build(BuildContext context) {
+    final providers = ref.watch(friendshipServiceProvider);
+    final friendships = ref.watch(sentPendingFriendshipsStateNotifierProvider);
     return Expanded(
       child: SingleChildScrollView(
         child: Padding(
@@ -44,11 +51,20 @@ class _AddFriendState extends State<AddFriend> {
                   style: PomodoroTheme.title4,
                 ),
               ),
-              Padding(
+              ...friendships.map((friendship) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2.0),
                 child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
+                  body: friendship.relation,
+                  clickOnAction: (_) {
+                    providers
+                        .removeFriendship(friendship.id)
+                        .then((success) {
+                      if (success.isSuccess) {
+                        showSnackBar(context, "Demande d'amitié supprimé !");
+                        _refreshFriendships(ref, context);
+                      }
+                    });
+                  },
                   startIcon: const FaIcon(
                     FontAwesomeIcons.user,
                     color: PomodoroTheme.white,
@@ -58,97 +74,7 @@ class _AddFriendState extends State<AddFriend> {
                     color: PomodoroTheme.white,
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: ActionBanner(
-                  body: "Jean@pomme.fr",
-                  clickOnAction: _deletePendingInvitations,
-                  startIcon: const FaIcon(
-                    FontAwesomeIcons.user,
-                    color: PomodoroTheme.white,
-                  ),
-                  actionIcon: const FaIcon(
-                    FontAwesomeIcons.circleMinus,
-                    color: PomodoroTheme.white,
-                  ),
-                ),
-              ),
+              )).toList(),
             ],
           ),
         ),
@@ -156,7 +82,19 @@ class _AddFriendState extends State<AddFriend> {
     );
   }
 
-  void _deletePendingInvitations(String email) {
-    print(email);
+  void _refreshFriendships(WidgetRef ref, BuildContext context) {
+    final providers = ref.watch(friendshipServiceProvider);
+    final userAuth = ref.watch(authStateNotifierProvider);
+    providers.retrieveFriendships(userAuth.user.id).then((friendships) {
+      if (!friendships.isSuccess) {
+        showSnackBar(
+            context, 'Une erreur à eu lieu lors du chargement des amis');
+        return;
+      }
+      ref.read(friendshipStateNotifierProvider.notifier).clearFriendships();
+      ref
+          .read(friendshipStateNotifierProvider.notifier)
+          .addFriendships(friendships.data!);
+    });
   }
 }

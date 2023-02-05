@@ -58,6 +58,8 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp.router(
       title: appTitle,
       routerConfig: router,
+      theme: pomodoroThemeData,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

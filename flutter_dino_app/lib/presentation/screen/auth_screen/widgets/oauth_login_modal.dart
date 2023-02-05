@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/router.dart';
+import 'package:go_router/go_router.dart';
 import '../../../widgets/bottom_sheet_decoration.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -18,9 +20,12 @@ Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
       onPressed: () async {
         await showModalBottomSheet(
           context: context,
-          builder: (BuildContext bc) => LoginOAuthModal(
-            provider: provider,
-            context: context,
+          builder: (BuildContext bc) => SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: LoginOAuthModal(
+              provider: provider,
+              context: context,
+            ),
           ),
         );
       },
@@ -42,8 +47,6 @@ class LoginOAuthModal extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _LoginOAuthModalState();
 }
-
-// todo create a state or pass params to see which provider is selected
 
 class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
   late final WebViewController _controller;
@@ -68,13 +71,13 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
     final code = uri.queryParameters['code'];
     if (code != null) {
       final codeVerifier = widget.provider.codeVerifier;
-      final auth = await client.authWithOAuth2(
+      final x = await client.authWithOAuth2(
         widget.provider.codeVerifier,
         code,
         codeVerifier,
       );
-      // TODO change to use go router and adapte for web
-      Navigator.of(widget.context).pop();
+      print(x);
+      context.go(RouteNames.root);
       return NavigationDecision.prevent;
     }
     return NavigationDecision.navigate;
@@ -106,16 +109,12 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
-      child: Wrap(
-        children: <Widget>[
-          Container(
-            decoration: bottom_sheet_decoration(),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: WebViewWidget(controller: _controller),
-            ),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: bottomSheetDecoration(),
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: WebViewWidget(controller: _controller),
+        ),
       ),
     );
   }

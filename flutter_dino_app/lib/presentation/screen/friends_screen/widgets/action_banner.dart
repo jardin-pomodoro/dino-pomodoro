@@ -6,15 +6,19 @@ import '../../../theme/theme.dart';
 class ActionBanner extends StatefulWidget {
   final String body;
   final Function clickOnAction;
-  final FaIcon actionIcon;
+  final Function? clickOnActionSecond;
   final FaIcon startIcon;
+  final FaIcon actionIcon;
+  final FaIcon? actionSecondIcon;
 
   const ActionBanner({
     super.key,
     required this.body,
     required this.clickOnAction,
-    required this.actionIcon,
     required this.startIcon,
+    required this.actionIcon,
+    this.actionSecondIcon,
+    this.clickOnActionSecond,
   });
 
   @override
@@ -22,14 +26,11 @@ class ActionBanner extends StatefulWidget {
 }
 
 class _ActionBannerState extends State<ActionBanner> {
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        tileColor: PomodoroTheme.secondary,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0)
-    ),
+      tileColor: PomodoroTheme.secondary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       leading: widget.startIcon,
       title: Row(
         mainAxisSize: MainAxisSize.min,
@@ -37,14 +38,29 @@ class _ActionBannerState extends State<ActionBanner> {
         children: [
           Text(
             widget.body,
-            style: PomodoroTheme.title4,
+            style: PomodoroTheme.title4White,
           ),
-          GestureDetector(
-            onTap: () {
-              widget.clickOnAction(widget.body);
-            },
-            child: widget.actionIcon,
-          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            GestureDetector(
+              onTap: () {
+                widget.clickOnAction(widget.body);
+              },
+              child: widget.actionIcon,
+            ),
+            () {
+              if (widget.clickOnActionSecond != null) {
+                return Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: GestureDetector(
+                      onTap: () {
+                        widget.clickOnActionSecond!(widget.body);
+                      },
+                      child: widget.actionSecondIcon,
+                    ));
+              }
+              return Container();
+            }(),
+          ]),
         ],
       ),
     );
