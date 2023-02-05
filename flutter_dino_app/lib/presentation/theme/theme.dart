@@ -28,6 +28,9 @@ final pomodoroThemeData = ThemeData(
     labelStyle: PomodoroTheme.title4,
     unselectedLabelColor: PomodoroTheme.secondary,
   ),
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: PomodoroTheme.primary,
+  ),
 );
 
 class PomodoroTheme {
@@ -77,7 +80,6 @@ class PomodoroTheme {
     fontWeight: FontWeight.normal,
     color: secondary,
   );
-
 
   static const TextStyle textWhite = TextStyle(
     fontSize: 14,
