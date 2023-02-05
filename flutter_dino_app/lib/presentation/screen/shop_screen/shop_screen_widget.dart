@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/seed_type.dart';
 import '../../../state/seed_type/seed_type_state_notifier.dart';
 import '../../router.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'widgets/seed_type_card_widget.dart';
 import 'widgets/seed_type_details_card_widget.dart';

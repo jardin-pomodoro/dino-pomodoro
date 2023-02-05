@@ -24,7 +24,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouteNames.forest,
       builder: (context, state) =>
-          _scaffoldedWidget("Forêt", ForestScreenWidget()),
+          _scaffoldedWidget("Forêt", const ForestScreenWidget()),
     ),
     GoRoute(
       path: RouteNames.friends,
@@ -69,6 +69,7 @@ final GoRouter router = GoRouter(
 
 Widget _scaffoldedWidgetWithoutMenu(String title, Widget child) {
   return Scaffold(
+    resizeToAvoidBottomInset: false,
     appBar: AppBar(
       centerTitle: true,
       title: Text(title),

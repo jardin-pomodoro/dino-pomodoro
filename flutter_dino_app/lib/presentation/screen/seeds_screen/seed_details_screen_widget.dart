@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/seed.dart';
 import '../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../router.dart';
@@ -7,7 +8,6 @@ import '../../widgets/price_widget.dart';
 import '../../../utils/upgrade_functions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SeedDetailsScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {

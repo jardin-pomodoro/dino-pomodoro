@@ -154,7 +154,7 @@ class ApiConsumer {
   Future<List<RecordModel>> fetchFriendship(String userId) async {
     final friendship =
         await pb.collection(Collection.friendship.name).getFullList(
-              filter: 'user == "$userId" || relation == "$userId"',
+              filter: 'user = "$userId" || relation = "$userId"',
             );
 
     return friendship;
@@ -166,7 +166,6 @@ class ApiConsumer {
               filter:
                   '(user == "$userId" || relation == "$userId") && status == pending',
             );
-
     return friendship;
   }
 
@@ -202,6 +201,17 @@ class ApiConsumer {
   Future<RecordModel> addTree(CreateTree createTree) async {
     final record = await pb.collection(Collection.tree.name).create(
           body: createTree.toJson(),
+        );
+    return record;
+  }
+
+  Future<RecordModel> fetchUser(String userId) async {
+    return pb.collection(Collection.users.name).getOne(userId);
+  }
+
+  Future<RecordModel> fetchUserByEmail(String email) async {
+    final record = await pb.collection(Collection.users.name).getFirstListItem(
+          'email="$email"',
         );
     return record;
   }

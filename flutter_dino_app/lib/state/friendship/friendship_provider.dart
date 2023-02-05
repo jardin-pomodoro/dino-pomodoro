@@ -1,8 +1,8 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/repositories/api_friendship_repository.dart';
-import 'package:flutter_dino_app/data/datasource/local/repositories/local_friendship_repository.dart';
-import 'package:flutter_dino_app/domain/models/friendship.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../core/success.dart';
+import '../../data/datasource/api/repositories/api_friendship_repository.dart';
+import '../../data/datasource/local/repositories/local_friendship_repository.dart';
+import '../../domain/models/friendship.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasource/api/api_consumer.dart';
 import '../../domain/services/friendship_service.dart';

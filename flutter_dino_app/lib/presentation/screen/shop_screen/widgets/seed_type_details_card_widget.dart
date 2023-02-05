@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../domain/models/seed_type.dart';
 import '../../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../domain/models/seed.dart';
@@ -28,7 +28,7 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
               color: PomodoroTheme.secondary,
-              width: 2,
+              width: 3,
             ),
           ),
           child: Container(
@@ -113,11 +113,12 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
                   ],
                 ),
                 ElevatedButton(
-                  style: ElevatedButtonTheme.of(context).style?.copyWith(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.green,
-                        ),
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: PomodoroTheme.white,
+                  ),
                   onPressed: () {
                     _buySeed(seedType, ref);
                     showSnackBar(context, "Graine achetée !");

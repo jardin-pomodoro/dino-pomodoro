@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
-import '../theme/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../state/pomodoro_states/auth_state_notifier.dart';
 import '../screen/forest_screen/forest_screen_widget.dart';
 import '../screen/friends_screen/friends_screen_widget.dart';
 import '../screen/growing_screen/growing_screen_widget.dart';
 import '../screen/seeds_screen/seeds_screen_widget.dart';
 import '../screen/settings_screen/settings_screen_widget.dart';
 import '../screen/shop_screen/shop_screen_widget.dart';
+import '../theme/theme.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);

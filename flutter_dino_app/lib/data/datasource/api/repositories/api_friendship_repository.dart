@@ -1,5 +1,5 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/domain/models/friendship.dart';
+import '../../../../core/success.dart';
+import '../../../../domain/models/friendship.dart';
 
 import '../../../../domain/repositories/friendship_repository.dart';
 import '../api_consumer.dart';
@@ -14,7 +14,8 @@ class ApiFriendshipRepository implements FriendshipRepository {
   @override
   Future<Success<Friendship>> acceptFriendship(Friendship friendship) async {
     try {
-      await apiConsumer.updateFriendship(FriendshipMapper.fromModel(friendship));
+      await apiConsumer
+          .updateFriendship(FriendshipMapper.fromModel(friendship));
       return Success(data: null);
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
@@ -24,7 +25,8 @@ class ApiFriendshipRepository implements FriendshipRepository {
   @override
   Future<Success<void>> rejectFriendship(Friendship friendship) async {
     try {
-      await apiConsumer.updateFriendship(FriendshipMapper.fromModel(friendship));
+      await apiConsumer
+          .updateFriendship(FriendshipMapper.fromModel(friendship));
       return Success(data: null);
     } catch (e) {
       return Success.fromFailure(failureMessage: e.toString());
@@ -42,9 +44,9 @@ class ApiFriendshipRepository implements FriendshipRepository {
   }
 
   @override
-  Future<Success<List<Friendship>>> retrieveFriendships(String userId) async {
+  Future<Success<List<Friendship>>> retrieveFriendships(String email) async {
     try {
-      final friendships = (await apiConsumer.fetchFriendship(userId))
+      final friendships = (await apiConsumer.fetchFriendship(email))
           .map((e) => FriendshipEntity.fromJson(e.toJson()))
           .map(FriendshipMapper.fromEntity)
           .toList();

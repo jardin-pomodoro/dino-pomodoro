@@ -1,10 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import '../forest_screen_widget.dart';
 import '../../../theme/theme.dart';
 import 'dart:math';
 
 class CalendarChart extends StatefulWidget {
-  final String granularity;
+  final CalendarGranularity granularity;
   final List<int> dataByGranularity;
   const CalendarChart({
     Key? key,
@@ -28,7 +29,7 @@ class _CalendarChartState extends State<CalendarChart> {
           padding: const EdgeInsets.only(
             top: 20,
             bottom: 5,
-            left: 10,
+            left: 20,
           ),
           child: AspectRatio(
             aspectRatio: 2,
@@ -48,10 +49,10 @@ class _CalendarChartState extends State<CalendarChart> {
                       AxisTitles(sideTitles: _sideTitles(widget.granularity)),
                   leftTitles: AxisTitles(
                       sideTitles: SideTitles(
+                    reservedSize: 30,
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
                       String text = '';
-                      int len = widget.dataByGranularity.length - 1;
                       switch (value.toInt()) {
                         case 0:
                           text = '0M';
@@ -61,7 +62,7 @@ class _CalendarChartState extends State<CalendarChart> {
                           widget.dataByGranularity.reduce(max)) {
                         text = value.toInt().toString();
                       }
-                      return Text(text);
+                      return Text(text, textScaleFactor: 0.8);
                     },
                   )),
                   rightTitles: AxisTitles(),
@@ -285,13 +286,15 @@ class _CalendarChartState extends State<CalendarChart> {
       );
 
   List<BarChartGroupData> _chartGroups(
-      String granularity, List<int> dataByGranularity) {
+      CalendarGranularity granularity, List<int> dataByGranularity) {
     final List fixedList =
         Iterable<int>.generate(dataByGranularity.length).toList();
     final double barChartWidth;
-    if (granularity == "day" || granularity == "month") {
+    if (granularity == CalendarGranularity.day ||
+        granularity == CalendarGranularity.month) {
       barChartWidth = 6;
-    } else if (granularity == "week" || granularity == "year") {
+    } else if (granularity == CalendarGranularity.week ||
+        granularity == CalendarGranularity.year) {
       barChartWidth = 15;
     } else {
       barChartWidth = 8;
@@ -316,14 +319,33 @@ class _CalendarChartState extends State<CalendarChart> {
         .toList();
   }
 
-  SideTitles _sideTitles(String granularity) {
-    if (granularity == 'day') {
-      return _dayTitles;
-    } else if (granularity == 'week') {
-      return _weekTitles;
-    } else if (granularity == 'month') {
-      return _monthTitles;
+  SideTitles _sideTitles(CalendarGranularity granularity) {
+    switch (granularity) {
+      case CalendarGranularity.day:
+        return _dayTitles;
+      case CalendarGranularity.week:
+        return _weekTitles;
+      case CalendarGranularity.month:
+        return _monthTitles;
+      case CalendarGranularity.year:
+        return _yearTitles;
+      default:
+        return _dayTitles;
     }
-    return _yearTitles;
+  }
+}
+
+String granularityToString(CalendarGranularity granularity) {
+  switch (granularity) {
+    case CalendarGranularity.day:
+      return 'jour';
+    case CalendarGranularity.week:
+      return 'semaine';
+    case CalendarGranularity.month:
+      return 'mois';
+    case CalendarGranularity.year:
+      return 'année';
+    default:
+      return 'jour';
   }
 }

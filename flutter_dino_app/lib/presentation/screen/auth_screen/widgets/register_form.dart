@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../domain/usecases/register_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../../domain/services/auth_service.dart';
 import '../../../../state/auth/auth_service_provider.dart';
-import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../theme/validator.dart';
 import '../../../widgets/snackbar.dart';
 
@@ -18,6 +16,7 @@ class RegisterForm extends ConsumerStatefulWidget {
 
 class _RegisterFormState extends ConsumerState<RegisterForm> {
   String password = '';
+  String passwordConfirm = '';
   String username = '';
   String email = '';
   final _formKey = GlobalKey<FormState>();
@@ -60,14 +59,12 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   labelText: 'Confirmation',
                 ),
                 obscureText: true,
+                onChanged: (value) => passwordConfirm = value,
                 validator: (val) {
                   if (val != null) {
-                    print(val);
-                    print(password);
                     return MatchValidator(
-                            errorText:
-                                'Les mots de passes ne correspondent pas')
-                        .validateMatch(val, password);
+                      errorText: 'Les mots de passes ne correspondent pas',
+                    ).validateMatch(val, password);
                   }
                 },
               ),
@@ -77,18 +74,19 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   final form = _formKey.currentState;
                   if (form != null && form.validate()) {
                     form.save();
-                    // final register = RegisterUseCase(ApiUserRepository(client));
-                    // final result = await register(RegisterParam());
-                    final result = await authService.register(RegisterParam());
+                    final result = await authService.register(RegisterParam(
+                      email,
+                      password,
+                      passwordConfirm,
+                      username,
+                    ));
                     if (mounted) {
                       if (!result.isSuccess) {
+                        // faire en sorte que le snackbar s'affiche
                         showErrorSnackBar(context, result.failureMessage);
                       } else {
-                        ref
-                            .read(authStateNotifierProvider.notifier)
-                            .setUser(result.data!);
-                        Navigator.of(context).pop();
                         showSnackBar(context, 'inscription reussie');
+                        Navigator.of(context).pop();
                       }
                     }
                   }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 @immutable
@@ -44,7 +42,7 @@ class User {
       updated: updated,
     );
   }
-  
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       collectionId: json['collectionId'] as String,
@@ -73,7 +71,7 @@ class User {
         '}';
   }
 
-  UpdateUser toUpdateUser(){
+  UpdateUser toUpdateUser() {
     return UpdateUser(
       username: username,
       email: email,
@@ -94,7 +92,7 @@ class UpdateUser {
     required this.balance,
   });
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'username': username,
       'email': email,

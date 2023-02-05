@@ -1,21 +1,20 @@
-
-
 import 'dart:math';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_dino_app/core/success.dart';
+import '../../../../core/success.dart';
 
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/models/tree.dart';
-import '../../../../domain/repositories/remy_tree_repository.dart';
+import '../../../../domain/repositories/tree_repository.dart';
 import '../../../../state/pomodoro_states/forest_state.dart';
 
-class LocalRemyTreeRepository implements RemyTreeRepository {
+class LocalTreeRepository implements TreeRepository {
   @override
-  Future<Success<List<Tree>>> retrieveRemyTreeRepository() {
+  Future<Success<List<Tree>>> retrieveTreeRepository(
+      String userId, DateTime startDate, DateTime endDate) {
     final forest = List<Tree>.generate(
       50,
-          (index) {
+      (index) {
         final started = DateTime.now().subtract(Duration(
           days: Random().nextInt(20),
           hours: Random().nextInt(24),
@@ -43,6 +42,7 @@ class LocalRemyTreeRepository implements RemyTreeRepository {
         );
       },
     );
-    return Future.delayed(const Duration(seconds: 2)).then((value) => Success(data: forest));
+    return Future.delayed(const Duration(seconds: 2))
+        .then((value) => Success(data: forest));
   }
 }

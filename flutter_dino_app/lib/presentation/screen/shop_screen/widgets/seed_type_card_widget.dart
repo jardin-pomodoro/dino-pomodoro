@@ -33,6 +33,7 @@ class SeedTypeCardWidget extends StatelessWidget {
                 Image.network(
                   seedType.image,
                   height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.4,
                 ),
                 Text(
                   seedType.name,

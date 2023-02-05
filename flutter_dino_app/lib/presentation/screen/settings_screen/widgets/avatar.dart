@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/user_auth.dart';
-import 'package:flutter_dino_app/domain/services/auth_service.dart';
+import '../../../../domain/models/user_auth.dart';
+import '../../../../domain/services/auth_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -61,16 +61,13 @@ class Avatar extends ConsumerWidget {
     );
   }
 
-  void _updateAvatar(AuthService authService, UserAuth userAuth, WidgetRef ref) {
+  void _updateAvatar(
+      AuthService authService, UserAuth userAuth, WidgetRef ref) {
     _pickImage().then((value) {
       if (value != null) {
-        authService
-            .updateUserAvatar(userAuth, value)
-            .then((value) {
+        authService.updateUserAvatar(userAuth, value).then((value) {
           if (value.isSuccess) {
-            ref
-                .read(authStateNotifierProvider.notifier)
-                .setUser(value.data!);
+            ref.read(authStateNotifierProvider.notifier).setUser(value.data!);
           }
         });
       }

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:mime/mime.dart';
-import 'package:flutter_dino_app/domain/models/user_auth.dart';
+import '../models/user_auth.dart';
 
 import '../../core/success.dart';
 import '../repositories/auth_repository.dart';
@@ -15,8 +15,13 @@ class AuthService {
     return _remoteRepository.login(params.email, params.password);
   }
 
-  Future<Success<UserAuth>> register(RegisterParam params) async {
-    throw UnimplementedError();
+  Future<Success<bool>> register(RegisterParam params) async {
+    return _remoteRepository.register(
+      params.email,
+      params.password,
+      params.passwordConfirm,
+      params.username,
+    );
   }
 
   Future<Success<void>> logout() async {
@@ -57,8 +62,8 @@ class AuthService {
     if (mimeType == null || !mimeType.startsWith("image")) {
       return Success.fromFailure(failureMessage: "Invalid image type");
     }
-    final updatedUserAuth = await _remoteRepository.updateUserAvatar(
-        userAuth, avatar);
+    final updatedUserAuth =
+        await _remoteRepository.updateUserAvatar(userAuth, avatar);
     if (updatedUserAuth.isSuccess) {
       await _localRepository.updateUserInfo(updatedUserAuth.data!);
     }
@@ -73,4 +78,11 @@ class LoginParam {
   LoginParam(this.email, this.password);
 }
 
-class RegisterParam {}
+class RegisterParam {
+  final String email;
+  final String password;
+  final String passwordConfirm;
+  final String username;
+
+  RegisterParam(this.email, this.password, this.passwordConfirm, this.username);
+}

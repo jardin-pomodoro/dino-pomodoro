@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_dino_app/data/datasource/local/database/database_source.dart';
+import '../database/database_source.dart';
+import '../../../../core/failure.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
 import '../../../../domain/repositories/auth_repository.dart';
 
 class LocalAuthRepository implements AuthRepository {
   final DatabaseSource dbSource;
-
 
   LocalAuthRepository(this.dbSource);
 
@@ -25,7 +25,8 @@ class LocalAuthRepository implements AuthRepository {
       return Success.fromFailure(failureMessage: "No user auth found");
     }
 
-    final userAuth = UserAuth.fromJson(jsonDecode(result.first['json'] as String));
+    final userAuth =
+        UserAuth.fromJson(jsonDecode(result.first['json'] as String));
     return Success(data: userAuth);
   }
 
@@ -48,6 +49,16 @@ class LocalAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<Success<bool>> register(
+    String email,
+    String password,
+    String passwordConfirm,
+    String username,
+  ) {
+    throw UnableToRegisterWithoutConnection();
+  }
+
+  @override
   Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth) async {
     final result = await saveUserAuth(userAuth);
     if (result.isSuccess) {
@@ -60,4 +71,11 @@ class LocalAuthRepository implements AuthRepository {
   Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar) {
     return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
   }
+}
+
+class UnableToRegisterWithoutConnection implements Failure {
+  final String message;
+  UnableToRegisterWithoutConnection({
+    this.message = "Unable to register without connection",
+  });
 }
