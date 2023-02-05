@@ -22,8 +22,8 @@ class FriendshipEntity {
   factory FriendshipEntity.fromJson(Map<String, dynamic> json) {
     return FriendshipEntity(
       id: json['id'],
-      collectionId: json['collection_id'],
-      collectionName: json['collection_name'],
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
       user: json['user'],
       relation: json['relation'],
       status: FriendshipStatusExtension.fromString(json['status']),

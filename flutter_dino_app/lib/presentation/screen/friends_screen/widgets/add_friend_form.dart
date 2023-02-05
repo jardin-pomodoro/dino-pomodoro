@@ -58,7 +58,7 @@ class _AddFriendFormState extends State<AddFriendForm> {
               padding: EdgeInsets.all(10.0),
               child: Text(
                 'Envoyer la demande',
-                style: PomodoroTheme.text,
+                style: PomodoroTheme.textWhite,
               ),
             ),
           ),
