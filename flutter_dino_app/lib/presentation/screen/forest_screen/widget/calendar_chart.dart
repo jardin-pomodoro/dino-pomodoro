@@ -35,7 +35,7 @@ class _CalendarChartState extends State<CalendarChart> {
             left: 20,
           ),
           child: AspectRatio(
-            aspectRatio: 2,
+            aspectRatio: 1.5,
             child: BarChart(
               BarChartData(
                 barGroups:

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/screen/forest_screen/swipe_calendar.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/focus_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +9,7 @@ import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
 import '../../widgets/snackbar.dart';
-import 'no_tree_card.dart';
+import 'widget/no_tree_card.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/list-horizontal-slide.dart';
 
@@ -41,6 +42,7 @@ class ForestScreenWidget extends ConsumerWidget {
     return SizedBox(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
@@ -96,13 +98,23 @@ class ForestScreenWidget extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: calendarStats.when(
               data: (stats) {
                 if (!stats.every((element) => element == 0)) {
-                  return CalendarChart(
-                    granularity: ref.watch(calendarGranularityProvider),
-                    dataByGranularity: stats,
+                  return Wrap(
+                    direction: Axis.horizontal,
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    runSpacing: 10,
+                    runAlignment: WrapAlignment.end,
+                    children: [
+                      FocusCard(stats: stats),
+                      CalendarChart(
+                        granularity: ref.watch(calendarGranularityProvider),
+                        dataByGranularity: stats,
+                      ),
+                    ],
                   );
                 }
               },
