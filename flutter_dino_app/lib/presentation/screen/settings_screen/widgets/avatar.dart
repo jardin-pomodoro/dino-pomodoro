@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../domain/models/user.dart';
-import '../../../../state/auth/auth_service_provider.dart';
+import '../../../../state/services/auth_service_provider.dart';
 import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../theme/theme.dart';
 

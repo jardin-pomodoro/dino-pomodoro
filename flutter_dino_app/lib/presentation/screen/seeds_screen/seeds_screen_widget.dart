@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../state/pomodoro_states/seed_state_notifier.dart';
-import '../../router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/success.dart';
+import '../../../domain/models/seed.dart';
+import '../../../state/pomodoro_states/seed_state_notifier.dart';
+import '../../../state/services/seed_service_provider.dart';
+import '../../router.dart';
 import 'seed_card_widget.dart';
 import 'seed_details_screen_widget.dart';
 
@@ -16,33 +19,63 @@ class SeedsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final seeds = ref.watch(seedStateNotifierProvider);
+    final AsyncValue<Success<List<Seed>>> seeds = ref.watch(fetchSeedsProvider);
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Center(
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 10,
-          runSpacing: 10,
-          children: seeds
-              .map(
-                (seed) => Listener(
-                  onPointerUp: (_) {
-                    ref
-                        .read(selectedSeedStateNotifierProvider.notifier)
-                        .selectSeed(seed);
-                    SeedDetailsScreenWidget.navigateTo(context);
-                  },
-                  child: SizedBox(
-                    width: 190,
-                    child: SeedCardWidget(seed: seed),
-                  ),
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      seeds.when(
+        data: (data) => _onDataArrive(data, ref),
+        error: _onError,
+        loading: _onLoading,
+      );
+    });
+
+    return Consumer(builder: (context, ref, child) {
+      final seeds = ref.watch(seedStateNotifierProvider);
+      return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            runSpacing: 10,
+            children: seeds
+                .map(
+                  (seed) => Listener(
+                onPointerUp: (_) {
+                  ref
+                      .read(selectedSeedStateNotifierProvider.notifier)
+                      .selectSeed(seed);
+                  SeedDetailsScreenWidget.navigateTo(context);
+                },
+                child: SizedBox(
+                  width: 190,
+                  child: SeedCardWidget(seed: seed),
                 ),
-              )
-              .toList(),
+              ),
+            )
+                .toList(),
+          ),
         ),
-      ),
-    );
+      );
+    });
+  }
+
+  void _onLoading() {
+    print('loading seeds');
+  }
+
+  void _onError(Object error, StackTrace stackTrace) {
+    print('error $error');
+    print('stackTrace $stackTrace');
+  }
+
+  void _onDataArrive(
+      Success<List<Seed>> seeds, WidgetRef ref) {
+    print('data arrive');
+    print('seeds $seeds');
+    ref.read(seedStateNotifierProvider.notifier).clearSeeds();
+    ref
+        .read(seedStateNotifierProvider.notifier)
+        .addSeeds(seeds.isSuccess ? seeds.data! : []);
   }
 }

@@ -46,4 +46,21 @@ class SeedType {
       updated: DateTime.parse(json['updated'] as String),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'collectionId': collectionId,
+      'collectionName': collectionName,
+      'id': id,
+      'name': name,
+      'image': image,
+      'time_to_grow': timeToGrow,
+      'price': price,
+      'reward': reward,
+      'leaf_max_upgrades': leafMaxUpgrades,
+      'trunk_max_upgrades': trunkMaxUpgrades,
+      'created': created.toIso8601String(),
+      'updated': updated.toIso8601String(),
+    };
+  }
 }

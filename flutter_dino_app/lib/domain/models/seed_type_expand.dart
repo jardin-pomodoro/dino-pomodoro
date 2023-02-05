@@ -12,4 +12,10 @@ class SeedTypeExpand {
       seedType: SeedType.fromJson(json['seedType'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'seedType': seedType.toJson(),
+    };
+  }
 }

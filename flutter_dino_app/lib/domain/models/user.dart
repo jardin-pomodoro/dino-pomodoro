@@ -57,18 +57,18 @@ class User {
     );
   }
 
-  String toJson() {
-    return '{'
-        '"collectionId": "$collectionId",'
-        '"collectionName": "$collectionName",'
-        '"created": "$created",'
-        '"id": "$id",'
-        '"username": "$username",'
-        '"email": "$email",'
-        '"avatar": "$avatar",'
-        '"balance": $balance,'
-        '"updated": "$updated"'
-        '}';
+  Map<String, dynamic> toJson() {
+    return {
+      'collectionId': collectionId,
+      'collectionName': collectionName,
+      'created': created.toIso8601String(),
+      'id': id,
+      'username': username,
+      'email': email,
+      'avatar': avatar,
+      'balance': balance,
+      'updated': updated.toIso8601String(),
+    };
   }
 
   UpdateUser toUpdateUser() {

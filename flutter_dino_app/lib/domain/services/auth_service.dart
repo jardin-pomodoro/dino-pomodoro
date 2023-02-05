@@ -1,8 +1,9 @@
 import 'dart:io';
+
 import 'package:mime/mime.dart';
-import '../models/user_auth.dart';
 
 import '../../core/success.dart';
+import '../models/user_auth.dart';
 import '../repositories/auth_repository.dart';
 
 class AuthService {

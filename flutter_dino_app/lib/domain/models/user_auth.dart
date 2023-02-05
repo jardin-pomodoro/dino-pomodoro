@@ -32,19 +32,19 @@ class UserAuth {
     );
   }
 
-  String toJson() {
-    return json.encode({
+  Map<String, dynamic> toJson() {
+    return {
       'authModel': authModel,
       'token': token,
       'user': user.toJson(),
-    });
+    };
   }
 
   factory UserAuth.fromJson(Map<String, dynamic> json) {
     return UserAuth(
       authModel: json['authModel'],
       token: json['token'] as String,
-      user: User.fromJson(jsonDecode(json['user'])),
+      user: User.fromJson(json['user']),
     );
   }
 }

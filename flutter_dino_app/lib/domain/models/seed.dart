@@ -75,6 +75,21 @@ class Seed {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'collectionId': collectionId,
+      'collectionName': collectionName,
+      'created': created.toIso8601String(),
+      'id': id,
+      'seed_type': seedType,
+      'expand': expand.toJson(),
+      'updated': updated.toIso8601String(),
+      'user': user,
+      'leaf_level': leafLevel,
+      'trunk_level': trunkLevel,
+    };
+  }
+
   @override
   String toString() {
     return 'Seed{collectionId: $collectionId, collectionName: $collectionName, id: $id, seedType: $seedType, expand: $expand, user: $user, leafLevel: $leafLevel, trunkLevel: $trunkLevel, created: $created, updated: $updated}';
