@@ -7,9 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
+import '../../widgets/snackbar.dart';
+import 'no_tree_card.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/list-horizontal-slide.dart';
-
 
 enum CalendarGranularity {
   day,
@@ -70,15 +71,24 @@ class ForestScreenWidget extends ConsumerWidget {
                   ),
                 ),
                 treesByTypeUi.when(
-                  data: (trees) => ListHorizontalSlide(
-                    treesStatsUi: trees
-                        .map((tree) => TreeStatsUi(
-                              image: tree.imagePath,
-                              number: tree.seedsUsed,
-                            ))
-                        .toList(),
-                  ),
-                  error: (error, stackTrace) => Text('error ref $error'),
+                  data: (trees) {
+                    print('length');
+                    print(trees.length);
+                    if (trees.isEmpty) {
+                      return NoTreeCard();
+                    }
+                    return ListHorizontalSlide(
+                      treesStatsUi: trees
+                          .map((tree) => TreeStatsUi(
+                                image: tree.imagePath,
+                                number: tree.seedsUsed,
+                              ))
+                          .toList(),
+                    );
+                  },
+                  error: (error, stackTrace) => const CupertinoAlertDialog(
+                      title:
+                          Text("une erreur est survenue réessayez plus tard")),
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                 ),
@@ -88,11 +98,16 @@ class ForestScreenWidget extends ConsumerWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: calendarStats.when(
-              data: (stats) => CalendarChart(
-                granularity: ref.watch(calendarGranularityProvider),
-                dataByGranularity: stats,
-              ),
-              error: (error, stackTrace) => Text('error ref $error'),
+              data: (stats) {
+                if (!stats.every((element) => element == 0)) {
+                  return CalendarChart(
+                    granularity: ref.watch(calendarGranularityProvider),
+                    dataByGranularity: stats,
+                  );
+                }
+              },
+              error: (error, stackTrace) => const CupertinoAlertDialog(
+                  title: Text("une erreur est survenue réessayez plus tard")),
               loading: () => const Center(child: CircularProgressIndicator()),
             ),
           ),

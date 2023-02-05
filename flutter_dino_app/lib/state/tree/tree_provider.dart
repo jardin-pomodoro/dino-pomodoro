@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/success.dart';
 import '../../../data/datasource/local/repositories/local_tree_repository.dart';
 import '../../../domain/models/tree.dart';
 import '../../../domain/services/tree_service.dart';
@@ -35,14 +34,13 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   );
   final retrieveTree = await treeService.retrieveTree(
       userAuth.user.id, selectedDate, granularity);
-  print('retrieveTree: $retrieveTree');
-  print(retrieveTree.data);
   if (!retrieveTree.isSuccess) {
     return Future.value([]);
   }
-
   final trees = retrieveTree.data;
-  print('trees: $trees');
+  if(trees!.isEmpty) {
+    return Future.value([]);
+  }
   final seedTypeToSeedsUsed = trees!.fold({}, (previousValue, tree) {
     if (previousValue.containsKey(tree.expand.seedType.id)) {
       previousValue[tree.expand.seedType.id] += 1;
@@ -51,7 +49,6 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
     }
     return previousValue;
   });
-
   final seedTypeToImage =
       seedTypeToSeedsUsed.keys.fold({}, (previousValue, key) {
     previousValue[key] = trees
@@ -74,23 +71,35 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   return Future.value(result);
 });
 
-Future<List<int>> getDataForCalendar(List<Tree> trees,
-    CalendarGranularity granularity, DateTime selectedDate) async {
+List<int> getDataForCalendar(List<Tree> trees,
+    CalendarGranularity granularity, DateTime selectedDate) {
   const numberOfHoursInADay = 24;
   if (granularity == CalendarGranularity.day) {
-    final Map<DateTime, int> dateMap = List.generate(
+    Map<DateTime, int> dateMap = List.generate(
             numberOfHoursInADay, (index) => null)
         .asMap()
         .map((key, value) => MapEntry(
             DateTime.utc(
                 selectedDate.year, selectedDate.month, selectedDate.day, key),
             0));
+    print("trees");
+    print(trees.length);
+    print(trees.map((e) => e.started));
+    print(trees.map((e) => e.ended));
     trees.forEach((element) {
-      final startDate = element.started;
-      final endedDate = element.ended;
+      var startDate = element.started;
+      var endedDate = element.ended;
+      if(selectedDate.day != startDate.day ) {
+        startDate = DateTime.utc(
+            selectedDate.year, selectedDate.month, selectedDate.day, 0, 0);
+      } else if(selectedDate.day != endedDate.day) {
+        endedDate = DateTime.utc(
+            selectedDate.year, selectedDate.month, selectedDate.day, 23, 59);
+      }
+
       var differenceInMinutes = endedDate.difference(startDate).inMinutes;
       var dateOfStart = startDate;
-      while (differenceInMinutes > 60) {
+      while (dateOfStart.hour != endedDate.hour && dateOfStart.day == endedDate.day) {
         var dateAfter = DateTime.utc(dateOfStart.year, dateOfStart.month,
             dateOfStart.day, dateOfStart.hour + 1, 0);
         var valueToAdd = dateAfter.difference(dateOfStart).inMinutes;
@@ -103,7 +112,7 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
       }
       dateMap.update(dateOfStart, (value) => value + differenceInMinutes);
     });
-    return Future.value(dateMap.values.toList());
+    return dateMap.values.toList();
   } else if (granularity == CalendarGranularity.week) {
     final firstDayOfTheWeek = getFirstDayOfWeek(selectedDate);
     const numberOfDaysInAWeek = 7;
@@ -122,13 +131,10 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
                 value + element.ended.difference(element.started).inMinutes);
       }
     });
-    return Future.value(dateMapForAWeek.values.toList());
+    return dateMapForAWeek.values.toList();
   } else if (granularity == CalendarGranularity.month) {
-    print('je passe par month');
     final firstDayOfMonth = getFirstDayOfMonth(selectedDate);
     final lastDayOfMonth = getLastDayOfMonth(selectedDate);
-    print('firstDayOfMonth: $firstDayOfMonth');
-    print('lastDayOfMonth: $lastDayOfMonth');
     print('${lastDayOfMonth.difference(firstDayOfMonth).inDays}');
     final Map<DateTime, int> dateMapForAMonth = List.generate(
             lastDayOfMonth.difference(firstDayOfMonth).inDays + 1,
@@ -147,8 +153,7 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
                 value + element.ended.difference(element.started).inMinutes);
       }
     });
-    print('dateMapForAMonth: $dateMapForAMonth');
-    return Future.value(dateMapForAMonth.values.toList());
+    return dateMapForAMonth.values.toList();
   } else if (granularity == CalendarGranularity.year) {
     final firstDayOfYear = getFirstDayOfYear(selectedDate);
     const numberOfMonthInAYear = 12;
@@ -166,9 +171,9 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
                 value + element.ended.difference(element.started).inMinutes);
       }
     });
-    return Future.value(dateMapForAYear.values.toList());
+    return dateMapForAYear.values.toList();
   }
-  return Future.value([]);
+  return [];
 }
 
 final fetchTreeCalendar = FutureProvider((ref) async {
@@ -181,19 +186,5 @@ final fetchTreeCalendar = FutureProvider((ref) async {
       localRepository: LocalTreeRepository());
   final retrieveTree = await treeService.retrieveTree(
       userAuth.user.id, selectedDate, granularity);
-  final calendarValues =
-      await getDataForCalendar(retrieveTree.data!, granularity, selectedDate);
-  return Future.value(calendarValues);
-});
-
-final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
-  final granularity = ref.watch(calendarGranularityProvider);
-  final ApiConsumer consumer = ref.read(apiProvider);
-  final userAuth = ref.watch(authStateNotifierProvider);
-  final treeService = TreeService(
-    remoteRepository: RemoteTreeRepository(consumer),
-    localRepository: LocalTreeRepository(),
-  );
-  return treeService.retrieveTree(
-      userAuth.user.id, DateTime.utc(2022, 11, 8), granularity);
+  return Future.value(getDataForCalendar(retrieveTree.data!, granularity, selectedDate));
 });
