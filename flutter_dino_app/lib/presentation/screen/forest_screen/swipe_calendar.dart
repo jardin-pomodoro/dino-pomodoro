@@ -4,7 +4,7 @@ import 'package:flutter_dino_app/utils/date.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../config/date_config.dart';
-import 'forest_screen_widget.dart';
+import 'widget/canular_granularity.dart';
 
 final dateTimeSelectedProvider =
     StateProvider<DateTime>((ref) => DateTime.now());
@@ -45,7 +45,6 @@ class SwipeCalendar extends ConsumerWidget {
             DateTime(dateTime.year - 1, dateTime.month, dateTime.day, 0);
         break;
     }
-
   }
 
   goToNextDate(WidgetRef ref) {

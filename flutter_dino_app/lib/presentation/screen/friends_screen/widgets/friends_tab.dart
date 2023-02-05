@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../domain/models/user.dart';
 import '../../../../state/friendship/friendship_state_notifier.dart';
+import '../../forest_screen/external/friend_forest.dart';
 import 'friends_banner.dart';
 
 class FriendsTab extends ConsumerWidget {
@@ -26,7 +28,19 @@ class FriendsTab extends ConsumerWidget {
                 if (friend.data == null || friend.isSuccess == false) {
                   return const SizedBox.shrink();
                 }
-                return FriendsBanner(user: friend.data!);
+                return GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      context: context,
+                      builder: ((context) {
+                        return FriendForest(friend: friend.data!);
+                      })),
+                  child: FriendsBanner(user: friend.data!),
+                );
               }).toList(),
             );
           },

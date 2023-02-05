@@ -12,6 +12,7 @@ import '../../data/datasource/api/api_consumer.dart';
 import '../../data/datasource/api/repositories/api_tree_repository.dart';
 import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
 import '../../presentation/screen/forest_screen/swipe_calendar.dart';
+import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 import '../../utils/date.dart';
 
 class TreeByTypeUI {

@@ -15,7 +15,9 @@ final friendshipServiceProvider = Provider<FriendshipService>((ref) {
   final remoteRepository = ApiFriendshipRepository(consumer);
 
   return FriendshipService(
-      localRepository: localRepository, remoteRepository: remoteRepository);
+    localRepository: localRepository,
+    remoteRepository: remoteRepository,
+  );
 });
 
 final fetchFriendshipsProvider =
