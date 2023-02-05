@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/models/tree.dart';
+import '../../../../state/pomodoro_states/growing_state_notifier.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
 
-class TreeRewardDialogWidget extends StatelessWidget {
-  final Tree tree;
-
+class TreeRewardDialogWidget extends ConsumerWidget {
   const TreeRewardDialogWidget({
     Key? key,
-    required this.tree,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final growing = ref.watch(growingStateNotifierProvider);
     return Card(
       color: PomodoroTheme.accent,
       shape: RoundedRectangleBorder(
@@ -29,7 +28,7 @@ class TreeRewardDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.network(
-              tree.seedTypeExpand.image,
+              growing!.seedTypeExpand.image,
               height: 250,
             ),
             const Text(
@@ -50,7 +49,7 @@ class TreeRewardDialogWidget extends StatelessWidget {
                   width: 5,
                 ),
                 PriceWidget(
-                  price: tree.seedTypeExpand.price,
+                  price: growing.reward,
                 ),
               ],
             ),

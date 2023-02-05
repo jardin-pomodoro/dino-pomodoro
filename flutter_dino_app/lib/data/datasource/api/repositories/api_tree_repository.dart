@@ -2,6 +2,7 @@ import 'package:flutter_dino_app/domain/models/growing.dart';
 
 import '../../../../core/success.dart';
 import '../../../../domain/models/tree.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/tree_repository.dart';
 import '../api_consumer.dart';
 import '../entity/tree_entity.dart';
@@ -39,16 +40,9 @@ class RemoteTreeRepository implements TreeRepository {
   }
 
   @override
-  Future<Success<Tree>> addNewTree(String userId, Growing growing) async {
-    final createTree = CreateTree(
-      seedType: growing.seedType,
-      user: userId,
-      started: growing.created,
-      ended: DateTime.now(),
-      reward: growing.reward,
-      timeToGrow: growing.timeToGrow ,
-    );
+  Future<Success<Tree>> addNewTree(User user, CreateTree createTree) async {
     final record = await apiConsumer.addTree(createTree);
+    await apiConsumer.updateUserBalance(user.id, user.balance + createTree.reward);
     final treeEntity = TreeEntity.fromJson(record.toJson());
     return Success(data: TreeMapper.fromEntity(treeEntity));
   }

@@ -1,7 +1,10 @@
 import '../../core/network.dart';
 import '../../core/success.dart';
+import '../../data/datasource/api/entity/tree_entity.dart';
 import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../models/growing.dart';
 import '../models/tree.dart';
+import '../models/user.dart';
 import '../repositories/tree_repository.dart';
 
 class Range {
@@ -58,5 +61,23 @@ class TreeService {
 
     return new DateTime(lastSecond.year, lastSecond.month, lastSecond.day,
         lastSecond.hour, lastSecond.minute);
+  }
+
+  Future<Success<Tree>> addNewTree(User user, Growing growing) async {
+    if (await NetworkChecker.hasConnection()) {
+      final createTree = CreateTree(
+        seedType: growing.seedType,
+        user: user.id,
+        started: growing.created,
+        ended: DateTime.now(),
+        reward: growing.reward,
+        timeToGrow: growing.timeToGrow,
+      );
+
+      final tree = await remoteRepository.addNewTree(user, createTree);
+      return tree;
+    }
+
+    return Success.fromFailure(failureMessage: 'No internet connection');
   }
 }

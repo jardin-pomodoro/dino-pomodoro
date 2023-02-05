@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:flutter_dino_app/data/datasource/api/entity/tree_entity.dart';
 import 'package:flutter_dino_app/domain/models/growing.dart';
 
 import '../../../../core/success.dart';
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/models/tree.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/tree_repository.dart';
 import '../../../../state/pomodoro_states/forest_state.dart';
 
@@ -47,7 +49,7 @@ class LocalTreeRepository implements TreeRepository {
   }
 
   @override
-  Future<Success<Tree>> addNewTree(String userId, Growing growing) {
+  Future<Success<Tree>> addNewTree(User user, CreateTree createTree ) {
     return Future.value(Success.fromFailure(failureMessage: 'Not implemented'));
   }
 }

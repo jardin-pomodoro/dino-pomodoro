@@ -54,6 +54,9 @@ class LocalSeedRepository implements SeedRepository {
   Future<Success<void>> saveSeeds(List<Seed> seeds) async {
     final db = await dbSource.db();
     await db.delete('seeds');
+    print('seeds: ${seeds.length}}');
+    print('seeds ids: ${seeds.map((e) => e.id).toList()}');
+    await Future.delayed(Duration(milliseconds: 200));
     for (var seed in seeds) {
       await db.insert(
         'seeds',

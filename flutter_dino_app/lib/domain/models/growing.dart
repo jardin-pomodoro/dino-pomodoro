@@ -27,4 +27,6 @@ class Growing {
     required this.reward,
     required this.timeToGrow,
   });
+
+  get seedTypeExpand => expand.seedType;
 }
