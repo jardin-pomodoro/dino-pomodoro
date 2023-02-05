@@ -1,5 +1,5 @@
 import 'package:flutter_dino_app/domain/models/user_auth.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/models/user.dart';
 

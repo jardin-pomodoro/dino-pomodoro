@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../domain/models/seed_type.dart';
 import '../../../../state/pomodoro_states/seed_state_notifier.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../domain/models/seed.dart';

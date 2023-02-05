@@ -1,9 +1,5 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/user_entity.dart';
 import 'package:flutter_dino_app/domain/models/user.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../domain/models/user.dart';
-import '../pomodoro_states/auth_state_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserStateNotifier extends StateNotifier<List<User>> {
   UserStateNotifier() : super([]);

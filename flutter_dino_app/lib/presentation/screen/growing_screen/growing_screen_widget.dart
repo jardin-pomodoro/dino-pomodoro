@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/grow_failed_dialog_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/growing.dart';
 import '../../../domain/models/seed.dart';
 import '../../../domain/models/tree.dart';
@@ -13,7 +14,6 @@ import '../../router.dart';
 import '../../theme/theme.dart';
 import '../../../utils/upgrade_functions.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'growing_grow_screen_widget.dart';
 import 'widgets/seeds_select_dialog_widget.dart';

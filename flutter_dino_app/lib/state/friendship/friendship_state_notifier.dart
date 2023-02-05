@@ -1,6 +1,6 @@
 import 'package:flutter_dino_app/data/datasource/api/entity/friendship_entity.dart';
 import 'package:flutter_dino_app/domain/models/friendship.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../pomodoro_states/auth_state_notifier.dart';
 
@@ -35,17 +35,21 @@ final receivedPendingFriendshipsStateNotifierProvider =
   final userAuth = ref.watch(authStateNotifierProvider);
 
   return friendships
-      .where((friendship) => friendship.relation == userAuth.user.id && friendship.status == FriendshipStatus.pending)
+      .where((friendship) =>
+          friendship.relation == userAuth.user.id &&
+          friendship.status == FriendshipStatus.pending)
       .toList();
 });
 
 final sentPendingFriendshipsStateNotifierProvider =
-Provider<List<Friendship>>((ref) {
+    Provider<List<Friendship>>((ref) {
   final friendships = ref.watch(friendshipStateNotifierProvider);
   final userAuth = ref.watch(authStateNotifierProvider);
 
   return friendships
-      .where((friendship) => friendship.user == userAuth.user.id && friendship.status == FriendshipStatus.pending)
+      .where((friendship) =>
+          friendship.user == userAuth.user.id &&
+          friendship.status == FriendshipStatus.pending)
       .toList();
 });
 

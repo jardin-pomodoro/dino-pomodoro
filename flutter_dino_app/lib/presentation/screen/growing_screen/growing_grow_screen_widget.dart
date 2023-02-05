@@ -1,5 +1,3 @@
-
-
 /*
 class GrowingGrowScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
@@ -83,7 +81,6 @@ class GrowingGrowScreenWidget extends ConsumerWidget {
 }
 */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dino_app/presentation/screen/growing_screen/widgets/growing_tree.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

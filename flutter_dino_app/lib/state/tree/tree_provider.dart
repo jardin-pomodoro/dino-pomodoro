@@ -236,8 +236,7 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
         dateMapForAYear.update(
             DateTime.utc(element.ended.year, element.ended.month, 1, 0, 0),
             (value) =>
-                value + element.ended.difference(element.started).inMinutes
-        );
+                value + element.ended.difference(element.started).inMinutes);
       }
     });
     return Future.value(dateMapForAYear.values.toList());
@@ -253,7 +252,9 @@ DateTime getFirstDayOfWeek(DateTime date) {
 
 DateTime getLastDayOfWeek(DateTime date) {
   int dayOfWeek = date.weekday;
-  return date.add(Duration(days: 7 - dayOfWeek)).subtract(Duration(days: 1));
+  return date
+      .add(Duration(days: 7 - dayOfWeek))
+      .subtract(const Duration(days: 1));
 }
 
 final fetchTreeCalendar = FutureProvider((ref) async {
@@ -270,10 +271,6 @@ final fetchTreeCalendar = FutureProvider((ref) async {
       await getDataForCalendar(retrieveTree.data!, granularity, selectedDate);
   return Future.value(calendarValues);
 });
-
-
-
-
 
 final fetchTreeProvider = FutureProvider<Success<List<Tree>>>((ref) async {
   //final ApiConsumer consumer = ref.read(apiProvider);

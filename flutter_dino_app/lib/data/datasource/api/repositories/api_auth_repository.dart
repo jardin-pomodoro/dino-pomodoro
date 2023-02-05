@@ -80,8 +80,7 @@ class ApiAuthRepository implements AuthRepository {
         'passwordConfirm': passwordConfirm,
         'username': username,
       };
-      final create =
-          await client.pb.collection(Collection.users.name).create(body: user);
+      await client.pb.collection(Collection.users.name).create(body: user);
       return Future.value(Success(data: true));
     } catch (_) {
       return Future.value(
