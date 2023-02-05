@@ -1,6 +1,6 @@
-import 'api.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+import 'api.dart';
 import 'api_consumer.dart';
 
 class ApiPocketBase implements Api {

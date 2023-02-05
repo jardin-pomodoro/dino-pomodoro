@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/success.dart';
-import '../../../domain/models/seed.dart';
 import '../../../state/pomodoro_states/seed_state_notifier.dart';
-import '../../../state/services/seed_service_provider.dart';
 import '../../router.dart';
 import 'seed_card_widget.dart';
 import 'seed_details_screen_widget.dart';

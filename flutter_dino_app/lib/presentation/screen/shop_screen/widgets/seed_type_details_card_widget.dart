@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../domain/models/seed_type.dart';
+import '../../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../../state/pomodoro_states/seed_state_notifier.dart';
+import '../../../../state/services/seed_service_provider.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
-import 'package:go_router/go_router.dart';
-import 'package:uuid/uuid.dart';
-
-import '../../../../domain/models/seed.dart';
-import '../../../../domain/models/seed_type_expand.dart';
 import '../../../widgets/snackbar.dart';
 
 class SeedTypeDetailsCardWidget extends ConsumerWidget {
@@ -92,7 +91,10 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
                             style: PomodoroTheme.textLarge,
                           ),
                         ),
-                        Chip(label: PriceWidget(price: seedType.reward)),
+                        Chip(
+                          label: PriceWidget(price: seedType.reward),
+                          backgroundColor: PomodoroTheme.secondary,
+                        ),
                         Chip(
                           label: Text(
                             "${seedType.leafMaxUpgrades}",
@@ -117,12 +119,10 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    backgroundColor: PomodoroTheme.white,
+                    backgroundColor: PomodoroTheme.secondary,
                   ),
                   onPressed: () {
-                    _buySeed(seedType, ref);
-                    showSnackBar(context, "Graine achetée !");
-                    context.pop();
+                    _buySeed(seedType, context, ref).then((_) => context.pop());
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -137,20 +137,25 @@ class SeedTypeDetailsCardWidget extends ConsumerWidget {
     );
   }
 
-  _buySeed(SeedType seedType, WidgetRef ref) {
-    // TODO Buy seed
-    Seed seed = Seed(
-      id: const Uuid().v4(),
-      seedType: seedType.id,
-      expand: SeedTypeExpand(seedType: seedType),
-      user: "1",
-      leafLevel: 0,
-      trunkLevel: 0,
-      collectionId: "1",
-      collectionName: "1",
-      created: DateTime.now(),
-      updated: DateTime.now(),
-    );
-    ref.read(seedStateNotifierProvider.notifier).addSeed(seed);
+  _buySeed(SeedType seedType, BuildContext context, WidgetRef ref) async {
+    final price = seedType.price;
+    final user = ref.read(authStateNotifierProvider).user;
+
+    if (user.balance >= price) {
+      final seedSuccess =
+          await ref.read(seedServiceProvider).buySeed(user, seedType);
+      if (seedSuccess.isSuccess) {
+        final seed = seedSuccess.data!;
+        ref.read(seedStateNotifierProvider.notifier).addSeed(seed);
+        ref
+            .read(authStateNotifierProvider.notifier)
+            .updateBalance(user.balance - price);
+        showSnackBar(context, "Graine achetée !");
+      } else {
+        showSnackBar(context, "Erreur lors de l'achat !");
+      }
+    } else {
+      showSnackBar(context, "Pas assez d'argent !");
+    }
   }
 }

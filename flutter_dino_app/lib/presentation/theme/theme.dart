@@ -37,6 +37,7 @@ class PomodoroTheme {
   static const Color white = Color(0xFFFCF6F5);
   static const Color primary = Color(0xFF0B6623);
   static const Color secondary = Color(0xFF9B5E3C);
+  static const Color secondaryLight = Color(0xFFC05A15);
   static const Color accent = Color(0xFFB9D7D9);
   static const Color green = Color(0xFF0B6623);
   static const Color red = Color(0xfffa5252);
@@ -62,6 +63,11 @@ class PomodoroTheme {
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: secondary,
+  );
+  static const TextStyle title3Yellow = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: yellow,
   );
 
   static const TextStyle title4 = TextStyle(

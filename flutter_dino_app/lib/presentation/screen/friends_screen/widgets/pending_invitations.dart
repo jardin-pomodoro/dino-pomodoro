@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../widgets/snackbar.dart';
-import '../../../../state/friendship/friendship_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../state/friendship/friendship_provider.dart';
 import '../../../../state/friendship/friendship_state_notifier.dart';
-import '../friends_screen_widget.dart';
 import '../../../theme/theme.dart';
+import '../../../widgets/snackbar.dart';
+import '../friends_screen_widget.dart';
 import 'action_banner.dart';
 
 class PendingInvitations extends ConsumerWidget {

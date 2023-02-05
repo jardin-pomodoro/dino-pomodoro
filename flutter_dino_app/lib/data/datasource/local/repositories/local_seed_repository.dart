@@ -37,7 +37,7 @@ class LocalSeedRepository implements SeedRepository {
   @override
   Future<Success<void>> saveSeed(User user, Seed seed, {int? price}) async {
     final db = await dbSource.db();
-    db.delete('seeds', where: 'id = ?', whereArgs: [seed.id]);
+    await db.delete('seeds', where: 'id = ?', whereArgs: [seed.id]);
     await db.insert(
       'seeds',
       {
@@ -54,7 +54,7 @@ class LocalSeedRepository implements SeedRepository {
     await clear();
     final db = await dbSource.db();
     for (var seed in seeds) {
-      db.insert(
+      await db.insert(
         'seeds',
         {
           'id': seed.id,

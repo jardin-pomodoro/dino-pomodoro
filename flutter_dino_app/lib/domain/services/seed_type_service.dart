@@ -1,6 +1,5 @@
-import '../../core/success.dart';
-
 import '../../core/network.dart';
+import '../../core/success.dart';
 import '../models/seed_type.dart';
 import '../repositories/seed_type_repository.dart';
 

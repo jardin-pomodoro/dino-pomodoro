@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'user.dart';
@@ -20,6 +18,7 @@ class UserAuth {
     String? username,
     String? avatar,
     String? email,
+    int? balance,
   }) {
     return UserAuth(
       authModel: authModel,
@@ -28,6 +27,7 @@ class UserAuth {
         username: username,
         avatar: avatar,
         email: email,
+        balance: balance,
       ),
     );
   }

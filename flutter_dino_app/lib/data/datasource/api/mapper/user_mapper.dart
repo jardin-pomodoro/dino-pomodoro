@@ -1,5 +1,4 @@
 import '../../../../domain/models/user.dart';
-
 import '../entity/user_entity.dart';
 import '../pocketbase.dart';
 

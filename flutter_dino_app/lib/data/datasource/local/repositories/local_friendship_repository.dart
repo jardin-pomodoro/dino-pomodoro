@@ -1,8 +1,7 @@
-import '../../api/entity/friendship_entity.dart';
-
 import '../../../../core/success.dart';
 import '../../../../domain/models/friendship.dart';
 import '../../../../domain/repositories/friendship_repository.dart';
+import '../../api/entity/friendship_entity.dart';
 
 class LocalFriendshipRepository implements FriendshipRepository {
   @override

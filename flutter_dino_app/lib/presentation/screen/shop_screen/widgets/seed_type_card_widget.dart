@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../domain/models/seed_type.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/price_widget.dart';
@@ -18,11 +19,11 @@ class SeedTypeCardWidget extends StatelessWidget {
     return Column(
       children: [
         Card(
-          color: PomodoroTheme.accent,
+          color: PomodoroTheme.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
-              color: PomodoroTheme.secondary,
+              color: PomodoroTheme.green,
               width: 2,
             ),
           ),
@@ -37,13 +38,13 @@ class SeedTypeCardWidget extends StatelessWidget {
                 ),
                 Text(
                   seedType.name,
-                  style: PomodoroTheme.title3,
+                  style: PomodoroTheme.title3Yellow,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 bought
-                    ? const Text("Acheté", style: PomodoroTheme.textLarge)
+                    ? const Text("Acheté", style: PomodoroTheme.textLargeYellow)
                     : PriceWidget(price: seedType.price),
               ],
             ),

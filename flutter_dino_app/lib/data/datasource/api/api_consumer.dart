@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:pocketbase/pocketbase.dart';
 
@@ -119,6 +120,7 @@ class ApiConsumer {
   Future<RecordModel> addNewSeed(CreateSeed createSeed) async {
     final record = await pb.collection(Collection.seed.name).create(
           body: createSeed.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }

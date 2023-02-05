@@ -1,5 +1,6 @@
-import '../../domain/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../domain/models/user.dart';
 
 class UserStateNotifier extends StateNotifier<List<User>> {
   UserStateNotifier() : super([]);

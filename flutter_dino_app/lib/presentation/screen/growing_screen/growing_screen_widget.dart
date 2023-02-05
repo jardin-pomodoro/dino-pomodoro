@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import '../../../core/success.dart';
-import '../../../state/pomodoro_states/seed_state_notifier.dart';
-import 'widgets/grow_failed_dialog_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../domain/models/growing.dart';
 import '../../../domain/models/seed.dart';
 import '../../../domain/models/tree.dart';
@@ -12,12 +11,11 @@ import '../../../state/pomodoro_states/growing_state_notifier.dart';
 import '../../../state/pomodoro_states/seed_selector_state_notifier.dart';
 import '../../../state/sentences_stream_provider.dart';
 import '../../../state/timer/timer_v2.dart';
+import '../../../utils/upgrade_functions.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
-import '../../../utils/upgrade_functions.dart';
-import 'package:go_router/go_router.dart';
-
 import 'growing_grow_screen_widget.dart';
+import 'widgets/grow_failed_dialog_widget.dart';
 import 'widgets/seeds_select_dialog_widget.dart';
 import 'widgets/tree_reward_dialog_widget.dart';
 

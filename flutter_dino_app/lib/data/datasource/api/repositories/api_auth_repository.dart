@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import '../../../../core/success.dart';
-import '../entity/auth_entity.dart';
-import '../mapper/auth_mapper.dart';
-import '../../../../domain/models/user_auth.dart';
-import '../../../../domain/repositories/auth_repository.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+import '../../../../core/success.dart';
+import '../../../../domain/models/user_auth.dart';
+import '../../../../domain/repositories/auth_repository.dart';
 import '../api_consumer.dart';
+import '../entity/auth_entity.dart';
+import '../mapper/auth_mapper.dart';
 
 class ApiAuthRepository implements AuthRepository {
   final ApiConsumer client;

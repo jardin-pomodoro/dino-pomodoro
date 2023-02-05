@@ -1,8 +1,10 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../forest_screen_widget.dart';
+
 import '../../../theme/theme.dart';
-import 'dart:math';
+import '../forest_screen_widget.dart';
 
 class CalendarChart extends StatefulWidget {
   final CalendarGranularity granularity;

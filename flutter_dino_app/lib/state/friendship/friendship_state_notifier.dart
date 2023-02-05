@@ -1,8 +1,8 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../core/success.dart';
 import '../../data/datasource/api/entity/friendship_entity.dart';
 import '../../domain/models/friendship.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../domain/models/user.dart';
 import '../../domain/services/user_service.dart';
 import '../pomodoro_states/auth_state_notifier.dart';

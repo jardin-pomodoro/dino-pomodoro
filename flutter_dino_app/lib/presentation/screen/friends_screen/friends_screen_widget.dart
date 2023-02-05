@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../state/friendship/friendship_provider.dart';
 import '../../../state/friendship/friendship_state_notifier.dart';
 import '../../../state/pomodoro_states/auth_state_notifier.dart';
@@ -10,7 +12,6 @@ import 'widgets/add_friend.dart';
 import 'widgets/friends_tab.dart';
 import 'widgets/pending_invitations.dart';
 import 'widgets/slider_choice.dart';
-import 'package:go_router/go_router.dart';
 
 class FriendsScreenWidget extends ConsumerStatefulWidget {
   static void navigateTo(BuildContext context) {

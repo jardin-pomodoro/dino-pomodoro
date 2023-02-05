@@ -1,7 +1,6 @@
+import '../../../../domain/models/tree.dart';
 import '../entity/tree_entity.dart';
 import 'seed_type_expand_mapper.dart';
-
-import '../../../../domain/models/tree.dart';
 
 class TreeMapper {
   static Tree fromEntity(TreeEntity entity) {

@@ -1,6 +1,5 @@
 import '../../../../core/success.dart';
 import '../../../../domain/models/friendship.dart';
-
 import '../../../../domain/repositories/friendship_repository.dart';
 import '../api_consumer.dart';
 import '../entity/friendship_entity.dart';

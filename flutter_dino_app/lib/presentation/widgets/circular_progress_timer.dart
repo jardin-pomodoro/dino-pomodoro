@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../theme/theme.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+
+import '../theme/theme.dart';
 
 class CircularProgressTimer extends StatelessWidget {
   final int remainingTime;

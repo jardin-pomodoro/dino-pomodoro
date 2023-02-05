@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../../domain/services/auth_service.dart';
-import '../../../../state/services/auth_service_provider.dart';
 import '../../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../../../../state/services/auth_service_provider.dart';
 import '../../../widgets/snackbar.dart';
 import '../../growing_screen/growing_screen_widget.dart';
 

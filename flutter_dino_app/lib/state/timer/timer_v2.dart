@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import '../../../utils/upgrade_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../utils/upgrade_functions.dart';
 
 class Ticker {
   Stream<int> tick({required int ticks}) {

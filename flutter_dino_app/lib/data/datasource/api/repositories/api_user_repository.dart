@@ -1,10 +1,9 @@
 import '../../../../core/success.dart';
-import '../mapper/user_mapper.dart';
 import '../../../../domain/models/user.dart';
-
 import '../../../../domain/repositories/user_repository.dart';
 import '../api_consumer.dart';
 import '../entity/user_entity.dart';
+import '../mapper/user_mapper.dart';
 
 class ApiUserRepository implements UserRepository {
   final ApiConsumer apiConsumer;

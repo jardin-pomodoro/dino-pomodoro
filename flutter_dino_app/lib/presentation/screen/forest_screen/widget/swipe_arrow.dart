@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../theme/theme.dart';
 
 class SwipeArrow extends StatelessWidget {
   const SwipeArrow({Key? key}) : super(key: key);

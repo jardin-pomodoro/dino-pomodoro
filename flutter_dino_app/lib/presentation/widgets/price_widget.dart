@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme/theme.dart';
 
 class PriceWidget extends StatelessWidget {
