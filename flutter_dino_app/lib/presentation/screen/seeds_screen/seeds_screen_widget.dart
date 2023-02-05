@@ -19,15 +19,6 @@ class SeedsScreenWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<Success<List<Seed>>> seeds = ref.watch(fetchSeedsProvider);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      seeds.when(
-        data: (data) => _onDataArrive(data, ref),
-        error: _onError,
-        loading: _onLoading,
-      );
-    });
 
     return Consumer(builder: (context, ref, child) {
       final seeds = ref.watch(seedStateNotifierProvider);
@@ -58,24 +49,5 @@ class SeedsScreenWidget extends ConsumerWidget {
         ),
       );
     });
-  }
-
-  void _onLoading() {
-    print('loading seeds');
-  }
-
-  void _onError(Object error, StackTrace stackTrace) {
-    print('error $error');
-    print('stackTrace $stackTrace');
-  }
-
-  void _onDataArrive(
-      Success<List<Seed>> seeds, WidgetRef ref) {
-    print('data arrive');
-    print('seeds $seeds');
-    ref.read(seedStateNotifierProvider.notifier).clearSeeds();
-    ref
-        .read(seedStateNotifierProvider.notifier)
-        .addSeeds(seeds.isSuccess ? seeds.data! : []);
   }
 }

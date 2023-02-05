@@ -98,4 +98,10 @@ class PomodoroTheme {
     fontWeight: FontWeight.normal,
     color: secondary,
   );
+
+  static const TextStyle textLargeYellow = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+    color: yellow,
+  );
 }

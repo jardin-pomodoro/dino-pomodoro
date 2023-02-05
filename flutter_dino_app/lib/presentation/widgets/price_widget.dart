@@ -19,7 +19,7 @@ class PriceWidget extends StatelessWidget {
       children: [
         Text(
           "$price",
-          style: PomodoroTheme.textLarge,
+          style: PomodoroTheme.textLargeYellow,
         ),
         SizedBox(
           width: spacing ?? 10,

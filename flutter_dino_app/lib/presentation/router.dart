@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
+import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/success.dart';
+import '../domain/models/seed.dart';
+import '../state/pomodoro_states/seed_state_notifier.dart';
+import '../state/services/seed_service_provider.dart';
 import 'screen/auth_screen/auth_screen.dart';
 import 'screen/forest_screen/forest_screen_widget.dart';
 import 'screen/friends_screen/friends_screen_widget.dart';
@@ -90,7 +97,19 @@ Widget _scaffoldedWidget(String title, Widget child) {
   return Scaffold(
     appBar: AppBar(
       centerTitle: true,
-      title: Text(title),
+      title: Row(
+        children: [
+          const Spacer(),
+          Text(title),
+          const Spacer(),
+          Consumer(
+            builder: (context, ref, child) {
+              final user = ref.watch(authStateNotifierProvider).user;
+              return PriceWidget(price: user.balance);
+            },
+          ),
+        ],
+      ),
       backgroundColor: PomodoroTheme.secondary,
       foregroundColor: PomodoroTheme.yellow,
     ),
@@ -99,10 +118,44 @@ Widget _scaffoldedWidget(String title, Widget child) {
     body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: child,
+        child: Consumer(
+          builder: (context, ref, childd) {
+            final AsyncValue<Success<List<Seed>>> seeds = ref.watch(fetchSeedsProvider);
+
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              seeds.when(
+                data: (data) => _onSeedsDataArrive(data, ref),
+                error: _onSeedsError,
+                loading: _onSeedsLoading,
+              );
+            });
+
+            return child;
+          },
+        ),
       ),
     ),
   );
+
+
+}
+
+void _onSeedsLoading() {
+  print('loading seeds');
+}
+
+void _onSeedsError(Object error, StackTrace stackTrace) {
+  print('error $error');
+  print('stackTrace $stackTrace');
+}
+
+void _onSeedsDataArrive(
+    Success<List<Seed>> seeds, WidgetRef ref) {
+  print('seeds loaded');
+  ref.read(seedStateNotifierProvider.notifier).clearSeeds();
+  ref
+      .read(seedStateNotifierProvider.notifier)
+      .addSeeds(seeds.isSuccess ? seeds.data! : []);
 }
 
 abstract class RouteNames {
