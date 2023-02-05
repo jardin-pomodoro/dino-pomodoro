@@ -157,8 +157,8 @@ class ApiConsumer {
     final friendship =
         await pb.collection(Collection.friendship.name).getFullList(
               filter: 'user = "$userId" || relation = "$userId"',
+            expand: 'user,relation'
             );
-
     return friendship;
   }
 
@@ -167,7 +167,7 @@ class ApiConsumer {
         await pb.collection(Collection.friendship.name).getFullList(
               filter:
                   '(user == "$userId" || relation == "$userId") && status == pending',
-            );
+        );
     return friendship;
   }
 

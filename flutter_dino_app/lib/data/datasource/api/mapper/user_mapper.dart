@@ -17,4 +17,18 @@ class UserMapper {
       balance: entity.balance,
     );
   }
+  static UserEntity fromModel(User entity) {
+    return UserEntity(
+      collectionId: entity.collectionId,
+      collectionName: entity.collectionName,
+      id: entity.id,
+      username: entity.username,
+      email: entity.email,
+      avatar: ApiPocketBase.collectionFileUrl(
+          entity.collectionId, entity.id, entity.avatar),
+      created: entity.created,
+      updated: entity.updated,
+      balance: entity.balance,
+    );
+  }
 }

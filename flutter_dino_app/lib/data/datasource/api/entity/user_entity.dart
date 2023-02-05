@@ -47,7 +47,7 @@ class UserEntity {
       created: DateTime.parse(map['created']),
       id: map['id'],
       username: map['username'],
-      email: map['email'],
+      email: map['email'] ?? '',
       balance: map['balance'],
       avatar: map['avatar'],
       updated: DateTime.parse(map['updated']),

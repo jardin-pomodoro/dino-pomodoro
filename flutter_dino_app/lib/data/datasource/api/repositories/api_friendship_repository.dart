@@ -44,15 +44,11 @@ class ApiFriendshipRepository implements FriendshipRepository {
 
   @override
   Future<Success<List<Friendship>>> retrieveFriendships(String email) async {
-    try {
       final friendships = (await apiConsumer.fetchFriendship(email))
           .map((e) => FriendshipEntity.fromJson(e.toJson()))
           .map(FriendshipMapper.fromEntity)
           .toList();
       return Success(data: friendships);
-    } catch (e) {
-      return Success.fromFailure(failureMessage: e.toString());
-    }
   }
 
   @override
