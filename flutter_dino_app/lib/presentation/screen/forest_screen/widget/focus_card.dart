@@ -22,7 +22,7 @@ class FocusCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Vous êtes résté concetré ${stats.reduce((value, element) => value += element)} minutes",
+              "Vous êtes résté concentré ${stats.reduce((value, element) => value += element)} minutes",
               style: const TextStyle(
                   color: PomodoroTheme.white,
                   fontSize: 12.0),
