@@ -11,6 +11,7 @@ import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../data/datasource/api/api_consumer.dart';
 import '../../data/datasource/api/repositories/api_tree_repository.dart';
 import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../../presentation/screen/forest_screen/swipe_calendar.dart';
 import '../../utils/date.dart';
 
 class TreeByTypeUI {
@@ -27,12 +28,13 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
   final granularity = ref.watch(calendarGranularityProvider);
   final ApiConsumer consumer = ref.read(apiProvider);
   final userAuth = ref.watch(authStateNotifierProvider);
+  final selectedDate = ref.watch(dateTimeSelectedProvider);
   final treeService = TreeService(
     remoteRepository: RemoteTreeRepository(consumer),
     localRepository: LocalTreeRepository(),
   );
   final retrieveTree = await treeService.retrieveTree(
-      userAuth.user.id, DateTime.utc(2022, 11, 8), granularity);
+      userAuth.user.id, selectedDate, granularity);
   print('retrieveTree: $retrieveTree');
   print(retrieveTree.data);
   if (!retrieveTree.isSuccess) {
@@ -122,10 +124,15 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
     });
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.month) {
+    print('je passe par month');
     final firstDayOfMonth = getFirstDayOfMonth(selectedDate);
     final lastDayOfMonth = getLastDayOfMonth(selectedDate);
-    final Map<DateTime, int> dateMapForAWeek = List.generate(
-            lastDayOfMonth.difference(firstDayOfMonth).inDays, (index) => null)
+    print('firstDayOfMonth: $firstDayOfMonth');
+    print('lastDayOfMonth: $lastDayOfMonth');
+    print('${lastDayOfMonth.difference(firstDayOfMonth).inDays}');
+    final Map<DateTime, int> dateMapForAMonth = List.generate(
+            lastDayOfMonth.difference(firstDayOfMonth).inDays + 1,
+            (index) => null)
         .asMap()
         .map((key, value) => MapEntry(
             DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
@@ -133,14 +140,15 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
             0));
     trees.forEach((element) {
       if (element.started.day == element.ended.day) {
-        dateMapForAWeek.update(
+        dateMapForAMonth.update(
             DateTime.utc(element.started.year, element.started.month,
                 element.started.day, 0),
             (value) =>
                 value + element.ended.difference(element.started).inMinutes);
       }
     });
-    return Future.value(dateMapForAWeek.values.toList());
+    print('dateMapForAMonth: $dateMapForAMonth');
+    return Future.value(dateMapForAMonth.values.toList());
   } else if (granularity == CalendarGranularity.year) {
     final firstDayOfYear = getFirstDayOfYear(selectedDate);
     const numberOfMonthInAYear = 12;
@@ -165,12 +173,12 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
 
 final fetchTreeCalendar = FutureProvider((ref) async {
   final granularity = ref.watch(calendarGranularityProvider);
+  final selectedDate = ref.watch(dateTimeSelectedProvider);
   final ApiConsumer consumer = ref.read(apiProvider);
   final userAuth = ref.watch(authStateNotifierProvider);
   final treeService = TreeService(
       remoteRepository: RemoteTreeRepository(consumer),
       localRepository: LocalTreeRepository());
-  final selectedDate = DateTime.utc(2022, 11, 8);
   final retrieveTree = await treeService.retrieveTree(
       userAuth.user.id, selectedDate, granularity);
   final calendarValues =

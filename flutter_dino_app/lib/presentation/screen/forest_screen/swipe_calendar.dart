@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/swipe_arrow.dart';
+import 'package:flutter_dino_app/utils/date.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import '../../../config/date_config.dart';
 import 'forest_screen_widget.dart';
 
 final dateTimeSelectedProvider =
@@ -17,32 +19,67 @@ class SwipeCalendar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SwipeArrow(
-      text: ref.watch(dateTimeSelectedProvider).toString(),
-      valueChanged: (value) =>
-          ref.read(dateTimeSelectedProvider.notifier).state = value!,
+      text: formatDateTimeWithGranularity(ref.watch(dateTimeSelectedProvider)),
+      clickLeft: () => goToPreviousDate(ref),
+      clickRight: () => goToNextDate(ref),
     );
   }
 
   goToPreviousDate(WidgetRef ref) {
     final dateTime = ref.watch(dateTimeSelectedProvider);
+    switch (granularityDisplayed) {
+      case CalendarGranularity.day:
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            dateTime.subtract(Duration(days: 1));
+        break;
+      case CalendarGranularity.week:
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            dateTime.subtract(Duration(days: 7));
+        break;
+      case CalendarGranularity.month:
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            DateTime(dateTime.year, dateTime.month - 1, dateTime.day, 0);
+        break;
+      case CalendarGranularity.year:
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            DateTime(dateTime.year - 1, dateTime.month, dateTime.day, 0);
+        break;
+    }
 
   }
 
   goToNextDate(WidgetRef ref) {
-
-  }
-
-  formatDateTimeWithGranularity(DateTime date) {
-    Intl.defaultLocale = 'fr_FR';
+    final dateTime = ref.watch(dateTimeSelectedProvider);
     switch (granularityDisplayed) {
       case CalendarGranularity.day:
-        return DateFormat.yMMMMEEEEd().format(date);
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            dateTime.add(Duration(days: 1));
+        break;
       case CalendarGranularity.week:
-        return "${DateFormat.yMMMd().format(date)} - ${DateFormat.yMMMd().format(date.)}";
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            dateTime.add(Duration(days: 7));
+        break;
       case CalendarGranularity.month:
-        return date.toLocal();
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            DateTime(dateTime.year, dateTime.month + 1, dateTime.day, 0);
+        break;
       case CalendarGranularity.year:
-        return date.toString();
+        ref.read(dateTimeSelectedProvider.notifier).state =
+            DateTime(dateTime.year + 1, dateTime.month, dateTime.day, 0);
+        break;
+    }
+  }
+
+  String formatDateTimeWithGranularity(DateTime date) {
+    switch (granularityDisplayed) {
+      case CalendarGranularity.day:
+        return DateFormat.yMMMMEEEEd(DateConfig.localUsed).format(date);
+      case CalendarGranularity.week:
+        return "${DateFormat.yMMMd(DateConfig.localUsed).format(getFirstDayOfWeek(date))} - ${DateFormat.yMMMd('fr').format(getLastDayOfWeek(date))}";
+      case CalendarGranularity.month:
+        return DateFormat.yMMMM(DateConfig.localUsed).format(date);
+      case CalendarGranularity.year:
+        return DateFormat.y(DateConfig.localUsed).format(date);
     }
   }
 }
