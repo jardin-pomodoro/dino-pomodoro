@@ -73,84 +73,10 @@ final fetchTreeByTypeUI = FutureProvider<List<TreeByTypeUI>>((ref) async {
 
 Future<List<int>> getDataForCalendar(List<Tree> trees,
     CalendarGranularity granularity, DateTime selectedDate) async {
-  print('calendar');
-  print('trees');
-  print(trees.length);
-  print('granularity');
-  print(granularity);
-  print('selectedDate');
-  print(selectedDate);
-  List<int> dataByGranularity = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
-  late List<int> dataPast = [
-    10,
-    14,
-    8,
-    2,
-    19,
-    39,
-    09,
-    19,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27,
-    29,
-    63,
-    05,
-    72,
-    27,
-    28,
-    28,
-    27
-  ];
+
+
   if (granularity == CalendarGranularity.day) {
-    dataPast = dataByGranularity.sublist(0, 24);
-    final Map<DateTime, int> dateMap = dataPast.asMap().map((key, value) =>
+    final Map<DateTime, int> dateMap = List.generate(24, (index) => null).asMap().map((key, value) =>
         MapEntry(
             DateTime.utc(
                 selectedDate.year, selectedDate.month, selectedDate.day, key),
@@ -175,25 +101,18 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
       }
       dateMap.update(dateOfStart, (value) => value + differenceInMinutes);
     });
-    print('dateMap');
-    print(dateMap);
     return Future.value(dateMap.values.toList());
   } else if (granularity == CalendarGranularity.week) {
-    print('ici mon reuf');
-    dataPast = dataByGranularity.sublist(0, 7);
+
     final firstDayOfTheWeek = getFirstDayOfWeek(selectedDate);
     final lastDayOfTheWeek = getLastDayOfWeek(selectedDate);
-    final Map<DateTime, int> dateMapForAWeek = dataPast.asMap().map(
+    final Map<DateTime, int> dateMapForAWeek = List.generate(7, (index) => null).asMap().map(
         (key, value) => MapEntry(
             DateTime.utc(firstDayOfTheWeek.year, firstDayOfTheWeek.month,
                 firstDayOfTheWeek.day + key),
             0));
-    // si heure différente alors écart de minute entre l'heure d'après et l'heure d'avant
     trees.forEach((element) {
       if (element.started.day == element.ended.day) {
-        print('element.started == element.ended');
-        print(element.started);
-        print(element.ended);
 
         dateMapForAWeek.update(
             DateTime.utc(element.started.year, element.started.month,
@@ -206,12 +125,11 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
     print(dateMapForAWeek);
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.month) {
-    dataPast = dataByGranularity.sublist(0, 31);
     final firstDayOfMonth =
         DateTime.utc(selectedDate.year, selectedDate.month, 1, 0);
     final lastDayOfMonth =
         DateTime.utc(selectedDate.year, selectedDate.month + 1, 0, 0);
-    final Map<DateTime, int> dateMapForAWeek = dataPast.asMap().map(
+    final Map<DateTime, int> dateMapForAWeek = List.generate(31, (index) => null).asMap().map(
         (key, value) => MapEntry(
             DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
                 firstDayOfMonth.day + key, 0),
@@ -227,9 +145,8 @@ Future<List<int>> getDataForCalendar(List<Tree> trees,
     });
     return Future.value(dateMapForAWeek.values.toList());
   } else if (granularity == CalendarGranularity.year) {
-    dataPast = dataByGranularity.sublist(0, 12);
     final firstDayOfYear = DateTime.utc(selectedDate.year, 1, 1, 0);
-    final Map<DateTime, int> dateMapForAYear = dataPast.asMap().map(
+    final Map<DateTime, int> dateMapForAYear = List.generate(12, (index) => null).asMap().map(
         (key, value) => MapEntry(
             DateTime.utc(firstDayOfYear.year, firstDayOfYear.month + key, 1, 0),
             0));
