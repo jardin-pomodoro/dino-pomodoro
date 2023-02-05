@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/state/services/seed_service_provider.dart';
 import 'core/success.dart';
+import 'domain/models/seed.dart';
 import 'presentation/theme/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'domain/models/seed_type.dart';
 import 'presentation/router.dart';
-import 'state/seed_type/seed_type_provider.dart';
+import 'state/services/seed_type_service_provider.dart';
 import 'state/seed_type/seed_type_state_notifier.dart';
 
 class MyApp extends ConsumerStatefulWidget {
