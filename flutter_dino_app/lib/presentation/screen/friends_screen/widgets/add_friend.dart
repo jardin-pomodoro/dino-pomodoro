@@ -55,7 +55,7 @@ class _AddFriendState extends ConsumerState<AddFriend> {
                   .map((friendship) => Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2.0),
                         child: ActionBanner(
-                          body: friendship.relation,
+                          body: friendship.expand.relation.username,
                           clickOnAction: (_) {
                             providers
                                 .removeFriendship(friendship.id)

@@ -70,10 +70,13 @@ final acceptedFriendshipsStateNotifierProvider =
 
 final userFriendProvider = FutureProvider<List<Success<User>>>((ref) {
   final UserService service = ref.read(userServiceProvider);
+  final userAuth = ref.watch(authStateNotifierProvider);
   final friends = ref.watch(acceptedFriendshipsStateNotifierProvider);
+
   return Future.wait(
     friends.map((friendship) async {
-      return service.fetchUserById(friendship.relation);
+      final friend = userAuth.user.id == friendship.relation ? friendship.user : friendship.relation;
+      return service.fetchUserById(friend);
     }).toList(),
   );
 });

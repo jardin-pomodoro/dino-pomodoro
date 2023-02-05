@@ -27,9 +27,8 @@ class PendingInvitations extends ConsumerWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 2.0),
             child: ActionBanner(
-              body: friendship.user,
+              body: friendship.expand.user.username,
               startIcon: const FaIcon(
-                // TODO get le user et display le username
                 FontAwesomeIcons.user,
                 color: PomodoroTheme.white,
               ),

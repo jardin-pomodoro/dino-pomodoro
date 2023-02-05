@@ -1,3 +1,5 @@
+import 'package:flutter_dino_app/data/datasource/api/mapper/friendship_expand_mapper.dart';
+
 import '../../../../domain/models/friendship.dart';
 import '../entity/friendship_entity.dart';
 
@@ -12,6 +14,7 @@ class FriendshipMapper {
       status: entity.status,
       created: entity.created,
       updated: entity.updated,
+      expand: FriendshipExpandMapper.fromEntity(entity.expand),
     );
   }
 
@@ -25,6 +28,7 @@ class FriendshipMapper {
       status: model.status,
       created: model.created,
       updated: model.updated,
+      expand: FriendshipExpandMapper.fromModel(model.expand),
     );
   }
 }

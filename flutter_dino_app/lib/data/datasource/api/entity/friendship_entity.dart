@@ -1,3 +1,5 @@
+import 'friendship_expand_entity.dart';
+
 class FriendshipEntity {
   final String id;
   final String collectionId;
@@ -5,6 +7,7 @@ class FriendshipEntity {
   final String user;
   final String relation;
   final FriendshipStatus status;
+  final FriendshipExpandEntity expand;
   final DateTime created;
   final DateTime updated;
 
@@ -14,6 +17,7 @@ class FriendshipEntity {
     required this.collectionName,
     required this.user,
     required this.relation,
+    required this.expand,
     required this.status,
     required this.created,
     required this.updated,
@@ -25,6 +29,7 @@ class FriendshipEntity {
       collectionId: json['collectionId'],
       collectionName: json['collectionName'],
       user: json['user'],
+      expand: FriendshipExpandEntity.fromJson(json['expand']),
       relation: json['relation'],
       status: FriendshipStatusExtension.fromString(json['status']),
       created: DateTime.parse(json['created']),

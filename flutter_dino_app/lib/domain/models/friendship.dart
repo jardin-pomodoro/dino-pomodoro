@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_dino_app/domain/models/friendship_expand.dart';
 
 import '../../data/datasource/api/entity/friendship_entity.dart';
 
@@ -8,6 +9,7 @@ class Friendship {
   final String user;
   final String relation;
   final FriendshipStatus status;
+  final FriendshipExpand expand;
   final DateTime updated;
   final DateTime created;
   final String collectionId;
@@ -19,6 +21,7 @@ class Friendship {
     required this.collectionId,
     required this.collectionName,
     required this.relation,
+    required this.expand,
     required this.status,
     required this.updated,
     required this.created,
@@ -30,6 +33,7 @@ class Friendship {
       user: user,
       relation: relation,
       collectionId: collectionId,
+      expand: expand,
       collectionName: collectionName,
       created: created,
       updated: updated,
