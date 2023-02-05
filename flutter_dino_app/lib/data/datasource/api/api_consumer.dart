@@ -213,7 +213,7 @@ class ApiConsumer {
 
   Future<RecordModel> fetchUserByEmail(String email) async {
     final record = await pb.collection(Collection.users.name).getFirstListItem(
-          'email="$email"',
+          'username = "$email"',
         );
     return record;
   }
