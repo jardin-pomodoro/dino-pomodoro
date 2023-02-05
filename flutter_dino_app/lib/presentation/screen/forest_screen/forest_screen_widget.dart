@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/presentation/screen/forest_screen/swipe_calendar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +9,7 @@ import '../../router.dart';
 import '../../theme/theme.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/list-horizontal-slide.dart';
-import 'widget/swipe_arrow.dart';
+
 
 enum CalendarGranularity {
   day,
@@ -61,9 +62,12 @@ class ForestScreenWidget extends ConsumerWidget {
                     },
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                  child: SwipeArrow(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                  child: SwipeCalendar(
+                    granularityDisplayed:
+                        ref.watch(calendarGranularityProvider),
+                  ),
                 ),
                 treesByTypeUi.when(
                   data: (trees) => ListHorizontalSlide(
