@@ -28,20 +28,20 @@ Documentation GitHub pour ce projet
 
 ## Table des matières
 
-[1. Introduction](#1-introduction)
-[2. Installation](#2-installation)
-[3. Utilisation](#3-utilisation)
-   [3.1 Se connecter](#31-se-connecter)
-   [3.2 Acheter des graines](#32-acheter-des-graines)
-   [3.3 Planter une graine](#33-planter-une-graine)
-   [3.4 Améliorer une graine](#34-améliorer-une-graine)
-   [3.5 Consulter sa forêt](#35-consulter-sa-foret)
-   [3.6 Envoyer/Accepter des demandes d'amis](#36-envoyeraccepter-des-demandes-damis)
-[4. Développement](#4-développement)
-   [4.1 Architecture](#41-architecture)
-   [4.2 Technologies](#42-technologies)
-   [4.3 Modèle de données](#43-modèle-de-données)
-[5. Auteurs](#5-auteurs)
+- [1. Introduction](#1-introduction)
+- [2. Installation](#2-installation)
+- [3. Utilisation](#3-utilisation)
+   - [3.1 Se connecter](#31-se-connecter)
+   - [3.2 Acheter des graines](#32-acheter-des-graines)
+   - [3.3 Planter une graine](#33-planter-une-graine)
+   - [3.4 Améliorer une graine](#34-améliorer-une-graine)
+   - [3.5 Consulter sa forêt](#35-consulter-sa-foret)
+   - [3.6 Envoyer/Accepter des demandes d'amis](#36-envoyeraccepter-des-demandes-damis)
+- [4. Développement](#4-développement)
+   - [4.1 Architecture](#41-architecture)
+   - [4.2 Technologies](#42-technologies)
+   - [4.3 Modèle de données](#43-modèle-de-données)
+- [5. Auteurs](#5-auteurs)
 
 ## 1. Introduction
 
