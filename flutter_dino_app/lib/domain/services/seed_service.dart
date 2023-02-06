@@ -1,10 +1,9 @@
-import 'package:flutter_dino_app/domain/repositories/seed_repository.dart';
-
 import '../../core/network.dart';
 import '../../core/success.dart';
 import '../models/seed.dart';
 import '../models/seed_type.dart';
 import '../models/user.dart';
+import '../repositories/seed_repository.dart';
 
 class SeedService {
   final SeedRepository _remoteRepository;

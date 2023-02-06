@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/state/tree/tree_friend_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/models/user.dart';
+import '../../../../state/tree/tree_friend_provider.dart';
 import '../../../theme/theme.dart';
 import '../swipe_calendar.dart';
 import '../widget/canular_granularity.dart';
@@ -12,6 +12,7 @@ import '../widget/list-horizontal-slide.dart';
 
 class FriendForest extends ConsumerWidget {
   final User friend;
+
   const FriendForest({
     Key? key,
     required this.friend,

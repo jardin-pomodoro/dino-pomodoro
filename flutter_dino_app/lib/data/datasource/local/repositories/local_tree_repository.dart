@@ -3,8 +3,10 @@ import 'dart:math';
 import '../../../../core/success.dart';
 import '../../../../domain/models/seed_type_expand.dart';
 import '../../../../domain/models/tree.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/tree_repository.dart';
 import '../../../../state/pomodoro_states/forest_state.dart';
+import '../../api/entity/tree_entity.dart';
 
 class LocalTreeRepository implements TreeRepository {
   @override
@@ -42,5 +44,10 @@ class LocalTreeRepository implements TreeRepository {
     );
     return Future.delayed(const Duration(seconds: 2))
         .then((value) => Success(data: forest));
+  }
+
+  @override
+  Future<Success<Tree>> addNewTree(User user, CreateTree createTree) {
+    return Future.value(Success.fromFailure(failureMessage: 'Not implemented'));
   }
 }

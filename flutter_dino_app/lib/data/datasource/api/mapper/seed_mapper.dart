@@ -1,7 +1,6 @@
-import 'package:flutter_dino_app/data/datasource/api/mapper/seed_type_mapper.dart';
-
 import '../../../../domain/models/seed.dart';
 import '../entity/seed_entity.dart';
+import 'seed_type_mapper.dart';
 
 class SeedMapper {
   static Seed fromEntity(SeedEntity entity) {

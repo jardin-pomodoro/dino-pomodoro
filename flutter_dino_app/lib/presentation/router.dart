@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/widgets/price_widget.dart';
-import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/success.dart';
 import '../domain/models/seed.dart';
+import '../state/pomodoro_states/auth_state_notifier.dart';
 import '../state/pomodoro_states/seed_state_notifier.dart';
 import '../state/services/seed_service_provider.dart';
 import 'screen/auth_screen/auth_screen.dart';
@@ -19,6 +18,7 @@ import 'screen/settings_screen/settings_screen_widget.dart';
 import 'screen/shop_screen/shop_screen_widget.dart';
 import 'theme/theme.dart';
 import 'widgets/navigation_drawer.dart';
+import 'widgets/price_widget.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: RouteNames.login,

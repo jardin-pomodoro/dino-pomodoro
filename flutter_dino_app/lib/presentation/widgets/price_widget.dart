@@ -4,6 +4,7 @@ import '../theme/theme.dart';
 
 class PriceWidget extends StatelessWidget {
   final TextStyle style;
+
   const PriceWidget({
     Key? key,
     this.style = PomodoroTheme.textLargeYellow,

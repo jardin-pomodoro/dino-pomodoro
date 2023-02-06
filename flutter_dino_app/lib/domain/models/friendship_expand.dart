@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/domain/models/user.dart';
-
-import 'seed_type.dart';
+import 'package:garden_pomodoro/domain/models/user.dart';
 
 @immutable
 class FriendshipExpand {
   final User user;
   final User relation;
 
-  const FriendshipExpand({required this.user,required this.relation});
+  const FriendshipExpand({required this.user, required this.relation});
 
   factory FriendshipExpand.fromJson(Map<String, dynamic> json) {
     return FriendshipExpand(

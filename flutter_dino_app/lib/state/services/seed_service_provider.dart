@@ -1,4 +1,3 @@
-import 'package:flutter_dino_app/state/pomodoro_states/auth_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/success.dart';
@@ -9,6 +8,7 @@ import '../../domain/models/seed.dart';
 import '../../domain/services/seed_service.dart';
 import '../api_consumer/api_consumer.dart';
 import '../db/local_db_provider.dart';
+import '../pomodoro_states/auth_state_notifier.dart';
 
 final seedServiceProvider = Provider<SeedService>((ref) {
   final consumer = ref.read(apiProvider);

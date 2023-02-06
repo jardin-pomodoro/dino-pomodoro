@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../theme/theme.dart';
 
 class SwipeArrow extends StatelessWidget {
   final String text;
   final Function() clickRight;
   final Function() clickLeft;
+
   const SwipeArrow({
     Key? key,
     required this.text,

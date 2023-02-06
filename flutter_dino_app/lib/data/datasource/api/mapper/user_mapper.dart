@@ -17,6 +17,7 @@ class UserMapper {
       balance: entity.balance,
     );
   }
+
   static UserEntity fromModel(User entity) {
     return UserEntity(
       collectionId: entity.collectionId,

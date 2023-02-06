@@ -1,5 +1,4 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/user_entity.dart';
-
+import 'user_entity.dart';
 
 class FriendshipExpandEntity {
   final UserEntity userEntity;

@@ -136,13 +136,14 @@ class ApiConsumer {
   Future<RecordModel> addGrowing(CreateGrow createGrow) async {
     final record = await pb.collection(Collection.growing.name).create(
           body: createGrow.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }
 
   Future<List<RecordModel>> fetchGrowing(String userId) async {
     final growing = await pb.collection(Collection.growing.name).getFullList(
-          filter: 'user == "$userId"',
+          filter: 'user = "$userId"',
           expand: 'seed_type',
         );
 
@@ -154,11 +155,11 @@ class ApiConsumer {
   }
 
   Future<List<RecordModel>> fetchFriendship(String userId) async {
-    final friendship =
-        await pb.collection(Collection.friendship.name).getFullList(
-              filter: 'user = "$userId" || relation = "$userId"',
-            expand: 'user,relation'
-            );
+    final friendship = await pb
+        .collection(Collection.friendship.name)
+        .getFullList(
+            filter: 'user = "$userId" || relation = "$userId"',
+            expand: 'user,relation');
     return friendship;
   }
 
@@ -167,7 +168,7 @@ class ApiConsumer {
         await pb.collection(Collection.friendship.name).getFullList(
               filter:
                   '(user == "$userId" || relation == "$userId") && status == pending',
-        );
+            );
     return friendship;
   }
 
@@ -203,6 +204,7 @@ class ApiConsumer {
   Future<RecordModel> addTree(CreateTree createTree) async {
     final record = await pb.collection(Collection.tree.name).create(
           body: createTree.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }

@@ -1,7 +1,10 @@
 import '../../core/network.dart';
 import '../../core/success.dart';
+import '../../data/datasource/api/entity/tree_entity.dart';
 import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
+import '../models/growing.dart';
 import '../models/tree.dart';
+import '../models/user.dart';
 import '../repositories/tree_repository.dart';
 
 class Range {
@@ -42,7 +45,9 @@ class TreeService {
       case CalendarGranularity.day:
         return Range(_getFirstMinuteOfDay(date), _getLastMinuteOfDay(date));
       case CalendarGranularity.week:
-        return Range(_getFirstMinuteOfDay(date.subtract(Duration(days: date.weekday - 1))),
+        return Range(
+            _getFirstMinuteOfDay(
+                date.subtract(Duration(days: date.weekday - 1))),
             _getLastMinuteOfDay(date.add(Duration(days: 7 - date.weekday))));
       case CalendarGranularity.month:
         return Range(_getFirstMinuteOfDay(DateTime(date.year, date.month, 1)),
@@ -59,5 +64,23 @@ class TreeService {
 
   DateTime _getFirstMinuteOfDay(DateTime date) {
     return new DateTime(date.year, date.month, date.day, 0, 0);
+  }
+
+  Future<Success<Tree>> addNewTree(User user, Growing growing) async {
+    if (await NetworkChecker.hasConnection()) {
+      final createTree = CreateTree(
+        seedType: growing.seedType,
+        user: user.id,
+        started: growing.created,
+        ended: DateTime.now(),
+        reward: growing.reward,
+        timeToGrow: growing.timeToGrow,
+      );
+
+      final tree = await remoteRepository.addNewTree(user, createTree);
+      return tree;
+    }
+
+    return Success.fromFailure(failureMessage: 'No internet connection');
   }
 }

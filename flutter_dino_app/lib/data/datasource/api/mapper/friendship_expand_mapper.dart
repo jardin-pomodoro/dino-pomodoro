@@ -1,7 +1,6 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/friendship_expand_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/user_mapper.dart';
-
 import '../../../../domain/models/friendship_expand.dart';
+import '../entity/friendship_expand_entity.dart';
+import 'user_mapper.dart';
 
 class FriendshipExpandMapper {
   static FriendshipExpand fromEntity(FriendshipExpandEntity entity) {
@@ -10,6 +9,7 @@ class FriendshipExpandMapper {
       relation: UserMapper.fromEntity(entity.relationEntity),
     );
   }
+
   static FriendshipExpandEntity fromModel(FriendshipExpand model) {
     return FriendshipExpandEntity(
       userEntity: UserMapper.fromModel(model.user),

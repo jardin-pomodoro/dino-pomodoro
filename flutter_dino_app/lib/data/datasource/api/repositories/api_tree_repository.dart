@@ -1,5 +1,6 @@
 import '../../../../core/success.dart';
 import '../../../../domain/models/tree.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/tree_repository.dart';
 import '../api_consumer.dart';
 import '../entity/tree_entity.dart';
@@ -34,5 +35,14 @@ class RemoteTreeRepository implements TreeRepository {
       print('e: $e');
       return Success.fromFailure(failureMessage: e.toString());
     }
+  }
+
+  @override
+  Future<Success<Tree>> addNewTree(User user, CreateTree createTree) async {
+    final record = await apiConsumer.addTree(createTree);
+    await apiConsumer.updateUserBalance(
+        user.id, user.balance + createTree.reward);
+    final treeEntity = TreeEntity.fromJson(record.toJson());
+    return Success(data: TreeMapper.fromEntity(treeEntity));
   }
 }
