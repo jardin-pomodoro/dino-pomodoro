@@ -1,16 +1,15 @@
 import '../../../domain/models/tree.dart';
-import '../../../presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 import '../../../utils/date.dart';
 
 Map<DateTime, int> treesToDayMap(List<Tree> trees, DateTime selectedDate) {
   const numberOfHoursInADay = 24;
-  Map<DateTime, int> dateMap = List.generate(
-      numberOfHoursInADay, (index) => null)
-      .asMap()
-      .map((key, value) => MapEntry(
-      DateTime.utc(
-          selectedDate.year, selectedDate.month, selectedDate.day, key),
-      0));
+  Map<DateTime, int> dateMap =
+      List.generate(numberOfHoursInADay, (index) => null).asMap().map(
+          (key, value) => MapEntry(
+              DateTime.utc(
+                  selectedDate.year, selectedDate.month, selectedDate.day, key),
+              0));
   trees.forEach((element) {
     var startDate = element.started;
     var endedDate = element.ended;
@@ -32,7 +31,7 @@ Map<DateTime, int> treesToDayMap(List<Tree> trees, DateTime selectedDate) {
       dateMap.update(
           DateTime.utc(dateOfStart.year, dateOfStart.month, dateOfStart.day,
               dateOfStart.hour, 0),
-              (value) => value + valueToAdd);
+          (value) => value + valueToAdd);
       differenceInMinutes -= valueToAdd;
       dateOfStart = dateAfter;
     }
@@ -46,18 +45,18 @@ Map<DateTime, int> treesToWeekMap(List<Tree> trees, DateTime selectedDate) {
   final firstDayOfTheWeek = getFirstDayOfWeek(selectedDate);
   const numberOfDaysInAWeek = 7;
   final Map<DateTime, int> dateMapForAWeek =
-  List.generate(numberOfDaysInAWeek, (index) => null).asMap().map(
+      List.generate(numberOfDaysInAWeek, (index) => null).asMap().map(
           (key, value) => MapEntry(
-          DateTime.utc(firstDayOfTheWeek.year, firstDayOfTheWeek.month,
-              firstDayOfTheWeek.day + key),
-          0));
+              DateTime.utc(firstDayOfTheWeek.year, firstDayOfTheWeek.month,
+                  firstDayOfTheWeek.day + key),
+              0));
   trees.forEach((element) {
     if (element.started.day == element.ended.day) {
       dateMapForAWeek.update(
           DateTime.utc(element.started.year, element.started.month,
               element.started.day, 0),
-              (value) =>
-          value + element.ended.difference(element.started).inMinutes);
+          (value) =>
+              value + element.ended.difference(element.started).inMinutes);
     }
   });
   return dateMapForAWeek;
@@ -67,65 +66,55 @@ Map<DateTime, int> treesToMonthMap(List<Tree> trees, DateTime selectedDate) {
   final firstDayOfMonth = getFirstDayOfMonth(selectedDate);
   final lastDayOfMonth = getLastDayOfMonth(selectedDate);
   final Map<DateTime, int> dateMapForAMonth = List.generate(
-      lastDayOfMonth.difference(firstDayOfMonth).inDays + 1,
+          lastDayOfMonth.difference(firstDayOfMonth).inDays + 1,
           (index) => null)
       .asMap()
       .map((key, value) => MapEntry(
-      DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
-          firstDayOfMonth.day + key, 0),
-      0));
+          DateTime.utc(firstDayOfMonth.year, firstDayOfMonth.month,
+              firstDayOfMonth.day + key, 0),
+          0));
   trees.forEach((element) {
     if (element.started.day == element.ended.day) {
       dateMapForAMonth.update(
           DateTime.utc(element.started.year, element.started.month,
               element.started.day, 0),
-              (value) =>
-          value + element.ended.difference(element.started).inMinutes);
+          (value) =>
+              value + element.ended.difference(element.started).inMinutes);
     }
   });
   return dateMapForAMonth;
 }
 
-
 Map<DateTime, int> treesToYearMap(List<Tree> trees, DateTime selectedDate) {
   final firstDayOfYear = getFirstDayOfYear(selectedDate);
   const numberOfMonthInAYear = 12;
   final Map<DateTime, int> dateMapForAYear = List.generate(
-      numberOfMonthInAYear, (index) => null)
+          numberOfMonthInAYear, (index) => null)
       .asMap()
       .map((key, value) => MapEntry(
-      DateTime.utc(firstDayOfYear.year, firstDayOfYear.month + key, 1, 0),
-      0));
+          DateTime.utc(firstDayOfYear.year, firstDayOfYear.month + key, 1, 0),
+          0));
   trees.forEach((element) {
     if (element.started.month == element.ended.month) {
       dateMapForAYear.update(
           DateTime.utc(element.ended.year, element.ended.month, 1, 0, 0),
-              (value) =>
-          value + element.ended.difference(element.started).inMinutes);
+          (value) =>
+              value + element.ended.difference(element.started).inMinutes);
     }
   });
   return dateMapForAYear;
 }
 
-
 List<int> getDataForCalendar(
     List<Tree> trees, CalendarGranularity granularity, DateTime selectedDate) {
   if (granularity == CalendarGranularity.day) {
-    return treesToDayMap(trees, selectedDate)
-        .values
-        .toList();
+    return treesToDayMap(trees, selectedDate).values.toList();
   } else if (granularity == CalendarGranularity.week) {
-    return treesToWeekMap(trees, selectedDate)
-        .values
-        .toList();
+    return treesToWeekMap(trees, selectedDate).values.toList();
   } else if (granularity == CalendarGranularity.month) {
-    return treesToMonthMap(trees, selectedDate)
-        .values
-        .toList();
+    return treesToMonthMap(trees, selectedDate).values.toList();
   } else if (granularity == CalendarGranularity.year) {
-    return treesToYearMap(trees, selectedDate)
-        .values
-        .toList();
+    return treesToYearMap(trees, selectedDate).values.toList();
   }
 
   return [];

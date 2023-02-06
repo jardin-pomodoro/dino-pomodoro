@@ -8,21 +8,10 @@ import 'package:go_router/go_router.dart';
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
-import '../../widgets/snackbar.dart';
 import 'widget/no_tree_card.dart';
 import 'widget/calendar_chart.dart';
+import 'widget/canular_granularity.dart';
 import 'widget/list-horizontal-slide.dart';
-
-enum CalendarGranularity {
-  day,
-  week,
-  month,
-  year,
-}
-
-final calendarGranularityProvider = StateProvider<CalendarGranularity>(
-  (ref) => CalendarGranularity.day,
-);
 
 class ForestScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
@@ -74,8 +63,6 @@ class ForestScreenWidget extends ConsumerWidget {
                 ),
                 treesByTypeUi.when(
                   data: (trees) {
-                    print('length');
-                    print(trees.length);
                     if (trees.isEmpty) {
                       return NoTreeCard();
                     }
@@ -89,8 +76,8 @@ class ForestScreenWidget extends ConsumerWidget {
                     );
                   },
                   error: (error, stackTrace) => const CupertinoAlertDialog(
-                      title:
-                          Text("une erreur est survenue réessayez plus tard")),
+                    title: Text("une erreur est survenue réessayez plus tard"),
+                  ),
                   loading: () =>
                       const Center(child: CircularProgressIndicator()),
                 ),

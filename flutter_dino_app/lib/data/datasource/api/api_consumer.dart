@@ -157,8 +157,8 @@ class ApiConsumer {
     final friendship =
         await pb.collection(Collection.friendship.name).getFullList(
               filter: 'user = "$userId" || relation = "$userId"',
+            expand: 'user,relation'
             );
-
     return friendship;
   }
 
@@ -167,7 +167,7 @@ class ApiConsumer {
         await pb.collection(Collection.friendship.name).getFullList(
               filter:
                   '(user == "$userId" || relation == "$userId") && status == pending',
-            );
+        );
     return friendship;
   }
 
@@ -213,7 +213,7 @@ class ApiConsumer {
 
   Future<RecordModel> fetchUserByEmail(String email) async {
     final record = await pb.collection(Collection.users.name).getFirstListItem(
-          'email="$email"',
+          'username = "$email"',
         );
     return record;
   }

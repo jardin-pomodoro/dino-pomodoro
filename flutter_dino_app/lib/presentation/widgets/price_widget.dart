@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../theme/theme.dart';
 
 class PriceWidget extends StatelessWidget {
+  final TextStyle style;
   const PriceWidget({
     Key? key,
+    this.style = PomodoroTheme.textLargeYellow,
     required this.price,
     this.spacing,
   }) : super(key: key);
@@ -20,7 +22,7 @@ class PriceWidget extends StatelessWidget {
       children: [
         Text(
           "$price",
-          style: PomodoroTheme.textLargeYellow,
+          style: style,
         ),
         SizedBox(
           width: spacing ?? 10,

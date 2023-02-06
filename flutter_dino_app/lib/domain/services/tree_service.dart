@@ -1,6 +1,6 @@
 import '../../core/network.dart';
 import '../../core/success.dart';
-import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 import '../models/tree.dart';
 import '../repositories/tree_repository.dart';
 

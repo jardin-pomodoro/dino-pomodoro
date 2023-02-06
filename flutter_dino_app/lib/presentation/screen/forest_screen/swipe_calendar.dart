@@ -4,7 +4,7 @@ import 'package:flutter_dino_app/utils/date.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../config/date_config.dart';
-import 'forest_screen_widget.dart';
+import 'widget/canular_granularity.dart';
 
 final dateTimeSelectedProvider =
     StateProvider<DateTime>((ref) => DateTime.now());
@@ -30,11 +30,11 @@ class SwipeCalendar extends ConsumerWidget {
     switch (granularityDisplayed) {
       case CalendarGranularity.day:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.subtract(Duration(days: 1));
+            dateTime.subtract(const Duration(days: 1));
         break;
       case CalendarGranularity.week:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.subtract(Duration(days: 7));
+            dateTime.subtract(const Duration(days: 7));
         break;
       case CalendarGranularity.month:
         ref.read(dateTimeSelectedProvider.notifier).state =
@@ -45,7 +45,6 @@ class SwipeCalendar extends ConsumerWidget {
             DateTime(dateTime.year - 1, dateTime.month, dateTime.day, 0);
         break;
     }
-
   }
 
   goToNextDate(WidgetRef ref) {
@@ -53,11 +52,11 @@ class SwipeCalendar extends ConsumerWidget {
     switch (granularityDisplayed) {
       case CalendarGranularity.day:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.add(Duration(days: 1));
+            dateTime.add(const Duration(days: 1));
         break;
       case CalendarGranularity.week:
         ref.read(dateTimeSelectedProvider.notifier).state =
-            dateTime.add(Duration(days: 7));
+            dateTime.add(const Duration(days: 7));
         break;
       case CalendarGranularity.month:
         ref.read(dateTimeSelectedProvider.notifier).state =

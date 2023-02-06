@@ -39,8 +39,8 @@ class _SliderChoiceState extends State<SliderChoice> {
           widget.changeSlidingChoice(widget.items[_sliding]);
         });
       },
-      backgroundColor: PomodoroTheme.primary,
-      thumbColor: PomodoroTheme.white,
+      backgroundColor: PomodoroTheme.secondary,
+      thumbColor: PomodoroTheme.yellow,
     );
   }
 }

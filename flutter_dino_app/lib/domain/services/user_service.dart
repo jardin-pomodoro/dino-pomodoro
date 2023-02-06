@@ -20,9 +20,10 @@ class UserService {
     return Success.fromFailure(failureMessage: "Network connectivity required");
   }
 
-  Future<Success<void>> fetchUserByEmail(String email) async {
+  Future<Success<User>> fetchUserByEmail(String email) async {
     if (await NetworkChecker.hasConnection()) {
       final user = await remoteRepository.retrieveUserByEmail(email);
+      print(user.failureMessage);
       if (user.isSuccess) {
         return user;
       }

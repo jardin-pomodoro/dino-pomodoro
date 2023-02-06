@@ -145,7 +145,7 @@ class SeedDetailsScreenWidget extends ConsumerWidget {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(15),
-                        backgroundColor: PomodoroTheme.secondaryLight,
+                        backgroundColor: PomodoroTheme.accent,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           side: BorderSide(
@@ -157,21 +157,24 @@ class SeedDetailsScreenWidget extends ConsumerWidget {
                       onPressed: () {
                         _upgradeLeaf(context, ref, seed);
                       },
-                      child: seed.leafLevel <
-                              seed.seedTypeExpand.leafMaxUpgrades
-                          ? PriceWidget(
-                              price: nextUpgradePrice(
-                                  seed.seedTypeExpand.price, seed.leafLevel),
-                            )
-                          : const Text(
-                              "Max",
-                              style: PomodoroTheme.textLargeYellow,
-                            ),
+                      child:
+                          seed.leafLevel < seed.seedTypeExpand.leafMaxUpgrades
+                              ? PriceWidget(
+                                  style: PomodoroTheme.textLarge,
+                                  price: nextUpgradePrice(
+                                    seed.seedTypeExpand.price,
+                                    seed.leafLevel,
+                                  ),
+                                )
+                              : const Text(
+                                  "Max",
+                                  style: PomodoroTheme.textLarge,
+                                ),
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(15),
-                        backgroundColor: PomodoroTheme.secondaryLight,
+                        backgroundColor: PomodoroTheme.accent,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           side: BorderSide(
@@ -183,16 +186,19 @@ class SeedDetailsScreenWidget extends ConsumerWidget {
                       onPressed: () {
                         _upgradeTrunk(context, ref, seed);
                       },
-                      child: seed.trunkLevel <
-                              seed.seedTypeExpand.trunkMaxUpgrades
-                          ? PriceWidget(
-                              price: nextUpgradePrice(
-                                  seed.seedTypeExpand.price, seed.trunkLevel),
-                            )
-                          : const Text(
-                              "Max",
-                              style: PomodoroTheme.textLargeYellow,
-                            ),
+                      child:
+                          seed.trunkLevel < seed.seedTypeExpand.trunkMaxUpgrades
+                              ? PriceWidget(
+                                  style: PomodoroTheme.textLarge,
+                                  price: nextUpgradePrice(
+                                    seed.seedTypeExpand.price,
+                                    seed.trunkLevel,
+                                  ),
+                                )
+                              : const Text(
+                                  "Max",
+                                  style: PomodoroTheme.textLarge,
+                                ),
                     ),
                   ],
                 ),

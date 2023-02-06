@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
 
 class FocusCard extends StatelessWidget {
-
- final List<int> stats;
+  final List<int> stats;
 
   const FocusCard({
     super.key,
@@ -24,13 +22,13 @@ class FocusCard extends StatelessWidget {
             Text(
               "Vous êtes résté concentré ${stats.reduce((value, element) => value += element)} minutes",
               style: const TextStyle(
-                  color: PomodoroTheme.white,
-                  fontSize: 12.0),
+                color: PomodoroTheme.white,
+                fontSize: 12.0,
+              ),
             ),
           ],
         ),
       ),
     );
   }
-
 }
