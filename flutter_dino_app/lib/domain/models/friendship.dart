@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dino_app/domain/models/friendship_expand.dart';
 
 import '../../data/datasource/api/entity/friendship_entity.dart';
+import 'friendship_expand.dart';
 
 @immutable
 class Friendship {

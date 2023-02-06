@@ -1,8 +1,7 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/seed_type_expand_entity.dart';
-import 'package:flutter_dino_app/domain/models/seed_type_expand.dart';
-
 import '../../../../domain/models/seed_type.dart';
+import '../../../../domain/models/seed_type_expand.dart';
 import '../entity/seed_type_entity.dart';
+import '../entity/seed_type_expand_entity.dart';
 import '../pocketbase.dart';
 
 class SeedTypeMapper {

@@ -1,7 +1,6 @@
-import 'package:flutter_dino_app/data/datasource/api/mapper/friendship_expand_mapper.dart';
-
 import '../../../../domain/models/friendship.dart';
 import '../entity/friendship_entity.dart';
+import 'friendship_expand_mapper.dart';
 
 class FriendshipMapper {
   static Friendship fromEntity(FriendshipEntity entity) {

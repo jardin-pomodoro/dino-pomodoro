@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/swipe_calendar.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/focus_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
+import 'swipe_calendar.dart';
+import 'widget/focus_card.dart';
 import 'widget/no_tree_card.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/canular_granularity.dart';
@@ -64,7 +64,7 @@ class ForestScreenWidget extends ConsumerWidget {
                 treesByTypeUi.when(
                   data: (trees) {
                     if (trees.isEmpty) {
-                      return NoTreeCard();
+                      return const NoTreeCard();
                     }
                     return ListHorizontalSlide(
                       treesStatsUi: trees

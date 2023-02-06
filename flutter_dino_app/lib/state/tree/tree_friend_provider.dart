@@ -1,4 +1,3 @@
-import 'package:flutter_dino_app/presentation/screen/friends_screen/widgets/friends_tab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasource/api/api_consumer.dart';
@@ -7,6 +6,7 @@ import '../../data/datasource/local/repositories/local_tree_repository.dart';
 import '../../domain/services/tree_service.dart';
 import '../../presentation/screen/forest_screen/swipe_calendar.dart';
 import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
+import '../../presentation/screen/friends_screen/widgets/friends_tab.dart';
 import '../api_consumer/api_consumer.dart';
 import 'tree_provider.dart';
 import 'tree_provider_utils/manipulate_trees_for_calendar.dart';

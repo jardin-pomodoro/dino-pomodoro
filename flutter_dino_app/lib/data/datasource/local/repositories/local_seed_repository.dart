@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-import 'package:flutter_dino_app/domain/models/user.dart';
-
+import '../../../../core/success.dart';
+import '../../../../domain/models/seed.dart';
+import '../../../../domain/models/seed_type.dart';
+import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/seed_repository.dart';
 import '../database/database_source.dart';
 
