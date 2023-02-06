@@ -1,14 +1,13 @@
 
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/growing_mapper.dart';
 
-import 'package:flutter_dino_app/domain/models/growing.dart';
-
+import '../../../../core/success.dart';
+import '../../../../domain/models/growing.dart';
 import '../../../../domain/models/seed.dart';
 import '../../../../domain/repositories/growing_repository.dart';
 import '../../../../utils/upgrade_functions.dart';
 import '../api_consumer.dart';
 import '../entity/growing_entity.dart';
+import '../mapper/growing_mapper.dart';
 
 class ApiGrowingRepository implements GrowingRepository {
   final ApiConsumer apiConsumer;

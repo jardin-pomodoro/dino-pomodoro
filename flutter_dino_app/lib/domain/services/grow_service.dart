@@ -1,9 +1,8 @@
-import 'package:flutter_dino_app/domain/repositories/growing_repository.dart';
-
 import '../../core/network.dart';
 import '../../core/success.dart';
 import '../models/growing.dart';
 import '../models/seed.dart';
+import '../repositories/growing_repository.dart';
 
 class GrowService {
   final GrowingRepository _repository;

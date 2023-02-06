@@ -1,7 +1,7 @@
 import '../../core/network.dart';
 import '../../core/success.dart';
 import '../../data/datasource/api/entity/tree_entity.dart';
-import '../../presentation/screen/forest_screen/forest_screen_widget.dart';
+import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 import '../models/growing.dart';
 import '../models/tree.dart';
 import '../models/user.dart';

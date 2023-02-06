@@ -1,7 +1,5 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/tree_entity.dart';
-
 import '../../core/success.dart';
-import '../models/growing.dart';
+import '../../data/datasource/api/entity/tree_entity.dart';
 import '../models/tree.dart';
 import '../models/user.dart';
 

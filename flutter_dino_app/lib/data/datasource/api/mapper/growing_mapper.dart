@@ -1,6 +1,6 @@
-import 'package:flutter_dino_app/data/datasource/api/entity/growing_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/seed_type_expand_mapper.dart';
-import 'package:flutter_dino_app/domain/models/growing.dart';
+import '../../../../domain/models/growing.dart';
+import '../entity/growing_entity.dart';
+import 'seed_type_expand_mapper.dart';
 
 class GrowingMapper {
   static Growing fromEntity(GrowingEntity entity) {
