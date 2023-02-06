@@ -26,8 +26,8 @@ Une graine c'est :
 
 Documentation GitHub pour ce projet
 
-| ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) |     |
-|-----------------------------------------------------------------------------------------------------------------|-----|
+| ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) | ![Flutter version](https://img.shields.io/badge/Flutter%20version-%3E%3D2.18.1%20%3C3.0.0-blueviolet) | ![Release version](https://img.shields.io/github/v/release/jardin-pomodoro/dino-pomodoro?style=for-the-badge?style=for-the-badge) | ![Release date](https://img.shields.io/github/release-date/jardin-pomodoro/flutter-pomodoro?style=for-the-badge) |
+|-----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 
 ## Table des matières
