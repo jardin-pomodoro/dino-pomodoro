@@ -1,0 +1,51 @@
+title: |md
+  # Garden pomodoro
+| {near: top-center}
+
+flutter_app: Garden pomodoro\n App {
+  shape: image
+  icon: https://cdn3.iconfinder.com/data/icons/iphone-x-line/512/iPhoneX-01-256.png
+}
+
+server: Serveur {
+
+  pocketbase: PocketBase {
+    tooltip: |
+      Backend as a service
+      |
+    shape: image
+    icon: https://pocketbase.io/images/logo.svg
+  }
+
+  storage: Storage {
+    shape: image
+    icon: https://cdn4.iconfinder.com/data/icons/basic-ui-2-line/32/folder-open-archive-document-archives-512.png
+  }
+
+  bdd: BDD {
+    shape: image
+    icon: https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-1/512/database-256.png
+  }
+
+  pocketbase -> storage
+  pocketbase -> bdd
+}
+
+identity_providers: Identity Providers {
+  discord: Discord {
+    shape: image
+    icon: https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/91_Discord_logo_logos-512.png
+  }
+  google: Google {
+    shape: image
+    icon: https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png
+  }
+  github: Github {
+    shape: image
+    icon: https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png
+  }
+}
+
+flutter_app -> server.pocketbase
+flutter_app -> identity_providers
+server.pocketbase -> identity_providers
