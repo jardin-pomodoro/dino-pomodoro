@@ -136,13 +136,14 @@ class ApiConsumer {
   Future<RecordModel> addGrowing(CreateGrow createGrow) async {
     final record = await pb.collection(Collection.growing.name).create(
           body: createGrow.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }
 
   Future<List<RecordModel>> fetchGrowing(String userId) async {
     final growing = await pb.collection(Collection.growing.name).getFullList(
-          filter: 'user == "$userId"',
+          filter: 'user = "$userId"',
           expand: 'seed_type',
         );
 
@@ -203,6 +204,7 @@ class ApiConsumer {
   Future<RecordModel> addTree(CreateTree createTree) async {
     final record = await pb.collection(Collection.tree.name).create(
           body: createTree.toJson(),
+          expand: 'seed_type',
         );
     return record;
   }
