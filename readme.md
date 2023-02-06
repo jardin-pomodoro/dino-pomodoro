@@ -26,8 +26,8 @@ Une graine c'est :
 
 Documentation GitHub pour ce projet
 
-| ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) | ![Flutter version](https://img.shields.io/badge/Flutter%20version-%3E%3D2.18.1%20%3C3.0.0-blueviolet) | ![Release version](https://img.shields.io/github/v/release/jardin-pomodoro/dino-pomodoro?style=for-the-badge?style=for-the-badge) | ![Release date](https://img.shields.io/github/release-date/jardin-pomodoro/flutter-pomodoro?style=for-the-badge) |
-|-----------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) | ![Flutter version](https://img.shields.io/badge/Flutter%20version-%3E%3D2.18.1%20%3C3.0.0-blueviolet?style=for-the-badge) | ![Release version](https://img.shields.io/github/v/release/jardin-pomodoro/dino-pomodoro?style=for-the-badge) | ![Release date](https://img.shields.io/github/release-date/jardin-pomodoro/flutter-pomodoro?style=for-the-badge) |
+|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 
 ## Table des matières
@@ -45,6 +45,7 @@ Documentation GitHub pour ce projet
     - [4.1 Architecture](#41-architecture)
     - [4.2 Technologies](#42-technologies)
     - [4.3 Modèle de données](#43-modèle-de-données)
+    - [4.4 Maquettes](#44-maquettes)
 - [5. Auteurs](#5-auteurs)
 
 ## 1. Introduction
@@ -87,9 +88,17 @@ de [release](https://github.com/jardin-pomodoro/dino-pomodoro/releases) du proje
 
 ### 4.1 Architecture
 
+![Architecture](./diagrams/architecture.png)
+
 ### 4.2 Technologies
 
 ### 4.3 Modèle de données
+
+![Modèle de données](./diagrams/data.png)
+
+### 4.4 Maquettes
+
+![Maquettes excalidraw](./diagrams/Excalidraw%20pomodoro.png)
 
 ## 5. Auteurs
 
