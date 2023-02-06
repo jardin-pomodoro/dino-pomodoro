@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
-import '../forest_screen_widget.dart';
 import 'canular_granularity.dart';
 
 class CalendarChart extends StatefulWidget {

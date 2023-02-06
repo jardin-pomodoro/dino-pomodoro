@@ -47,7 +47,7 @@ class LocalTreeRepository implements TreeRepository {
   }
 
   @override
-  Future<Success<Tree>> addNewTree(User user, CreateTree createTree ) {
+  Future<Success<Tree>> addNewTree(User user, CreateTree createTree) {
     return Future.value(Success.fromFailure(failureMessage: 'Not implemented'));
   }
 }

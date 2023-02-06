@@ -97,5 +97,7 @@ final addFriendshipProvider =
   print(user.data);
   print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   return friendshipService.sendFriendshipRequest(CreateFriendship(
-      user: userAuth.user.id, relation: user.data!.id, status: FriendshipStatus.pending));
+      user: userAuth.user.id,
+      relation: user.data!.id,
+      status: FriendshipStatus.pending));
 });

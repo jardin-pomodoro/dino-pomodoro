@@ -1,5 +1,3 @@
-
-
 import '../../../../core/success.dart';
 import '../../../../domain/models/growing.dart';
 import '../../../../domain/models/seed.dart';
@@ -48,5 +46,4 @@ class ApiGrowingRepository implements GrowingRepository {
         .toList();
     return Success(data: growings);
   }
-
 }

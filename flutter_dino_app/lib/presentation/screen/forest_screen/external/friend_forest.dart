@@ -12,6 +12,7 @@ import '../widget/list-horizontal-slide.dart';
 
 class FriendForest extends ConsumerWidget {
   final User friend;
+
   const FriendForest({
     Key? key,
     required this.friend,

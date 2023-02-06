@@ -40,7 +40,8 @@ class RemoteTreeRepository implements TreeRepository {
   @override
   Future<Success<Tree>> addNewTree(User user, CreateTree createTree) async {
     final record = await apiConsumer.addTree(createTree);
-    await apiConsumer.updateUserBalance(user.id, user.balance + createTree.reward);
+    await apiConsumer.updateUserBalance(
+        user.id, user.balance + createTree.reward);
     final treeEntity = TreeEntity.fromJson(record.toJson());
     return Success(data: TreeMapper.fromEntity(treeEntity));
   }

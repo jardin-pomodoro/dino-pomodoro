@@ -45,7 +45,9 @@ class TreeService {
       case CalendarGranularity.day:
         return Range(_getFirstMinuteOfDay(date), _getLastMinuteOfDay(date));
       case CalendarGranularity.week:
-        return Range(_getFirstMinuteOfDay(date.subtract(Duration(days: date.weekday - 1))),
+        return Range(
+            _getFirstMinuteOfDay(
+                date.subtract(Duration(days: date.weekday - 1))),
             _getLastMinuteOfDay(date.add(Duration(days: 7 - date.weekday))));
       case CalendarGranularity.month:
         return Range(_getFirstMinuteOfDay(DateTime(date.year, date.month, 1)),

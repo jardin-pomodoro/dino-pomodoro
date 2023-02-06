@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/models/growing.dart';
 
 class GrowingStateNotifier extends StateNotifier<Growing?> {
-  GrowingStateNotifier()
-      : super(null);
+  GrowingStateNotifier() : super(null);
 
   void setGrowing(Growing growing) {
     state = growing;
