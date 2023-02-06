@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
-import '../../widgets/snackbar.dart';
 import 'widget/no_tree_card.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/canular_granularity.dart';
@@ -64,8 +63,6 @@ class ForestScreenWidget extends ConsumerWidget {
                 ),
                 treesByTypeUi.when(
                   data: (trees) {
-                    print('length');
-                    print(trees.length);
                     if (trees.isEmpty) {
                       return NoTreeCard();
                     }

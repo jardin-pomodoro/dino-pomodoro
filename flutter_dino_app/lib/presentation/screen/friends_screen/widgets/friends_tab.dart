@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/models/user.dart';
 import '../../../../state/friendship/friendship_state_notifier.dart';
 import '../../forest_screen/external/friend_forest.dart';
 import 'friends_banner.dart';
+
+final friendDialogProvider = StateProvider<String?>((ref) {
+  return null;
+});
 
 class FriendsTab extends ConsumerWidget {
   const FriendsTab({super.key});
@@ -28,18 +31,25 @@ class FriendsTab extends ConsumerWidget {
                 if (friend.data == null || friend.isSuccess == false) {
                   return const SizedBox.shrink();
                 }
-                return GestureDetector(
-                  onTap: () => showModalBottomSheet(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(20),
-                        ),
-                      ),
-                      context: context,
-                      builder: ((context) {
-                        return FriendForest(friend: friend.data!);
-                      })),
-                  child: FriendsBanner(user: friend.data!),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      ref.read(friendDialogProvider.notifier).state =
+                          friend.data!.id;
+                      showModalBottomSheet(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          context: context,
+                          builder: ((context) {
+                            return FriendForest(friend: friend.data!);
+                          }));
+                    },
+                    child: FriendsBanner(user: friend.data!),
+                  ),
                 );
               }).toList(),
             );

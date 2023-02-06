@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dino_app/state/tree/tree_friend_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/models/user.dart';
-import '../../../../state/tree/tree_provider.dart';
 import '../../../theme/theme.dart';
 import '../swipe_calendar.dart';
 import '../widget/canular_granularity.dart';
@@ -19,8 +19,8 @@ class FriendForest extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final treesByTypeUi = ref.watch(fetchTreeByTypeUI);
-    final calendarStats = ref.watch(fetchTreeCalendar);
+    final treesByTypeUi = ref.watch(fetchFriendTreeByTypeUI);
+    final calendarStats = ref.watch(fetchFriendTreeCalendar);
 
     return Column(
       children: [
