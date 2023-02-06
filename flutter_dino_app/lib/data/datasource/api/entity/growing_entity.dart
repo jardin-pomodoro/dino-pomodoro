@@ -7,6 +7,7 @@ class GrowingEntity {
   final String seedType;
   final String user;
   final SeedTypeExpandEntity expand;
+  final int reward;
   final int timeToGrow;
   final DateTime created;
   final DateTime updated;
@@ -18,6 +19,7 @@ class GrowingEntity {
     required this.seedType,
     required this.user,
     required this.expand,
+    required this.reward,
     required this.timeToGrow,
     required this.created,
     required this.updated,
@@ -26,11 +28,12 @@ class GrowingEntity {
   factory GrowingEntity.fromJson(Map<String, dynamic> json) {
     return GrowingEntity(
       id: json['id'],
-      collectionId: json['collection_id'],
-      collectionName: json['collection_name'],
+      collectionId: json['collectionId'],
+      collectionName: json['collectionName'],
       seedType: json['seed_type'],
       user: json['user'],
       expand: SeedTypeExpandEntity.fromJson(json['expand']),
+      reward: json['reward'],
       timeToGrow: json['time_to_grow'],
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),

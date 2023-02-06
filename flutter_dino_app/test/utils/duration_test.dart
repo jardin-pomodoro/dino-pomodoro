@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_dino_app/utils/duration.dart';
+import 'package:garden_pomodoro/utils/duration.dart';
 
 void main() {
   test('Duration should be 25 minutes', () {

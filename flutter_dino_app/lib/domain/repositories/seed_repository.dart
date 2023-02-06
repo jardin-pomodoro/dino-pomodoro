@@ -1,7 +1,6 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
-
+import '../../core/success.dart';
+import '../models/seed.dart';
+import '../models/seed_type.dart';
 import '../models/user.dart';
 
 abstract class SeedRepository {

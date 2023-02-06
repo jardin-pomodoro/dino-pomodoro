@@ -1,10 +1,10 @@
-import 'package:flutter_dino_app/domain/services/friendship_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/success.dart';
 import '../../data/datasource/api/entity/friendship_entity.dart';
 import '../../domain/models/friendship.dart';
 import '../../domain/models/user.dart';
+import '../../domain/services/friendship_service.dart';
 import '../../domain/services/user_service.dart';
 import '../pomodoro_states/auth_state_notifier.dart';
 import '../user/user_provider.dart';
@@ -97,5 +97,7 @@ final addFriendshipProvider =
   print(user.data);
   print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   return friendshipService.sendFriendshipRequest(CreateFriendship(
-      user: userAuth.user.id, relation: user.data!.id, status: FriendshipStatus.pending));
+      user: userAuth.user.id,
+      relation: user.data!.id,
+      status: FriendshipStatus.pending));
 });

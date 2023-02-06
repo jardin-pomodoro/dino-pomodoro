@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dino_app/presentation/screen/forest_screen/widget/swipe_arrow.dart';
-import 'package:flutter_dino_app/utils/date.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+
 import '../../../config/date_config.dart';
+import '../../../utils/date.dart';
 import 'widget/canular_granularity.dart';
+import 'widget/swipe_arrow.dart';
 
 final dateTimeSelectedProvider =
     StateProvider<DateTime>((ref) => DateTime.now());
 
 class SwipeCalendar extends ConsumerWidget {
   final CalendarGranularity granularityDisplayed;
+
   const SwipeCalendar({
     Key? key,
     required this.granularityDisplayed,

@@ -1,23 +1,20 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/models/growing.dart';
 import '../../../domain/models/seed.dart';
-import '../../../domain/models/tree.dart';
+import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../state/pomodoro_states/growing_state_notifier.dart';
 import '../../../state/pomodoro_states/seed_selector_state_notifier.dart';
 import '../../../state/sentences_stream_provider.dart';
+import '../../../state/services/growing_service_provider.dart';
 import '../../../state/timer/timer_v2.dart';
 import '../../../utils/upgrade_functions.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
+import '../../widgets/snackbar.dart';
 import 'growing_grow_screen_widget.dart';
-import 'widgets/grow_failed_dialog_widget.dart';
 import 'widgets/seeds_select_dialog_widget.dart';
-import 'widgets/tree_reward_dialog_widget.dart';
 
 class GrowingScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
@@ -32,35 +29,7 @@ class GrowingScreenWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sentence = ref.watch(sentenceProvider);
     final selectedSeed = ref.watch(seedSelectorStateNotifierProvider);
-    final growingState = ref.watch(growingStateNotifierProvider);
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (growingState.isEnded == true) {
-        final growing = growingState.growing!;
-
-        // todo remove mock
-        final tree = Tree(
-          id: Random().nextInt(100000).toString(),
-          collectionId: "1",
-          collectionName: "Collection 1",
-          created: DateTime.now(),
-          updated: DateTime.now(),
-          user: "1",
-          seedType: growing.seedType,
-          expand: growing.expand,
-          reward: growing.reward,
-          timeToGrow: growing.timeToGrow,
-          started: growing.created,
-          ended: DateTime.now(),
-        );
-
-        _showTreeRewardDialog(context, ref, tree);
-      } else if (growingState.isFailed == true) {
-        _showGrowFailedDialog(context, ref);
-
-        // todo remove growing from PB
-      }
-    });
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -168,34 +137,27 @@ class GrowingScreenWidget extends ConsumerWidget {
   }
 
   _startGrowTree(BuildContext context, WidgetRef ref, Seed selectedSeed) {
-    final grow = Growing(
-      collectionId: "1",
-      collectionName: "Collection 1",
-      created: DateTime.now(),
-      id: "1",
-      seedType: selectedSeed.expand.seedType.id,
-      expand: selectedSeed.expand,
-      reward: getIncome(
-        selectedSeed.expand.seedType.reward,
-        selectedSeed.leafLevel,
-      ),
-      timeToGrow: getGrowTime(
-        selectedSeed.expand.seedType.timeToGrow,
-        selectedSeed.trunkLevel,
-      ),
-      updated: DateTime.now(),
-      user: "1",
-    );
-    ref.read(growingStateNotifierProvider.notifier).startGrowing(grow);
+    final user = ref.read(authStateNotifierProvider).user;
+    ref
+        .read(growingServiceProvider)
+        .addNewGrowing(user.id, selectedSeed)
+        .then((growSuccess) {
+      if (growSuccess.isSuccess) {
+        final grow = growSuccess.data!;
+        ref.read(growingStateNotifierProvider.notifier).setGrowing(grow);
 
-    ref.read(timerNotifierProvider.notifier).start(
-          getGrowTime(
-                selectedSeed.expand.seedType.timeToGrow,
-                selectedSeed.trunkLevel,
-              ) *
-              60,
-        );
-    GrowingGrowScreenWidget.navigateTo(context);
+        ref.read(timerNotifierProvider.notifier).start(
+              getGrowTime(
+                    selectedSeed.expand.seedType.timeToGrow,
+                    selectedSeed.trunkLevel,
+                  ) *
+                  60,
+            );
+        GrowingGrowScreenWidget.navigateTo(context);
+      } else {
+        showSnackBar(context, "Erreur lors de la plantation");
+      }
+    });
   }
 
   _showSeedSelectDialog(BuildContext context) {
@@ -207,31 +169,5 @@ class GrowingScreenWidget extends ConsumerWidget {
         child: SeedsSelectDialogWidget(),
       ),
     );
-  }
-
-  _showTreeRewardDialog(BuildContext context, WidgetRef ref, Tree tree) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: TreeRewardDialogWidget(tree: tree),
-      ),
-    ).whenComplete(() {
-      ref.read(timerNotifierProvider.notifier).reset();
-      ref.read(growingStateNotifierProvider.notifier).reset();
-    });
-  }
-
-  _showGrowFailedDialog(BuildContext context, WidgetRef ref) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => const Dialog(
-        backgroundColor: Colors.transparent,
-        child: GrowFailedDialogWidget(),
-      ),
-    ).whenComplete(() {
-      ref.read(timerNotifierProvider.notifier).reset();
-      ref.read(growingStateNotifierProvider.notifier).reset();
-    });
   }
 }

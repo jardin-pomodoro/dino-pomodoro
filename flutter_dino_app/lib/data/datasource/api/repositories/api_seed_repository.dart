@@ -1,13 +1,13 @@
-import 'package:flutter_dino_app/core/success.dart';
-import 'package:flutter_dino_app/data/datasource/api/api_consumer.dart';
-import 'package:flutter_dino_app/data/datasource/api/entity/seed_entity.dart';
-import 'package:flutter_dino_app/data/datasource/api/mapper/seed_mapper.dart';
-import 'package:flutter_dino_app/domain/models/seed.dart';
-import 'package:flutter_dino_app/domain/models/seed_type.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+import '../../../../core/success.dart';
+import '../../../../domain/models/seed.dart';
+import '../../../../domain/models/seed_type.dart';
 import '../../../../domain/models/user.dart';
 import '../../../../domain/repositories/seed_repository.dart';
+import '../api_consumer.dart';
+import '../entity/seed_entity.dart';
+import '../mapper/seed_mapper.dart';
 
 class ApiSeedRepository implements SeedRepository {
   final ApiConsumer pb;

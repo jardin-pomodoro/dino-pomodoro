@@ -3,8 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:is_lock_screen/is_lock_screen.dart';
 
+import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../../state/pomodoro_states/growing_state_notifier.dart';
 import '../../../state/sentences_stream_provider.dart';
+import '../../../state/services/growing_service_provider.dart';
+import '../../../state/services/tree_service_provider.dart';
 import '../../../state/timer/timer_v2.dart';
 import '../../../utils/upgrade_functions.dart';
 import '../../router.dart';
@@ -12,7 +15,9 @@ import '../../theme/theme.dart';
 import '../../widgets/circular_progress_timer.dart';
 import '../../widgets/snackbar.dart';
 import 'growing_screen_widget.dart';
+import 'widgets/grow_failed_dialog_widget.dart';
 import 'widgets/growing_tree.dart';
+import 'widgets/tree_reward_dialog_widget.dart';
 
 class GrowingGrowScreenWidget extends ConsumerStatefulWidget {
   static void navigateTo(BuildContext context) {
@@ -30,6 +35,8 @@ class GrowingGrowScreenWidget extends ConsumerStatefulWidget {
 class _GrowingGrowScreenWidgetDetectorState
     extends ConsumerState<GrowingGrowScreenWidget> with WidgetsBindingObserver {
   bool _isScreenLocked = false;
+  bool _isGrowFailed = false;
+  bool _popupShown = false;
 
   @override
   void initState() {
@@ -55,7 +62,9 @@ class _GrowingGrowScreenWidgetDetectorState
       }
     } else if (state == AppLifecycleState.resumed) {
       if (_isScreenLocked == false) {
-        ref.read(growingStateNotifierProvider.notifier).failGrowing();
+        setState(() {
+          _isGrowFailed = true;
+        });
       }
     }
   }
@@ -64,16 +73,22 @@ class _GrowingGrowScreenWidgetDetectorState
   Widget build(BuildContext context) {
     final sentence = ref.watch(sentenceProvider);
     final timer = ref.watch(timerNotifierProvider);
-    final isGrowing = ref.watch(isGrowingProvider);
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (isGrowing == false) {
-        ref.read(timerNotifierProvider.notifier).reset();
-        GrowingScreenWidget.navigateTo(context);
-      } else if (timer.durationLeft == 0) {
-        ref.read(growingStateNotifierProvider.notifier).endGrowing();
-      }
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (_isGrowFailed && !_popupShown) {
+          setState(() {
+            _popupShown = true;
+          });
+          _showGrowFailedDialog(context);
+        } else if (timer.durationLeft == 0 && !_popupShown) {
+          setState(() {
+            _popupShown = true;
+          });
+          _showTreeRewardDialog(context);
+        }
+      },
+    );
 
     return WillPopScope(
       onWillPop: () async {
@@ -121,5 +136,50 @@ class _GrowingGrowScreenWidgetDetectorState
         ),
       ),
     );
+  }
+
+  _showTreeRewardDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => const Dialog(
+        backgroundColor: Colors.transparent,
+        child: TreeRewardDialogWidget(),
+      ),
+    ).whenComplete(() {
+      final growing = ref.read(growingStateNotifierProvider);
+      final user = ref.read(authStateNotifierProvider).user;
+      final treeService = ref.read(treeServiceProvider);
+      treeService.addNewTree(user, growing!).then((treeSuccess) {
+        if (treeSuccess.isSuccess) {
+          ref.read(timerNotifierProvider.notifier).reset();
+          ref.read(growingServiceProvider).clearGrowing(user.id);
+          ref.read(growingStateNotifierProvider.notifier).endGrowing();
+          ref
+              .read(authStateNotifierProvider.notifier)
+              .updateBalance(user.balance + growing.reward);
+          GrowingScreenWidget.navigateTo(context);
+        } else {
+          showSnackBar(context, "Erreur lors de l'ajout de l'arbre");
+        }
+      });
+
+      // ref.read(growingStateNotifierProvider.notifier).reset();
+    });
+  }
+
+  _showGrowFailedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => const Dialog(
+        backgroundColor: Colors.transparent,
+        child: GrowFailedDialogWidget(),
+      ),
+    ).whenComplete(() {
+      final user = ref.read(authStateNotifierProvider).user;
+      ref.read(timerNotifierProvider.notifier).reset();
+      ref.read(growingServiceProvider).clearGrowing(user.id);
+      ref.read(growingStateNotifierProvider.notifier).endGrowing();
+      GrowingScreenWidget.navigateTo(context);
+    });
   }
 }
