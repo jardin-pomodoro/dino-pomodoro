@@ -26,21 +26,25 @@ Une graine c'est :
 
 Documentation GitHub pour ce projet
 
+| ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) |     |
+|-----------------------------------------------------------------------------------------------------------------|-----|
+
+
 ## Table des matières
 
 - [1. Introduction](#1-introduction)
 - [2. Installation](#2-installation)
 - [3. Utilisation](#3-utilisation)
-   - [3.1 Se connecter](#31-se-connecter)
-   - [3.2 Acheter des graines](#32-acheter-des-graines)
-   - [3.3 Planter une graine](#33-planter-une-graine)
-   - [3.4 Améliorer une graine](#34-améliorer-une-graine)
-   - [3.5 Consulter sa forêt](#35-consulter-sa-foret)
-   - [3.6 Envoyer/Accepter des demandes d'amis](#36-envoyeraccepter-des-demandes-damis)
+    - [3.1 Se connecter](#31-se-connecter)
+    - [3.2 Acheter des graines](#32-acheter-des-graines)
+    - [3.3 Planter une graine](#33-planter-une-graine)
+    - [3.4 Améliorer une graine](#34-améliorer-une-graine)
+    - [3.5 Consulter sa forêt](#35-consulter-sa-foret)
+    - [3.6 Envoyer/Accepter des demandes d'amis](#36-envoyeraccepter-des-demandes-damis)
 - [4. Développement](#4-développement)
-   - [4.1 Architecture](#41-architecture)
-   - [4.2 Technologies](#42-technologies)
-   - [4.3 Modèle de données](#43-modèle-de-données)
+    - [4.1 Architecture](#41-architecture)
+    - [4.2 Technologies](#42-technologies)
+    - [4.3 Modèle de données](#43-modèle-de-données)
 - [5. Auteurs](#5-auteurs)
 
 ## 1. Introduction
@@ -62,7 +66,8 @@ suivre les instructions sur le site officiel de Flutter pour installer Flutter s
 Une fois que vous avez installé Flutter, vous pouvez cloner le projet et lancer l'application sur
 votre téléphone ou sur un émulateur.
 
-Vous pouvez également télécharger l'installateur depuis la page de release du projet.
+Vous pouvez également télécharger l'installateur depuis la page
+de [release](https://github.com/jardin-pomodoro/dino-pomodoro/releases) du projet.
 
 ## 3. Utilisation
 
@@ -87,3 +92,7 @@ Vous pouvez également télécharger l'installateur depuis la page de release du
 ### 4.3 Modèle de données
 
 ## 5. Auteurs
+
+<a href="https://github.com/jardin-pomodoro/dino-pomodoro/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jardin-pomodoro/dino-pomodoro" />
+</a>
