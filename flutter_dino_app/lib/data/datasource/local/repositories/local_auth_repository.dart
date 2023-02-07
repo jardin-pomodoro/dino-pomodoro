@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:sqflite/sqflite.dart';
+
 import '../../../../core/failure.dart';
 import '../../../../core/success.dart';
 import '../../../../domain/models/user_auth.dart';
@@ -38,7 +40,9 @@ class LocalAuthRepository implements AuthRepository {
     await db.insert('user_auth', {
       'id': userAuth.user.id,
       'json': jsonEncode(userAuth.toJson()),
-    });
+    },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
     return Future.value(Success(data: null));
   }
 
