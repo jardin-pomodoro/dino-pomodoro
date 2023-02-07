@@ -154,9 +154,9 @@ Vous pouvez aussi vous déconnecter de l'application.
 | [oauth2](https://pub.dev/packages/oauth2)                             | ^2.0.1   | Librairie flutter pour l'authentification Oauth2                                                                                                  |
 | [webview_flutter](https://pub.dev/packages/webview_flutter)           | ^4.0.2   | Librairie flutter pour afficher des fenêtres web                                                                                                  |
 | [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter) | ^10.3.0  | Librairie flutter de pack d'icônes                                                                                                                |
-| [go_router]()                                                         |          | Librairie flutter pour la navigation / le routing                                                                                                 |
-| [image_picker]()                                                      |          | Librairie flutter                                                                                                                                 |
-| [fl_chart]()                                                          |          | Librairie flutter                                                                                                                                 |
+| [go_router](https://pub.dev/packages/go_router)                       | ^6.0.1   | Librairie flutter pour la navigation / le routing                                                                                                 |
+| [image_picker](https://pub.dev/packages/image_picker)                 | ^0.8.6+1 | Librairie flutter pour sélectionner une image dans le stockage du téléphone                                                                       |
+| [fl_chart](https://pub.dev/packages/fl_chart)                         | ^0.60.0  | Librairie flutter pour afficher des graphiques                                                                                                    |
 
 ### 4.3 Modèle de données
 
