@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:sqflite/sqflite.dart';
+
 import '../../../../core/success.dart';
 import '../../../../domain/models/seed.dart';
 import '../../../../domain/models/seed_type.dart';
@@ -45,6 +47,7 @@ class LocalSeedRepository implements SeedRepository {
         'userId': user.id,
         'json': jsonEncode(seed),
       },
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
     return Success(data: null);
   }
@@ -55,7 +58,6 @@ class LocalSeedRepository implements SeedRepository {
     await db.delete('seeds');
     print('seeds: ${seeds.length}}');
     print('seeds ids: ${seeds.map((e) => e.id).toList()}');
-    await Future.delayed(Duration(milliseconds: 200));
     for (var seed in seeds) {
       await db.insert(
         'seeds',
@@ -64,6 +66,7 @@ class LocalSeedRepository implements SeedRepository {
           'userId': seed.user,
           'json': jsonEncode(seed.toJson()),
         },
+        conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
     return Success(data: null);

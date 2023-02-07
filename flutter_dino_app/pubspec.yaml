@@ -34,14 +34,13 @@ dependencies:
   is_lock_screen: ^2.0.0
   image_picker: ^0.8.6+1
   intl: ^0.18.0
+  fl_chart: ^0.60.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
   dependency_validator: ^3.2.0
-  fl_chart: ^0.60.0
-
   flutter_lints: ^2.0.0
   dart_code_metrics: ^4.19.1
 
