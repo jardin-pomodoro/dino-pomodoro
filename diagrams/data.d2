@@ -19,7 +19,6 @@ pocketbase: PocketBase {
     id: Text {constraint: primary_key}
     username: Text
     email: Email
-    name: Text
     avatar: Image
     balance: Number
     created: DateTime
@@ -37,6 +36,7 @@ pocketbase: PocketBase {
     id: Text {constraint: primary_key}
     user: Relation {constraint: foreign_key}
     friend: Relation {constraint: foreign_key}
+    status: Text
     created: DateTime
     updated: DateTime
   }
