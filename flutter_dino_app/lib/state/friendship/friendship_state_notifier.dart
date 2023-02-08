@@ -93,9 +93,6 @@ final addFriendshipProvider =
   final FriendshipService friendshipService =
       ref.watch(friendshipServiceProvider);
   final user = await service.fetchUserByEmail(email);
-  print(user.failureMessage);
-  print(user.data);
-  print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   return friendshipService.sendFriendshipRequest(CreateFriendship(
       user: userAuth.user.id,
       relation: user.data!.id,

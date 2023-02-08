@@ -9,7 +9,7 @@ import '../../../state/api_consumer/api_consumer.dart';
 import '../../../state/pomodoro_states/auth_state_notifier.dart';
 import '../../data/datasource/api/api_consumer.dart';
 import '../../data/datasource/api/repositories/api_tree_repository.dart';
-import '../../presentation/screen/forest_screen/swipe_calendar.dart';
+import '../../presentation/screen/forest_screen/widget/swipe_calendar.dart';
 import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 
 class TreeByTypeUI {

@@ -4,7 +4,7 @@ import '../../data/datasource/api/api_consumer.dart';
 import '../../data/datasource/api/repositories/api_tree_repository.dart';
 import '../../data/datasource/local/repositories/local_tree_repository.dart';
 import '../../domain/services/tree_service.dart';
-import '../../presentation/screen/forest_screen/swipe_calendar.dart';
+import '../../presentation/screen/forest_screen/widget/swipe_calendar.dart';
 import '../../presentation/screen/forest_screen/widget/canular_granularity.dart';
 import '../../presentation/screen/friends_screen/widgets/friends_tab.dart';
 import '../api_consumer/api_consumer.dart';

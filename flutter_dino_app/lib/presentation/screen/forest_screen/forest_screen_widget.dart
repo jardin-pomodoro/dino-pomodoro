@@ -6,12 +6,11 @@ import 'package:go_router/go_router.dart';
 import '../../../state/tree/tree_provider.dart';
 import '../../router.dart';
 import '../../theme/theme.dart';
-import 'swipe_calendar.dart';
+import 'widget/swipe_calendar.dart';
 import 'widget/calendar_chart.dart';
 import 'widget/canular_granularity.dart';
-import 'widget/focus_card.dart';
 import 'widget/list-horizontal-slide.dart';
-import 'widget/no_tree_card.dart';
+import 'widget/simple_card.dart';
 
 class ForestScreenWidget extends ConsumerWidget {
   static void navigateTo(BuildContext context) {
@@ -64,7 +63,13 @@ class ForestScreenWidget extends ConsumerWidget {
                 treesByTypeUi.when(
                   data: (trees) {
                     if (trees.isEmpty) {
-                      return const NoTreeCard();
+                      return const SimpleCard(
+                        message:
+                            "Vous n'avez pas encore planté d'arbre à cette date",
+                        color: PomodoroTheme.secondary,
+                        textColor: PomodoroTheme.yellow,
+                        textSize: 18,
+                      );
                     }
                     return ListHorizontalSlide(
                       treesStatsUi: trees
@@ -96,7 +101,13 @@ class ForestScreenWidget extends ConsumerWidget {
                     runSpacing: 10,
                     runAlignment: WrapAlignment.end,
                     children: [
-                      FocusCard(stats: stats),
+                      SimpleCard(
+                        message:
+                            "Vous êtes résté concentré ${stats.reduce((value, element) => value += element)} minutes",
+                        color: PomodoroTheme.secondary,
+                        textColor: PomodoroTheme.white,
+                        textSize: 12,
+                      ),
                       CalendarChart(
                         granularity: ref.watch(calendarGranularityProvider),
                         dataByGranularity: stats,

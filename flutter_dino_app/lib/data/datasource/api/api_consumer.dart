@@ -52,7 +52,6 @@ class ApiConsumer {
           codeVerifier,
           '${ApiPocketBase.baseUrl}/redirect.html',
         );
-    print(authData);
     return pb.authStore;
   }
 
@@ -103,7 +102,6 @@ class ApiConsumer {
     final seedTypes =
         await pb.collection(Collection.seedTypes.name).getFullList();
 
-    // print(seedTypes.toString());
     return seedTypes;
   }
 
@@ -113,7 +111,6 @@ class ApiConsumer {
           expand: 'seed_type',
         );
 
-    // print(ownedSeeds.toString());
     return ownedSeeds;
   }
 

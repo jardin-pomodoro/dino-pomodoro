@@ -46,7 +46,6 @@ class _CalendarChartState extends State<CalendarChart> {
                       String text = '';
                       switch (widget.granularity) {
                         case CalendarGranularity.day:
-                          // get la valeur de la barchart et pas son index
                           text = '${rod.toY.toInt()} minutes';
                           break;
                         case CalendarGranularity.week:
