@@ -23,7 +23,6 @@ class UserService {
   Future<Success<User>> fetchUserByEmail(String email) async {
     if (await NetworkChecker.hasConnection()) {
       final user = await remoteRepository.retrieveUserByEmail(email);
-      print(user.failureMessage);
       if (user.isSuccess) {
         return user;
       }

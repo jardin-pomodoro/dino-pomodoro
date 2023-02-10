@@ -140,7 +140,6 @@ Widget _scaffoldedWidget(String title, Widget child) {
 }
 
 void _onSeedsLoading() {
-  print('loading seeds');
 }
 
 void _onSeedsError(Object error, StackTrace stackTrace) {
@@ -149,7 +148,6 @@ void _onSeedsError(Object error, StackTrace stackTrace) {
 }
 
 void _onSeedsDataArrive(Success<List<Seed>> seeds, WidgetRef ref) {
-  print('seeds loaded');
   ref.read(seedStateNotifierProvider.notifier).clearSeeds();
   ref
       .read(seedStateNotifierProvider.notifier)

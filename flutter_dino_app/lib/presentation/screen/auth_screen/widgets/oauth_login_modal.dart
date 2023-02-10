@@ -71,15 +71,12 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
     final uri = Uri.parse(request.url);
     final code = uri.queryParameters['code'];
     if (code != null) {
-      print(code);
-      print(redirectUri);
       final codeVerifier = widget.provider.codeVerifier;
       final x = await client.authWithOAuth2(
         widget.provider.name,
         code,
         codeVerifier,
       );
-      print(x);
       context.go(RouteNames.growing);
       return NavigationDecision.prevent;
     }

@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../domain/models/user.dart';
 import '../../../../state/tree/tree_friend_provider.dart';
 import '../../../theme/theme.dart';
-import '../swipe_calendar.dart';
+import '../widget/simple_card.dart';
+import '../widget/swipe_calendar.dart';
 import '../widget/canular_granularity.dart';
-import '../widget/focus_card.dart';
 import '../widget/list-horizontal-slide.dart';
 
 class FriendForest extends ConsumerWidget {
@@ -67,7 +67,13 @@ class FriendForest extends ConsumerWidget {
         ),
         const SizedBox(height: 30),
         calendarStats.when(
-          data: (stats) => FocusCard(stats: stats),
+          data: (stats) => SimpleCard(
+            message:
+                "Vous êtes résté concentré ${stats.reduce((value, element) => value += element)} minutes",
+            color: PomodoroTheme.secondary,
+            textColor: PomodoroTheme.white,
+            textSize: 12,
+          ),
           error: (error, stackTrace) => const CupertinoAlertDialog(
             title: Text("une erreur est survenue réessayez plus tard"),
           ),

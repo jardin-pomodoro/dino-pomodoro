@@ -19,7 +19,6 @@ class FriendshipService {
       if (friendships.isSuccess) {
         return friendships;
       }
-      print(friendships.failureMessage);
     }
     return (await localRepository.retrieveFriendships(userId));
   }
