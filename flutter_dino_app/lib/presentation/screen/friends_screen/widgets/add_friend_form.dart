@@ -45,7 +45,9 @@ class _AddFriendFormState extends State<AddFriendForm> {
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              widget.addFriend(widget.controller.text);
+            },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
               side: const BorderSide(
