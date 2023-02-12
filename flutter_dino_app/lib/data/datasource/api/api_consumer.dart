@@ -46,13 +46,12 @@ class ApiConsumer {
   }
 
   authWithOAuth2(String provider, String code, String codeVerifier) async {
-    final authData = await pb.collection(Collection.users.name).authWithOAuth2(
+    return await pb.collection(Collection.users.name).authWithOAuth2(
           provider,
           code,
           codeVerifier,
           '${ApiPocketBase.baseUrl}/redirect.html',
         );
-    return pb.authStore;
   }
 
   authWithPassword(String email, String password) async {

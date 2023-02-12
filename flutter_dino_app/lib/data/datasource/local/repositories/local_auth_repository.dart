@@ -37,10 +37,12 @@ class LocalAuthRepository implements AuthRepository {
   Future<Success<void>> saveUserAuth(UserAuth userAuth) async {
     final db = await dbSource.db();
     await db.delete('user_auth');
-    await db.insert('user_auth', {
-      'id': userAuth.user.id,
-      'json': jsonEncode(userAuth.toJson()),
-    },
+    await db.insert(
+      'user_auth',
+      {
+        'id': userAuth.user.id,
+        'json': jsonEncode(userAuth.toJson()),
+      },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     return Future.value(Success(data: null));
@@ -74,6 +76,13 @@ class LocalAuthRepository implements AuthRepository {
 
   @override
   Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar) {
+    return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
+  }
+
+  @override
+  Future<Success<UserAuth>> loginWithOAuth2(
+      String provider, String code, String codeVerifier) {
+    // It's not possible do login with OAuth2 without internet connection
     return Future.value(Success.fromFailure(failureMessage: "Not implemented"));
   }
 }

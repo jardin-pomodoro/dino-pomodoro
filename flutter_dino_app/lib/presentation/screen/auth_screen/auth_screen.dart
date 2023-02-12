@@ -38,7 +38,7 @@ class AuthScreen extends ConsumerWidget {
         List<Widget> loginSolutions = authMethods
             .map((provider) => buildOauthLoginModal(provider, context))
             .toList();
-        loginSolutions.add(const ManualAuthentification());
+        loginSolutions.add(ManualAuthentification());
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

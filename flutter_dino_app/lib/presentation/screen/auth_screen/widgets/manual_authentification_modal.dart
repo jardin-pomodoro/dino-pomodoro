@@ -5,8 +5,8 @@ import 'login_form.dart';
 import 'register_form.dart';
 
 class ManualAuthentification extends StatelessWidget {
-  const ManualAuthentification({Key? key}) : super(key: key);
-
+  ManualAuthentification({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _modelScaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -14,30 +14,41 @@ class ManualAuthentification extends StatelessWidget {
         await showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          builder: (context) => SingleChildScrollView(
-            child: Container(
-              decoration: bottomSheetDecoration(),
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: DefaultTabController(
-                length: 2,
-                child: Column(
-                  children: [
-                    TabBar(
-                      tabs: const [
-                        Tab(icon: Icon(Icons.login)),
-                        Tab(icon: Icon(Icons.app_registration_rounded)),
+          builder: (context) => SizedBox(
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: Scaffold(
+              extendBody: false,
+              key: _modelScaffoldKey,
+              resizeToAvoidBottomInset: true,
+              body: SingleChildScrollView(
+                child: Container(
+                  decoration: bottomSheetDecoration(),
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: DefaultTabController(
+                    length: 2,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          tabs: const [
+                            Tab(icon: Icon(Icons.login)),
+                            Tab(icon: Icon(Icons.app_registration_rounded)),
+                          ],
+                          labelColor: Theme.of(context).primaryColor,
+                        ),
+                        const Divider(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          child: TabBarView(
+                            children: [
+                              LoginForm(_modelScaffoldKey),
+                              RegisterForm(_modelScaffoldKey),
+                            ],
+                          ),
+                        ),
                       ],
-                      labelColor: Theme.of(context).primaryColor,
                     ),
-                    const Divider(),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      child: const TabBarView(
-                        children: [LoginForm(), RegisterForm()],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),

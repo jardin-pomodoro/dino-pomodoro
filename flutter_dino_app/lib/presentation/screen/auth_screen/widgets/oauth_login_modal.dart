@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:garden_pomodoro/presentation/screen/growing_screen/growing_screen_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for iOS features.
@@ -10,8 +11,11 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import '../../../../data/datasource/api/api_consumer.dart';
 import '../../../../state/api_consumer/api_consumer.dart';
 import '../../../../state/auth/auth.dart';
+import '../../../../state/pomodoro_states/auth_state_notifier.dart';
+import '../../../../state/services/auth_service_provider.dart';
 import '../../../router.dart';
 import '../../../widgets/bottom_sheet_decoration.dart';
+import '../../../widgets/snackbar.dart';
 
 Widget buildOauthLoginModal(OAuth2Provider provider, BuildContext context) {
   return Padding(
@@ -51,7 +55,6 @@ class LoginOAuthModal extends ConsumerStatefulWidget {
 
 class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
   late final WebViewController _controller;
-  late final ApiConsumer client;
 
   PlatformWebViewControllerCreationParams _optimisedParams() {
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
@@ -68,25 +71,35 @@ class _LoginOAuthModalState extends ConsumerState<LoginOAuthModal> {
     if (!request.url.startsWith(redirectUri)) {
       return NavigationDecision.navigate;
     }
+    final authService = ref.read(authServiceProvider);
     final uri = Uri.parse(request.url);
     final code = uri.queryParameters['code'];
     if (code != null) {
       final codeVerifier = widget.provider.codeVerifier;
-      final x = await client.authWithOAuth2(
+      final result = await authService.loginWithOAuth2(
         widget.provider.name,
         code,
         codeVerifier,
       );
-      context.go(RouteNames.growing);
+
+      ref.read(authStateNotifierProvider.notifier).setUser(result.data!);
+      authService.userAuthSuccess(result.data!);
+
+      goOnNextPage();
       return NavigationDecision.prevent;
     }
     return NavigationDecision.navigate;
   }
 
+  void goOnNextPage() {
+    Navigator.of(context).pop();
+    showSnackBar(context, 'Connexion reussie');
+    GrowingScreenWidget.navigateTo(context);
+  }
+
   @override
   void initState() {
     super.initState();
-    client = ref.read(apiProvider);
     final PlatformWebViewControllerCreationParams params = _optimisedParams();
     final WebViewController controller =
         WebViewController.fromPlatformCreationParams(params);

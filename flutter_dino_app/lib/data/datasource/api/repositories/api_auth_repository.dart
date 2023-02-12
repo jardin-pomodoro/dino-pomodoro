@@ -31,6 +31,23 @@ class ApiAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<Success<UserAuth>> loginWithOAuth2(
+      String provider, String code, String codeVerifier) async {
+    late final RecordAuth authData;
+    try {
+      authData = await client.authWithOAuth2(provider, code, codeVerifier);
+    } on ClientException {
+      return Success.fromFailure(failureMessage: 'Erreur inconnu');
+    } catch (_) {
+      return Success.fromFailure(failureMessage: 'Erreur réseau');
+    }
+
+    final AuthEntity authEntity = AuthEntity.fromJson(authData.toJson());
+
+    return Success(data: AuthMapper.fromEntity(authEntity));
+  }
+
+  @override
   Future<Success<UserAuth>> retrieveUserAuth() async {
     final refreshAuth = await client.authRefresh();
     final authEntity = AuthEntity.fromJson(refreshAuth.toJson());

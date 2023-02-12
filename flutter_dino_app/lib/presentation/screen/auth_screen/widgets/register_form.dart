@@ -8,7 +8,9 @@ import '../../../theme/validator.dart';
 import '../../../widgets/snackbar.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
-  const RegisterForm({super.key});
+  final GlobalKey<ScaffoldState> modalScaffoldKey;
+
+  const RegisterForm(this.modalScaffoldKey, {super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _RegisterFormState();
@@ -82,7 +84,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     ));
                     if (mounted) {
                       if (!result.isSuccess) {
-                        // faire en sorte que le snackbar s'affiche
                         showErrorSnackBar(context, result.failureMessage);
                       } else {
                         showSnackBar(context, 'inscription reussie');

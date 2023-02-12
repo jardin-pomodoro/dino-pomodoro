@@ -22,4 +22,7 @@ abstract class AuthRepository {
   Future<Success<UserAuth>> updateUserInfo(UserAuth userAuth);
 
   Future<Success<UserAuth>> updateUserAvatar(UserAuth userAuth, File avatar);
+
+  Future<Success<UserAuth>> loginWithOAuth2(
+      String provider, String code, String codeVerifier);
 }

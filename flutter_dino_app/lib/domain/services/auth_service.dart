@@ -16,6 +16,11 @@ class AuthService {
     return _remoteRepository.login(params.email, params.password);
   }
 
+  Future<Success<UserAuth>> loginWithOAuth2(
+      String provider, String code, String codeVerifier) async {
+    return _remoteRepository.loginWithOAuth2(provider, code, codeVerifier);
+  }
+
   Future<Success<bool>> register(RegisterParam params) async {
     return _remoteRepository.register(
       params.email,

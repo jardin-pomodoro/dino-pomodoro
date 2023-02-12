@@ -9,7 +9,8 @@ import '../../../widgets/snackbar.dart';
 import '../../growing_screen/growing_screen_widget.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
-  const LoginForm({super.key});
+  final GlobalKey<ScaffoldState> modalScaffoldKey;
+  const LoginForm(this.modalScaffoldKey, {super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginFormState();
@@ -39,9 +40,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             ),
             TextFormField(
               onChanged: (value) => password = value,
-              decoration: const InputDecoration(
-                labelText: 'Mot de passe',
-              ),
+              decoration: const InputDecoration(labelText: 'Mot de passe'),
               obscureText: true,
             ),
             const SizedBox(height: 20),
