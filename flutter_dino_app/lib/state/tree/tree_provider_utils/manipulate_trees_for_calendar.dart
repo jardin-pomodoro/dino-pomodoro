@@ -35,7 +35,8 @@ Map<DateTime, int> treesToDayMap(List<Tree> trees, DateTime selectedDate) {
       differenceInMinutes -= valueToAdd;
       dateOfStart = dateAfter;
     }
-    dateMap.update(dateOfStart, (value) => value + differenceInMinutes);
+    dateMap.update(DateTime.utc(dateOfStart.year, dateOfStart.month, dateOfStart.day,
+        dateOfStart.hour, 0), (value) => value + differenceInMinutes);
   });
 
   return dateMap;
