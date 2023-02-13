@@ -70,7 +70,7 @@ class TreeService {
       final createTree = CreateTree(
         seedType: growing.seedType,
         user: user.id,
-        started: growing.created,
+        started: growing.created.toLocal(),
         ended: DateTime.now(),
         reward: growing.reward,
         timeToGrow: growing.timeToGrow,
